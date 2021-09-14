@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 const sequelize = require('./database/db');
-const { restore } = require('./database/models/Pruebauser');
+const { Pruebauser } = require('./database/models/Pruebauser');
 
 //setting
 const port = 3000 || process.env.PORT
@@ -12,6 +12,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 
 
+
+//importar las rutas creadas
 app.get('/', (req, res) => {
 /*     res.json({
     msg: "text"

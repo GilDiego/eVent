@@ -10,8 +10,9 @@ import FormUsers from './components/FormUsers/formUsers';
 function App() {
   return (
     <BrowserRouter>
+
       <Route path='/formUser' component={FormUsers} />
- {/*   <Prueba /> */}
+
       <Route path='/' component={NavBar}/>{/* Leo: Barra de Navegacion  */}
       <Route exact path= '/'  component={Home}/>{/*Leo: Componente Home*/}
 
