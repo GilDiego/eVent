@@ -15,7 +15,7 @@ function App() {
     <Route path='/' component={FormUsers} />
  <Prueba />
       <Route path='/' component={NavBar}/>{/* Leo: Barra de Navegacion  */}
-      <Route exact path= '/home'  component={Home}/>{/*Leo: Componente Home*/}
+      <Route exact path= '/'  component={Home}/>{/*Leo: Componente Home*/}
 
       <Route path='/formUser' component={FormUsers} />
 
