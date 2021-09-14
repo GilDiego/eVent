@@ -1,6 +1,6 @@
 import './App.css';
 import {BrowserRouter, Route } from 'react-router-dom';
-import FormUsers from './components/formUsers';
+import FormUsers from './components/FormUsers/formUsers';
 
 function App() {
   return (
