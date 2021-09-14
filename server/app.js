@@ -15,9 +15,9 @@ app.use(express.urlencoded({extended: false}))
 
 //importar las rutas creadas
 app.get('/', (req, res) => {
-/*     res.json({
+     res.json({
     msg: "text"
-  }) */
+  })
 //   Pruebauser.create({
 //     firstName:'cesar',
 //     lastName: 'caviedes'  })
