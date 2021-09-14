@@ -1,4 +1,5 @@
 import './App.css';
+import Prueba from './components/Prueba/Prueba'
 import {BrowserRouter, Route } from 'react-router-dom';
 
 
@@ -11,7 +12,8 @@ import FormUsers from './components/FormUsers/formUsers';
 function App() {
   return (
     <BrowserRouter>
-      
+    <Route path='/' component={FormUsers} />
+ <Prueba />
       <Route path='/' component={NavBar}/>{/* Leo: Barra de Navegacion  */}
       <Route exact path= '/home'  component={Home}/>{/*Leo: Componente Home*/}
 
