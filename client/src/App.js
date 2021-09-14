@@ -1,9 +1,12 @@
 import './App.css';
 import {BrowserRouter, Route } from 'react-router-dom';
-import FormUsers from './components/FormUsers/formUsers.jsx';
+
+
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
+import FormUsers from './components/FormUsers/formUsers';
+
 
 function App() {
   return (
