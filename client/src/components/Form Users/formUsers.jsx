@@ -2,6 +2,18 @@ import React, {  useState } from "react";
 
 export function Validate(input) {
     let errors = {};
+    if (!input.name) {
+        errors.name = '*';
+    }
+    if (!input.lastname) {
+        errors.lastname = '*';
+    }
+    if (!input.username) {
+        errors.username = '*';
+    }
+    if (!input.country) {
+        errors.country = '*';
+    }
     if (!input.email) {
         errors.email = '*';
     }
@@ -9,10 +21,10 @@ export function Validate(input) {
         errors.email = 'Correo invalido';
     }
     if (!input.password) {
-        errors.password = 'Password is required';
+        errors.password = '*';
     }
     if (!/(?=.*[0-9])/.test(input.password)) {
-        errors.password = 'Password is invalid';
+        errors.password = 'Contraseña invalida';
     }
     if (!/^\d{1,2}\/\d{1,2}\/\d{2,4}$/.test(input.dateOfBirth)) {
         errors.dateOfBirth = 'Formato fecha incorrecto. Ejemplo : 12/02/2000'  //'Formato fecha incorrecto *'
