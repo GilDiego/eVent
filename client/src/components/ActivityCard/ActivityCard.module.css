@@ -8,6 +8,10 @@
 color: burlywood;
 }
 
+.imgCard{
+width: 200px;
+}
+
 .infoCard{
     color: rgb(128, 57, 241);
 }
