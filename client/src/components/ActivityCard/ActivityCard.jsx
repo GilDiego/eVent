@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './ActivityCard.module.css'
 
 
-const ActivityCards = () => {
+const ActivityCard = () => {
 
 
 
@@ -18,4 +18,4 @@ const ActivityCards = () => {
     )
 }
 
-export default ActivityCards;
+export default ActivityCard;
