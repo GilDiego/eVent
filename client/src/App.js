@@ -1,12 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
 import Prueba from './components/Prueba/Prueba'
+import {BrowserRouter, Route } from 'react-router-dom';
+import FormUsers from './components/FormUsers/formUsers';
 
 function App() {
   return (
-    <div className="App">
-     <Prueba />
-    </div>
+    <BrowserRouter>
+    <Route path='/' component={FormUsers} />
+ <Prueba />
+    </BrowserRouter
   );
 }
 
