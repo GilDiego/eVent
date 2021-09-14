@@ -1,0 +1,17 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titleCard{
+color: burlywood;
+}
+
+.infoCard{
+    color: rgb(128, 57, 241);
+}
+
+.btnCard{
+    background-color: coral;
+}
