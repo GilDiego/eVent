@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+span.danger{
+  color: rgb(255, 0, 0);
+  text-shadow: none;
+  font-family:'Courier New', Courier, monospace;
+}
