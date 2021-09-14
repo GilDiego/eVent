@@ -13,7 +13,9 @@ app.use(express.urlencoded({extended: false}))
 
 
 app.get('/', (req, res) => {
-
+/*     res.json({
+    msg: "text"
+  }) */
 //   Pruebauser.create({
 //     firstName:'cesar',
 //     lastName: 'caviedes'  })
