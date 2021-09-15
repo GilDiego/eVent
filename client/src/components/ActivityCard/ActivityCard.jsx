@@ -4,6 +4,10 @@ import styles from './ActivityCard.module.css'
 
 const ActivityCard = ({ activity }) => {
 
+    function setId(id){
+        console.log(id)
+    }
+
 
 
     return (
@@ -13,7 +17,7 @@ const ActivityCard = ({ activity }) => {
             
             <p className={styles.infoCard}>Lugar: {activity.place}</p>
             <p className={styles.infoCard}>Fecha: {activity.date}</p>
-            <button className={styles.btnCard}>Info</button>
+            <button className={styles.btnCard} onClick={() => setId(activity.id)}>Info</button>
             
         </div>
     )
