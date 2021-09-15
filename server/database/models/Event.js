@@ -31,19 +31,12 @@ const Event = sequelize.define('event',{
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false,
     },
-    start_date: { // DD/MM/AAAA
+    start_date: { // AAAA-MM-DD
         type: DataTypes.STRING,
         validate: { isDate: true },
         allowNull: false,
     },
-    finish_date: { // AAAA/MM/DD
-        type: DataTypes.STRING,
-        validate: {
-            isDate: true,
-        },
-        allowNull: true,
-    },
-    finish_date: { // AAAA/MM/DD
+    finish_date: { // AAAA-MM-DD
         type: DataTypes.STRING,
         validate: {
             isDate: true,
@@ -75,11 +68,13 @@ const Event = sequelize.define('event',{
         allowNull: false,
     },
     ticket_limit: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         allowNull: true,
     },
     seat_booking: {
         /* ?????????????? */
+        type: DataTypes.STRING,
+        allowNull:true
     },
 })
 
