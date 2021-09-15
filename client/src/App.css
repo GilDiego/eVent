@@ -37,32 +37,27 @@
   }
 }
 
-
 /**_VARIABLES__________________________________________________________________________________ */
 
-:root{
+:root {
   /* Colors */
   --Primary: #194358;
-  --Secondary: #00B4D8;
-  --Button: #F5AF00;
-  --Other: #E04B4B;
-  --white: rgb(241, 241, 241);
-  --Black: rgb(231, 231, 231);
+  --Secondary: #00b4d8;
+  --Button: #f5af00;
+  --Other: #e04b4b;
+  --White: #e0eff5;
+  --Black: #00171f;
 
   /* Fonts */
   --TitleCard: 27px;
-  
+
   /* Others */
   --RadiusOne: 10px;
-  --ShadowOne: 3px 3px 3px
-  rgba(0, 0, 0, 0.8);
-
+  --ShadowOne: 3px 3px 3px rgba(0, 0, 0, 0.8);
 }
-
 
 /**_GLOBALS____________________________________________________________________________________*/
 
-li{
+li {
   list-style: none;
 }
-
