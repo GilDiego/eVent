@@ -4,6 +4,7 @@ import styles from "./NavBar.module.css";
 
 const NavBar = () =>{
     return (
+        <>
         <nav className={styles.Navbar}>
             <Link to="/" className={styles.homeBtn}>          
                  Home       
@@ -11,8 +12,11 @@ const NavBar = () =>{
             <Link to="/formUser" className={styles.loginBtn}>         
                 Login     
             </Link>       
-
         </nav>
+        <div className={styles.subNav}>
+                <button className={styles.sideBarBtn}>Filters</button>
+            </div>
+        </>
     )
 }
 
