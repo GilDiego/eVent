@@ -2,7 +2,6 @@
 const express = require('express');
 const app = express();
 const sequelize = require('./database/db');
-const { restore } = require('./database/models/Pruebauser');
 
 //setting
 const port = 3000 || process.env.PORT
@@ -12,21 +11,16 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 
 
-app.get('/', (req, res) => {
 
-//   Pruebauser.create({
-//     firstName:'cesar',
-//     lastName: 'caviedes'  })
-//       .then(user => {
-//           res.json(user);
-//       })
-})
+//importar las rutas creadas
+app.use('/api', require('./routes/rutaprueba'));
+
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 
   //conectar base de datos
-  sequelize.sync( {force: false}).then(() => {
+  sequelize.sync( {force: true}).then(() => {
       console.log('Conection to the DB Success');
   }).catch(error => {
       console.log('An error has been found: ',error)
