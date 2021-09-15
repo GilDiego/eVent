@@ -1,6 +1,6 @@
 import React from 'react'
 import ActivityCard from '../ActivityCard/ActivityCard'
-import {styles} from './ActivityCards.module.css'
+import styles from './ActivityCards.module.css'
 
 const ActivityCards = ({activitiesList})=>{
 

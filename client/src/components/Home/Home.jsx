@@ -1,8 +1,9 @@
 import React from 'react'
-import './Home.css'
+//import './Home.css'
 import img from "./media/provisional.svg"
 import ActivityCards from '../ActivityCards/ActivityCards'
-import {styles} from './Home.module.css'
+import styles from './Home.module.css'
+import activitiesList from '../../FakeDB/FakeDB'
 const Home = () =>{
     //* La informacion de las actividades esta en el archivo FakeDB
     return(
