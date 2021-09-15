@@ -5,12 +5,13 @@ import styles from './NavBar.module.css'
 const NavBar = () =>{
     return (
         <nav className={styles.Navbar}>
-            <Link to="/formUser">         
-                <button>Login</button>       
-            </Link>       
-            <Link to="/">          
-                 <button>Home</button>         
+            <Link to="/" className={styles.homeBtn}>          
+                 Home       
             </Link>
+            <Link to="/formUser" className={styles.loginBtn}>         
+                Login     
+            </Link>       
+
         </nav>
     )
 }

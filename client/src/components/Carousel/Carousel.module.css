@@ -1,0 +1,10 @@
+.Slider{
+    width: 100%;
+    height: 530px;
+    border-bottom: var(--Black) solid 1px;
+}
+
+.Slider img{
+    width: 100%;
+    height: 100%;
+}

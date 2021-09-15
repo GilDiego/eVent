@@ -1,16 +1,14 @@
 import React from 'react'
-//import './Home.css'
-import img from "./media/provisional.svg"
 import ActivityCards from '../ActivityCards/ActivityCards'
 import styles from './Home.module.css'
 import activitiesList from '../../FakeDB/FakeDB'
+import Carousel from '../Carousel/Carousel'
+
 const Home = () =>{
     //* La informacion de las actividades esta en el archivo FakeDB
     return(
         <div className={styles.Home}>
-            <div className={styles.Slider}>
-                <img src={img} alt="..." />
-            </div>
+            <Carousel />
             <ActivityCards 
             activitiesList={activitiesList}
             />
