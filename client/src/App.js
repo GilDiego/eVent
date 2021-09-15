@@ -11,8 +11,6 @@ import FormUsers from './components/FormUsers/formUsers';
 function App() {
   return (
     <BrowserRouter>
-    <Route path='/' component={FormUsers} />
-
       <Route path='/' component={NavBar}/>{/* Leo: Barra de Navegacion  */}
       <Route exact path= '/'  component={Home}/>{/*Leo: Componente Home*/}
 
