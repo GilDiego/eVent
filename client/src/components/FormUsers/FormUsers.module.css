@@ -1,0 +1,19 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    
+    color: var(--White);
+    background-color: var(--Primary);
+    border-radius: var(--RadiusOne);
+    width: 1000px;
+    margin: auto;
+    margin-top: 70px;
+    margin-bottom: 70px;
+    padding: 20px;
+}
+
+.form{
+  
+    
+    
+}
