@@ -36,3 +36,33 @@
     transform: rotate(360deg);
   }
 }
+
+
+/**_VARIABLES__________________________________________________________________________________ */
+
+:root{
+  /* Colors */
+  --Primary: #194358;
+  --Secondary: #00B4D8;
+  --Button: #F5AF00;
+  --Other: #E04B4B;
+  --white: rgb(241, 241, 241);
+  --Black: rgb(231, 231, 231);
+
+  /* Fonts */
+  --TitleCard: 27px;
+  
+  /* Others */
+  --RadiusOne: 10px;
+  --ShadowOne: 3px 3px 3px
+  rgba(0, 0, 0, 0.8);
+
+}
+
+
+/**_GLOBALS____________________________________________________________________________________*/
+
+li{
+  list-style: none;
+}
+
