@@ -13,7 +13,8 @@ app.use(express.urlencoded({extended: false}))
 
 
 //importar las rutas creadas
-app.use('/api', require('./routes/rutaprueba'));
+app.use('/test', require('./routes/rutaprueba'));//ruta de prueba
+app.use('/api', require('./routes/event'));
 
 
 app.listen(port, () => {
