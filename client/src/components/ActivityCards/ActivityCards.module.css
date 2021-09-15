@@ -4,10 +4,8 @@
     height: auto;
 }
 
-ul{
+.ul{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin:20px;
-    padding-left:0px;
 }
