@@ -2,21 +2,43 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    background-color: var(--Primary);
+    width: 300px;
+    margin-bottom: 50px;
+    padding: 30px;
+    border-radius: var(--RadiusOne);
+    box-shadow: var(--ShadowOne) ;
+    position: relative;
 }
 
 .titleCard{
-color: burlywood;
+color: var(--white);
+z-index: 10;
+font-size: var(--TitleCard);
 }
 
 .imgCard{
-width: 200px;
+width: 360px;
+height: 180px;
+position: absolute;
+filter: brightness(60%);
 }
 
 .infoCard{
-    color: rgb(128, 57, 241);
+    color: var(--white);
+    z-index: 10;
+    
 }
 
 .btnCard{
-    background-color: coral;
+    margin-top: 30px;
+    background-color: var(--Button);
+    border-radius: var(--RadiusOne);
+    width: 70px;
+}
+
+.btnCard:hover{
+    background-color: var(--Other);
+    color: var(--white);
+    
 }
