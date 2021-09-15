@@ -8,7 +8,7 @@ const ActivityCards = ({activitiesList})=>{
 
     return (
         <div className={styles.Events}>
-            <ul>
+            <ul className={styles.ul}>
             {activitiesList.map(activity => (
                 <li key={activity.id}>
                      <ActivityCard

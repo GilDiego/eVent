@@ -46,7 +46,7 @@
   --Primary: #194358;
   --Secondary: #00b4d8;
   --Button: #f5af00;
-  --Other: #e04b4b;
+  --Other: #ce0b0b;
   --White: #e0eff5;
   --Black: #00171f;
 
@@ -59,6 +59,10 @@
 }
 
 /**_GLOBALS____________________________________________________________________________________*/
+
+ul {
+padding-left: 0px;
+}
 
 li {
   list-style: none;
