@@ -1,4 +1,37 @@
+.details {
+  background-color: var(--Black);
+}
 .event-main {
-  border: 2px solid black;
-  width: 800px;
+  margin: auto;
+}
+.title {
+  text-align: center;
+  color: var(--White);
+}
+.poster {
+  display: block;
+  margin: auto;
+  max-width: 500px;
+}
+.event-details {
+  margin: auto;
+  background-color: var(--White);
+  color: var(--Black);
+  max-width: 500px;
+}
+.button-container {
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.button {
+  font-size: large;
+  width: 150px;
+  height: 30px;
+  color: var(--White);
+  background-color: var(--Button);
+  border: none;
+  border-radius: var(--RadiusOne);
 }
