@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
@@ -9,16 +9,23 @@ import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDet
 
 function App() {
   return (
-    <BrowserRouter>
-      <Route path='/' component={NavBar}/>{/* Leo: Barra de Navegacion  */}
-      <Route exact path= '/'  component={Home}/>{/*Leo: Componente Home*/}
+    <>
+    <NavBar/>
+      
+        <Route exact path= '/'>
+          <Home/>
+        </Route>
 
-      <Route path='/formUser' component={FormUsers} />
-      <Route path='/eventDetailsUsuario' component={EventDetailsUsario} /> {/*Diego: Componente de Detalle de Evento para Usuario*/}
+        <Route path='/formUser' >
+          <FormUsers/>
+        </Route>
 
-      <Route path='/' component={Footer}/>{/* Leo: Footer (Va en todas las rutas) */}
+        <Route path='/eventDetailsUsuario' >
+          <EventDetailsUsario/>
+        </Route>
 
-    </BrowserRouter>
+    <Footer />
+    </>
   );
 }
 

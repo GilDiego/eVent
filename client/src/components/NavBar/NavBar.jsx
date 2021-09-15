@@ -1,11 +1,17 @@
 import React from 'react';
-import './NavBar.css'
-import {styles} from './NavBar.module.css'
+import {Link} from 'react-router-dom'
+import styles from './NavBar.module.css'
+
 const NavBar = () =>{
     return (
-        <div className={styles.NavBar}>
-            Navbar
-        </div>
+        <nav className={styles.Navbar}>
+            <Link to="/formUser">         
+                <button>Login</button>       
+            </Link>       
+            <Link to="/">          
+                 <button>Home</button>         
+            </Link>
+        </nav>
     )
 }
 
