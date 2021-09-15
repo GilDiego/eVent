@@ -4,6 +4,7 @@
     align-items: center;
     background-color: var(--Primary);
     width: 300px;
+    margin:30px;
     margin-bottom: 50px;
     padding: 30px;
     border-radius: var(--RadiusOne);

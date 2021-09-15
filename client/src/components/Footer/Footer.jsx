@@ -1,11 +1,14 @@
 import React from 'react';
-import './Footer.css'
-
+import styles from './Footer.module.css'
+import img from '../../Utilities/logoProvi.png'
+import imgw from '../../Utilities/whatsapp.svg'
 const Footer = () =>{
     return (
-        <div className='Footer'>
-            Footer
-        </div>
+        <footer className={styles.Footer}>
+            <div className={styles.logo}>
+                <img src={img} alt="" />
+            </div>
+        </footer>
     )
 }
 
