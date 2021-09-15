@@ -23,7 +23,7 @@ import {
       }
     }
     if (action.type === GET_EDIT){
-      return detailsEvent.map((eventDetail)=>eventDetail.id === action.id?
+      return state.detailsEvent.map((eventDetail)=>eventDetail.id === action.id?
       {...eventDetail, editing: !eventDetail.editing}: eventDetail
       )
         
