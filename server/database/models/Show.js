@@ -1,11 +1,11 @@
 const {  DataTypes } = require('sequelize');
 const sequelize = require('../db');
 
-const Evento = sequelize.define('Evento',{
+const Show = sequelize.define('show',{
     eventName: {
         type: DataTypes.STRING,
         allowNull: false
     }
 })
 
-module.exports = Evento;
+module.exports = Show;

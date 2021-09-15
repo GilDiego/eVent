@@ -1,8 +1,8 @@
-const Evento  = require('../database/models/Evento')
+const Show  = require('../database/models/Show')
 
-exports.controller = async (req, res) => {
+exports.controller =  (req, res) => {
 
-   Evento.create({
+   Show.create({
         eventName: 'Rock al parque',
     }).then(evento => {
         res.json(evento)
