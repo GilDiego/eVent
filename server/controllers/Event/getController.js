@@ -1,6 +1,16 @@
+const Event = require('../../database/models/Event');
 
-exports.getController = (req,res) => {
-    res.json({msg:'probando el get de todos los eventos'})
+
+exports.getController = async (req,res) => {
+
+    const consult = await Event.findAll();
+
+    const result = consult.map(event => {
+        const { dataValues } = event;
+        return dataValues;
+    })
+
+    res.json(result)
 }
 
 exports.getEventByIdController = (req,res) => {
