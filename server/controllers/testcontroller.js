@@ -3,7 +3,7 @@ const Event  = require('../database/models/Event')
 exports.controller =  (req, res) => {
 
    Event.create({
-        eventName: 'Rock al parque',
+        name: 'Rock al parque',
         description: 'Esta es la descripcion del modelo',
         location: 'Colombia/Valle/cali',
         address: 'cra 7ksdfkdsj',
