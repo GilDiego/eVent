@@ -4,6 +4,16 @@ exports.controller =  (req, res) => {
 
    Event.create({
         eventName: 'Rock al parque',
+        description: 'Esta es la descripcion del modelo',
+        location: 'Colombia/Valle/cali',
+        address: 'cra 7ksdfkdsj',
+        pictures: ['image 1'],
+        start_date: '2021-10-30',
+        schedule: ['10:00'],
+        weekdays: ['SUN','FRI'],
+        tags: "Indoors",
+        age_rating: "7+",
+        price: '290'
     }).then(evento => {
         res.json(evento)
     })
