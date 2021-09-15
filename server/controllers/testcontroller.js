@@ -1,4 +1,4 @@
 
 exports.controller = async (req, res) => {
-    res.json('Hola aqui probando')
+    res.json({ msg: 'Hola aqui probando'})
 }
