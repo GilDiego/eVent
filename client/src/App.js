@@ -10,9 +10,6 @@ import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDet
 function App() {
   return (
     <BrowserRouter>
-
-      <Route path='/formUser' component={FormUsers} />
-
       <Route path='/' component={NavBar}/>{/* Leo: Barra de Navegacion  */}
       <Route exact path= '/'  component={Home}/>{/*Leo: Componente Home*/}
 
