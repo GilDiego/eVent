@@ -1,5 +1,6 @@
-import React from 'react'
-import ActivityCard from '../ActivityCard/ActivityCard'
+import React from 'react';
+import ActivityCard from '../ActivityCard/ActivityCard';
+import styles from './ActivityCards.module.css'
 
 
 const ActivityCards = ({activitiesList})=>{
@@ -7,12 +8,12 @@ const ActivityCards = ({activitiesList})=>{
 
 
     return (
-        <div className='Events'>
+        <div className={styles.Events}>
             {/* Leo:aqui va AtivityCard */}
             {/* <ActivityCard /> */}
-            <ul>
+            <ul className={styles.ul}>
             {activitiesList.map(activity => (
-                <li>
+                <li key={activity.id}>
                      <ActivityCard
                      activity={activity}
                      prueba='prueba'

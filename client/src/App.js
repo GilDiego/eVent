@@ -1,5 +1,4 @@
 import './App.css';
-import Prueba from './components/Prueba/Prueba'
 import {BrowserRouter, Route } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';

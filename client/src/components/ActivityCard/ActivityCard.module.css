@@ -9,6 +9,7 @@
     border-radius: var(--RadiusOne);
     box-shadow: var(--ShadowOne) ;
     position: relative;
+    margin: 30px;
 }
 
 .titleCard{
