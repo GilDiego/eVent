@@ -50,7 +50,7 @@ const Upload = () => {
 
     return (
         <div>
-            <h1>Prueba de subida de imgs</h1>
+            {/* <h1>Prueba de subida de imgs</h1> */}
             <form onSubmit={handleSubmitFile} className="form">
                 <input
                     id="fileInput"

@@ -49,7 +49,7 @@ export default function FormEvent() {
     // const [errors, setErrors] = useState({})
     const [event, setEvent] = useState({
         name: '',
-        img: [],
+        // img: [],
         description: '',
         starring: '',
         address: '',
@@ -69,14 +69,14 @@ export default function FormEvent() {
     const [day, setDay] = useState()
     const tags = ["Exteriores", "Interiores", "En vivo", "Recital", "Teatro", "Película", "Disco", "Deportes"]
     const weeks = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]//"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"
-    const uploadFiles = function (e) {
-        if (e.target.value !== '') {
-            setEvent({
-                ...event,
-                img: [e.target.value, ...event.img]
-            })
-        }
-    }
+    // const uploadFiles = function (e) {
+    //     if (e.target.value !== '') {
+    //         setEvent({
+    //             ...event,
+    //             img: [e.target.value, ...event.img]
+    //         })
+    //     }
+    // }
     const scheduleInputChange = function (e) {
         // setHour(e.target.value)
         if (e.target.name === 'hours') {
@@ -170,10 +170,10 @@ export default function FormEvent() {
                 <label>Nombre del Evento: </label>
                 <input type='text' name='name' value={event.name} onChange={handleInputChange} />
 
+                <label>Imagenes: </label>
                 <Upload/>{/* componente de carga de imagen */}
 
-                <label>Imagenes: </label>
-                <span style={{ fontFamily: 'serif', fontSize: 'smaller' }}>para agregar más imagenes vuelva a elegir otro archivo</span>
+                {/* <span style={{ fontFamily: 'serif', fontSize: 'smaller' }}>para agregar más imagenes vuelva a elegir otro archivo</span>
                 <input type='file' name='files' value={event.img[0]} onChange={uploadFiles} multiple />
                 {event.img ?
                     <select>
@@ -182,7 +182,7 @@ export default function FormEvent() {
                             return <option key={i}>{e}</option>
                         })}
                     </select>
-                    : null}
+                    : null} */}
 
                 <label>Descripción: </label>
                 <textarea style={{width:'50%', height:'50px'}}  name='description' value={event.description} onChange={handleInputChange}></textarea>{/* maxlength='300' */}
