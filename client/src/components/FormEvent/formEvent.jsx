@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './formEvent.css'
 
 export function Validate(input){
     let errors = {};
@@ -41,7 +42,7 @@ export default function FormEvent() {
         location: '',
         startDate: '',
         endDate: '',
-        hours: '',
+        schedules: '',
         eventType: '',
         classification: '',
         prices: '',
@@ -76,7 +77,7 @@ export default function FormEvent() {
     }
 
     return (
-        <form onSubmit={(e) => {
+        <form className='form-event' onSubmit={(e) => {
             e.preventDefault()
             console.log(event,'¿')
             console.log('event.img',event.img,'¿')
@@ -86,7 +87,7 @@ export default function FormEvent() {
             // }))
             
         }}>
-            <div style={{ display: 'flex', flexDirection:'column', width: '50%' }} >
+            <div className='container-event'>
                 <label>Nombre del Evento: </label>
                 <input type='text' name='name' value={event.name} onChange={handleInputChange}/>
                 
@@ -136,7 +137,7 @@ export default function FormEvent() {
                 <label>Limite de ingresos: </label>
                 <input type='text' name='incomeLimit' value={event.incomeLimit} onChange={handleInputChange}/>
 
-                <input type='submit' />
+                <input className='button-event' type='submit' />
             </div>
         </form>
     )

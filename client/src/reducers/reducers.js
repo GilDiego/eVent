@@ -27,6 +27,7 @@ import {
       )
     }
 
+
     //*__SWITCH_NAV_BAR
     if(action.type=== SWITCH_SIDE_BAR){
       return{
