@@ -2,7 +2,7 @@ const {  DataTypes } = require('sequelize');
 const sequelize = require('../db');
 
 const Event = sequelize.define('event',{
-    eventName: {
+    name: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
@@ -19,7 +19,7 @@ const Event = sequelize.define('event',{
         type: DataTypes.BOOLEAN,
         defaultValue: false,
     },
-    location: { // PUEDE TAMBIÉN SER REMOTO, Y PROVEER UN LINK 
+    location: { // PUEDE TAMBIÉN SER REMOTO, Y PROVEER UN LINK
         type: DataTypes.STRING, //Previously processed at frontend.
         allowNull: false,
     },
@@ -31,19 +31,12 @@ const Event = sequelize.define('event',{
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false,
     },
-    start_date: { // DD/MM/AAAA
+    start_date: { // AAAA-MM-DD
         type: DataTypes.STRING,
         validate: { isDate: true },
         allowNull: false,
     },
-    finish_date: { // AAAA/MM/DD
-        type: DataTypes.STRING,
-        validate: {
-            isDate: true,
-        },
-        allowNull: true,
-    },
-    finish_date: { // AAAA/MM/DD
+    finish_date: { // AAAA-MM-DD
         type: DataTypes.STRING,
         validate: {
             isDate: true,
@@ -75,11 +68,13 @@ const Event = sequelize.define('event',{
         allowNull: false,
     },
     ticket_limit: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         allowNull: true,
     },
     seat_booking: {
         /* ?????????????? */
+        type: DataTypes.STRING,
+        allowNull:true
     },
 })
 
