@@ -2,7 +2,14 @@
   width: 300px;
   position: sticky;
   top: 20px;
-  
+}
+@media (max-width: 750px) { 
+  .container{
+    z-index: 100;
+    width: 0px;
+    position: sticky;
+    top: 0px;
+  }
 }
 
 .aside{
@@ -14,6 +21,13 @@
     box-shadow: var(--ShadowOne);
     margin-top: 20px;
     padding-top: 10px;
+}
+@media (max-width: 750px) { 
+  .aside{
+ width: 97.1vw;
+margin-top: 0;
+border-radius: 0px ;
+  }
 }
 
 .title{
