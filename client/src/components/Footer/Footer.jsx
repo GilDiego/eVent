@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Footer.module.css'
-import img from '../../Utilities/logoProvi.png'
-import imgw from '../../Utilities/whatsapp.svg'
+import img from '../../utilities/logoProvi.png'
+
 const Footer = () =>{
     return (
         <footer className={styles.Footer}>

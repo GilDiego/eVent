@@ -13,14 +13,15 @@ app.use(express.urlencoded({extended: false}))
 
 
 //importar las rutas creadas
-app.use('/api', require('./routes/rutaprueba'));
+app.use('/test', require('./routes/rutaprueba'));//ruta de prueba
+app.use('/api', require('./routes/event'));
 
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 
   //conectar base de datos
-  sequelize.sync( {force: true}).then(() => {
+  sequelize.sync( {force: false}).then(() => {
       console.log('Conection to the DB Success');
   }).catch(error => {
       console.log('An error has been found: ',error)
