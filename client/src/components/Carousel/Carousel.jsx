@@ -15,27 +15,8 @@ const Carousel = ()=>{
     const slideShow = useRef(null);
     const intervaloSlideShow = useRef(null);
 
-
-    useEffect(()=>{
-        intervaloSlideShow.current = setInterval(() => {
-            next();
-        }, 5000);
-
-        slideShow.current.addEventListener('mouseenter',()=>{
-            clearInterval(intervaloSlideShow.current)
-        });
-
-        slideShow.current.addEventListener('mouseleave',()=>{
-            intervaloSlideShow.current = setInterval(() => {
-                next();
-            }, 5000);
-        });
-
-
-    },[])
-
     const next = ()=>{
-        if(slideShow.current.children.length > 0){// comprobamos si el slide tiene elementos
+        if(slideShow.current?.children.length > 0){// comprobamos si el slide tiene elementos
             const firstElement = slideShow.current.children[0]// obtengo el primer elemento
             slideShow.current.style.transition = `800ms ease-out all`
             const sizeSlide = slideShow.current.children[0].offsetWidth;
@@ -54,7 +35,7 @@ const Carousel = ()=>{
     }
     
     const previous = ()=>{
-        if(slideShow.current.children.length > 0){
+        if(slideShow.current?.children.length > 0){
             const endElement = slideShow.current.children[slideShow.current.children.length-1]
             slideShow.current.insertBefore(endElement, slideShow.current.firstChild)
 
@@ -66,25 +47,29 @@ const Carousel = ()=>{
                 slideShow.current.style.transition = `800ms ease-out all`;
                 slideShow.current.style.transform = `translateX(0)`;
             },30)
+            
         }
     }
 
-    
-    console.log(FakeDB.length)
+
+    useEffect(()=>{
+        const remove = ()=>{
+            intervaloSlideShow.current = setInterval(() => {
+                nexts();
+            }, 5000);
+        }
+        intervaloSlideShow.current = setInterval(() => {
+            nexts();
+        }, 5000);
+
+        slideShow.current.addEventListener('mouseenter',()=>{
+            clearInterval(intervaloSlideShow.current)
+        });
+        slideShow.current.addEventListener('mouseleave', remove); 
+    },[])
+
     return(
-        // <ContMain>
-        //     <ContSlideShow>
-        //         {FakeDB.map(e=><Slide img={e.img} name={e.name} date={e.date} place={e.place}/>)}<Slide />
-        //     </ContSlideShow>
-        //     <Control>
-        //         <Btn>
-        //             <Left />
-        //         </Btn>
-        //         <Btn>
-        //             <Right />
-        //         </Btn>
-        //     </Control>
-        // </ContMain>
+ 
         <div className={styles.contMain}>
             <div className={styles.contSlideShow} ref={slideShow}>
                 {FakeDB.map(e=><Slide img={e.img} name={e.name} date={e.date} place={e.place}/>)}
@@ -93,7 +78,7 @@ const Carousel = ()=>{
                 <button className={styles.left} onClick={previous}>
                     <img src={left} alt="" />
                 </button>
-                <button className={styles.right} onClick={next}>
+                <button className={styles.right} onClick={nexts}>
                     <img src={right} alt="" />
                 </button>
                 
@@ -102,29 +87,7 @@ const Carousel = ()=>{
     )
 }
 
-// const div = styled.div`
-//     position: relative;
-//     min-width: 100%;
-//     max-height: 500px;
-//     border-bottom: var(--Black) solid 1px;
-// `;
 
-// const div = styled.div`
-//     display:flex;
-//     flex-wrap: nowrap;
-// `;
-
-// const div = styled.div`
-//     position:absolute;
-//     top:0;
-//     z-index:20;
-//     width:100%;
-//     height:100%;
-// `;
-
-// const buttom = styled.button`
-
-// `;
 
 
 
