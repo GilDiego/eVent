@@ -7,7 +7,7 @@ import Login from './components/Login/Login';
 import FormUsers from './components/FormUsers/formUsers';
 import FormPromoter from './components/formPromoter/FormPromoter';
 import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDetailsUsario';
-import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter';
+import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter'
 import FormEvent from './components/FormEvent/formEvent';
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
         <Route path='/eventDetailsUsuario' >
           <EventDetailsUsario/>
         </Route>
-        <Route path= '/EventsDetailsPromoter:id' component = {EventsDetailsPromoter}/>
+        <Route path= '/EventsDetailsPromoter/:id' component = {EventsDetailsPromoter}/>
 
         
         <Route path='/FormEvent' >
