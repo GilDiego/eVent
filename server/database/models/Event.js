@@ -45,18 +45,22 @@ const Event = sequelize.define('event', {
     },
     schedule: { //TEMPORARY. CONVERT INTO SEPARATE MODEL AFTERWARDS
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false,
+        allowNull: true,
     },
     isRecurrent: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
     },
     weekdays: {
-        type: DataTypes.ARRAY(DataTypes.ENUM("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT")),
+        type: DataTypes.ARRAY(DataTypes.ENUM(
+            "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"
+            )),
         allowNull: false,
     },
     tags: { // TEMPORARY. TURN INTO SEPARATE MODEL AFTERWARDS
-        type: DataTypes.ENUM("Outdoors", "Indoors", "Live", "Concert", "Play", "Movie", "Disco", "Sports"),
+        type: DataTypes.ENUM(
+            "Exteriores", "Interiores", "En vivo", "Recital", "Teatro", "Película", "Disco", "Deportes"
+            ),
         allowNull: false,
     },
     age_rating: {
