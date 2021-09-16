@@ -10,16 +10,14 @@
 }
 
 .slides img {
+    position:relative;
     justify-content: center;
     width: 100%;
-    
-    object-fit: cover;
-    
+    z-index: -1;
+    object-fit: cover;   
 }
 
 .textSlide{
-    /* background: rgba(25, 67, 88,.5); */
-    background: linear-gradient(left, rgba(255,255,255,0), rgba(255,255,255,1));
     color: var(--White);
     width:100%;
     height: 100%;
@@ -27,4 +25,5 @@
     position: absolute;
     bottom: 0;
     pointer-events: none;
+    background: linear-gradient(to bottom, rgba(0, 23, 31,1) 0%,rgba(224, 239, 245,0.2) 100%);
 }
