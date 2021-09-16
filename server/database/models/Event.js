@@ -11,10 +11,6 @@ const Event = sequelize.define('event', {
         type: DataTypes.TEXT,
         allowNull: false
     },
-    starring: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
     virtual: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
