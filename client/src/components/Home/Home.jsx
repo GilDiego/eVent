@@ -1,15 +1,16 @@
 import React from "react";
-import ActivityCards from "../ActivityCards/ActivityCards";
+import { connect } from "react-redux";
 import styles from "./Home.module.css";
-import activitiesList from "../../FakeDB/FakeDB";
+import ActivityCards from "../ActivityCards/ActivityCards";
 import Carousel from "../Carousel/Carousel";
 import SideBar from "../SideBar/SideBar";
+import activitiesList from "../../FakeDB/FakeDB";
 
-const Home = () => {
+const Home = ({ switchSide }) => {
   //* La informacion de las actividades esta en el archivo FakeDB
   return (
     <div className={styles.container}>
-        {true?<div className={styles.sideBar}>
+        {switchSide?<div className={styles.sideBar}>
         <SideBar />
         </div>: <div></div> }
       <div>
@@ -21,4 +22,10 @@ const Home = () => {
   );
 };
 
-export default Home;
+function mapStateToProps(state) {
+  return {
+    switchSide: state.sideBarSwitch,
+  };
+}
+
+export default connect(mapStateToProps)(Home);
