@@ -1,7 +1,36 @@
-.NavBar {
+.Navbar {
   height: 80px;
   width: 100%;
   font-size: 70px;
-  background-color: #194358;
-  border-bottom: #f5af00 solid 3px;
+  background-color: var(--Black);
+  border-bottom: black solid 1px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
+.loginBtn{
+ font-size: 20px;
+ text-decoration: none;
+ color: var(--White);
+ margin-right: 15px;
+}
+.homeBtn{
+  font-size: 20px;
+  text-decoration: none;
+  color: var(--White);
+  margin-left: 15px;
+ }
+
+ .subNav{
+   background-color: var(--Secondary);
+   height: 30px;
+   display: flex;
+   align-items: center;
+ }
+
+ .sideBarBtn{
+   background-color: var(--Black);
+   margin-left: 11px;
+   color: var(--White);
+ }

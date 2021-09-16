@@ -1,13 +1,9 @@
 
-
-.Slider{
-    width: 100%;
-    height: 530px;
+.container{
+    display: flex; 
+    z-index: 300;
 }
 
-.Slider img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+
+
 

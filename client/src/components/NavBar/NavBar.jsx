@@ -1,12 +1,32 @@
-import React from 'react';
-import './NavBar.css'
-import {styles} from './NavBar.module.css'
-const NavBar = () =>{
-    return (
-        <div className={styles.NavBar}>
-            Navbar
-        </div>
-    )
+import React from "react";
+import { Link } from "react-router-dom";
+import styles from "./NavBar.module.css";
+import { connect } from "react-redux";
+
+
+const NavBar = ({  }) => {
+  
+
+  return (
+    <>
+      <nav className={styles.Navbar}>
+        <Link to="/" className={styles.homeBtn}>
+          Home
+        </Link>
+        <Link to="/login" className={styles.loginBtn}>
+          Login
+        </Link>
+      </nav>
+      
+    </>
+  );
+};
+
+      
+function mapStateToProps(state) {
+  return {
+    switchSide: state.sideBarSwitch,
+  };
 }
 
-export default NavBar;
+export default connect(mapStateToProps)(NavBar);

@@ -1,3 +1,4 @@
+/* 
 .App {
   text-align: center;
 }
@@ -35,7 +36,7 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
 
 /**_VARIABLES__________________________________________________________________________________ */
 
@@ -44,20 +45,35 @@
   --Primary: #194358;
   --Secondary: #00b4d8;
   --Button: #f5af00;
-  --Other: #e04b4b;
-  --White: #e0eff5;
+  --Other: #ce0b0b;
+  --White: #f1f1f1;
   --Black: #00171f;
 
   /* Fonts */
   --TitleCard: 27px;
+  --TitleForm: 30px;
+  --TitleFormTwo: 25px;
 
   /* Others */
   --RadiusOne: 10px;
-  --ShadowOne: 3px 3px 3px rgba(0, 0, 0, 0.8);
+  --RadiusBtn: 4px;
+  --RadiusSide: 0 10px 10px 0;
+  --ShadowOne: 3px 3px 3px rgba(0, 0, 0, 1);
+  --ShadowTwo: 2px 2px 2px rgba(0, 0, 0, 1);
+  --ShadowBtn:  1px 1px 1px rgba(0, 0, 0, 1);
+  --Transition: .4s;
 }
 
 /**_GLOBALS____________________________________________________________________________________*/
 
+ul {
+padding-left: 0px;
+}
+
 li {
   list-style: none;
+}
+
+ul{
+  padding-left: 0px;
 }

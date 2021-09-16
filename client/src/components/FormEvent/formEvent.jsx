@@ -48,15 +48,16 @@ export default function FormEvent() {
         prices: '',
         incomeLimit: ''
     })
-    const [files, setFiles] = useState('')
+    //const [files, setFiles] = useState('')
     const uploadFiles = function (e){
-        setFiles(e.target.value)
-        if(files !== ''){
+        if(e.target.value !== ''){
             setEvent({
                 ...event,
-                img:[...event.img, files]
-            })}
+                img:[e.target.value,...event.img]
+        })}
+        
     }
+
     const options = function (e){
         setEvent({
             ...event,
@@ -92,7 +93,7 @@ export default function FormEvent() {
                 
                 <label>Imagenes: </label>
                 <span style={{fontFamily:'serif', fontSize:'smaller' }}>para agregar más imagenes vuelva a elegir otro archivo</span>
-                <input type='file' name='files' value={files} onChange={uploadFiles} multiple/>
+                <input type='file' name='files' value={event.img[0]} onChange={uploadFiles} multiple/>
                 {event.img?
                 <select>
                     <option>Archivos seleccionados</option>

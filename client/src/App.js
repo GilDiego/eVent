@@ -1,26 +1,50 @@
 import './App.css';
-import {BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
+import Login from './components/Login/Login';
 import FormUsers from './components/FormUsers/formUsers';
-import FormEvent from './components/FormEvent/formEvent'
+import FormPromoter from './components/formPromoter/FormPromoter';
 import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDetailsUsario';
-
+import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter
+import FormEvent from './components/FormEvent/formEvent';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Route path='/' component={NavBar}/>{/* Leo: Barra de Navegacion  */}
-      <Route exact path= '/'  component={Home}/>{/*Leo: Componente Home*/}
+    <>
+    <NavBar/>
+      
+        <Route exact path= '/'>
+          <Home/>
+        </Route>
 
-      <Route exact path='/formUser' component={FormUsers} /> {/* Abi:Componente Formulario creacion Evento */}
-      <Route exact path='/formEvent' component={FormEvent} /> {/* Abi:Componente Formulario creacion Evento */}
-      <Route path='/eventDetailsUsuario' component={EventDetailsUsario} /> {/*Diego: Componente de Detalle de Evento para Usuario*/}
+        <Route exact path= '/login'>
+          <Login/>
+        </Route>
+        
+        <Route path='/formUser' >
+          <FormUsers/>
+        </Route>
 
-      <Route path='/' component={Footer}/>{/* Leo: Footer (Va en todas las rutas) */}
+        <Route path='/formPromoter' >
+          <FormPromoter/>
+        </Route>
 
-    </BrowserRouter>
+        <Route path='/eventDetailsUsuario' >
+          <EventDetailsUsario/>
+        </Route>
+        <Route path= '/EventsDetailsPromoter:id' component = {EventsDetailsPromoter}/>
+
+        
+        <Route path='/FormEvent' >
+          <FormEvent/>
+        </Route>
+
+
+
+    <Footer />
+    </>
   );
 }
 

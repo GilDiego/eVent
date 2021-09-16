@@ -1,20 +1,39 @@
 import {
-    GET_PRUEBA,
+    GET_DETAIL, 
+    GET_EDIT,
+    SWITCH_SIDE_BAR
   } from "../actions/actions";
   
   const initialState = {
-statePrueba: 'prueba'
+    //*detalles de evento
+    detailsEvent:[true],
+    //*switch de nav-bar
+    sideBarSwitch: false,
+    
   };
   
   function rootReducer(state = initialState, action) {
    
-    if (action.type === GET_PRUEBA) {
-      return {
+    //*__DETALLES_DE_EVENTOS
+    if(action.type=== GET_DETAIL){
+      return{
         ...state,
-        statePrueba: action.payload,
-      };
+        detailsEvent: action.payload
+      }
     }
-   
+    if (action.type === GET_EDIT){
+      return state.detailsEvent.map((eventDetail)=>eventDetail.id === action.id?
+      {...eventDetail, editing: !eventDetail.editing}: eventDetail
+      )
+    }
+
+
+    //*__SWITCH_NAV_BAR
+    if(action.type=== SWITCH_SIDE_BAR){
+      return{
+        sideBarSwitch: action.payload
+      }
+    }
   
     return state;
   }
