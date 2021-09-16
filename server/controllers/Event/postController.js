@@ -24,7 +24,10 @@ exports.saveInfoEvent = async (req,res) => {
         if(!created){
             return res.json({msg:'The event name already exists'})
         } else {
-            return res.json({msg:'Event created!!!'}) 
+            return res.json({
+                msg:'Event created!!!',
+                event
+            }) 
         }
     
          
