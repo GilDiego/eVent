@@ -26,6 +26,19 @@ const Event = require('./models/Event');
 ??? No deja al modelo Favorite obsoleto? De algo me estoy perdiendo
 O discriminar entre asistir y agregar a favoritos? Cómo exactamente? */
 
+/*
+
+    User.hasMany(Comment, {as: 'comment', foreignKey: "comment_id"})
+    Comment.belongsTo(User, {as: 'user', foreignKey: "user_id"})
+
+    Promoter.hasMany(Event,{as: 'event', foreignKey: "event_id"});
+    Event.belongsTo(Promoter,{as: 'promoter' ,foreignKey: "promoter_id"});
+
+*/
+
+
+
+
 // User.belongsToMany(Promoter, {through: "following"});
 // User.belongsToMany(User, {through: "friends"}); *** VER SI FUNCIONA.
 
