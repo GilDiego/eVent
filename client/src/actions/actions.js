@@ -1,5 +1,5 @@
 import axios from 'axios'
-export const GET_PRUEBA = "GET_PRUEBA";
+//*detalles de evento
 export const GET_DETAIL = "GET_DETAIL"
 export const GET_EDIT = 'GET_EDIT'
 export const UPDATE = 'UPDATE'
@@ -59,8 +59,19 @@ export function getEventDetail(payload){return {
   payload:data
 }
  
+//*switch
+export const SWITCH_SIDE_BAR = 'SWITCH_SIDE_BAR';
+_
+export function getEventDetail(id){
+  return async function (dispatch) {
+    const response = await 
+    axios.get(`http://localhost:3001/event/${id}`)
+    dispatch({
+      type: GET_DETAIL,
+      payload: response.data
+    })
+  }
 }
-
 export function editDetail(id){
   return{
     type: GET_EDIT,
@@ -74,3 +85,12 @@ export function editDetail(id){
    }
  }
 
+
+//*__SWITCH_DE_NAVBAR____________________________________________________
+
+export function setSideBar(boolean){
+  return{
+    type: SWITCH_SIDE_BAR,
+    payload: boolean
+  }
+}

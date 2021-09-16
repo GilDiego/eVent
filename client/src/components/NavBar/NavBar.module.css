@@ -22,3 +22,15 @@
   margin-left: 15px;
  }
 
+ .subNav{
+   background-color: var(--Secondary);
+   height: 30px;
+   display: flex;
+   align-items: center;
+ }
+
+ .sideBarBtn{
+   background-color: var(--Black);
+   margin-left: 11px;
+   color: var(--White);
+ }

@@ -7,20 +7,20 @@ function FormPromoter(){
     const [errors, setErrors]=useState({form:'Completa el formulario'})
     const [form,setForm]=useState({
 
-        businessName='',
-        name='',
-        rfc='',
-        nameAdm='',
-        email='',
-        pasword='',
-        phone='',
-        type='',
-        country='',
-        state='',
-        city='',
-        direcction='',
-        descriptionPromoter='',
-        authorized=false,   
+        businessName:'',
+        name:'',
+        rfc:'',
+        nameAdm:'',
+        email:'',
+        pasword:'',
+        phone:'',
+        type:'',
+        country:'',
+        state:'',
+        city:'',
+        direcction:'',
+        descriptionPromoter:'',
+        authorized:false,   
     })
     const handleOnchange= (e)=>{
         let target = e.target.value 
@@ -63,11 +63,14 @@ function FormPromoter(){
 
     return(
        <>
-       <form onChange={handleOnchange} onSubmit={handleSumit}>
+       <form  onSubmit={handleSumit}>
 
+        <h1>Desde Form Promoter</h1>
 
        </form>
 
        </>    )
 }
+
+export default FormPromoter;
 

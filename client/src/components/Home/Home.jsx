@@ -1,19 +1,35 @@
-import React from 'react'
-import ActivityCards from '../ActivityCards/ActivityCards'
-import styles from './Home.module.css'
-import activitiesList from '../../FakeDB/FakeDB'
-import Carousel from '../Carousel/Carousel'
+import React from "react";
+import { connect } from "react-redux";
+import styles from "./Home.module.css";
+import ActivityCards from "../ActivityCards/ActivityCards";
+import Carousel from "../Carousel/Carousel";
+import SideBar from "../SideBar/SideBar";
+import NavBarHome from "../NavBarHome/NavBarHome";
+import activitiesList from "../../FakeDB/FakeDB";
 
-const Home = () =>{
-    //* La informacion de las actividades esta en el archivo FakeDB
-    return(
-        <div className={styles.Home}>
-            <Carousel />
-            <ActivityCards 
-            activitiesList={activitiesList}
-            />
-        </div>
-    )
+const Home = ({ switchSide }) => {
+  //* La informacion de las actividades esta en el archivo FakeDB
+  return (
+    <>
+    <NavBarHome/>
+    <div className={styles.container}>
+        {switchSide?<div className={styles.sideBar}>
+        <SideBar />
+        </div>: <div></div> }
+      <div>
+        <Carousel />
+        <ActivityCards activitiesList={activitiesList} />
+      </div>
+    
+    </div>
+    </>
+  );
+};
+
+function mapStateToProps(state) {
+  return {
+    switchSide: state.sideBarSwitch,
+  };
 }
 
-export default Home
+export default connect(mapStateToProps)(Home);
