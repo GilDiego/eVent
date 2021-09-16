@@ -15,8 +15,8 @@ const Carousel = ()=>{
     const slideShow = useRef(null);
     const intervaloSlideShow = useRef(null);
 
-    const next = ()=>{
-        if(slideShow.current.children.length > 0){// comprobamos si el slide tiene elementos
+    const nexts = ()=>{
+        if(slideShow.current?.children.length > 0){// comprobamos si el slide tiene elementos
             const firstElement = slideShow.current.children[0]// obtengo el primer elemento
             slideShow.current.style.transition = `800ms ease-out all`
             const sizeSlide = slideShow.current.children[0].offsetWidth;
@@ -35,7 +35,7 @@ const Carousel = ()=>{
     }
     
     const previous = ()=>{
-        if(slideShow.current.children.length > 0){
+        if(slideShow.current?.children.length > 0){
             const endElement = slideShow.current.children[slideShow.current.children.length-1]
             slideShow.current.insertBefore(endElement, slideShow.current.firstChild)
 
@@ -47,25 +47,37 @@ const Carousel = ()=>{
                 slideShow.current.style.transition = `800ms ease-out all`;
                 slideShow.current.style.transform = `translateX(0)`;
             },30)
+            
         }
     }
 
     useEffect(()=>{
+        const remove = ()=>{
+            intervaloSlideShow.current = setInterval(() => {
+                nexts();
+            }, 5000);
+        }
         intervaloSlideShow.current = setInterval(() => {
-            next();
+            nexts();
         }, 5000);
 
         slideShow.current.addEventListener('mouseenter',()=>{
             clearInterval(intervaloSlideShow.current)
         });
 
-        slideShow.current.addEventListener('mouseleave',()=>{
-            intervaloSlideShow.current = setInterval(() => {
-                next();
-            }, 5000);
-        });
-
-
+        slideShow.current.addEventListener('mouseleave', remove);
+        // return ()=>{
+        //     slideShow.current.children.length = 0
+        //     intervaloSlideShow.current= null
+        //     // slideShow.current.removeEventListener('mouseenter',()=>{
+        //     //     clearInterval(intervaloSlideShow.current)
+        //     // });
+        //     //slideShow.current.children.removeEventListener('mouseleave',remove)
+        //     //slideShow.current = null
+        //     clearInterval(intervaloSlideShow.current)
+        // }
+        //return <div></div>
+        
     },[])
     console.log(FakeDB.length)
     return(
@@ -90,7 +102,7 @@ const Carousel = ()=>{
                 <button className={styles.left} onClick={previous}>
                     <img src={left} alt="" />
                 </button>
-                <button className={styles.right} onClick={next}>
+                <button className={styles.right} onClick={nexts}>
                     <img src={right} alt="" />
                 </button>
                 
