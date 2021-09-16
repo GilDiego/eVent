@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express();
 const sequelize = require('./database/db');
+require('./database/relations');
 
 //setting
 const port = 3000 || process.env.PORT

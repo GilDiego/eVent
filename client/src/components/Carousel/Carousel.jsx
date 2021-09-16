@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import styles from './Carousel.module.css'
 //import {ReactComponent as Left} from '../../Utilities/left.svg'
-import left from '../../Utilities/left.svg'
+import left from '../../utilities/left.svg'
 //import {ReactComponent as Right} from '../../Utilities/right.svg'
-import right from '../../Utilities/right.svg'
+import right from '../../utilities/right.svg'
 //import styled from 'styled-components';
 import Slide from "./Slide";
 import FakeDB from '../../FakeDB/FakeDB'

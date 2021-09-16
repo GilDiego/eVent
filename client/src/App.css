@@ -46,16 +46,22 @@
   --Secondary: #00b4d8;
   --Button: #f5af00;
   --Other: #ce0b0b;
-  --White: #e0eff5;
+  --White: #f1f1f1;
   --Black: #00171f;
 
   /* Fonts */
   --TitleCard: 27px;
+  --TitleForm: 30px;
+  --TitleFormTwo: 25px;
 
   /* Others */
   --RadiusOne: 10px;
+  --RadiusBtn: 4px;
   --RadiusSide: 0 10px 10px 0;
-  --ShadowOne: 3px 3px 3px rgba(0, 0, 0, 0.8);
+  --ShadowOne: 3px 3px 3px rgba(0, 0, 0, 1);
+  --ShadowTwo: 2px 2px 2px rgba(0, 0, 0, 1);
+  --ShadowBtn:  1px 1px 1px rgba(0, 0, 0, 1);
+  --Transition: .4s;
 }
 
 /**_GLOBALS____________________________________________________________________________________*/
