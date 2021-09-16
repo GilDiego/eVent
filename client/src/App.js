@@ -37,10 +37,10 @@ function App() {
         <Route path= '/EventsDetailsPromoter:id' component = {EventsDetailsPromoter}/>
 
         
-
         <Route path='/FormEvent' >
           <FormEvent/>
         </Route>
+
 
 
     <Footer />
