@@ -78,7 +78,7 @@ const Carousel = ()=>{
                 <button className={styles.left} onClick={previous}>
                     <img src={left} alt="" />
                 </button>
-                <button className={styles.right} onClick={nexts}>
+                <button className={styles.right} onClick={next}>
                     <img src={right} alt="" />
                 </button>
                 
