@@ -81,11 +81,9 @@ export default function FormEvent() {
         // setHour(e.target.value)
         if (e.target.name === 'hours') {
             setHour(e.target.value)
-            console.log(e.target.value, 'soy hours', e.target.name)
         }
         if (e.target.name === 'mins') {
             setMins(e.target.value)
-            console.log('soy mins', e.target.name)
         }
     }
     const scheduleChange = function (e) {
@@ -93,7 +91,6 @@ export default function FormEvent() {
         if (hour !== '' && mins !== '') {
             if(mins <= 9){
                 const hours = hour+':'+'0'+mins
-                console.log(hours,'¿¿')
                 if(event.schedule.includes(hours)){
                     alert('No es posible volver a agregar el mismo horario')
                 }else{
@@ -104,7 +101,6 @@ export default function FormEvent() {
                 }
             }else{
                 const hours = hour+':'+mins
-                console.log(hours,'¿¿')
                 if(event.schedule.includes(hours)){
                     alert('No es posible volver a agregar el mismo horario')
                 }else{
@@ -142,6 +138,20 @@ export default function FormEvent() {
             ...event,
             classification: e.target.value
         })
+    }
+    const eventChange = function(e){
+        console.log(e.target.value)
+        setEvent({
+            ...event,
+            eventType:[e.target.value,...event.eventType]
+        })
+    }
+    const deleteType = function (e) {
+        setEvent({
+            ...event,
+            eventType: event.eventType.filter((d) => d !== e.target.value)
+        })
+        alert(`Se eliminó ${e.target.value} de los tipos de eventos seleccionados`)
     }
     const handleInputChange = function (e) {
         setEvent({
@@ -206,9 +216,13 @@ export default function FormEvent() {
                 <span>No</span>
                 <input style={{ position: 'relative',width:'10%' }} type='radio' name='isRecurrent' value={false} onChange={handleInputChange} />
                 </div>
-                
+                {event.isRecurrent === 'false'?
+                <>
                 <label>Fecha de finalización: </label>
                 <input type='text' name='finishDate' value={event.finishDate} onChange={handleInputChange} />
+                </>
+                :null}
+                
                 
                 <label>Horarios: </label>
                 <div>
@@ -244,12 +258,20 @@ export default function FormEvent() {
                     </select>
                     : null}
                 <label>Tipo de Evento: </label>
-                <select>
+                <select onChange={eventChange}>
                     <option>Seleccionar</option>
                     {tags.map((e, i) => {
                         return <option key={i} value={e}>{e}</option>
                     })}
                 </select>
+                {event.eventType ?
+                    <select onChange={deleteType}>
+                        <option value='seleccionar'>Tipos Seleccionados</option>
+                        {event.eventType.map((e, i) => {
+                            return <option key={i}>{e}</option>
+                        })}
+                    </select>
+                    : null}
 
                 <label>Clasificación: </label>
                 <select onChange={(e) => options(e)}>
