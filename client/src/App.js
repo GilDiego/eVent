@@ -5,7 +5,7 @@ import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
 import FormUsers from './components/FormUsers/formUsers';
 import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDetailsUsario';
-
+import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter'
 
 function App() {
   return (
@@ -23,6 +23,10 @@ function App() {
         <Route path='/eventDetailsUsuario' >
           <EventDetailsUsario/>
         </Route>
+
+        <Route path= '/EventsDetailsPromoter:id' component = {EventsDetailsPromoter}/>
+
+        
 
     <Footer />
     </>
