@@ -15,7 +15,7 @@ const Carousel = ()=>{
     const slideShow = useRef(null);
     const intervaloSlideShow = useRef(null);
 
-    const nexts = ()=>{
+    const next = ()=>{
         if(slideShow.current?.children.length > 0){// comprobamos si el slide tiene elementos
             const firstElement = slideShow.current.children[0]// obtengo el primer elemento
             slideShow.current.style.transition = `800ms ease-out all`
@@ -51,6 +51,7 @@ const Carousel = ()=>{
         }
     }
 
+
     useEffect(()=>{
         const remove = ()=>{
             intervaloSlideShow.current = setInterval(() => {
@@ -64,36 +65,11 @@ const Carousel = ()=>{
         slideShow.current.addEventListener('mouseenter',()=>{
             clearInterval(intervaloSlideShow.current)
         });
-
-        slideShow.current.addEventListener('mouseleave', remove);
-        // return ()=>{
-        //     slideShow.current.children.length = 0
-        //     intervaloSlideShow.current= null
-        //     // slideShow.current.removeEventListener('mouseenter',()=>{
-        //     //     clearInterval(intervaloSlideShow.current)
-        //     // });
-        //     //slideShow.current.children.removeEventListener('mouseleave',remove)
-        //     //slideShow.current = null
-        //     clearInterval(intervaloSlideShow.current)
-        // }
-        //return <div></div>
-        
+        slideShow.current.addEventListener('mouseleave', remove); 
     },[])
-    console.log(FakeDB.length)
+
     return(
-        // <ContMain>
-        //     <ContSlideShow>
-        //         {FakeDB.map(e=><Slide img={e.img} name={e.name} date={e.date} place={e.place}/>)}<Slide />
-        //     </ContSlideShow>
-        //     <Control>
-        //         <Btn>
-        //             <Left />
-        //         </Btn>
-        //         <Btn>
-        //             <Right />
-        //         </Btn>
-        //     </Control>
-        // </ContMain>
+ 
         <div className={styles.contMain}>
             <div className={styles.contSlideShow} ref={slideShow}>
                 {FakeDB.map(e=><Slide img={e.img} name={e.name} date={e.date} place={e.place}/>)}
@@ -111,29 +87,7 @@ const Carousel = ()=>{
     )
 }
 
-// const div = styled.div`
-//     position: relative;
-//     min-width: 100%;
-//     max-height: 500px;
-//     border-bottom: var(--Black) solid 1px;
-// `;
 
-// const div = styled.div`
-//     display:flex;
-//     flex-wrap: nowrap;
-// `;
-
-// const div = styled.div`
-//     position:absolute;
-//     top:0;
-//     z-index:20;
-//     width:100%;
-//     height:100%;
-// `;
-
-// const buttom = styled.button`
-
-// `;
 
 
 

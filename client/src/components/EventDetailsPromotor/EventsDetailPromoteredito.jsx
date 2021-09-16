@@ -1,19 +1,25 @@
 import {useState, useEffect} from 'react'
 import  {useDispatch , useSelector} from 'react-redux'
+import {getEventDetail} from '../../actions/actions'
+
+//dafne: es para poder editar los eventos  
 
 function EditDetail (){
     const dispatch = useDispatch()
     useEffect(()=>{
-        dispatch(getEventdetail())
+        dispatch(getEventDetail())
     }, [dispatch])
-    console.log('soy get',getEventdetail)
+    console.log('soy get',getEventDetail)
     const detailsEvent=useSelector(state => state.detailsEvent)
 
     console.log('soy detalle',detailsEvent)
+    useEffect(()=>{
+        dispatch()
+    })
 
     const handleEdit = (e) =>{
         e.prevent.default();
-        const newName= detailsEvent.name;
+        const newEventName= detailsEvent.name;
         const  newDescription = detailsEvent.newDescription;
         const newImg =detailsEvent.img ;
         const newUbication = detailsEvent.ubication;
@@ -27,14 +33,27 @@ function EditDetail (){
 
     }
    
-    // <p>{`Diponibilidad de asientos ${detailsEvent.disponibility}`}</p>
-    // <p>{`limite de asiastentes ${detailsEvengt.limit}`}</p>
-
-
+    const data ={
+        newEventName,
+        newDescription,
+        newImg,
+        newUbication,
+        newDateInitial,
+        newDateFinish,
+        newSchedule,
+        newType,
+        newClasification,
+        newPrice,
+        newLimit,
+    }
 
 
     return(
         <>
+        <diV>
+            
+
+        </diV>
         </>
     )
  
