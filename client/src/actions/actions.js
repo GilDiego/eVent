@@ -1,15 +1,11 @@
 import axios from 'axios'
-export const GET_PRUEBA = "GET_PRUEBA";
+//*detalles de evento
 export const GET_DETAIL = "GET_DETAIL"
 export const GET_EDIT = 'GET_EDIT'
+//*switch
+export const SWITCH_SIDE_BAR = 'SWITCH_SIDE_BAR';
 
-
-
-//*get data
-export function getPrueba() {
-  return { type: GET_PRUEBA, payload: 'funciona' };
-}
-
+//*__DETALLES_DE_EVENTO_____________________________________________
 export function getEventDetail(id){
   return async function (dispatch) {
     const response = await 
@@ -18,14 +14,21 @@ export function getEventDetail(id){
       type: GET_DETAIL,
       payload: response.data
     })
-    
   }
-
 }
-
 export function editDetail(id){
   return{
     type: GET_EDIT,
     payload:id 
+  }
+}
+
+
+//*__SWITCH_DE_NAVBAR____________________________________________________
+
+export function setSideBar(boolean){
+  return{
+    type: SWITCH_SIDE_BAR,
+    payload: boolean
   }
 }

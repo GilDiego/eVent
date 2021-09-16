@@ -2,7 +2,7 @@ const {  DataTypes } = require('sequelize');
 const sequelize = require('../db');
 
 const Event = sequelize.define('event',{
-    eventName: {
+    name: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
