@@ -55,11 +55,11 @@ const Carousel = ()=>{
     useEffect(()=>{
         const remove = ()=>{
             intervaloSlideShow.current = setInterval(() => {
-                nexts();
+                next();
             }, 5000);
         }
         intervaloSlideShow.current = setInterval(() => {
-            nexts();
+            next();
         }, 5000);
 
         slideShow.current.addEventListener('mouseenter',()=>{
