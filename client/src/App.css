@@ -77,3 +77,18 @@ li {
 ul{
   padding-left: 0px;
 }
+
+
+/** EventStrap */
+
+/** Buttons */
+.EbtnCard{
+  margin-top: 30px;
+  background-color: var(--Button);
+  border-radius: var(--RadiusOne);
+  width: 70px;
+}
+.EbtnCard:hover{
+  background-color: var(--Other);
+  color: var(--White);
+}

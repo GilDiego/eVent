@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./ActivityCard.module.css";
 import {Link} from 'react-router-dom';
 
+
 const ActivityCard = ({ activity }) => {
   function setId(id) {
     console.log(id);
@@ -18,8 +19,12 @@ const ActivityCard = ({ activity }) => {
         Info
       </button> */}
       
-      <Link to={`/eventDetailsUsuario/${activity.id}`}>
+      {/* <Link to={`/eventDetailsUsuario/${activity.id}`}>
         <button className={styles.btnCard} onClick={() => setId(activity.id)}>Info</button>
+      </Link> */}
+      
+      <Link to={`/eventDetailsUsuario/${activity.id}`}>
+        <button className='EbtnCard' onClick={() => setId(activity.id)}>Info</button>
       </Link>
     </div>
   );
