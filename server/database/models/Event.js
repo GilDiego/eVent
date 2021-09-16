@@ -1,7 +1,7 @@
-const {  DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../db');
 
-const Event = sequelize.define('event',{
+const Event = sequelize.define('event', {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -19,7 +19,7 @@ const Event = sequelize.define('event',{
         type: DataTypes.BOOLEAN,
         defaultValue: false,
     },
-    location: { // PUEDE TAMBIÉN SER REMOTO, Y PROVEER UN LINK
+    location: { // PUEDE TAMBIÉN SER UN EVENTO REMOTO, Y PROVEER UN LINK
         type: DataTypes.STRING, //Previously processed at frontend.
         allowNull: false,
     },
