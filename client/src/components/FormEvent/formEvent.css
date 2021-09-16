@@ -22,6 +22,6 @@ select{
     background-color: var(--Button);
     width: 12%;
     border-radius: 7px;
-    position: relative;
-    left: 50%;
+    /* position: relative;
+    left: 50%; */
 }
