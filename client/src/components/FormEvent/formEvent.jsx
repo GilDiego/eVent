@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Upload from './Upload.jsx'
 import './formEvent.css'
 
 export function Validate(input) {
@@ -66,7 +67,7 @@ export default function FormEvent() {
     const [hour, setHour] = useState('')
     const [mins, setMins] = useState('')
     const [day, setDay] = useState()
-    const tags = ["Outdoors", "Indoors", "Live", "Concert", "Play", "Movie", "Disco", "Sports"]
+    const tags = ["Exteriores", "Interiores", "En vivo", "Recital", "Teatro", "Película", "Disco", "Deportes"]
     const weeks = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]//"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"
     const uploadFiles = function (e) {
         if (e.target.value !== '') {
@@ -168,6 +169,8 @@ export default function FormEvent() {
             <div className='container-event'>
                 <label>Nombre del Evento: </label>
                 <input type='text' name='name' value={event.name} onChange={handleInputChange} />
+
+                <Upload/>{/* componente de carga de imagen */}
 
                 <label>Imagenes: </label>
                 <span style={{ fontFamily: 'serif', fontSize: 'smaller' }}>para agregar más imagenes vuelva a elegir otro archivo</span>
