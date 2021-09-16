@@ -38,10 +38,6 @@ disponibility:24,
 
 
 
-//*get data
-// export function getPrueba() {
-//   return { type: GET_PRUEBA, payload: 'funciona' };
-// }
 
 // export function getEventDetail(id){
 //   return async function (dispatch) {
@@ -55,13 +51,12 @@ disponibility:24,
 //   }
 
 // }
-export function getEventDetail(payload){return {
-  type: GET_DETAIL,
-  payload:data
+export function getEventDetail(payload){
+  return {
+    type: GET_DETAIL,
+    payload:data
+  }
 }
-}
-//*switch
-//
 
 export function editDetail(id){
   return{

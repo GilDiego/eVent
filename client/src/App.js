@@ -13,8 +13,9 @@ import FormEvent from './components/FormEvent/formEvent';
 function App() {
   return (
     <>
-    <NavBar/>
-      
+      <Route path='/'>
+         <NavBar/>
+      </Route>
         <Route exact path= '/'>
           <Home/>
         </Route>
@@ -37,10 +38,10 @@ function App() {
         <Route path= '/EventsDetailsPromoter/:id' component = {EventsDetailsPromoter}/>
 
         
-
         <Route path='/FormEvent' >
           <FormEvent/>
         </Route>
+
 
 
     <Footer />
