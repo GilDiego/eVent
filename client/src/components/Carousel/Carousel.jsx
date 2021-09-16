@@ -15,6 +15,25 @@ const Carousel = ()=>{
     const slideShow = useRef(null);
     const intervaloSlideShow = useRef(null);
 
+
+    useEffect(()=>{
+        intervaloSlideShow.current = setInterval(() => {
+            next();
+        }, 5000);
+
+        slideShow.current.addEventListener('mouseenter',()=>{
+            clearInterval(intervaloSlideShow.current)
+        });
+
+        slideShow.current.addEventListener('mouseleave',()=>{
+            intervaloSlideShow.current = setInterval(() => {
+                next();
+            }, 5000);
+        });
+
+
+    },[])
+
     const next = ()=>{
         if(slideShow.current.children.length > 0){// comprobamos si el slide tiene elementos
             const firstElement = slideShow.current.children[0]// obtengo el primer elemento
@@ -50,23 +69,7 @@ const Carousel = ()=>{
         }
     }
 
-    useEffect(()=>{
-        intervaloSlideShow.current = setInterval(() => {
-            next();
-        }, 5000);
-
-        slideShow.current.addEventListener('mouseenter',()=>{
-            clearInterval(intervaloSlideShow.current)
-        });
-
-        slideShow.current.addEventListener('mouseleave',()=>{
-            intervaloSlideShow.current = setInterval(() => {
-                next();
-            }, 5000);
-        });
-
-
-    },[])
+    
     console.log(FakeDB.length)
     return(
         // <ContMain>
