@@ -3,6 +3,7 @@ import axios from 'axios'
 export const GET_DETAIL = "GET_DETAIL"
 export const GET_EDIT = 'GET_EDIT'
 export const UPDATE = 'UPDATE'
+export const SWITCH_SIDE_BAR = 'SWITCH_SIDE_BAR';
 
 let data ={
   id: 1,
@@ -37,11 +38,6 @@ disponibility:24,
 
 
 
-//*get data
-export function getPrueba() {
-  return { type: GET_PRUEBA, payload: 'funciona' };
-}
-
 // export function getEventDetail(id){
 //   return async function (dispatch) {
 //     const response = await 
@@ -54,24 +50,15 @@ export function getPrueba() {
 //   }
 
 // }
-export function getEventDetail(payload){return {
-  type: GET_DETAIL,
-  payload:data
+export function getEventDetail(payload){
+  return {
+    type: GET_DETAIL,
+    payload:data
+  }
 }
  
 //*switch
-export const SWITCH_SIDE_BAR = 'SWITCH_SIDE_BAR';
-_
-export function getEventDetail(id){
-  return async function (dispatch) {
-    const response = await 
-    axios.get(`http://localhost:3001/event/${id}`)
-    dispatch({
-      type: GET_DETAIL,
-      payload: response.data
-    })
-  }
-}
+
 export function editDetail(id){
   return{
     type: GET_EDIT,
