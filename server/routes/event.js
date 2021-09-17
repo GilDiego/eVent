@@ -29,7 +29,7 @@ router.get('/event',getElementByCountryAndCity);
 router.post('/event',saveInfoEvent);
 
 
-//PUT
+//PUT(sequelize usa el metodo patch)
 router.patch('/event/edit/:id',putController)
 
 //DELETE
