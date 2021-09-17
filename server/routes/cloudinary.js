@@ -29,3 +29,6 @@ router.post('/upload', async (req, res) => {
         res.status(500).json({ err: 'Something went wrong' });
     }
 });
+
+
+module.exports = router;
