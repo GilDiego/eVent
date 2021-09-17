@@ -5,10 +5,10 @@ import ActivityCards from "../ActivityCards/ActivityCards";
 import Carousel from "../Carousel/Carousel";
 import SideBar from "../SideBar/SideBar";
 import NavBarHome from "../NavBarHome/NavBarHome";
+//* La informacion de las actividades esta en el archivo FakeDB
 import activitiesList from "../../FakeDB/FakeDB";
 
 const Home = ({ switchSide }) => {
-  //* La informacion de las actividades esta en el archivo FakeDB
   return (
     <>
     <NavBarHome/>
@@ -20,7 +20,6 @@ const Home = ({ switchSide }) => {
         <Carousel />
         <ActivityCards activitiesList={activitiesList} />
       </div>
-    
     </div>
     </>
   );
@@ -31,5 +30,4 @@ function mapStateToProps(state) {
     switchSide: state.sideBarSwitch,
   };
 }
-
 export default connect(mapStateToProps)(Home);
