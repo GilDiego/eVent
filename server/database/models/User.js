@@ -18,6 +18,22 @@ const User = sequelize.define('user', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    /* THIS:
+    birth_day: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    birth_month: {
+        type: DataTypes.ENUM(
+            "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"
+        ),
+        allowNull: false,
+    },
+    birth_year: {
+        type: DataTypes.INTEGER, // No olvidar limitar rango en front
+        allowNull: false,
+    },
+    OR : */
     birthdate: {
         type: DataTypes.STRING,
         allowNull: true,
