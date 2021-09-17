@@ -76,7 +76,7 @@ const Event = sequelize.define('event', {
     seat_booking: {
         /* ?????????????? */
         type: DataTypes.STRING,
-        allowNull:true
+        allowNull: true,
     },
 })
 
