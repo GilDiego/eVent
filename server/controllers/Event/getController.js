@@ -7,7 +7,20 @@ exports.getController = async (req,res) => {
 
     const result = consult.map(event => {
         const { dataValues } = event;
-        return dataValues;
+
+        const {
+            id,
+            name,
+            price,
+            location,
+        } = dataValues;
+
+        return {
+            id,
+            name,
+            price,
+            location
+        };
     })
 
     res.json(result)
