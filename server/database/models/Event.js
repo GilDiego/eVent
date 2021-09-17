@@ -45,7 +45,7 @@ const Event = sequelize.define('event', {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: true,
     },
-    isRecurrent: {
+    isrecurrent: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
     },
