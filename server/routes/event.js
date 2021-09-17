@@ -3,12 +3,16 @@ const router = express.Router();
 const { 
     getController,              
     getEventByIdController,
-    getElementByCountryAndCity 
+    getElementByCountryAndCity,
 } = require('../controllers/Event/getController');
 
 const {
     saveInfoEvent
 } = require('../controllers/Event/postController');
+
+const {
+    putController
+} = require('../controllers/Event/putController');
 
 
 
@@ -19,5 +23,13 @@ router.get('/event',getElementByCountryAndCity);
 
 //POST
 router.post('/event',saveInfoEvent);
+
+
+//PUT
+router.put('/event/:id',putController)
+
+//DELETE
+
+
 
 module.exports = router;
