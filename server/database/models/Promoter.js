@@ -46,10 +46,6 @@ const Promoter = sequelize.define('promoter', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    address: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
     /* SI SE DESCARTA EL MODELO LOCATION:
     location: {
         type: DataTypes.STRING,
