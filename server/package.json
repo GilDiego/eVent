@@ -4,7 +4,7 @@
   "description": "eVent Project",
   "main": "app.js",
   "scripts": {
-    "start":"node .",
+    "start": "node .",
     "build": "nodemon ."
   },
   "author": "",
