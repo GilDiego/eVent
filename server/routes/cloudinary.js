@@ -1,11 +1,8 @@
 const { cloudinary } = require('../cloudinaryConfig');
 const express = require('express');
-const app = express();
-var cors = require('cors');
+const router = express.Router();
 
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
-app.use(cors());
+
 
 app.get('/api/images', async (req, res) => {
     const { resources } = await cloudinary.search
