@@ -7,16 +7,53 @@ exports.getController = async (req,res) => {
 
     const result = consult.map(event => {
         const { dataValues } = event;
-        return dataValues;
+
+        const {
+            id,
+            name,
+            price,
+            location,
+            pictures
+        } = dataValues;
+
+        return {
+            id,
+            name,
+            price,
+            location,
+            pictures
+        };
     })
 
     res.json(result)
 }
 
-exports.getEventByIdController = (req,res) => {
+exports.getEventByIdController = async (req,res) => {
     const {id} = req.params;
 
-    res.json({msg:`mensaje desde la busqueda por id ${id}`})
+
+    try {
+        const consult = await Event.findOne({
+            where: {
+                id
+            }
+        });
+    
+        const result = consult;
+
+        if(!result) return res.json({msg:'ID does not match with any event'});
+        
+        res.json({
+            msg:`Search ID: ${id} Success!`,
+            result
+        });
+        
+    } catch (error) {
+        console.log(error);
+        res.json({msg:'Error!!'});
+    }
+
+    
 }
 
 exports.getElementByCountryAndCity = (req,res) => {

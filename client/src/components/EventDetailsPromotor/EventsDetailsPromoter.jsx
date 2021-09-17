@@ -29,35 +29,24 @@ function DetailPromoter() {
        ))
    }
 
-//    let  eliminate = e =>{
-//        dispatch(eliminatedetail(
-//            e.target.value 
-//        ))
-//    }
-// const data = detailsEvent.pictures.map((e)=>{
-//     return e
-// })
-//   console.log('yo soy data',data)
- 
  const slideNumberStyle = {
     fontSize: '20px',
     fontWeight: 'bold',
   }
-
-//console.log('hola soy data',data)
+    
     return(
         <>
         <div className='detailsAll'>
             <div className='detailsCard'>
                 {
                     
-                    detailsEvent.eventName!==undefined?   
+                    detailsEvent.name!==undefined?   
                     <div className='deailscard2'>
                         <h1 className='titleCard'>{detailsEvent.eventName}</h1>
                         <Carousel
             data={detailsEvent.pictures.map((e)=>(e))}
             
-            time={2000}
+            time={5000}
             width="850px"
             height="500px"
             
@@ -78,17 +67,10 @@ function DetailPromoter() {
               maxWidth: "850px",
               maxHeight: "500px",
               margin: "40px auto",
-            }}
-       
-          />
+            }} />
                         
-                     {/* <div>{detailsEvent.pictures.map((img)=>(
-                           <>
-                           <img src={img}/>
-                           {console.log('soy e del map',(img))}
-                           </>
-                     ))}
-                            </div>  */}
+                    
+                           
                          <div className='otherDetails'>   
                         <p>{`Descripción: ${detailsEvent.description}`}</p>
                         <p>{`Artistas: ${detailsEvent.starring}`}</p>
@@ -124,30 +106,3 @@ function DetailPromoter() {
 
 export default DetailPromoter
 
-
-// "virtual": false,
-// "isRecurrent": false,
-// "id": 1,
-// "eventName": "Rock al parque",
-// "description": "Esta es la descripcion del modelo",
-// "location": "Colombia/Valle/cali",
-// "address": "cra 7ksdfkdsj",
-// "pictures": [
-//   "image 1"
-// ],
-// "start_date": "2021-10-30",
-// "schedule": [
-//   "10:00"
-// ],
-// "weekdays": [
-//   "SUN",
-//   "FRI"
-// ],
-// "tags": "Indoors",
-// "age_rating": "7+",
-// "price": "290",
-// "starring": null,   artistas
-// "finish_date": null,  fecha final
-// "ticket_limit": null,  limite de tikets
-// "seat_booking": null   croquis 
-// }

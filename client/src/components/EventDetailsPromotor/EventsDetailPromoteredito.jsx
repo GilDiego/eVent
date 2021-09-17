@@ -19,32 +19,36 @@ function EditDetail (){
 
     const handleEdit = (e) =>{
         e.prevent.default();
-        const newEventName= detailsEvent.name;
-        const  newDescription = detailsEvent.newDescription;
-        const newImg =detailsEvent.img ;
-        const newUbication = detailsEvent.ubication;
-        const newDateInitial = detailsEvent.dateInitial;
-        const  newDateFinish = detailsEvent.dateFinish;
-        const  newSchedule = detailsEvent.schedule;
-        const newType = detailsEvent.type;
-        const newClasification = detailsEvent.clasification;
-        const newprice = detailsEvent.price;
-        const newLimit = detailsEvent.limit
+        // const newName= detailsEvent.name;
+        // const  newDescription = detailsEvent.description;
+        // const  newStarring =detailsEvent.starring
+        // const newImg =detailsEvent.img ;
+        // const newLocation = detailsEvent.location;
+        // const newStart_date = detailsEvent.start_date;
+        // const  newFinish_date= detailsEvent.finish_date;
+        // const  newSchedule = detailsEvent.schedule;
+        // const newWeekdays = detailsEvent.weekdays;
+        // const newTags = detailsEvent.tags;
+        // const newAge_rating = detailsEvent.age_rating;
+        // const newprice = detailsEvent.price;
+        // const newLimit = detailsEvent.limit
 
     }
    
     const data ={
-        newEventName,
+        newName,
         newDescription,
         newImg,
-        newUbication,
-        newDateInitial,
-        newDateFinish,
+        newLocation,
+        newStart_date,
+        newFinish_date,
         newSchedule,
-        newType,
-        newClasification,
+        newTags,
+        newAge_rating,
         newPrice,
         newLimit,
+        newStarring,
+        newWeekdays,
     }
 
 
