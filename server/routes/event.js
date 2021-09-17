@@ -14,6 +14,10 @@ const {
     putController
 } = require('../controllers/Event/putController');
 
+const {
+    deleteController
+} = require('../controllers/Event/deleteController');
+
 
 
 //GET
@@ -26,10 +30,10 @@ router.post('/event',saveInfoEvent);
 
 
 //PUT
-router.put('/event/:id',putController)
+router.patch('/event/edit/:id',putController)
 
 //DELETE
-
+router.delete('/event/delete/:id',deleteController)
 
 
 module.exports = router;
