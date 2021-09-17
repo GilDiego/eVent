@@ -15,7 +15,7 @@ const Event = sequelize.define('event', {
         type: DataTypes.STRING,
         allowNull: true
     },
-    virtual: {
+    remote: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
     },
@@ -38,9 +38,7 @@ const Event = sequelize.define('event', {
     },
     finish_date: { // AAAA-MM-DD
         type: DataTypes.STRING,
-        validate: {
-            isDate: true,
-        },
+        validate: { isDate: true, },
         allowNull: true,
     },
     schedule: { //TEMPORARY. CONVERT INTO SEPARATE MODEL AFTERWARDS
