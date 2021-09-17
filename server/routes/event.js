@@ -26,7 +26,7 @@ router.post('/event',saveInfoEvent);
 
 
 //PUT
-router.put('/event/:id',putController)
+router.patch('/event/:id',putController)
 
 //DELETE
 
