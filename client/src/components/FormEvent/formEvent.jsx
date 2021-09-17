@@ -4,29 +4,30 @@ import './formEvent.css'
 
 export function Validate(input) {
     let errors = {};
+    console.log(input,'validate')
     if (!input.name) {
-        errors.name = '*'
+        errors.name = '*Campo obligatorio'
     }
     if (!input.description) {
-        errors.description = '*'
+        errors.description = '*Campo obligatorio'
     }
     if (!input.address) {
-        errors.address = '*'
+        errors.address = '*Campo obligatorio'
     }
     if (!input.location) {
-        errors.location = '*'
+        errors.location = '*Campo obligatorio'
     }
     if (!input.startDate) {
-        errors.startDate = '*'
+        errors.startDate = '*Campo obligatorio'
     }
     if (!input.schedule) {
-        errors.schedule = '*'
+        errors.schedule = '*Campo obligatorio'
     }
     if (!input.eventType) {
-        errors.eventType = '*'
+        errors.eventType = '*Campo obligatorio'
     }
     if (!input.classification) {
-        errors.classification = '*'
+        errors.classification = '*Campo obligatorio'
     }
     if (!input.prices) {
         errors.prices = '*'
@@ -34,19 +35,17 @@ export function Validate(input) {
     if (!input.incomeLimit) {
         errors.incomeLimit = '*'
     }
-    if (!input.img) {
-        errors.img = '*'
-    }
-    if (input.img.length === 5) {
-        errors.img = 'limite 5'
-    }
-    // if (input.finishDate !== '') {
-    //     errors.finishDate = '*'
+    // if (!input.img) {
+    //     errors.img = '*'
     // }
+    // if (input.img.length === 5) {
+    //     errors.img = 'limite 5'
+    // }
+    return errors
 }
 
 export default function FormEvent() {
-    // const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState({})
     const [event, setEvent] = useState({
         name: '',
         // img: [],
@@ -67,6 +66,7 @@ export default function FormEvent() {
     const [hour, setHour] = useState('')
     const [mins, setMins] = useState('')
     const [day, setDay] = useState()
+    const [type, setType] = useState()
     const tags = ["Exteriores", "Interiores", "En vivo", "Recital", "Teatro", "Película", "Disco", "Deportes"]
     const weeks = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]//"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"
     // const uploadFiles = function (e) {
@@ -112,6 +112,13 @@ export default function FormEvent() {
             }
         }
     }
+    const deleteScedule = function(e){
+        setEvent({
+            ...event,
+            schedule: event.schedule.filter((d) => d !== e.target.value)
+        })
+        alert(`Se eliminó ${e.target.value} de los días seleccionados`)
+    }
     const weekDaysInputChange = function (e) {
         setDay(e.target.value)
     }
@@ -141,10 +148,18 @@ export default function FormEvent() {
     }
     const eventChange = function(e){
         console.log(e.target.value)
-        setEvent({
-            ...event,
-            eventType:[e.target.value,...event.eventType]
-        })
+        setType(e.target.value)
+    }
+    const eChange = function(e){
+        e.preventDefault()
+        if(event.eventType.includes(type)){
+            alert('No es posble volver a agregar el mismo tipo de evento')
+        }else{
+            setEvent({
+                ...event,
+                eventType:[type,...event.eventType]
+            })
+        }
     }
     const deleteType = function (e) {
         setEvent({
@@ -169,45 +184,36 @@ export default function FormEvent() {
         <form className='form-event' onSubmit={(e) => {
             e.preventDefault()
             console.log(event, '¿')
-            console.log('event.img', event.img, '¿')
-            // setErrors(Validate({
-            //     ...errors,
-            //     [e.target.name]: e.target.value
-            // }))
+            setErrors(Validate({
+                ...event,
+                [e.target.name]: e.target.value
+            }))
 
         }}>
             <div className='container-event'>
                 <label>Nombre del Evento: </label>
-                <input type='text' name='name' value={event.name} onChange={handleInputChange} />
-
+                <><input className={errors.name && 'danger'} type='text' name='name' value={event.name} onChange={handleInputChange} placeholder='Nombre del evento' />
+                {errors.name && (<span className="danger">{errors.name}</span>)}</>
+                
                 <label>Imagenes: </label>
+                <span style={{ fontFamily: 'serif', fontSize: 'smaller' }}>para agregar más imagenes vuelva a elegir otro archivo</span>
                 <Upload/>{/* componente de carga de imagen */}
 
-                {/* <span style={{ fontFamily: 'serif', fontSize: 'smaller' }}>para agregar más imagenes vuelva a elegir otro archivo</span>
-                <input type='file' name='files' value={event.img[0]} onChange={uploadFiles} multiple />
-                {event.img ?
-                    <select>
-                        <option>Archivos seleccionados</option>
-                        {event.img.map((e, i) => {
-                            return <option key={i}>{e}</option>
-                        })}
-                    </select>
-                    : null} */}
-
                 <label>Descripción: </label>
-                <textarea style={{width:'50%', height:'50px'}}  name='description' value={event.description} onChange={handleInputChange}></textarea>{/* maxlength='300' */}
-
+                <textarea className={errors.description && 'danger'} style={{width:'50%', height:'50px'}}  name='description' value={event.description} onChange={handleInputChange} placeholder='Descripcion..'></textarea>{/* maxlength='300' */}
+                {errors.description && (<span className="danger">{errors.description}</span>)}
                 <label>Elenco/Participantes: </label>
-                <input type='text' name='starring' value={event.starring} onChange={handleInputChange} />
+                <input type='text' name='starring' value={event.starring} onChange={handleInputChange} placeholder='Ejemplo: Michael Jackson, Leonardo DiCaprio..' />
 
                 <label>Ubicación: </label>
-                <input type='text' name='location' value={event.location} onChange={handleInputChange} placeholder='pais/provincia(estado,departamento)/ciudad' />
-
+                <input className={errors.location && 'danger'} type='text' name='location' value={event.location} onChange={handleInputChange} placeholder='pais/provincia(estado,departamento)/ciudad' />
+                {errors.location && (<span className="danger">{errors.location}</span>)}
                 <label>Dirección: </label>
-                <input type='text' name='address' value={event.address} onChange={handleInputChange} />
-
+                <input className={errors.address && 'danger'} type='text' name='address' value={event.address} onChange={handleInputChange} placeholder='Calle Falsa 123 ☺' />
+                {errors.address && (<span className="danger">{errors.address}</span>)}
                 <label>Fecha de Inicio: </label>
-                <input type='text' name='startDate' value={event.startDate} onChange={handleInputChange} placeholder='AAAA/MM/DD' />
+                <input className={errors.startDate && 'danger'} type='text' name='startDate' value={event.startDate} onChange={handleInputChange} placeholder='AAAA/MM/DD' />
+                {errors.startDate && (<span className="danger">{errors.startDate}</span>)}
 
                 <label>Recurrente</label>
                 <div>
@@ -219,7 +225,7 @@ export default function FormEvent() {
                 {event.isRecurrent === 'false'?
                 <>
                 <label>Fecha de finalización: </label>
-                <input type='text' name='finishDate' value={event.finishDate} onChange={handleInputChange} />
+                <input type='text' name='finishDate' value={event.finishDate} onChange={handleInputChange} placeholder='AAAA/MM/DD' />
                 </>
                 :null}
                 
@@ -233,7 +239,7 @@ export default function FormEvent() {
                 </div>
 
                 {event.schedule ?
-                    <select>
+                    <select onChange={deleteScedule}>
                         <option>Horarios Disponibles</option>
                         {event.schedule.map((e, i) => {
                             return <option key={i}>{e}</option>
@@ -242,13 +248,16 @@ export default function FormEvent() {
                     : null}
 
                 <label>Días: </label>
-                <select onChange={weekDaysInputChange}>
+                <div>
+                    <select onChange={weekDaysInputChange}>
                     <option>Seleccionar</option>
                     {weeks.map((e, i) => {
                         return <option key={i} value={e}>{e}</option>
                     })}
                 </select>
                 <button className='button-event' onClick={weekDaysChange}>agregar</button>
+                </div>
+                
                 {event.weekDays ?
                     <select onChange={deleteDay}>
                         <option>Días Seleccionados</option>
@@ -258,12 +267,16 @@ export default function FormEvent() {
                     </select>
                     : null}
                 <label>Tipo de Evento: </label>
-                <select onChange={eventChange}>
+                <div>
+                    <select onChange={eventChange}>
                     <option>Seleccionar</option>
                     {tags.map((e, i) => {
                         return <option key={i} value={e}>{e}</option>
                     })}
                 </select>
+                <button className='button-event' onClick={eChange}>agregar</button>
+                </div>
+                
                 {event.eventType ?
                     <select onChange={deleteType}>
                         <option value='seleccionar'>Tipos Seleccionados</option>
@@ -282,10 +295,10 @@ export default function FormEvent() {
                     <option value='18++'>18+</option>
                 </select>
                 <label>Precios: </label>
-                <input type='text' name='prices' value={event.prices} onChange={handleInputChange} />
+                <input type='text' name='prices' value={event.prices} onChange={handleInputChange} placeholder='Ejemplo: $500' />
 
                 <label>Limite de ingresos: </label>
-                <input type='text' name='incomeLimit' value={event.incomeLimit} onChange={handleInputChange} />
+                <input type='text' name='incomeLimit' value={event.incomeLimit} onChange={handleInputChange} placeholder='Ejemplo: 500' />
 
                 <input className='button-event' type='submit' />
             </div>
@@ -293,8 +306,15 @@ export default function FormEvent() {
     )
 }
 // - virtual: boolean (default: false)
-// - Tipo del evento (etiquetas) * (enum) / tags
-//               "Outdoors", "Indoors", "Live", "Concert", "Play", "Movie", "Disco", "Sports" 
-// - Precio* / price (string)
-// - Limite de ingresos  / ticket_limit 
 // - Sistema de asignacion de sillas / seat_booking
+
+                /* <span style={{ fontFamily: 'serif', fontSize: 'smaller' }}>para agregar más imagenes vuelva a elegir otro archivo</span>
+                <input type='file' name='files' value={event.img[0]} onChange={uploadFiles} multiple />
+                {event.img ?
+                    <select>
+                        <option>Archivos seleccionados</option>
+                        {event.img.map((e, i) => {
+                            return <option key={i}>{e}</option>
+                        })}
+                    </select>
+                    : null} */
