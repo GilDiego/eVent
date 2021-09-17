@@ -72,6 +72,7 @@ const Carousel = ()=>{
  
         <div className={styles.contMain}>
             <div className={styles.contSlideShow} ref={slideShow}>
+                {/* Agregar key unica para cada elemeno-Gerardo */}
                 {FakeDB.map(e=><Slide img={e.img} name={e.name} date={e.date} place={e.place}/>)}
             </div>
             <div className={styles.control}>

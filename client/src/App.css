@@ -85,7 +85,7 @@ ul{
 
 /** Buttons */
 .EbtnCard{
-  margin-top: 30px;
+  margin-top: 70px;
   background-color: var(--Button);
   border-radius: var(--RadiusOne);
   width: 70px;
@@ -93,4 +93,9 @@ ul{
 .EbtnCard:hover{
   background-color: var(--Other);
   color: var(--White);
+}
+@media (max-width: 420px) { 
+  .card{
+   width: 50vw;
+  }
 }
