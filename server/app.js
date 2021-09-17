@@ -17,7 +17,14 @@ app.use(cors())
 
 //importar las rutas creadas
 app.use('/test', require('./routes/rutaprueba'));//ruta de prueba
+
+//Event Routes
 app.use('/api', require('./routes/event'));
+
+//Cloudinary Routes
+app.use('/cloudinary',require('./routes/cloudinary'));
+
+
 
 
 app.listen(port, () => {
