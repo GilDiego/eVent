@@ -13,13 +13,15 @@ exports.getController = async (req,res) => {
             name,
             price,
             location,
+            pictures
         } = dataValues;
 
         return {
             id,
             name,
             price,
-            location
+            location,
+            pictures
         };
     })
 
