@@ -1,5 +1,6 @@
 
 const express = require('express');
+const cors = require('cors')
 const app = express();
 const sequelize = require('./database/db');
 require('./database/relations');
@@ -10,6 +11,7 @@ const port = 3001 || process.env.PORT
 //Middleware express para llenar el body
 app.use(express.json());
 app.use(express.urlencoded({extended: false}))
+app.use(cors())
 
 
 
