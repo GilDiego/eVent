@@ -43,24 +43,11 @@ const User = sequelize.define('user', {
         defaultValue: "https://cdn2.vectorstock.com/i/thumb-large/04/96/user-icon-vector-19240496.jpg",
         allowNull: false,
     },
-    country: {
-        type: DataTypes.ENUM,
-        allowNull: false,
-    },
-    province: {
-        type: DataTypes.ENUM,
-        allowNull: false,
-    },
-    city: {
-        type: DataTypes.ENUM,
-        allowNull: false,
-    },
-    /* O BIEN
+    /* SI SE DESCARTA EL MODELO LOCATION:
     location: {
         type: DataTypes.STRING,
         allowNull: false,
-    },
-    */
+    }, */
     email: {
         type: DataTypes.STRING,
         allowNull: false,
