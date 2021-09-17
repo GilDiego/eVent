@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 
-app.get('/api/images', async (req, res) => {
+router.get('/api/images', async (req, res) => {
     const { resources } = await cloudinary.search
         .expression('folder:cloudinary_event')
         .sort_by('public_id', 'desc')
@@ -16,7 +16,7 @@ app.get('/api/images', async (req, res) => {
     res.send(publicIds);
 });
 
-app.post('/api/upload', async (req, res) => {
+router.post('/api/upload', async (req, res) => {
     try {
         const fileStr = req.body.data;
         const uploadResponse = await cloudinary.uploader.upload(fileStr, {
