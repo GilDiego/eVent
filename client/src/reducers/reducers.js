@@ -8,7 +8,7 @@ import {
   const initialState = {
     //*detalles de evento
     detailsEvent:[true],
-    copyDetails:[true],
+    
     //*switch de nav-bar
     sideBarSwitch: false,
     posts:[]
@@ -18,18 +18,17 @@ import {
   function rootReducer(state = initialState, action) {
    
     //*__DETALLES_DE_EVENTOS
+    
     if(action.type=== GET_DETAIL){
+     
       return{
         ...state,
         detailsEvent: action.payload,
-        copyDetails :action.payload
-      }
+      
+      } 
+
     }
-    if (action.type === GET_EDIT){
-      return state.detailsEvent.map((eventDetail)=>eventDetail.id === action.id?
-      {...eventDetail, editing: !eventDetail.editing}: eventDetail
-      )
-    }
+
 
 
     //*__SWITCH_NAV_BAR

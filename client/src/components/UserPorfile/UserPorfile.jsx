@@ -8,7 +8,7 @@ const UserPorfile = ()=>{
             <NavBar login={true}/>
             <div className={styles.barPorfile}>
                 <div className={styles.porfileImg}>
-                    <img src="xx" alt="xx" />
+                    <img src="https://payload.cargocollective.com/1/3/122148/1670411/13.jpg" alt="xx" />
                 </div>
                 <h3 className={styles.nombre}>Juan Perez</h3>
                 <h4 className={styles.ciudad}>Bogotá, Colombia</h4>
