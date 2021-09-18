@@ -37,9 +37,38 @@ function DetailPromoter() {
         
      
         let data = [];
-        let image = detailsEvent.result.pictures 
-        console.log('soy yo imagen', image)
-          data.push({image:image})
+        console.log('soy las imagenes ',data)
+        let picture=detailsEvent.result.pictures
+        console.log ('hola soy picture',picture)
+        let size = detailsEvent.result.pictures.length
+        console.log('soy size',size)
+        while (size && picture !== undefined){
+            console.log('soy size del wile ',size)
+        data.push({image:picture[size]})
+        size --
+        }
+
+
+        // let image = detailsEvent.result.pictures[0] 
+        // console.log('soy yo imagen', image)
+        //   data.push({image:image})
+        //   let image2 = detailsEvent.result.pictures[1] 
+        // console.log('soy yo imagen', image2)
+        //   data.push({image:image2})
+        //   let image3 = detailsEvent.result.pictures[2] 
+        // console.log('soy yo imagen', image3)
+        //   data.push({image:image3})
+        //   let image4 = detailsEvent.result.pictures[3] 
+        // console.log('soy yo imagen', image4)
+        //   data.push({image:image4})
+        //   let image5 = detailsEvent.result.pictures[4] 
+        // console.log('soy yo imagen', image5)
+        //   data.push({image:image5})
+
+         
+         
+        
+                                      
         
      
      console.log('hola soy data ',data);
