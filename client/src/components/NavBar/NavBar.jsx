@@ -4,7 +4,7 @@ import styles from "./NavBar.module.css";
 import { connect } from "react-redux";
 
 
-const NavBar = ({  }) => {
+const NavBar = ({ login }) => {
   
 
   return (
@@ -13,9 +13,7 @@ const NavBar = ({  }) => {
         <Link to="/" className={styles.homeBtn}>
           Home
         </Link>
-        <Link to="/login" className={styles.loginBtn}>
-          Login
-        </Link>
+        {login?<Link to="/" className={styles.loginBtn}>Salir</Link>:<Link to="/login" className={styles.loginBtn}>Login</Link>}
       </nav>
       
     </>
