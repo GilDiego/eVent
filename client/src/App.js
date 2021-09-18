@@ -9,7 +9,7 @@ import FormPromoter from './components/formPromoter/FormPromoter';
 import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDetailsUsario';
 import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter'
 import FormEvent from './components/FormEvent/formEvent';
-import Comments from './components/Comments/Comments'
+import Comments from './components/Comments/CreateComment/CreateComment.jsx'
 
 function App() {
   return (
