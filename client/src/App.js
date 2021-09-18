@@ -14,9 +14,8 @@ import Comments from './components/Comments/CreateComment/CreateComment.jsx'
 function App() {
   return (
     <>
-      <Route path='/'>
-        <NavBar />
-      </Route>
+      <NavBar />
+
       <Route exact path='/'>
         <Home />
       </Route>
@@ -42,15 +41,13 @@ function App() {
       </Route>
 
       <Route path='/EventsDetailsPromoter/:id' >
-        <EventsDetailsPromoter/>
+        <EventsDetailsPromoter />
       </Route>
 
       {/* Diego: Ruta provisional para pruebas de Comentarios */}
       <Route path='/nuevoComentario'>
         <Comments />
       </Route>
-
-
 
       <Footer />
     </>
