@@ -1,13 +1,13 @@
 ////////////////////////// MODEL IMPORTS
 
 // User types
-// const User = require('./models/User');
-// const Promoter = require('./models/Promoter');
+const User = require('./models/User');
+const Promoter = require('./models/Promoter');
 // const Webmaster = require('./models/Webmaster');
 
 // Other entities
 const Event = require('./models/Event');
-// const Comment = require('./models/Comment');
+const Comment = require('./models/Comment');
 // const Favorite = require('./models/Favorite');
 
 // Event related models
@@ -18,6 +18,8 @@ const Event = require('./models/Event');
 
 ////////////////////////// E/R
 
+User.hasMany(Comment, {as: 'comment', foreignKey: "comment_id"});
+Comment.belongsTo(User, {as: 'user', foreignKey: "user_id"})
 // User.hasOne(Location);
 // User.hasMany(Comment);
 // User.hasMany(Favorite); ***** REVISAR.
