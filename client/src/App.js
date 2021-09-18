@@ -9,10 +9,8 @@ import FormPromoter from './components/FormPromoter/FormPromoter';
 import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDetailsUsario';
 import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter'
 import FormEvent from './components/FormEvent/formEvent';
-import Comments from './components/Comments/Comments'
+import Comments from './components/Comments/CreateComment/CreateComment.jsx'
 import UserPorfile from './components/UserPorfile/UserPorfile';
-
-
 
 
 function App() {
