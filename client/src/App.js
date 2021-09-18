@@ -14,6 +14,7 @@ import UserPorfile from './components/UserPorfile/UserPorfile';
 
 
 
+
 function App() {
   return (
     <>
@@ -42,7 +43,6 @@ function App() {
       <Route path='/EventsDetailsPromoter/:id' >
         <EventsDetailsPromoter/>
       </Route>
-      
 
       <Route path='/FormEvent' >
         <FormEvent />
