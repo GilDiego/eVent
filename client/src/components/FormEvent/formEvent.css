@@ -17,7 +17,7 @@ input{
     width: 50%;
 }
 select{
-    width: 51%;
+    width: 40%;
 }
 .button-event{
     background-color: var(--Button);

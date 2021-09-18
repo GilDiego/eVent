@@ -1,13 +1,13 @@
 ////////////////////////// MODEL IMPORTS
 
 // User types
-// const User = require('./models/User');
-// const Promoter = require('./models/Promoter');
+const User = require('./models/User');
+const Promoter = require('./models/Promoter');
 // const Webmaster = require('./models/Webmaster');
 
 // Other entities
 const Event = require('./models/Event');
-// const Comment = require('./models/Comment');
+const Comment = require('./models/Comment');
 // const Favorite = require('./models/Favorite');
 
 // Event related models
@@ -18,6 +18,12 @@ const Event = require('./models/Event');
 
 ////////////////////////// E/R
 
+User.hasMany(Comment);
+Comment.belongsTo(User);
+
+Event.hasMany(Comment);
+Comment.belongsTo(Event);
+// User.hasOne(Location);
 // User.hasMany(Comment);
 // User.hasMany(Favorite); ***** REVISAR.
 // Favorite.belongsTo(User); ***** REVISAR.
@@ -26,7 +32,7 @@ const Event = require('./models/Event');
 ??? No deja al modelo Favorite obsoleto? De algo me estoy perdiendo
 O discriminar entre asistir y agregar a favoritos? Cómo exactamente? */
 
-/*
+/* SI LOS hasMany NO FUNCIONAN, CAMBIAR POR:
 
     User.hasMany(Comment, {as: 'comment', foreignKey: "comment_id"})
     Comment.belongsTo(User, {as: 'user', foreignKey: "user_id"})
@@ -47,6 +53,7 @@ O discriminar entre asistir y agregar a favoritos? Cómo exactamente? */
 // Webmaster.hasMany(Comment); // (¿Que el webmaster comente?)
 
 // Promoter.belongsTo(Webmaster);
+// Promoter.hasOne(Location);
 // Promoter.hasMany(Event);
 // Promoter.hasMany(Comment);
 // Promoter.belongsToMany(User, {through: "following"});
@@ -66,6 +73,9 @@ O discriminar entre asistir y agregar a favoritos? Cómo exactamente? */
 // Comment.belongsTo(User);
 // Comment.belongsTo(Promoter);
 // Comment.belongsTo(Webmaster);
+
+// Location.belongsTo(User);
+// Location.belongsTo(Promoter);
 
 // SEGÚN ANOTADOR. CHEQUEAR SI SE NECESITA AGREGAR
 

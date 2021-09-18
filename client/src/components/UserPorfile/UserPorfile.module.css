@@ -1,0 +1,63 @@
+.contain{
+    overflow: hidden;
+    background: rgba(0,173,196,0.1);
+    
+}
+
+.barPorfile{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background: rgb(0,175,196);
+    justify-content: space-around;
+    color:black;
+    /* box-shadow: -3px 5px 5px 1px var(--Black); */
+}
+
+.nombre{
+    margin:10px
+}
+.ciudad{
+    margin:10px
+}
+
+
+.myEvents{
+    margin-top: 100px;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.favorites{
+    margin-top: 20px;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+}
+
+.porfileImg{
+    position:absolute;
+    top:50px;
+    width: 220px;
+    height: 210px;
+    border: 3px solid rgba(0,173,196,0.3);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.porfileImg img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contMain{
+    height: 100px;
+}

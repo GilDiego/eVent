@@ -79,3 +79,87 @@ li {
 ul{
   padding-left: 0px;
 }
+
+
+/** EventStrap */
+
+/** Cards */
+.card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--Primary);
+  width: 300px;
+  height: 220px;
+  margin:30px;
+  margin-bottom: 50px;
+  padding: 30px;
+  border-radius: var(--RadiusOne);
+  box-shadow: var(--ShadowOne) ;
+  position: relative;
+}
+@media (max-width: 768px) { 
+.card{
+ height: max-content;
+}
+}
+@media (max-width: 420px) { 
+  .card{
+   width: 50vw;
+   height: max-content;
+  }
+}
+.imgCard{
+  width: 100%;
+height: 180px;
+position: absolute;
+filter: brightness(60%);
+}  
+.titleCard{
+  color: var(--White);
+  z-index: 10;
+  font-size: var(--TitleCard);
+  font-size: 30px;
+  }
+  @media (max-width: 420px) { 
+      .titleCard{
+      font-size: 1.2rem;
+      }
+    }
+  
+  .infoCard{
+      color: var(--White);
+      z-index: 10;
+      margin-bottom: 0px;
+  }
+  @media (max-width: 420px) { 
+      .infoCard{
+      font-size: 1rem;
+      }
+    }
+
+
+
+/** Buttons */
+.EbtnCard{
+  background-color: var(--Button);
+  border-radius: var(--RadiusOne);
+  width: 70px;
+}
+.EbtnCard:hover{
+  background-color: var(--Other);
+  color: var(--White);
+}
+@media (max-width: 420px) { 
+  .card{
+   width: 50vw;
+  }
+}
+
+
+
+/** VARIOS */
+.margTop70{
+  margin-top: 70px;
+}
+

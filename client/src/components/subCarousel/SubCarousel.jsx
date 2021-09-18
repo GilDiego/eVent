@@ -1,17 +1,13 @@
 import React, { useEffect, useRef } from "react";
-import styles from './Carousel.module.css'
-//import {ReactComponent as Left} from '../../Utilities/left.svg'
+
+import styles from './SubCarousel.module.css'
 import left from '../../Utilities/left.svg'
-//import {ReactComponent as Right} from '../../Utilities/right.svg'
 import right from '../../Utilities/right.svg'
-//import styled from 'styled-components';
-import Slide from "./Slide";
 import FakeDB from '../../FakeDB/FakeDB'
+import SubSlide from "./SubSlide";
 
 
-
-
-const Carousel = ()=>{
+const SubCarousel = ()=>{
     const slideShow = useRef(null);
     const intervaloSlideShow = useRef(null);
 
@@ -73,7 +69,7 @@ const Carousel = ()=>{
         <div className={styles.contMain}>
             <div className={styles.contSlideShow} ref={slideShow}>
                 {/* Agregar key unica para cada elemeno-Gerardo */}
-                {FakeDB.map(e=><Slide img={e.img} name={e.name} date={e.date} place={e.place}/>)}
+                {FakeDB.map(e=><SubSlide img={e.img} name={e.name} date={e.date} place={e.place}/>)}
             </div>
             <div className={styles.control}>
                 <button className={styles.left} onClick={previous}>
@@ -92,4 +88,4 @@ const Carousel = ()=>{
 
 
 
-export default Carousel
+export default SubCarousel
