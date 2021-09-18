@@ -18,10 +18,10 @@ import UserPorfile from './components/UserPorfile/UserPorfile';
 function App() {
   return (
     <>
-
       {/* <Route exact path='/'> */}
         <NavBar />
       {/* </Route> */}
+
       <Route exact path='/'>
         <Home />
       </Route>
@@ -41,6 +41,10 @@ function App() {
       <Route path='/eventDetailsUsuario' >
         <EventDetailsUsario />
       </Route>
+
+      <Route path='/FormEvent' >
+        <FormEvent />
+
       <Route path='/EventsDetailsPromoter/:id' >
         <EventsDetailsPromoter/>
       </Route>
@@ -57,7 +61,6 @@ function App() {
       <Route path='/perfil'>
         <UserPorfile />
       </Route>
-
 
       <Footer />
     </>
