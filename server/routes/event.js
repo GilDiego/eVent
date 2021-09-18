@@ -3,12 +3,20 @@ const router = express.Router();
 const { 
     getController,              
     getEventByIdController,
-    getElementByCountryAndCity 
+    getElementByCountryAndCity,
 } = require('../controllers/Event/getController');
 
 const {
     saveInfoEvent
 } = require('../controllers/Event/postController');
+
+const {
+    putController
+} = require('../controllers/Event/putController');
+
+const {
+    deleteController
+} = require('../controllers/Event/deleteController');
 
 
 
@@ -19,5 +27,13 @@ router.get('/event',getElementByCountryAndCity);
 
 //POST
 router.post('/event',saveInfoEvent);
+
+
+//PUT(sequelize usa el metodo patch)
+router.patch('/event/edit/:id',putController)
+
+//DELETE
+router.delete('/event/delete/:id',deleteController)
+
 
 module.exports = router;

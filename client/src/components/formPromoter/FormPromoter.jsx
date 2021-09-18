@@ -1,12 +1,16 @@
 import {useState} from "react";
-import  './FormPromoter.css'
 
+import styles from './FormPromoter.module.css'
 
 
 function FormPromoter(){
+    
     const [errors, setErrors]=useState({form:'Completa el formulario'})
+    const [condition, setCondition] = useState({
+        divCountry:'',
+        idNumber:'',
+    })
     const [form,setForm]=useState({
-
         businessName:'',
         name:'',
         rfc:'',
@@ -49,8 +53,18 @@ function FormPromoter(){
         }else if(form.email){
             
         }
-
-
+    }
+    const namesInputs = (e)=>{
+        setForm({...form, country:e.target.value});
+        if(e.target.value==='Argentina') {
+            setCondition({...condition, divCountry:'Provincia', idNumber:'CUIT'});
+        }
+        else if (e.target.value==='Colombia'){
+            setCondition({...condition, divCountry:'Departamento', idNumber:'NIT'});
+        }
+        else {
+            setCondition({...condition, divCountry:'Estado', idNumber:'RFC'});
+        }
     }
     const handleSumit = (e)=>{
         e.prevent.default();
@@ -64,12 +78,48 @@ function FormPromoter(){
     return(
        <>
        <form  onSubmit={handleSumit}>
+           <div className={styles.promotorDates}>
+                <div className={styles.nameP}>
+                    <span >Nombre : </span> <input type="text" placeholder='Nombre Promotor'/>
+                    <span >Apellido : </span> <input type="text" placeholder='Apellido Promotor'/>
+                </div>
+                <div className={styles.contact}>
+                    <span >*Telefono: </span> <input type="text" placeholder='Celular/fijo'/>
+                    <span >Telefono: </span> <input type="text" placeholder='Celular/fijo'/>
+                    
+                </div>
+                <div className={styles.password}>
+                    <span >Email: </span> <input type="email" placeholder='Correo Electronico'/>
+                    <span >Contraseña: </span> <input type="password" placeholder='Password'/>
+                </div>
+           </div>
 
-        <h1>Desde Form Promoter</h1>
-
+           <div className={styles.contPais}>
+               <span>Ubicación</span>
+                <select name="pais" value={form.country} onChange={namesInputs} className={styles.pais}>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Mexico">Mexico</option>
+                </select>
+           </div>
+           {form.country&&
+                <div className={styles.form2}>
+                    <div className={styles.ubication}>
+                        <span >{condition.divCountry}: </span><input type="text" placeholder={condition.divCountry}/>
+                        <span >Ciudad/Municipio: </span><input type="text" placeholder='Ciudad/Municipio'/>
+                    </div>
+                    <div className={styles.datesCompany}>
+                        <span >Direccion: </span> <input type="text" placeholder='Tipo de Emprendimiento'/>
+                        <span >Nombre o Razon social: </span> <input type="text" placeholder='Nombre'/>
+                        <span >{condition.idNumber}</span> <input type="text"/>
+                        <span >Tipo de Emprendimiento: </span> <input type="text" placeholder='Tipo de Emprendimiento'/>
+                    </div>
+                </div>    
+            }
        </form>
 
-       </>    )
+       </>    
+       )
 }
 
 export default FormPromoter;

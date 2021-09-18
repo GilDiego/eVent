@@ -5,18 +5,21 @@ import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import FormUsers from './components/FormUsers/formUsers';
-import FormPromoter from './components/formPromoter/FormPromoter';
+import FormPromoter from './components/FormPromoter/FormPromoter';
 import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDetailsUsario';
 import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter'
 import FormEvent from './components/FormEvent/formEvent';
 import Comments from './components/Comments/CreateComment/CreateComment.jsx'
+import UserPorfile from './components/UserPorfile/UserPorfile';
+
 
 function App() {
   return (
     <>
-      <Route path='/'>
+      {/* <Route exact path='/'> */}
         <NavBar />
-      </Route>
+      {/* </Route> */}
+
       <Route exact path='/'>
         <Home />
       </Route>
@@ -36,19 +39,26 @@ function App() {
       <Route path='/eventDetailsUsuario' >
         <EventDetailsUsario />
       </Route>
-      <Route path='/EventsDetailsPromoter/:id' component={EventsDetailsPromoter} />
-
 
       <Route path='/FormEvent' >
         <FormEvent />
+
+      <Route path='/EventsDetailsPromoter/:id' >
+        <EventsDetailsPromoter/>
       </Route>
+
+      <Route path='/FormEvent' component={FormEvent} />
+        
+      {/* </Route> */}
 
       {/* Diego: Ruta provisional para pruebas de Comentarios */}
       <Route path='/Comentarios'>
         <Comments />
       </Route>
 
-
+      <Route path='/perfil'>
+        <UserPorfile />
+      </Route>
 
       <Footer />
     </>
