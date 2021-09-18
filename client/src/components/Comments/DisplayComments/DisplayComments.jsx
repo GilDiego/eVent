@@ -1,8 +1,12 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './DisplayComments.css'
 
 
-export default function Reviews() {
+export default function Reviews({postId}) {
+
+    useEffect(() => {
+        
+    },[])
 
     //Diego: Funcion que recibe una calificacion y la convierte a estrellas. Puede recibir numeros enteros 1-5
     function setStars(grade){
