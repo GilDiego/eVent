@@ -3,13 +3,21 @@ import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
 // import { withRouter } from 'react-router-dom';//?PARA QUE ES ESTO ????????????Gerardo
 import { GoogleLogin } from "react-google-login";
+import FacebookLogin from 'react-facebook-login';
 
 const Login = () => {
   //*Google
-  const responseGoogle = (response) => {
-    console.log(response);
-    console.log("usuario---------------", response.profileObj);
+  const responseGoogle = (resG) => {
+    console.log(resG);
+    console.log("userG---------------", resG.profileObj);
   };
+
+  //*Facebook
+const responseFacebook = (resF) => {
+  console.log(resF);
+  console.log("userf---------------", resF.profileObj);
+}
+ 
 
   //*Expresiones
   const emailValidate =
@@ -122,6 +130,12 @@ const Login = () => {
             onFailure={responseGoogle}
             cookiePolicy={"single_host_origin"}
           />
+          <FacebookLogin
+    appId="226871852734478"
+    autoLoad={true}
+    fields="name,email,picture"
+    onClick={responseFacebook}
+    callback={responseFacebook} />
         </div>
       </form>
     </div>
