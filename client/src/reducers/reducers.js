@@ -1,6 +1,8 @@
 import {
     GET_DETAIL, 
-   SWITCH_SIDE_BAR
+    GET_EDIT,
+   SWITCH_SIDE_BAR,
+   POST_EVENT
   } from "../actions/actions";
   
   const initialState = {
@@ -9,6 +11,7 @@ import {
     
     //*switch de nav-bar
     sideBarSwitch: false,
+    posts:[]
     
   };
   
@@ -32,6 +35,12 @@ import {
     if(action.type=== SWITCH_SIDE_BAR){
       return{
         sideBarSwitch: action.payload
+      }
+    }
+    if(action.type=== POST_EVENT){
+      return{
+        ...state,
+        posts: action.payload
       }
     }
   

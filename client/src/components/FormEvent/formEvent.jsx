@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Upload from './Upload.jsx'
 import Prueba from './Prueba.jsx';
 import './formEvent.css'
+import { connect } from 'react-redux';
+import { postEvent } from '../../actions/actions.js';
 
 export function Validate(input) {
     let errors = {};
@@ -18,23 +20,23 @@ export function Validate(input) {
     if (!input.location) {
         errors.location = '*Campo obligatorio'
     }
-    if (!input.startDate) {
-        errors.startDate = '*Campo obligatorio'
+    if (!input.start_date) {
+        errors.start_date = '*Campo obligatorio'
     }
     if (!input.schedule) {
         errors.schedule = '*Campo obligatorio'
     }
-    if (!input.eventType) {
-        errors.eventType = '*Campo obligatorio'
+    if (!input.tags) {
+        errors.tags = '*Campo obligatorio'
     }
-    if (!input.classification) {
-        errors.classification = '*Campo obligatorio'
+    if (!input.age_rating) {
+        errors.age_rating = '*Campo obligatorio'
     }
-    if (!input.prices) {
-        errors.prices = '*'
+    if (!input.price) {
+        errors.price = '*'
     }
-    if (!input.incomeLimit) {
-        errors.incomeLimit = '*'
+    if (!input.ticket_limit) {
+        errors.ticket_limit = '*'
     }
     // if (!input.img) {
     //     errors.img = '*'
@@ -45,24 +47,25 @@ export function Validate(input) {
     return errors
 }
 
-export default function FormEvent() {
+export  function FormEvent(props) {
+    console.log(props,'????')
     const [errors, setErrors] = useState({})
     const [event, setEvent] = useState({
         name: '',
-        // img: [],
+        pictures: [],
         description: '',
         starring: '',
         address: '',
         location: '',
-        startDate: '',
-        finishDate: '',
+        start_date: '',
+        finish_date: '',
         isRecurrent: false,
         schedule: [],
-        weekDays: [],
-        eventType: [],
-        classification: '',
-        prices: '',
-        incomeLimit: ''
+        weekdays: [],
+        tags: '',
+        age_rating: '',
+        price: '',
+        ticket_limit: ''
     })
     const [hour, setHour] = useState('')
     const [mins, setMins] = useState('')
@@ -90,7 +93,9 @@ export default function FormEvent() {
         const res = await fetch(`https://api.cloudinary.com/v1_1/event-pf/image/upload`, op)
         const file = await res.json();
         setImg([...img, file.secure_url])
+        setTimeout(()=>setEvent({...event,pictures:[file.secure_url,...event.pictures]}),1000) 
     }
+    console.log(event.pictures,'pictures')
     const scheduleInputChange = function (e) {
         // setHour(e.target.value)
         if (e.target.name === 'hours') {
@@ -133,55 +138,56 @@ export default function FormEvent() {
         })
         alert(`Se eliminó ${e.target.value} de los días seleccionados`)
     }
-    const weekDaysInputChange = function (e) {
+    const weekdaysInputChange = function (e) {
         setDay(e.target.value)
     }
-    const weekDaysChange = function (e) {
+    const weekdaysChange = function (e) {
         e.preventDefault()
-        if (event.weekDays.includes(day)) {
+        if (event.weekdays.includes(day)) {
             alert('No es posble volver a agregar el mismo día')
         } else if (day !== '') {
             setEvent({
                 ...event,
-                weekDays: [day, ...event.weekDays]
+                weekdays: [day, ...event.weekdays]
             })
         }
     }
     const deleteDay = function (e) {
         setEvent({
             ...event,
-            weekDays: event.weekDays.filter((d) => d !== e.target.value)
+            weekdays: event.weekdays.filter((d) => d !== e.target.value)
         })
         alert(`Se eliminó ${e.target.value} de los días seleccionados`)
     }
     const options = function (e) {
         setEvent({
             ...event,
-            classification: e.target.value
+            age_rating: e.target.value
         })
     }
     const eventChange = function (e) {
         console.log(e.target.value)
-        setType(e.target.value)
+        // setType(e.target.value)
+        setEvent({...event,tags:e.target.value})
     }
-    const eChange = function (e) {
-        e.preventDefault()
-        if (event.eventType.includes(type)) {
-            alert('No es posble volver a agregar el mismo tipo de evento')
-        } else {
-            setEvent({
-                ...event,
-                eventType: [type, ...event.eventType]
-            })
-        }
-    }
-    const deleteType = function (e) {
-        setEvent({
-            ...event,
-            eventType: event.eventType.filter((d) => d !== e.target.value)
-        })
-        alert(`Se eliminó ${e.target.value} de los tipos de eventos seleccionados`)
-    }
+    // const eChange = function (e) {
+    //     e.preventDefault()
+    //     if (event.tags.includes(type)) {
+    //         alert('No es posble volver a agregar el mismo tipo de evento')
+    //     } else {
+    //         setEvent({
+    //             ...event,
+    //             tags: type
+    //         })
+    //     }
+    // }
+    // const deleteType = function (e) {
+    //     setEvent({
+    //         ...event,
+    //         tags: event.tags.filter((d) => d !== e.target.value)
+    //     })
+    //     alert(`Se eliminó ${e.target.value} de los tipos de eventos seleccionados`)
+    // }
     const handleInputChange = function (e) {
         setEvent({
             ...event,
@@ -197,11 +203,13 @@ export default function FormEvent() {
     return (
         <form className='form-event' onSubmit={(e) => {
             e.preventDefault()
+            // setEvent({...event,pictures:img})
             console.log(event, '¿')
             setErrors(Validate({
                 ...event,
                 [e.target.name]: e.target.value
             }))
+            setTimeout(()=>props.postEvent(event),1000) 
 
         }}>
             <div className='container-event'>
@@ -211,11 +219,13 @@ export default function FormEvent() {
 
                 <label>Imagenes: </label>
                 <span style={{ fontFamily: 'serif', fontSize: 'smaller' }}>para agregar más imagenes vuelva a elegir otro archivo</span>
+                <div>
                 <input type="file" className="app_uploadInput" onChange={click} />
                 <br />
                 {img && img.map((i,index) => {
                     return <img key={index} src={i} alt='foto' width='150px' />
                 })}
+                </div>
                 {/* <Upload/> */}
                 {/* componente de carga de imagen */}
                 {/* <Prueba/> */}
@@ -232,8 +242,8 @@ export default function FormEvent() {
                 <input className={errors.address && 'danger'} type='text' name='address' value={event.address} onChange={handleInputChange} placeholder='Calle Falsa 123 ☺' />
                 {errors.address && (<span className="danger">{errors.address}</span>)}
                 <label>Fecha de Inicio: </label>
-                <input className={errors.startDate && 'danger'} type='text' name='startDate' value={event.startDate} onChange={handleInputChange} placeholder='AAAA/MM/DD' />
-                {errors.startDate && (<span className="danger">{errors.startDate}</span>)}
+                <input className={errors.start_date && 'danger'} type='text' name='start_date' value={event.start_date} onChange={handleInputChange} placeholder='AAAA/MM/DD' />
+                {errors.start_date && (<span className="danger">{errors.start_date}</span>)}
 
                 <label>Recurrente</label>
                 <div>
@@ -245,7 +255,7 @@ export default function FormEvent() {
                 {event.isRecurrent === 'false' ?
                     <>
                         <label>Fecha de finalización: </label>
-                        <input type='text' name='finishDate' value={event.finishDate} onChange={handleInputChange} placeholder='AAAA/MM/DD' />
+                        <input type='text' name='finish_date' value={event.finish_date} onChange={handleInputChange} placeholder='AAAA/MM/DD' />
                     </>
                     : null}
 
@@ -269,19 +279,19 @@ export default function FormEvent() {
 
                 <label>Días: </label>
                 <div>
-                    <select onChange={weekDaysInputChange}>
+                    <select onChange={weekdaysInputChange}>
                         <option>Seleccionar</option>
                         {weeks.map((e, i) => {
                             return <option key={i} value={e}>{e}</option>
                         })}
                     </select>
-                    <button className='button-event' onClick={weekDaysChange}>agregar</button>
+                    <button className='button-event' onClick={weekdaysChange}>agregar</button>
                 </div>
 
-                {event.weekDays ?
+                {event.weekdays ?
                     <select onChange={deleteDay}>
                         <option>Días Seleccionados</option>
-                        {event.weekDays.map((e, i) => {
+                        {event.weekdays.map((e, i) => {
                             return <option key={i}>{e}</option>
                         })}
                     </select>
@@ -294,17 +304,17 @@ export default function FormEvent() {
                             return <option key={i} value={e}>{e}</option>
                         })}
                     </select>
-                    <button className='EbtnCard' onClick={eChange}>agregar</button>
+                    {/* <button className='EbtnCard' onClick={eChange}>agregar</button> */}
                 </div>
 
-                {event.eventType ?
+                {/* {event.tags ?
                     <select onChange={deleteType}>
                         <option value='seleccionar'>Tipos Seleccionados</option>
-                        {event.eventType.map((e, i) => {
+                        {event.tags.map((e, i) => {
                             return <option key={i}>{e}</option>
                         })}
                     </select>
-                    : null}
+                    : null} */}
 
                 <label>Clasificación: </label>
                 <select onChange={(e) => options(e)}>
@@ -315,16 +325,22 @@ export default function FormEvent() {
                     <option value='18++'>18+</option>
                 </select>
                 <label>Precios: </label>
-                <input type='text' name='prices' value={event.prices} onChange={handleInputChange} placeholder='Ejemplo: $500' />
+                <input type='text' name='price' value={event.price} onChange={handleInputChange} placeholder='Ejemplo: $500' />
 
                 <label>Limite de ingresos: </label>
-                <input type='text' name='incomeLimit' value={event.incomeLimit} onChange={handleInputChange} placeholder='Ejemplo: 500' />
+                <input type='text' name='ticket_limit' value={event.ticket_limit} onChange={handleInputChange} placeholder='Ejemplo: 500' />
 
                 <input className='button-event' type='submit' />
             </div>
         </form>
     )
 }
+function mapDispatchToProps(dispatch){
+    return{
+        postEvent: (event) => dispatch(postEvent(event))
+    }
+}
+export default connect(null,mapDispatchToProps)(FormEvent)
 // - virtual: boolean (default: false)
 // - Sistema de asignacion de sillas / seat_booking
 
