@@ -17,6 +17,7 @@ function App() {
       <Route path='/'>
         <NavBar />
       </Route>
+      
       <Route exact path='/'>
         <Home />
       </Route>
@@ -38,7 +39,6 @@ function App() {
       </Route>
       <Route path='/EventsDetailsPromoter/:id' component={EventsDetailsPromoter} />
 
-
       <Route path='/FormEvent' >
         <FormEvent />
       </Route>
@@ -47,8 +47,6 @@ function App() {
       <Route path='/Comentarios'>
         <Comments />
       </Route>
-
-
 
       <Footer />
     </>
