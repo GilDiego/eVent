@@ -6,7 +6,7 @@
     max-height: 500px;
     position: relative;
     /* object-fit: cover; */
-    border: 3px solid var(--White);
+    border: 1px solid rgba(0,173,196,0.1);
 }
 
 .slides img {
