@@ -16,10 +16,8 @@ import UserPorfile from './components/UserPorfile/UserPorfile';
 function App() {
   return (
     <>
-      <Route exact path='/'>
         <NavBar />
-      </Route>
-      
+    
       <Route exact path='/'>
         <Home />
       </Route>
@@ -50,12 +48,9 @@ function App() {
         <Comments />
       </Route>
 
-
       <Route path='/perfil'>
         <UserPorfile />
       </Route>
-
-
 
       <Footer />
     </>

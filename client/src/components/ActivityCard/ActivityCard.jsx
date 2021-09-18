@@ -24,7 +24,7 @@ const ActivityCard = ({ activity }) => {
       </Link> */}
       
       <Link to={`/eventDetailsUsuario/${activity.id}`}>
-        <button className="EbtnCard" onClick={() => setId(activity.id)}>Info</button>
+        <button className="EbtnCard marg70" onClick={() => setId(activity.id)}>Info</button>
       </Link>
     </div>
   );
