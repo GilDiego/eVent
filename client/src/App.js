@@ -5,7 +5,7 @@ import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import FormUsers from './components/FormUsers/formUsers';
-import FormPromoter from './components/formPromoter/FormPromoter';
+import FormPromoter from './components/FormPromoter/FormPromoter';
 import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDetailsUsario';
 import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter'
 import FormEvent from './components/FormEvent/formEvent';
@@ -16,8 +16,8 @@ import UserPorfile from './components/UserPorfile/UserPorfile';
 function App() {
   return (
     <>
-      <Route exact path='/'>
-        <NavBar />
+      <Route  path='/'>
+        <NavBar login={false}/>
       </Route>
       <Route exact path='/'>
         <Home />
