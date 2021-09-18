@@ -13,6 +13,7 @@ import Comments from './components/Comments/Comments'
 import UserPorfile from './components/UserPorfile/UserPorfile';
 
 
+
 function App() {
   return (
     <>
@@ -38,8 +39,10 @@ function App() {
       <Route path='/eventDetailsUsuario' >
         <EventDetailsUsario />
       </Route>
-      <Route path='/EventsDetailsPromoter/:id' component={EventsDetailsPromoter} />
-
+      <Route path='/EventsDetailsPromoter/:id' >
+        <EventsDetailsPromoter/>
+      </Route>
+      
 
       <Route path='/FormEvent' >
         <FormEvent />
