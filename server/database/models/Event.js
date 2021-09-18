@@ -19,10 +19,11 @@ const Event = sequelize.define('event', {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
     },
-    location: { // PUEDE TAMBIÉN SER UN EVENTO REMOTO, Y PROVEER UN LINK
+    /* IF LOCATION MODEL IS DISCARDED:
+    location: {
         type: DataTypes.STRING, //Previously processed at frontend.
         allowNull: false,
-    },
+    },*/
     address: {
         type: DataTypes.STRING,
         allowNull: false,

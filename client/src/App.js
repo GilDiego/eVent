@@ -4,11 +4,11 @@ import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
-import FormUsers from './components/FormUsers/formUsers';
-import FormPromoter from './components/formPromoter/FormPromoter';
+import FormUsers from './components/FormUsers/FormUsers';
+import FormPromoter from './components/FormPromoter/FormPromoter';
 import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDetailsUsario';
 import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter'
-import FormEvent from './components/FormEvent/formEvent';
+import FormEvent from './components/FormEvent/FormEvent';
 import Comments from './components/Comments/CreateComment/CreateComment.jsx'
 
 function App() {
@@ -36,11 +36,13 @@ function App() {
       <Route path='/eventDetailsUsuario' >
         <EventDetailsUsario />
       </Route>
-      <Route path='/EventsDetailsPromoter/:id' component={EventsDetailsPromoter} />
-
 
       <Route path='/FormEvent' >
         <FormEvent />
+      </Route>
+
+      <Route path='/EventsDetailsPromoter/:id' >
+        <EventsDetailsPromoter/>
       </Route>
 
       {/* Diego: Ruta provisional para pruebas de Comentarios */}
