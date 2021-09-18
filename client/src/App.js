@@ -11,6 +11,7 @@ import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetai
 import FormEvent from './components/FormEvent/formEvent';
 import Comments from './components/Comments/Comments'
 
+
 function App() {
   return (
     <>
@@ -36,8 +37,10 @@ function App() {
       <Route path='/eventDetailsUsuario' >
         <EventDetailsUsario />
       </Route>
-      <Route path='/EventsDetailsPromoter/:id' component={EventsDetailsPromoter} />
-
+      <Route path='/EventsDetailsPromoter/:id' >
+        <EventsDetailsPromoter/>
+      </Route>
+      
 
       <Route path='/FormEvent' >
         <FormEvent />
