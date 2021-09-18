@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import Upload from './Upload.jsx'
+import Prueba from './Prueba.jsx';
 import './formEvent.css'
 
 export function Validate(input) {
     let errors = {};
-    console.log(input,'validate')
+    console.log(input, 'validate')
     if (!input.name) {
         errors.name = '*Campo obligatorio'
     }
@@ -38,7 +39,7 @@ export function Validate(input) {
     // if (!input.img) {
     //     errors.img = '*'
     // }
-    // if (input.img.length === 5) {
+    // if (input.img.length > 5) {
     //     errors.img = 'limite 5'
     // }
     return errors
@@ -77,6 +78,19 @@ export default function FormEvent() {
     //         })
     //     }
     // }
+    const [img, setImg] = useState([]);
+    const [load, setLoad] = useState(false)
+    const click = async (e) => {
+        const files = e.target.files
+        const data = new FormData();
+        data.append('file', files[0]);
+        data.append('upload_preset', 'cloudinary_event')
+        setLoad(true)
+        const op = { method: 'POST', body: data }
+        const res = await fetch(`https://api.cloudinary.com/v1_1/event-pf/image/upload`, op)
+        const file = await res.json();
+        setImg([...img, file.secure_url])
+    }
     const scheduleInputChange = function (e) {
         // setHour(e.target.value)
         if (e.target.name === 'hours') {
@@ -89,30 +103,30 @@ export default function FormEvent() {
     const scheduleChange = function (e) {
         e.preventDefault()
         if (hour !== '' && mins !== '') {
-            if(mins <= 9){
-                const hours = hour+':'+'0'+mins
-                if(event.schedule.includes(hours)){
+            if (mins <= 9) {
+                const hours = hour + ':' + '0' + mins
+                if (event.schedule.includes(hours)) {
                     alert('No es posible volver a agregar el mismo horario')
-                }else{
-                  setEvent({
-                    ...event,
-                    schedule: [hours, ...event.schedule]
-                })  
+                } else {
+                    setEvent({
+                        ...event,
+                        schedule: [hours, ...event.schedule]
+                    })
                 }
-            }else{
-                const hours = hour+':'+mins
-                if(event.schedule.includes(hours)){
+            } else {
+                const hours = hour + ':' + mins
+                if (event.schedule.includes(hours)) {
                     alert('No es posible volver a agregar el mismo horario')
-                }else{
-                  setEvent({
-                    ...event,
-                    schedule: [hours, ...event.schedule]
-                })  
+                } else {
+                    setEvent({
+                        ...event,
+                        schedule: [hours, ...event.schedule]
+                    })
                 }
             }
         }
     }
-    const deleteScedule = function(e){
+    const deleteScedule = function (e) {
         setEvent({
             ...event,
             schedule: event.schedule.filter((d) => d !== e.target.value)
@@ -146,18 +160,18 @@ export default function FormEvent() {
             classification: e.target.value
         })
     }
-    const eventChange = function(e){
+    const eventChange = function (e) {
         console.log(e.target.value)
         setType(e.target.value)
     }
-    const eChange = function(e){
+    const eChange = function (e) {
         e.preventDefault()
-        if(event.eventType.includes(type)){
+        if (event.eventType.includes(type)) {
             alert('No es posble volver a agregar el mismo tipo de evento')
-        }else{
+        } else {
             setEvent({
                 ...event,
-                eventType:[type,...event.eventType]
+                eventType: [type, ...event.eventType]
             })
         }
     }
@@ -193,14 +207,20 @@ export default function FormEvent() {
             <div className='container-event'>
                 <label>Nombre del Evento: </label>
                 <><input className={errors.name && 'danger'} type='text' name='name' value={event.name} onChange={handleInputChange} placeholder='Nombre del evento' />
-                {errors.name && (<span className="danger">{errors.name}</span>)}</>
-                
+                    {errors.name && (<span className="danger">{errors.name}</span>)}</>
+
                 <label>Imagenes: </label>
                 <span style={{ fontFamily: 'serif', fontSize: 'smaller' }}>para agregar más imagenes vuelva a elegir otro archivo</span>
-                <Upload/>{/* componente de carga de imagen */}
-
+                <input type="file" className="app_uploadInput" onChange={click} />
+                <br />
+                {img && img.map((i,index) => {
+                    return <img key={index} src={i} alt='foto' width='150px' />
+                })}
+                {/* <Upload/> */}
+                {/* componente de carga de imagen */}
+                {/* <Prueba/> */}
                 <label>Descripción: </label>
-                <textarea className={errors.description && 'danger'} style={{width:'50%', height:'50px'}}  name='description' value={event.description} onChange={handleInputChange} placeholder='Descripcion..'></textarea>{/* maxlength='300' */}
+                <textarea className={errors.description && 'danger'} style={{ width: '50%', height: '50px' }} name='description' value={event.description} onChange={handleInputChange} placeholder='Descripcion..'></textarea>{/* maxlength='300' */}
                 {errors.description && (<span className="danger">{errors.description}</span>)}
                 <label>Elenco/Participantes: </label>
                 <input type='text' name='starring' value={event.starring} onChange={handleInputChange} placeholder='Ejemplo: Michael Jackson, Leonardo DiCaprio..' />
@@ -218,24 +238,24 @@ export default function FormEvent() {
                 <label>Recurrente</label>
                 <div>
                     <span>Si</span>
-                <input style={{ position: 'relative',width:'10%' }} type='radio' name='isRecurrent' value={true} onChange={handleInputChange} />
-                <span>No</span>
-                <input style={{ position: 'relative',width:'10%' }} type='radio' name='isRecurrent' value={false} onChange={handleInputChange} />
+                    <input style={{ position: 'relative', width: '10%' }} type='radio' name='isRecurrent' value={true} onChange={handleInputChange} />
+                    <span>No</span>
+                    <input style={{ position: 'relative', width: '10%' }} type='radio' name='isRecurrent' value={false} onChange={handleInputChange} />
                 </div>
-                {event.isRecurrent === 'false'?
-                <>
-                <label>Fecha de finalización: </label>
-                <input type='text' name='finishDate' value={event.finishDate} onChange={handleInputChange} placeholder='AAAA/MM/DD' />
-                </>
-                :null}
-                
-                
+                {event.isRecurrent === 'false' ?
+                    <>
+                        <label>Fecha de finalización: </label>
+                        <input type='text' name='finishDate' value={event.finishDate} onChange={handleInputChange} placeholder='AAAA/MM/DD' />
+                    </>
+                    : null}
+
+
                 <label>Horarios: </label>
                 <div>
                     <input style={{ width: '10%' }} type='number' min='0' max='23' name='hours' value={hour} onChange={scheduleInputChange} placeholder='horas' />
                     :
                     <input style={{ width: '10%' }} type='number' min='0' max='59' name='mins' value={mins} onChange={scheduleInputChange} placeholder='minutos' />
-                <button className='button-event' onClick={scheduleChange}>agregar</button>
+                    <button className='button-event' onClick={scheduleChange}>agregar</button>
                 </div>
 
                 {event.schedule ?
@@ -250,14 +270,14 @@ export default function FormEvent() {
                 <label>Días: </label>
                 <div>
                     <select onChange={weekDaysInputChange}>
-                    <option>Seleccionar</option>
-                    {weeks.map((e, i) => {
-                        return <option key={i} value={e}>{e}</option>
-                    })}
-                </select>
-                <button className='button-event' onClick={weekDaysChange}>agregar</button>
+                        <option>Seleccionar</option>
+                        {weeks.map((e, i) => {
+                            return <option key={i} value={e}>{e}</option>
+                        })}
+                    </select>
+                    <button className='button-event' onClick={weekDaysChange}>agregar</button>
                 </div>
-                
+
                 {event.weekDays ?
                     <select onChange={deleteDay}>
                         <option>Días Seleccionados</option>
@@ -269,14 +289,14 @@ export default function FormEvent() {
                 <label>Tipo de Evento: </label>
                 <div>
                     <select onChange={eventChange}>
-                    <option>Seleccionar</option>
-                    {tags.map((e, i) => {
-                        return <option key={i} value={e}>{e}</option>
-                    })}
-                </select>
-                <button className='button-event' onClick={eChange}>agregar</button>
+                        <option>Seleccionar</option>
+                        {tags.map((e, i) => {
+                            return <option key={i} value={e}>{e}</option>
+                        })}
+                    </select>
+                    <button className='EbtnCard' onClick={eChange}>agregar</button>
                 </div>
-                
+
                 {event.eventType ?
                     <select onChange={deleteType}>
                         <option value='seleccionar'>Tipos Seleccionados</option>
@@ -308,13 +328,13 @@ export default function FormEvent() {
 // - virtual: boolean (default: false)
 // - Sistema de asignacion de sillas / seat_booking
 
-                /* <span style={{ fontFamily: 'serif', fontSize: 'smaller' }}>para agregar más imagenes vuelva a elegir otro archivo</span>
-                <input type='file' name='files' value={event.img[0]} onChange={uploadFiles} multiple />
-                {event.img ?
-                    <select>
-                        <option>Archivos seleccionados</option>
-                        {event.img.map((e, i) => {
-                            return <option key={i}>{e}</option>
-                        })}
-                    </select>
-                    : null} */
+/* <span style={{ fontFamily: 'serif', fontSize: 'smaller' }}>para agregar más imagenes vuelva a elegir otro archivo</span>
+<input type='file' name='files' value={event.img[0]} onChange={uploadFiles} multiple />
+{event.img ?
+    <select>
+        <option>Archivos seleccionados</option>
+        {event.img.map((e, i) => {
+            return <option key={i}>{e}</option>
+        })}
+    </select>
+    : null} */

@@ -10,13 +10,15 @@ import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDet
 import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter'
 import FormEvent from './components/FormEvent/formEvent';
 import Comments from './components/Comments/Comments'
-import Loading from './components/Loading/Loading';
+import UserPorfile from './components/UserPorfile/UserPorfile';
+
+
 
 
 function App() {
   return (
     <>
-      <Route path='/'>
+      <Route exact path='/'>
         <NavBar />
       </Route>
       <Route exact path='/'>
@@ -41,9 +43,6 @@ function App() {
       <Route path='/EventsDetailsPromoter/:id' >
         <EventsDetailsPromoter/>
       </Route>
-      <Route path= '/loading'>
-        <Loading/>
-      </Route>
 
       <Route path='/FormEvent' >
         <FormEvent />
@@ -54,6 +53,9 @@ function App() {
         <Comments />
       </Route>
 
+      <Route path='/perfil'>
+        <UserPorfile />
+      </Route>
 
 
       <Footer />
