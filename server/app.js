@@ -21,6 +21,9 @@ app.use('/test', require('./routes/rutaprueba'));//ruta de prueba
 //Event Routes
 app.use('/api', require('./routes/event'));
 
+//User Routes
+app.use('/api/user', require('./routes/user'));
+
 //Cloudinary Routes
 app.use('/cloudinary',require('./routes/cloudinary'));
 
