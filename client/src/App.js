@@ -13,12 +13,15 @@ import Comments from './components/Comments/Comments'
 import UserPorfile from './components/UserPorfile/UserPorfile';
 
 
+
+
 function App() {
   return (
     <>
-      <Route  path='/'>
-        <NavBar login={false}/>
-      </Route>
+
+      {/* <Route exact path='/'> */}
+        <NavBar />
+      {/* </Route> */}
       <Route exact path='/'>
         <Home />
       </Route>
@@ -38,12 +41,13 @@ function App() {
       <Route path='/eventDetailsUsuario' >
         <EventDetailsUsario />
       </Route>
-      <Route path='/EventsDetailsPromoter/:id' component={EventsDetailsPromoter} />
-
-
-      <Route path='/FormEvent' >
-        <FormEvent />
+      <Route path='/EventsDetailsPromoter/:id' >
+        <EventsDetailsPromoter/>
       </Route>
+
+      <Route path='/FormEvent' component={FormEvent} />
+        
+      {/* </Route> */}
 
       {/* Diego: Ruta provisional para pruebas de Comentarios */}
       <Route path='/Comentarios'>
