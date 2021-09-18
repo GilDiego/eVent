@@ -9,23 +9,14 @@ import FormPromoter from './components/FormPromoter/FormPromoter';
 import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDetailsUsario';
 import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter'
 import FormEvent from './components/FormEvent/formEvent';
-<<<<<<< HEAD
 import Comments from './components/Comments/CreateComment/CreateComment.jsx'
-=======
-import Comments from './components/Comments/Comments'
-import UserPorfile from './components/UserPorfile/UserPorfile';
-
-
-
->>>>>>> 60941695e9c58040d62c54edb9c8884137cd7427
 
 function App() {
   return (
     <>
-      {/* <Route exact path='/'> */}
+      <Route path='/'>
         <NavBar />
-      {/* </Route> */}
-
+      </Route>
       <Route exact path='/'>
         <Home />
       </Route>
@@ -45,26 +36,19 @@ function App() {
       <Route path='/eventDetailsUsuario' >
         <EventDetailsUsario />
       </Route>
+      <Route path='/EventsDetailsPromoter/:id' component={EventsDetailsPromoter} />
+
 
       <Route path='/FormEvent' >
         <FormEvent />
-
-      <Route path='/EventsDetailsPromoter/:id' >
-        <EventsDetailsPromoter/>
       </Route>
-
-      <Route path='/FormEvent' component={FormEvent} />
-        
-      {/* </Route> */}
 
       {/* Diego: Ruta provisional para pruebas de Comentarios */}
       <Route path='/Comentarios'>
         <Comments />
       </Route>
 
-      <Route path='/perfil'>
-        <UserPorfile />
-      </Route>
+
 
       <Footer />
     </>
