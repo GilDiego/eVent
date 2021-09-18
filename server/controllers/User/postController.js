@@ -1,6 +1,34 @@
 const User = require('../../database/models/User');
 
 
-exports.postUser = (req,res) => {
-    res.json(req.body)
+exports.postUser = async (req,res) => {
+
+    const { first_name, last_name,  username,   password,
+            birthdate,  picture,    email,      phone } = req.body;
+
+    try {
+
+        const [user,created] = await User.findOrCreate({
+            where: {
+                email
+            },
+            defaults:{
+                first_name, last_name,  username,   password,
+                birthdate,  picture,    email,      phone
+            }
+        });
+
+        if(created){
+            return res.json({
+                msg:'User created!!!',
+                user
+            });
+        } else {
+            return res.json({msg:`There is already an user with the email ${email}`})
+        }
+        
+    } catch (error) {
+        console.log(error)
+        res.json({msg:`Please check de information you're trying to insert`});
+    }
 }
