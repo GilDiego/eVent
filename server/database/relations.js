@@ -18,8 +18,11 @@ const Comment = require('./models/Comment');
 
 ////////////////////////// E/R
 
-User.hasMany(Comment, {as: 'comment', foreignKey: "comment_id"});
-Comment.belongsTo(User, {as: 'user', foreignKey: "user_id"})
+User.hasMany(Comment);
+Comment.belongsTo(User);
+
+Event.hasMany(Comment);
+Comment.belongsTo(Event);
 // User.hasOne(Location);
 // User.hasMany(Comment);
 // User.hasMany(Favorite); ***** REVISAR.
