@@ -27,6 +27,17 @@ function FormPromoter(){
         city:'',//ciudad o municipio
     });
 
+    const businessTypes = [
+        'Cine',
+        'Bar',
+        'Parque de diversiones',
+        'Teatro',
+        'Espacio público',
+        'Salón de Conferencias',
+        'Estadio',
+        'Otros'
+    ];
+
     const validate = form=>{
         if(!form.businessName){
             errors.businessName='Razon Social es requerida '
@@ -66,83 +77,177 @@ function FormPromoter(){
     }
 
     const handleChange = (e)=>{
-        setForm({...form, [e.target.name]:e.target.value})  
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        })  
     }
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
         //validate(form);
-        console.log(form)
-        await axios.post('http://localhost:3001/api/promoter',{form})
+        try{
+            const res = await axios.post('http://localhost:3001/api/promoter',{form})
+            alert(res.data.msg) // ERROR DE VIOLACIÓN UNIQUE
+        }catch(error){
+            console.log('catchhh',error)
+        }
+       
         //alert(`${form.promoter_name} Promotor creado con satisfacion, espere 48hrs para su autoriazación Bienvenido a eVent `)
         e.target.reset();
     }
     
     return(
         <div className={styles.container}>
-            <form  onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <div className={!form.country?styles.cont:styles.contRend}>
-                    <span>Selecciona un Pais</span>
-                    <select name="country" value={form.country} onChange={namesInputs} className={styles.pais}>
+                    <span className={styles.formTitle}>{!form.country ? "Selecciona un país" : "Completa el formulario"}</span>
+                    <select 
+                        name="country"
+                        value={form.country}
+                        onChange={namesInputs}
+                        className={styles.pais}
+                    >
+                        <option value="" disabled>País</option>
                         <option value="Argentina">Argentina</option>
                         <option value="Colombia">Colombia</option>
-                        <option value="Mexico">Mexico</option>
+                        <option value="Mexico">México</option>
                     </select>
                     {form.country &&
                         <div className={styles.contForm2}>
                              {/*Ubicacion*/}
                             <div className={styles.ubication}>
                                 <div>
-                                    <span >{condition.divCountry}: </span><input type="text" name='state' placeholder={condition.divCountry} onChange={handleChange}/>
+                                    <span>{condition.divCountry}: </span>
+                                    <input
+                                        type="text"
+                                        name='state'
+                                        placeholder={condition.divCountry}
+                                        onChange={handleChange}
+                                        className={!form.state && styles.errorState}
+                                    />
                                 </div>
                                 <div>
-                                    <span >Ciudad/Municipio: </span><input type="text" name='city' placeholder='Ciudad/Municipio' onChange={handleChange}/>
+                                    <span>Ciudad/Municipio: </span>
+                                    <input
+                                        type="text"
+                                        name='city'
+                                        placeholder='Ciudad/Municipio'
+                                        onChange={handleChange}
+                                        className={!form.city && styles.errorState}
+                                    />
                                 </div>
                             </div>
                              {/*Informacion empresarial*/}
                             <div className={styles.datesCompany}>
                                 <div>
-                                    <span >Tipo de Negocio: </span> <input type="text" name='business_type' placeholder='Tipo de Emprendimiento' onChange={handleChange}/>{/*nisiness_type*/}
+                                    <span >Tipo de Negocio: </span>
+                                    {/* <input type="text" name='business_type' placeholder='Tipo de Emprendimiento' onChange={handleChange} className={!form.business_type && styles.errorState}/>nisiness_type */}
+                                    <select
+                                        name="business_type"
+                                        value={form.business_type}
+                                        onChange={handleChange}
+                                        className={!form.business_type && styles.errorState}
+                                    >
+                                        <option value="" disabled>País</option>
+                                        {businessTypes.map((el) => <option value={el}>{el}</option>)}
+                                    </select>
                                 </div>
                                 <div>
-                                    <span >Nombre Negocio: </span> <input type="text" name='business_name' value={form.business_name} placeholder='Nombre' onChange={handleChange}/>{/*legal_name*/}
+                                    <span>Nombre Negocio: </span>
+                                    <input 
+                                        type="text"
+                                        name='business_name'
+                                        value={form.business_name}
+                                        placeholder='Nombre'
+                                        onChange={handleChange}
+                                        className={!form.business_name && styles.errorState}
+                                    />{/*legal_name*/}
                                 </div>
                                 <div>
-                                    <span >Razon social: </span> <input type="text" name='legal_name' placeholder='Nombre' onChange={handleChange}/>{/*legal_name*/}
+                                    <span>Razón social: </span>
+                                    <input
+                                        type="text"
+                                        name='legal_name'
+                                        placeholder='Nombre'
+                                        onChange={handleChange}
+                                    />{/*legal_name*/}
                                 </div>
                                 <div>
-                                    <span >{condition.idNumber}: </span> <input name='tax_id' type="text" onChange={handleChange}/>{/*tax_id*/}
+                                    <span >{condition.idNumber}: </span>
+                                    <input
+                                        name='tax_id'
+                                        type="text"
+                                        onChange={handleChange}
+                                    />{/*tax_id*/}
                                 </div>
                                 <div>                          
-                                    <span >Direccion: </span> <input type="text" name='address' placeholder='Dirección' onChange={handleChange}/>{/*address*/}
+                                    <span>Dirección: </span>
+                                    <input
+                                        type="text"
+                                        name='address'
+                                        placeholder='Dirección'
+                                        onChange={handleChange}
+                                    />{/*address*/}
                                 </div>
                             </div>
                               {/*Contacto*/}
                             <div className={styles.contact}>
                                 <div>
-                                    <span >Nombre : </span> <input type="text" name='promoter_name' placeholder='Nombre Promotor' onChange={handleChange}/>{/*promoter_name*/}
+                                    <span>Nombre : </span>
+                                    <input 
+                                        type="text"
+                                        name='promoter_name'
+                                        placeholder='Nombre Promotor'
+                                        onChange={handleChange}
+                                    />{/*promoter_name*/}
                                 </div>
                                 <div>
-                                    <span >Apellido : </span> <input type="text" name='promoter_lastName' placeholder='Apellido Promotor' onChange={handleChange}/>{/*promoter_name*/}
+                                    <span>Apellido : </span>
+                                    <input 
+                                        type="text"
+                                        name='promoter_lastName'
+                                        placeholder='Apellido Promotor'
+                                        onChange={handleChange}
+                                    />{/*promoter_name*/}
                                 </div>
                                 <div>
-                                    <span >Telefono: </span> <input type="text" name='phone'  placeholder='Celular/fijo' onChange={handleChange}/>{/*phone*/}
+                                    <span>Teléfono: </span>
+                                    <input
+                                        type="text"
+                                        name='phone'
+                                        placeholder='Celular/fijo'
+                                        onChange={handleChange}
+                                    />{/*phone*/}
                                 </div>
                             </div>
                               {/*datos login*/}
                             <div className={styles.password}>
                                 <div>
-                                    <span >Email: </span> <input type="email" name='email'  placeholder='Correo Electronico' onChange={handleChange}/>{/*email*/}
+                                    <span >Email: </span>
+                                    <input
+                                        type='email'
+                                        name='email'
+                                        placeholder='Correo Electrónico'
+                                        onChange={handleChange}
+                                    />{/*email*/}
                                 </div>
                                 <div>
-                                    <span >Contraseña: </span> <input type="password" name='password'  placeholder='Password' onChange={handleChange}/>{/*passowrd*/}
+                                    <span >Contraseña: </span>
+                                    <input
+                                        type="password"
+                                        name='password'
+                                        placeholder='Password'
+                                        onChange={handleChange}
+                                    />{/*password*/}
                                 </div>
                             </div>
-                            <button className='btn' type="submit" className={styles.submitBtn}> Submit </button>
+                            <button className={styles.btn} type="submit" >
+                            ¡Registrarme!
+                            </button>
                         </div>  
-                    }
-                </div>
-                
+                    /*(Cierra el condicional form.country*/ }
+                </div>     
             </form>
         </div>
        )
