@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import styles from "./Home.module.css";
 import ActivityCards from "../ActivityCards/ActivityCards";
@@ -6,9 +6,16 @@ import Carousel from "../Carousel/Carousel";
 import SideBar from "../SideBar/SideBar";
 import NavBarHome from "../NavBarHome/NavBarHome";
 import activitiesList from "../../FakeDB/FakeDB";
+import { getEventsHome } from "../../actions/actions";
 
-const Home = ({ switchSide }) => {
+const Home = ({ switchSide, getEventsHome, events }) => {
   //* La informacion de las actividades esta en el archivo FakeDB
+
+  useEffect(() => {
+    getEventsHome()
+  }, [getEventsHome])
+
+
   return (
     <>
     <NavBarHome/>
@@ -18,7 +25,7 @@ const Home = ({ switchSide }) => {
         </div>: <div></div> }
       <div>
         <Carousel />
-        <ActivityCards activitiesList={activitiesList} />
+        <ActivityCards events={events} />
       </div>
     
     </div>
@@ -28,8 +35,9 @@ const Home = ({ switchSide }) => {
 
 function mapStateToProps(state) {
   return {
+    events: state.eventsHome,
     switchSide: state.sideBarSwitch,
   };
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, { getEventsHome })(Home);
