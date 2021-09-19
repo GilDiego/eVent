@@ -1,8 +1,12 @@
-import React from 'react'
-import './Comments.css'
+import React, {useEffect} from 'react'
+import './DisplayComments.css'
 
 
-export default function Reviews() {
+export default function Reviews({postId}) {
+
+    useEffect(() => {
+        
+    },[])
 
     //Diego: Funcion que recibe una calificacion y la convierte a estrellas. Puede recibir numeros enteros 1-5
     function setStars(grade){
@@ -23,7 +27,7 @@ export default function Reviews() {
     
     // Comentarios hardcodeados
     const comments = [
-        {usuario: 'Pepito One',calificacion: 5,comentario: 'Me encanto el evento, una experiencia inigualable!!!!1'},
+        {usuario: 'Pepito One',calificacion: 5,comentario: 'Me encanto el evento, una experiencia inigualable!!!!11'},
         {usuario: 'Pepitwo', calificacion: 1, comentario: 'Nunca habia visto un baño tan sucio y la comida estaba fria.'},
         {usuario: 'Pepithree', calificacion: 3,comentario: 'Hubiera preferido ir al de Shakira, pero no estuvo mal.'}
         ]
@@ -36,7 +40,7 @@ export default function Reviews() {
                 <p className='rating'>{setStars(i.calificacion)}</p>
                 <p className='comment'>{i.comentario}</p>
             </div>
-            )}
+        )}
         </div>
     )
 }
