@@ -32,3 +32,21 @@ exports.postUser = async (req,res) => {
         res.json({msg:`Please check de information you're trying to insert`});
     }
 }
+
+exports.loginUser = (req,res) => {
+    const { email } = req.body;
+
+    User.findOne({
+        where:{
+            email
+        }
+    }).then(user => {
+
+        if(user) return res.json({msg:true});
+        else return res.json({msg:false})
+
+    }).catch(error => {
+        console.log(error);
+        res.json({msg:'error'});
+    })
+}
