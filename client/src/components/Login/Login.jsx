@@ -1,23 +1,33 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
-// import { withRouter } from 'react-router-dom';//?PARA QUE ES ESTO ????????????Gerardo
 import { GoogleLogin } from "react-google-login";
-import FacebookLogin from 'react-facebook-login';
+// import FacebookLogin from 'react-facebook-login';
+import {  useHistory } from 'react-router-dom';
+import { setUser } from "../../actions/actions";
 
-const Login = () => {
+const Login = ({ setUser }) => {
+  const URL = 'http://localhost:3000/'
+  const history = useHistory()
+
+  const redirec = () => {
+    history.push('/')
+  }
+
+
   //*Google
   const responseGoogle = (resG) => {
-    console.log(resG);
-    console.log("userG---------------", resG.profileObj);
+    setUser(resG.profileObj)
+    redirec()
+    console.log(resG.profileObj)
   };
 
   //*Facebook
-const responseFacebook = (resF) => {
-  console.log(resF);
-  console.log("userf---------------", resF.profileObj);
-}
- 
+  // const responseFacebook = (resF) => {
+  //   console.log(resF);
+  //   console.log("userf---------------", resF.name);
+  // }
 
   //*Expresiones
   const emailValidate =
@@ -43,6 +53,7 @@ const responseFacebook = (resF) => {
   const [SwitchMail, setSwitchMail] = useState(null);
   const [MessagePass, setMessagePass] = useState(" ");
   const [SwitchPass, setSwitchPass] = useState(null);
+  const [Message, setMessage] = useState('')
 
   //*Funciones onChange
   const upgradeEmail = (e) => {
@@ -75,12 +86,17 @@ const responseFacebook = (resF) => {
   //*Funcion on submit
   const setLog = (e) => {
     e.preventDefault();
+    if(!FormState.mail && !FormState.pass){
+      setMessage('Todos los campos son obligatorios')
+    }else redirec()
+    
   };
 
   return (
     <div className={styles.container}>
-      <form className={styles.form} submit={setLog}>
+      <form className={styles.form} onSubmit={setLog}>
         <h4 className={styles.title}>Login</h4>
+        {Message}
         <div className={styles.subContainer}>
           <label className={styles.label}>Email</label>
           <input
@@ -105,14 +121,31 @@ const responseFacebook = (resF) => {
             {MessagePass}
           </span>
         </div>
-        {SwitchMail && SwitchPass ? (
-          <button className={styles.btn} type="Submit">
+        {true ? (
+          <button className='btnForm margTop20' type="Submit">
             Log
           </button>
         ) : (
           <button className={styles.null}>Log</button>
         )}
-        <p className={styles.titleTwo}>o</p>
+        <div className="margTop40 ">
+          <GoogleLogin
+            clientId="376627127490-bk5ds8a9vkmkv2ar8te87qteg0gpivuk.apps.googleusercontent.com"
+            buttonText="Ingresa con Google"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={"single_host_origin"}
+            // render={renderProps => (
+            //   <button onClick={renderProps.onClick} disabled={renderProps.disabled}>Google</button>
+            // )}
+          />
+          <Link to="/formUser">
+          <h4 className='txColorWht txAligneCntr margTop40'>Crea tu cuenta</h4>
+          </Link>
+          
+        </div>
+
+        {/* <p className={styles.titleTwo}>o</p>
         <h4 className={styles.titleTwo}>Crea un cuenta</h4>
         <div className={styles.subContainerTwo}>
           <Link to="/formUser" className={styles.loginBtn}>
@@ -121,25 +154,23 @@ const responseFacebook = (resF) => {
           <Link to="/FormPromoter" className={styles.loginBtn}>
             <button className={styles.btnTwo}>Promotor</button>
           </Link>
-          <br />
-          <br />
-          <GoogleLogin
-            clientId="376627127490-bk5ds8a9vkmkv2ar8te87qteg0gpivuk.apps.googleusercontent.com"
-            buttonText="Login"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            cookiePolicy={"single_host_origin"}
-          />
           <FacebookLogin
-    appId="226871852734478"
-    autoLoad={true}
-    fields="name,email,picture"
-    onClick={responseFacebook}
-    callback={responseFacebook} />
-        </div>
+            appId="226871852734478"
+            autoLoad={true}
+            fields="name,email,picture"
+            onClick={responseFacebook}
+            callback={responseFacebook}
+          />
+        </div> */}
       </form>
     </div>
   );
 };
 
-export default Login;
+
+function mapStateToProps(state) {
+  return {
+    user: state.userState
+  };
+}
+export default connect(mapStateToProps, { setUser })(Login);

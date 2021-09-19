@@ -36,7 +36,7 @@ function App() {
         <EventDetailsUsario />
       </Route>
 
-      <Route path='/FormEvent' >
+       <Route path='/FormEvent' >
         <FormEvent />
       </Route>
 
