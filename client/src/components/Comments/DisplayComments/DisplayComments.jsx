@@ -8,17 +8,18 @@ export default function Reviews({postId}) {
     const [comments, setComments] = useState([])
     const [average, setAverage] = useState(0)
 
-    console.log(comments)
-    useEffect(() => {
-        async function fetchComments(){
-            const response = await axios.get(`http://localhost:3001/api/comment/all`)
-            setComments(response.data)
-        }
-        fetchComments()
-    },[])
 
+    useEffect(() => {
+    async function fetchComments(){
+        const response = await axios.get(`http://localhost:3001/api/comment/all`)
+        setComments(response.data)
+    }
+    fetchComments()
+    },[])
+    
     useEffect(() =>{
         setAverage(findAvg(comments))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[comments])
     
     // Diego: Funcion para promediar calificacion general del evento
@@ -59,8 +60,7 @@ export default function Reviews({postId}) {
                     <div>
                         {
                             average !== 0 ? (
-                                <p>Rating General: x/x</p>
-                                // <p>Rating General: <p>{setStars(average)}</p></p>
+                                <p>Rating General: {average > 0 ? setStars(Math.floor(average)) : 'x/x'}</p>
                             ) : (
                                 <p>Este evento todavia no tiene calificaciones.</p>
                             )
