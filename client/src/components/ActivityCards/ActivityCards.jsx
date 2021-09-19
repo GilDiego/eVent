@@ -2,18 +2,17 @@ import React from 'react'
 import ActivityCard from '../ActivityCard/ActivityCard'
 import styles from './ActivityCards.module.css'
 
-const ActivityCards = ({activitiesList})=>{
+const ActivityCards = ({events})=>{
 
 
 
     return (
         <div className={styles.Events}>
             <ul className={styles.ul}>
-            {activitiesList.map(activity => (
-                <li key={activity.id}>
+            {events.map(event => (
+                <li key={event.id}>
                      <ActivityCard
-                     activity={activity}
-                     prueba='prueba'
+                     event={event}
                      />
                 </li>
                 
