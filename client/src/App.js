@@ -8,8 +8,8 @@ import FormUsers from './components/FormUsers/FormUsers';
 import FormPromoter from './components/FormPromoter/FormPromoter';
 import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDetailsUsario';
 import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter'
-// import FormEvent from './components/FormEvent/FormEvent';
-// import Comments from './components/Comments/CreateComment/CreateComment.jsx'
+import FormEvent from './components/FormEvent/FormEvent';
+import Comments from './components/Comments/CreateComment/CreateComment.jsx'
 
 function App() {
   return (
@@ -36,18 +36,18 @@ function App() {
         <EventDetailsUsario />
       </Route>
 
-      {/* <Route path='/FormEvent' >
+       <Route path='/FormEvent' >
         <FormEvent />
-      </Route> */}
+      </Route>
 
       <Route path='/EventsDetailsPromoter/:id' >
         <EventsDetailsPromoter />
       </Route>
 
       {/* Diego: Ruta provisional para pruebas de Comentarios */}
-      {/* <Route path='/nuevoComentario'>
+      <Route path='/nuevoComentario'>
         <Comments />
-      </Route> */}
+      </Route>
 
       <Footer />
     </>

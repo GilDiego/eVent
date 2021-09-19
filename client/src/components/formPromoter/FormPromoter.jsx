@@ -114,11 +114,12 @@ function FormPromoter(){
                         <span >{condition.idNumber}</span> <input type="text"/>
                         <span >Tipo de Emprendimiento: </span> <input type="text" placeholder='Tipo de Emprendimiento'/>
                     </div>
-                </div>    
+                </div>
             }
+         <button className='btn' type="submit"> Submit </button>
        </form>
 
-       </>    
+       </>
        )
 }
 

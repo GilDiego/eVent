@@ -1,4 +1,5 @@
 const Event = require('../../database/models/Event');
+const Comment = require('../../database/models/Comment');
 
 
 exports.getController = async (req,res) => {
@@ -36,7 +37,8 @@ exports.getEventByIdController = async (req,res) => {
         const consult = await Event.findOne({
             where: {
                 id
-            }
+            },
+            include:Comment
         });
     
         const result = consult;

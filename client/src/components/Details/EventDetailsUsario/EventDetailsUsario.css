@@ -35,3 +35,10 @@
   border: none;
   border-radius: var(--RadiusOne);
 }
+
+.comments-container {
+  margin: auto;
+  max-width: 500px;
+  background-color: var(--White);
+  color: var(--Black);
+}

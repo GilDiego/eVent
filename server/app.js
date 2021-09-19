@@ -24,6 +24,12 @@ app.use('/api', require('./routes/event'));
 //User Routes
 app.use('/api/user', require('./routes/user'));
 
+//Comment Routes
+app.use('/api/comment', require('./routes/comment'));
+
+//Promoter Routes
+app.use('/api/promoter', require('./routes/promoter'));
+
 //Cloudinary Routes
 app.use('/cloudinary',require('./routes/cloudinary'));
 
