@@ -117,7 +117,7 @@ function FormPromoter(){
                         <div className={styles.contForm2}>
                              {/*Ubicacion*/}
                             <div className={styles.ubication}>
-                                <div>
+                                <div className={styles.row}>
                                     <span>{condition.divCountry}: </span>
                                     <input
                                         type="text"
@@ -127,7 +127,7 @@ function FormPromoter(){
                                         className={!form.state && styles.errorState}
                                     />
                                 </div>
-                                <div>
+                                <div className={styles.row}>
                                     <span>Ciudad/Municipio: </span>
                                     <input
                                         type="text"
@@ -140,7 +140,7 @@ function FormPromoter(){
                             </div>
                              {/*Informacion empresarial*/}
                             <div className={styles.datesCompany}>
-                                <div>
+                                <div className={styles.row}>
                                     <span >Tipo de Negocio: </span>
                                     {/* <input type="text" name='business_type' placeholder='Tipo de Emprendimiento' onChange={handleChange} className={!form.business_type && styles.errorState}/>nisiness_type */}
                                     <select
@@ -153,9 +153,9 @@ function FormPromoter(){
                                         {businessTypes.map((el) => <option value={el}>{el}</option>)}
                                     </select>
                                 </div>
-                                <div>
+                                <div className={styles.row}>
                                     <span>Nombre Negocio: </span>
-                                    <input 
+                                    <input
                                         type="text"
                                         name='business_name'
                                         value={form.business_name}
@@ -164,7 +164,7 @@ function FormPromoter(){
                                         className={!form.business_name && styles.errorState}
                                     />{/*legal_name*/}
                                 </div>
-                                <div>
+                                <div className={styles.row}>
                                     <span>Razón social: </span>
                                     <input
                                         type="text"
@@ -173,7 +173,7 @@ function FormPromoter(){
                                         onChange={handleChange}
                                     />{/*legal_name*/}
                                 </div>
-                                <div>
+                                <div className={styles.row}>
                                     <span >{condition.idNumber}: </span>
                                     <input
                                         name='tax_id'
@@ -181,7 +181,7 @@ function FormPromoter(){
                                         onChange={handleChange}
                                     />{/*tax_id*/}
                                 </div>
-                                <div>                          
+                                <div className={styles.row}>
                                     <span>Dirección: </span>
                                     <input
                                         type="text"
@@ -193,25 +193,25 @@ function FormPromoter(){
                             </div>
                               {/*Contacto*/}
                             <div className={styles.contact}>
-                                <div>
-                                    <span>Nombre : </span>
-                                    <input 
+                                <div className={styles.row}>
+                                    <span>Nombre: </span>
+                                    <input
                                         type="text"
                                         name='promoter_name'
                                         placeholder='Nombre Promotor'
                                         onChange={handleChange}
                                     />{/*promoter_name*/}
                                 </div>
-                                <div>
-                                    <span>Apellido : </span>
-                                    <input 
+                                <div className={styles.row}>
+                                    <span>Apellido: </span>
+                                    <input
                                         type="text"
                                         name='promoter_lastName'
                                         placeholder='Apellido Promotor'
                                         onChange={handleChange}
                                     />{/*promoter_name*/}
                                 </div>
-                                <div>
+                                <div className={styles.row}>
                                     <span>Teléfono: </span>
                                     <input
                                         type="text"
@@ -223,7 +223,7 @@ function FormPromoter(){
                             </div>
                               {/*datos login*/}
                             <div className={styles.password}>
-                                <div>
+                                <div className={styles.row}>
                                     <span >Email: </span>
                                     <input
                                         type='email'
@@ -232,7 +232,7 @@ function FormPromoter(){
                                         onChange={handleChange}
                                     />{/*email*/}
                                 </div>
-                                <div>
+                                <div className={styles.row}>
                                     <span >Contraseña: </span>
                                     <input
                                         type="password"
@@ -245,9 +245,9 @@ function FormPromoter(){
                             <button className={styles.btn} type="submit" >
                             ¡Registrarme!
                             </button>
-                        </div>  
+                        </div>
                     /*(Cierra el condicional form.country*/ }
-                </div>     
+                </div>
             </form>
         </div>
        )
