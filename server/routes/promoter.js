@@ -3,7 +3,7 @@ const router = express.Router();
 
 const {
     saveInfoPromotor,
-} = require('../controllers/Event/postController');
+} = require('../controllers/Promoter/postController');
 
 
 //POST
