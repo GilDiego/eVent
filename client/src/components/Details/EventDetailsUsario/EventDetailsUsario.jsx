@@ -12,6 +12,7 @@ export default function EventDetailsUsario() {
     let listId = 0
 
     return (
+        
         <div className='details'>
                 <div className='event-main'>
                     <h1 className='title'>{event[0].name}</h1>

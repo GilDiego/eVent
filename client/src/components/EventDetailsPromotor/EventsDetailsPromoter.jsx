@@ -37,33 +37,14 @@ function DetailPromoter() {
         
      
         let data = [];
-        console.log('soy las imagenes ',data)
-        let picture=detailsEvent.result.pictures
-        console.log ('hola soy picture',picture)
-        let size = detailsEvent.result.pictures.length
-        console.log('soy size',size)
-        while (size && picture !== undefined){
-            console.log('soy size del wile ',size)
-        data.push({image:picture[size]})
-        size --
-        }
+        let picture = detailsEvent.result.pictures
+        console.log('soy imagenes de for', picture)
 
-
-        // let image = detailsEvent.result.pictures[0] 
-        // console.log('soy yo imagen', image)
-        //   data.push({image:image})
-        //   let image2 = detailsEvent.result.pictures[1] 
-        // console.log('soy yo imagen', image2)
-        //   data.push({image:image2})
-        //   let image3 = detailsEvent.result.pictures[2] 
-        // console.log('soy yo imagen', image3)
-        //   data.push({image:image3})
-        //   let image4 = detailsEvent.result.pictures[3] 
-        // console.log('soy yo imagen', image4)
-        //   data.push({image:image4})
-        //   let image5 = detailsEvent.result.pictures[4] 
-        // console.log('soy yo imagen', image5)
-        //   data.push({image:image5})
+         for (let index = 0; index < picture.length; index++) {
+          const img=  data.push({image:picture[index]});
+           console.log('soy img ', img)  
+         }
+       
 
          
          
@@ -110,22 +91,61 @@ function DetailPromoter() {
                         
                     
                            
-                         <div className='otherDetails'>   
-                        <p>{`Descripción: ${detailsEvent.result.description}`}</p>
-                        <p>{`Artistas: ${detailsEvent.result.starring}`}</p>
-                        <p>{`Ubicación: ${detailsEvent.result.location}`}</p>
-                        <p> {`Dirrecion: ${detailsEvent.result.address}`}</p>
-                        <p>{`Fecha: ${detailsEvent.result.start_date}`}</p>
-                        <p>{`Fecha Termino: ${detailsEvent.result.finish_date}`}</p>
-                        <p>{`Dias: ${detailsEvent.result.weekdays.map((e)=>(e))}`}</p>
-                        <p>{`Horarios: ${detailsEvent.result.schedule.map((e)=>(e))}`}</p>
-                        <p>{`Tipo de Evento: ${detailsEvent.result.tags}`}</p>
-                        <p>{`Calsificación: ${detailsEvent.result.age_rating}`}</p>
-                        <p>{`Precio: $${detailsEvent.result.price}`}</p>
-                        <p>{`Diponibilidad de asientos ${detailsEvent.result.disponibility}`}</p> 
-                        <p>{`limite de asiastentes ${detailsEvent.result.ticket_limit}`}</p>
-                        <div>{`Croquis ${detailsEvent.result.seat_booking} `} </div>
-                      </div>
+                         <div className='otherDetails'>  
+                         <br/> 
+                         <div>
+                             <h4>Descripcion:</h4>
+                         <p>{ detailsEvent.result.description}</p>
+                         </div>
+                         <div>
+                         <h4>Artistas:</h4>
+                         <p>{` ${detailsEvent.result.starring}`}</p>
+                         </div>
+                         <div>
+                             <h4>Dirección:</h4>
+                         <p>{` ${detailsEvent.result.location}`}</p>
+                         </div>
+                         <div>
+                             <h4>Dirrecion:</h4>
+                         <p> {` ${detailsEvent.result.address}`}</p>
+
+                         </div>
+                         <div>
+                             <h4>Fecha:</h4>
+                             <p>{` ${detailsEvent.result.start_date}`}</p>
+                        </div>
+                        <div>
+                            <h4>Fecha Termino:</h4>
+                        <p>{` ${detailsEvent.result.finish_date}`}</p>
+                        </div>
+                        <div>
+                            <h4>Dias:</h4>
+                            <p>{` ${detailsEvent.result.weekdays.map((e)=>(e))}`}</p>
+                        </div>
+                        <div>
+                            <h4>Horarios:</h4>
+                            <p>{` ${detailsEvent.result.schedule.map((e)=>(e))}`}</p>
+                        </div>
+                        <div>
+                            <h4>Tipo de Evento:</h4>
+                            <p>{` ${detailsEvent.result.tags}`}</p>
+                        </div>
+                        <div>
+                            <h4>Calsificación:</h4>                            
+                            <p>{` ${detailsEvent.result.age_rating}`}</p>
+                        </div>
+                        <div>
+                            <h4>Precio:</h4>
+                            <p>{` $${detailsEvent.result.price}`}</p>
+                        </div>
+                        <div> 
+                            <h4>limite de asiastentes:</h4>
+                            <p>{` ${detailsEvent.result.ticket_limit}`}</p>
+                        </div>
+                        <div>
+                            <h4>Croquis:</h4>
+                            {` ${detailsEvent.result.seat_booking} `} </div>
+                        </div>
                      </div>: <Loading/>
 
                 }
