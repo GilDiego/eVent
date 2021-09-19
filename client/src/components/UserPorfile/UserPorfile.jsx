@@ -1,14 +1,15 @@
 import React from "react";
 import styles from './UserPorfile.module.css'
 import SubCarousel from '../subCarousel/SubCarousel'
-import NavBar from "../NavBar/NavBar";
-const UserPorfile = ()=>{
+import { connect } from 'react-redux';
+
+const UserPorfile = ({userState})=>{
+    console.log(userState.imageUrl)
     return(
         <div className={styles.contain}>
-            <NavBar login={true}/>
             <div className={styles.barPorfile}>
                 <div className={styles.porfileImg}>
-                    <img src="https://payload.cargocollective.com/1/3/122148/1670411/13.jpg" alt="xx" />
+                    <img src={userState.imageUrl} alt="xx" />
                 </div>
                 <h3 className={styles.nombre}>Juan Perez</h3>
                 <h4 className={styles.ciudad}>Bogotá, Colombia</h4>
@@ -24,6 +25,12 @@ const UserPorfile = ()=>{
             </div>
         </div>
     )
+};
+
+const mapStateToProps= (state) =>{
+    return{
+        userState:state.userState
+    }
 }
 
-export default UserPorfile
+export default connect(mapStateToProps,null)(UserPorfile)

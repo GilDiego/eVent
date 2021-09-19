@@ -5,7 +5,8 @@ const {
     getUserByID
 } = require('../controllers/User/getController');
 const { 
-    postUser 
+    postUser, 
+    loginUser 
 } = require('../controllers/User/postController');
 
 
@@ -15,9 +16,7 @@ router.get('/:id',getUserByID);
 
 //POST
 router.post('/',postUser);
-
-
-
+router.post('/login',loginUser);
 
 
 module.exports = router;
