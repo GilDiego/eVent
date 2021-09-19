@@ -1,7 +1,7 @@
 import {useState} from "react";
 import axios from 'axios'
 import styles from './FormPromoter.module.css'
-import {provincias} from './helpers'
+
 
 function FormPromoter(){
     
