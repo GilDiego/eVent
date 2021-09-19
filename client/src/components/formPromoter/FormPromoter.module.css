@@ -3,6 +3,7 @@
     color: var(--Black);
     padding: 10px;
     font-size: 1.5rem;
+    font-weight: 600;
     border-radius: 10px;
     border-width: 0;
     margin: 40px;
@@ -23,16 +24,22 @@
     background: var(--Black);
     color: var(--White);
 }
-.container input {
+.container input, select {
     border: 1px var(--Black) solid;
-    border-radius: 5px;
+    border-radius: 10px;
     background: var(--Black);
     color: var(--White);
 }
 
-input:-webkit-autofill
-{
- --webkit-background-fill-color: yellow !important;
+/* ESTILOS DE AUTOCOMPLETADO */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--White);
+    -webkit-box-shadow: 0 0 0px 1000px var(--Black) inset;
 }
 
 /* cont */
@@ -60,7 +67,7 @@ input:-webkit-autofill
     /* padding: 50px; */
     border-radius: 10px;
     background: var(--Primary);
-    box-shadow: 0px 0px 20px black;
+    box-shadow: 0px 0px 50px black;
     /* transition-duration: 3s; */
 }
 /* subcont */
