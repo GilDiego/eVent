@@ -14,7 +14,9 @@ exports.getController = async (req,res) => {
             name,
             price,
             location,
-            pictures
+            pictures,
+            tags,
+            age_rating,
         } = dataValues;
 
         return {
@@ -22,6 +24,8 @@ exports.getController = async (req,res) => {
             name,
             price,
             location,
+            tags,
+            age_rating,
             pictures
         };
     })
