@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Upload from './Upload.jsx'
 import Prueba from './Prueba.jsx';
-import './formEvent.css'
+import './FormEvent.css'
 import { connect } from 'react-redux';
 import { postEvent } from '../../actions/actions.js';
 
