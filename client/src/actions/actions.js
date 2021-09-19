@@ -17,11 +17,15 @@ const API = 'http://localhost:3001/api/'
 //*_get_activities_home______________________________________________
 export function getEventsHome(){
   return function(dispatch) {
-     fetch(`${API}main`)
+    try{
+      fetch(`${API}main`)
       .then(response => response.json())
       .then(json => {
         dispatch({ type: GET_EVENTS_HOME, payload: json });
       });
+    }catch(error){
+      console.log(error)
+    }
   };
 }
 
@@ -50,6 +54,7 @@ export function setSideBar(boolean){
 
 //*___USER_________________________________________________________________
 export function setUser(user){
+  localStorage.setItem('User',JSON.stringify(user))//Envia a localStorage
   return{
     type: SET_USER,
     payload: user

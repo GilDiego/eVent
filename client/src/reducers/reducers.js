@@ -6,7 +6,9 @@ import {
    SET_USER,
    GET_EVENTS_HOME
   } from "../actions/actions";
-  
+
+  // Pruebas para guardar usuario en el local storage
+  // let loginUser = JSON.parse(localStorage.getItem( user )) 
   const initialState = {
     eventsHome: [],
     //*detalles de evento
@@ -19,7 +21,7 @@ import {
     userState:{}
   };
 
-
+ 
   
   function rootReducer(state = initialState, action) {
     //*__GET_DE_EVENTOS_EN_HOME

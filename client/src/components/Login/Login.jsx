@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { setUser } from "../../actions/actions";
 import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
+import {  useHistory } from 'react-router-dom';
 import { GoogleLogin } from "react-google-login";
 // import FacebookLogin from 'react-facebook-login';
-import {  useHistory } from 'react-router-dom';
-import { setUser } from "../../actions/actions";
 
-const Login = ({ setUser }) => {
+
+
+const Login = ({ setUser, user }) => {
   const URL = 'http://localhost:3000/'
   const history = useHistory()
 
@@ -15,11 +17,10 @@ const Login = ({ setUser }) => {
     history.push('/')
   }
 
-
   //*Google
   const responseGoogle = (resG) => {
-    setUser(resG.profileObj)
-    redirec()
+    setUser(resG.profileObj)//Envia a store
+    redirec()//Redirecciona a home
     console.log(resG.profileObj)
   };
 
