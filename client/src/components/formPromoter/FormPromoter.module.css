@@ -1,11 +1,93 @@
-.promotorDates{
+.container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px;
+    height: 800px;
 }
-/* nameP */
-.nameP{
+/* cont */
+.cont{
+    margin-top: 200px;
+    border: 1px  black solid;
+    height: 100px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+.contRend{
+    margin-top: 100px;
+    border: 1px  black solid;
+    height: 600px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+/* subcont */
+.contForm2{
+    margin-top: 50px;
+    height: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+}
+/* ubicacion */
+.ubication{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: right;
+    margin-right: 40px;
+}
+/* .ubication span{
+    width: 130px;
+    height: auto;
+    text-align: right;
+}
+.ubication input{
+    width: 150px;
+    height: auto;
+    margin-right: 20px; 
+} */
+/* infonegocio */
+.datesCompany{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: right;
+    margin-right: 40px;
+    margin-top: 20px;
+}
+/* contacto */
+.contact{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: right;
+    margin-right: 40px;
+    margin-top: 20px;
+}
+/* password */
+.password{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: right;
+    margin-right: 40px;
+    margin-top: 20px;
+}
+/* btn */
+.submitBtn{
+    margin-top: 20px;
+}
+/* .nameP{
     display: flex;
     margin: 5px;
 }
@@ -20,7 +102,7 @@
     margin-right: 20px;
 }
 /* contact */
-.contact{
+/* .contact{
     display: flex;
     margin: 5px;
 }
@@ -35,7 +117,7 @@
     margin-right: 20px;
 }
 /* password */
-.password{
+/* .password{
     margin: 5px;
     display: flex;
 }
@@ -48,20 +130,20 @@
     width: 150px;
     height: auto;
     margin-right: 20px;
-}
+} */
 /* contPais */
-.contPais{
+/* .contPais{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 20px;
-}
+} */
 /* pais */
-.pais{
+/* .pais{
     width: 200px;
-}
+} */
 /* ubication */
-.ubication{
+/* .ubication{
     display: flex;
     justify-content: center;
 }
@@ -73,5 +155,4 @@
 .ubication input{
     width: 150px;
     height: auto;
-    margin-right: 20px;
-}
+    margin-right: 20px; */
