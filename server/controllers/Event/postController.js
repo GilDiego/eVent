@@ -1,4 +1,5 @@
 const Event = require('../../database/models/Event');
+const Promoter = require ('../../database/models/Promoter');
 
 exports.saveInfoEvent = async (req,res) => {
     const { 
@@ -39,3 +40,5 @@ exports.saveInfoEvent = async (req,res) => {
       
 
 }
+
+

@@ -44,7 +44,7 @@ function App({ setUser }) {
         <FormPromoter />
       </Route>
 
-      <Route path='/eventDetailsUsuario' >
+      <Route path='/eventDetailsUsuario/:id' >
         <EventDetailsUsario />
       </Route>
 
