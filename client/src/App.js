@@ -1,4 +1,7 @@
 import './App.css';
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { setUser } from "./actions/actions";
 import { Route } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
@@ -11,7 +14,16 @@ import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetai
 // import FormEvent from './components/FormEvent/FormEvent';
 // import Comments from './components/Comments/CreateComment/CreateComment.jsx'
 
-function App() {
+function App({ setUser }) {
+  // Usuario en local storage
+  let loginUser = JSON.parse(localStorage.getItem( 'User' )) 
+  useEffect(() => {
+    if( loginUser){
+      setUser(loginUser)
+    }else
+    setUser({})
+  }, [setUser])
+
   return (
     <>
       <NavBar />
@@ -54,4 +66,10 @@ function App() {
   );
 }
 
-export default App;
+
+function mapStateToProps(state) {
+  return {
+    user: state.userState
+  };
+}
+export default connect(mapStateToProps, { setUser })( App);
