@@ -71,13 +71,14 @@ body{
 ul {
 padding-left: 0px;
 }
-
 li {
   list-style: none;
 }
-
 ul{
   padding-left: 0px;
+}
+a{
+  text-decoration: none;
 }
 
 
@@ -145,21 +146,98 @@ filter: brightness(60%);
   background-color: var(--Button);
   border-radius: var(--RadiusOne);
   width: 70px;
+  cursor: pointer;
 }
 .EbtnCard:hover{
   background-color: var(--Other);
   color: var(--White);
 }
-@media (max-width: 420px) { 
-  .card{
-   width: 50vw;
-  }
+
+.btnForm{
+  background-color: var(--Button);
+  border-radius: var(--RadiusOne);
+  width: 90px;
+  padding: 5px 0 5px 0;
+  cursor: pointer;
+}
+.btnForm:hover{
+  background-color: var(--Other);
+  color: var(--White);
 }
 
 
+/** MARGIN_____________________________________________________ */
 
-/** VARIOS */
+/** marginTop */
+.margTop20{
+  margin-top: 20px;
+}
+.margTop40{
+  margin-top: 40px;
+}
+@media (max-width: 420px) { 
+  .margTop40{
+    margin-top: 60px;
+  }
+}
 .margTop70{
   margin-top: 70px;
 }
+/** marginRigth */
+.margRgth10{
+  margin-right: 10px;
+}
+.margRgth20{
+  margin-right: 20px;
+}
 
+
+
+/** Colores */
+
+.bgColorWht{
+  background-color: var(--White);
+}
+.bgcolorBtn{
+  background-color: var(--Button); 
+ }
+
+/** color texto */
+ .txColorWht{
+   color: var(--White);
+ }
+
+
+ .txAligneCntr{
+   text-align: center;
+ }
+
+ .txSize15{
+   font-size: 15px;
+ }
+
+ /* tamaño imagenes */
+ .imgSize10{
+  width: 30px;
+  height: 30px;
+  border-radius: 70px;
+ }
+
+
+ .contFlex{
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+ }
+
+ .logoutBtn{
+  font-size: 15px;
+  text-decoration: none;
+  color: var(--White);
+  margin-right: 15px;
+ }
+
+
+ .pointer{
+  cursor: pointer;
+ }

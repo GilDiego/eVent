@@ -4,23 +4,17 @@ import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
-import FormUsers from './components/FormUsers/formUsers';
+import FormUsers from './components/FormUsers/FormUsers';
 import FormPromoter from './components/FormPromoter/FormPromoter';
 import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDetailsUsario';
 import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter'
-import FormEvent from './components/FormEvent/formEvent';
-import Comments from './components/Comments/Comments'
-import UserPorfile from './components/UserPorfile/UserPorfile';
-
-
-
+// import FormEvent from './components/FormEvent/FormEvent';
+// import Comments from './components/Comments/CreateComment/CreateComment.jsx'
 
 function App() {
   return (
     <>
-      {/* <Route exact path='/'> */}
-        <NavBar />
-      {/* </Route> */}
+      <NavBar />
 
       <Route exact path='/'>
         <Home />
@@ -42,25 +36,18 @@ function App() {
         <EventDetailsUsario />
       </Route>
 
-      <Route path='/FormEvent' >
+      {/* <Route path='/FormEvent' >
         <FormEvent />
+      </Route> */}
 
       <Route path='/EventsDetailsPromoter/:id' >
-        <EventsDetailsPromoter/>
+        <EventsDetailsPromoter />
       </Route>
-
-      <Route path='/FormEvent' component={FormEvent} />
-        
-      {/* </Route> */}
 
       {/* Diego: Ruta provisional para pruebas de Comentarios */}
-      <Route path='/Comentarios'>
+      {/* <Route path='/nuevoComentario'>
         <Comments />
-      </Route>
-
-      <Route path='/perfil'>
-        <UserPorfile />
-      </Route>
+      </Route> */}
 
       <Footer />
     </>
