@@ -2,12 +2,12 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router';
 
-
+//Diego: Componente de creacion de comentarios. Falta obtener dinamicamente user_id.
 export default function CreateComment() {
     const [input, setInput] = useState({
         review: '',
         rating: '',
-        user_id: '3',
+        user_id: '1',
         event_id: ''
     })
 
@@ -32,13 +32,14 @@ export default function CreateComment() {
     function handleSubmit(e){
         e.preventDefault();
         console.log(input)
-        axios.post('http://localhost:3001/api/comment')
-        
-        // fetch('http://localhost:3001/api/comment',{
-        //         method: 'POST',
-        //         headers:{'Content-type': 'application/json'},
-        //         body:JSON.stringify(input)
-        //     })
+        // Falta validacion de campos
+        const { review, rating, user_id, event_id } = input
+        axios.post('http://localhost:3001/api/comment', {
+            review,
+            rating,
+            user_id,
+            event_id
+        })
     }
     return (
         <div>

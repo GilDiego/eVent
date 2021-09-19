@@ -1,4 +1,5 @@
 import React from 'react'
+import DisplayComments from '../../Comments/DisplayComments/DisplayComments'
 import { Link } from 'react-router-dom'
 import './EventDetailsUsario.css'
 
@@ -24,16 +25,21 @@ export default function EventDetailsUsario() {
                         }
                         </ul>
                     </div>
-            </div>
-            <div className='button-container'>
-                <button className='button'>Reservar</button>
-                <Link to={{
-                    pathname:'/nuevoComentario',
-                    state: event[0].id
-                }}>
-                <button className='button'>Reseña</button>
-                </Link>
-            </div>
+                </div>
+
+                <div className='comments-container'>
+                        <DisplayComments/>
+                </div>
+
+                <div className='button-container'>
+                    <button className='button'>Reservar</button>
+                    <Link to={{
+                        pathname:'/nuevoComentario',
+                        state: event[0].id
+                    }}>
+                    <button className='button'>Reseña</button>
+                    </Link>
+                </div>
         </div>
     )
 }
