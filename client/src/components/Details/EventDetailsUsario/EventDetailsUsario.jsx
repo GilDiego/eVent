@@ -37,9 +37,7 @@ export default function EventDetailsUsario() {
       }
         
         if(!detailsEvent[0]=== true){
-    
-            
-         
+
             let data = [];
             let picture = detailsEvent.result.pictures
             
@@ -48,14 +46,6 @@ export default function EventDetailsUsario() {
               const img=  data.push({image:picture[index]});
                 
              }
-           
-             
-            
-                                          
-            
-         
-        
-    
         return(
             
             <div className={styles.detailsAllUser}>
@@ -69,27 +59,27 @@ export default function EventDetailsUsario() {
                             <div className='img'>
                          
                               <Carousel   
-                data={data}
-                time={5000}
-                width="650px"
-                height="400px"
-                radius="10px"
-                slideNumber={true}
-                slideNumberStyle={slideNumberStyle}
-                captionPosition="bottom"
-                automatic={false}
-                dots={true}
-                pauseIconColor="white"
-                pauseIconSize="40px"
-                slideBackgroundColor="darkgrey"
-                slideImageFit="auto"
-                thumbnails={true}
-                thumbnailWidth="100px"
-                style={{
-                  maxWidth: "650px",
-                  maxHeight: "450px",
-                  margin: "40px auto",
-                }} />
+                                    data={data}
+                                    time={5000}
+                                    width="650px"
+                                    height="400px"
+                                    radius="10px"
+                                    slideNumber={true}
+                                    slideNumberStyle={slideNumberStyle}
+                                    captionPosition="bottom"
+                                    automatic={false}
+                                    dots={true}
+                                    pauseIconColor="white"
+                                    pauseIconSize="40px"
+                                    slideBackgroundColor="darkgrey"
+                                    slideImageFit="auto"
+                                    thumbnails={true}
+                                    thumbnailWidth="100px"
+                                    style={{
+                                    maxWidth: "650px",
+                                    maxHeight: "450px",
+                                    margin: "40px auto",
+                            }} />
                     
                                  
                       </div>  

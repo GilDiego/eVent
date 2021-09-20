@@ -7,18 +7,20 @@ import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
-import FormUsers from './components/FormUsers/FormUsers';
+import FormUsers from './components/FormUsers/FormUsers.jsx';
 import FormPromoter from './components/FormPromoter/FormPromoter';
 import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDetailsUsario';
 import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter'
-import FormEvent from './components/FormEvent/FormEvent';
+import FormEvent from './components/FormEvent/FormEvent.jsx';
 import Comments from './components/Comments/CreateComment/CreateComment.jsx'
 import Registration from './components/Registration/Registration';
 import UserPorfile from './components/UserPorfile/UserPorfile';
 import {Redirect} from 'react-router-dom'
- 
 
-function App({ user,setUser }) {
+
+function App({ setUser, user }) {
+
+
   // Usuario en local storage
   let loginUser = JSON.parse(localStorage.getItem( 'User' )) 
   useEffect(() => {
@@ -66,6 +68,12 @@ function App({ user,setUser }) {
       <Route path='/EventsDetailsPromoter/:id' >
         <EventsDetailsPromoter />
       </Route>
+
+      <Route path='/perfil' >
+        {console.log(user)}
+         {user.googleId? <UserPorfile/> : <Redirect to='/login'/>}
+      </Route>
+
 
       {/* Diego: Ruta provisional para pruebas de Comentarios */}
       <Route path='/nuevoComentario'>

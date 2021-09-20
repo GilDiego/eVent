@@ -30,7 +30,9 @@ const NavBar = ({ user, setUser }) => {
         <div className="contFlex">
           {user.email ? (
             <>
+
               <Link to='/perfil'>
+
                 <div className="contFlex margRgth20" container>
                   <img
                     src={user.imageUrl}
