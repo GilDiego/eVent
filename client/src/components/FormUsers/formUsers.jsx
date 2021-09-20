@@ -1,13 +1,15 @@
 import React, { useState } from "react";
+import axios from "axios";
 import styles from "./FormUsers.module.css";
 
 export function Validate(input) {
   let errors = {};
+  console.log(input,'validate')
   if (!input.name) {
     errors.name = "*";
   }
-  if (!input.lastname) {
-    errors.lastname = "*";
+  if (!input.last_name) {
+    errors.last_name = "*";
   }
   if (!input.username) {
     errors.username = "*";
@@ -17,96 +19,139 @@ export function Validate(input) {
   }
   if (!input.email) {
     errors.email = "*";
-  }
-  if (!/\S+@\S+\.\S+/.test(input.email)) {
-    errors.email = "Correo invalido";
+  }else
+  if (!/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(input.email)) {
+    // /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
+    errors.email = "*Correo invalido";
   }
   if (!input.password) {
     errors.password = "*";
-  }
-  if (!/(?=.*[0-9])/.test(input.password)) {
+  }else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/.test(input.password)) {
+    // /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/
     errors.password = "Contraseña invalida";
   }
-  if (!/^\d{1,2}\/\d{1,2}\/\d{2,4}$/.test(input.dateOfBirth)) {
-    errors.dateOfBirth = "Formato fecha incorrecto. Ejemplo : 12/02/2000"; //'Formato fecha incorrecto *'
+  if(!input.phone){
+    errors.phone= '*'
   }
 
   return errors;
 }
 
-export default function FormUsers() {
+export function FormUsers() {
   const [errors, setErrors] = useState({});
   const [user, setUser] = useState({
-    name: "",
-    lastname: "",
+    first_name: "",
+    last_name: "",
     username: "",
     password: "",
-    dateOfBirth: "",
+    birthdate: "",
     photo: "",
-    country: "",
-    provStateDepart: "",
-    city: "",
     email: "",
     phone: "",
   });
-
   const handleInputChange = function (e) {
     setUser({
       ...user,
       [e.target.name]: e.target.value,
     });
-    // setErrors(Validate({
-    //     ...errors,
-    //     [e.target.name]: e.target.value
-    // }));
   };
+  const [img, setImg] = useState('');
+  const [load, setLoad] = useState(false)
+  const click = async (e) => {
+    const files = e.target.files
+    const data = new FormData();
+    data.append('file', files[0]);
+    data.append('upload_preset', 'cloudinary_event')
+    setLoad(true)
+    const op = { method: 'POST', body: data }
+    const res = await fetch(`https://api.cloudinary.com/v1_1/event-pf/image/upload`, op)
+    const file = await res.json();
+    setImg(file.secure_url)
+    setTimeout(() => setUser({ ...user, photo: file.secure_url }), setLoad(false), 1000)
+  }
+  const submit = async(e)=>{
+    e.preventDefault()
+    if (user.first_name && user.last_name && user.username && user.email && user.password && user.phone) {
+      console.log(user, 'user')
+      try{
+        const res = await axios.post('http://localhost:3001/api/user/',user)
+        alert(res.data.msg)
+      }catch(error){
+        console.log('error',error)
+      }
+      setImg('')
+      e.target.reset();
+    } else {
+      console.log(user, 'user', errors, 'err')
+      setErrors(
+        Validate({
+          ...user,
+          [e.target.name]: e.target.value,
+        })
+      );
+    }
+    e.target.reset();
+    setImg('')
+  }
 
   return (
-    <div  className={styles.container}>
-        <h2>Formulario de Registro</h2>
+    <div className={styles.container}>
+      <h2>Formulario de Registro</h2>
       <form
         className={styles.form}
-        onSubmit={(e) => {
-          e.preventDefault();
-          setErrors(
-            Validate({
-              ...errors,
-              [e.target.name]: e.target.value,
-            })
-          );
-          setUser({
-            name: "",
-            lastname: "",
-            username: "",
-            password: "",
-            dateOfBirth: "",
-            photo: "",
-            country: "",
-            provStateDepart: "",
-            city: "",
-            email: "",
-            phone: "",
-          });
-        }}
+        onSubmit={submit}
+        // onSubmit={(e) => {
+          // e.preventDefault();
+          // if (user.name && user.last_name && user.username && user.country && user.email && user.password && user.phone) {
+          //   console.log(user, 'user')
+          //   setUser({
+          //     name: "",
+          //     last_name: "",
+          //     username: "",
+          //     password: "",
+          //     birthdate: "",
+          //     photo: "",
+          //     country: "",
+          //     provStateDepart: "",
+          //     city: "",
+          //     email: "",
+          //     phone: "",
+          //   });
+          //   setImg('')
+          // } else {
+          //   console.log(user, 'user', errors, 'err')
+          //   setErrors(
+          //     Validate({
+          //       ...user,
+          //       [e.target.name]: e.target.value,
+          //     })
+          //   );
+          // }
+
+        // }}
       >
         <div style={{ display: "flex", flexDirection: "column", width: "30%" }}>
+
           <label>Nombre: </label>
           <input
-            className={errors.name && "danger"}
+            className={errors.first_name && "danger"}
             type="text"
-            name="name"
-            value={user.name}
+            name="first_name"
+            value={user.first_name}
             onChange={handleInputChange}
+            placeholder='Nombre'
           ></input>
-          {errors.name && <span className="danger">{errors.name}</span>}
+          {errors.first_name && <span className="danger">{errors.first_name}</span>}
           <label>Apellido: </label>
           <input
-            className={errors.lastname && "danger"}
+            className={errors.last_name && "danger"}
             type="text"
-            name="lastname"
-            value={user.lastname}
+            name="last_name"
+            value={user.last_name}
             onChange={handleInputChange}
+            placeholder='Apellido'
           ></input>
+          {errors.last_name && <span className="danger">{errors.last_name}</span>}
           <label>Nombre Usuario: </label>
           <input
             className={errors.username && "danger"}
@@ -114,42 +159,48 @@ export default function FormUsers() {
             name="username"
             value={user.username}
             onChange={handleInputChange}
+            placeholder='Nombre de usuario'
           ></input>
-          <label>Contraseña: </label>
-          <input
-            className={errors.password && "danger"}
-            type="password"
-            name="password"
-            value={user.password}
-            onChange={handleInputChange}
-          ></input>
-          <label>Fecha de Nacimiento: </label>
-          <input
-            className={errors.dateOfBirth && "danger"}
-            name="dateOfBirth"
-            value={user.dateOfBirth}
-            onChange={handleInputChange}
-          ></input>
+          {errors.username && <span className="danger">{errors.username}</span>}
           <label>Foto: </label>
+          <div>
+            <input type="file" onChange={click} />
+            <br />
+            {img ?
+              load === true?
+                <span>cargando..</span> : <img src={img} alt='foto' width='150px' height='120px' />
+              :null}
+            {/* {load === true ? <span>cargando..</span> : <img src={img} alt='foto' width='150px' height='120px' />} */}
+          </div>
+          <label>Fecha de Nacimiento: </label>
+          <input type='date' name='birthdate' value={user.birthdate} onChange={handleInputChange} />
+          <label>Teléfono: </label>
           <input
-            type="file"
-            name="photo"
-            value={user.photo}
+           className={errors.phone && "danger"}
+            type="text"
+            name="phone"
+            value={user.phone}
             onChange={handleInputChange}
+            placeholder='código de área + número '
           ></input>
-          <label>País: </label>
+          {errors.phone && <span className="danger">{errors.phone}</span>}
+          {/* <label>País: </label>
           <input
+           className={errors.country && "danger"}
             type="text"
             name="country"
             value={user.country}
             onChange={handleInputChange}
-          ></input>
+            placeholder='País..'
+          ></input> */}
+          {/* {errors.country && <span className="danger">{errors.country}</span>}
           <label>Provincia/Estado/Departamento: </label>
           <input
             type="text"
             name="provStateDepart"
             value={user.provStateDepart}
             onChange={handleInputChange}
+            placeholder='provincia/stado/departamento'
           ></input>
           <label>Ciudad: </label>
           <input
@@ -157,7 +208,8 @@ export default function FormUsers() {
             name="city"
             value={user.city}
             onChange={handleInputChange}
-          ></input>
+            placeholder='Ciudad..'
+          ></input> */}
           <label>Correo: </label>
           <input
             className={errors.email && "danger"}
@@ -165,18 +217,23 @@ export default function FormUsers() {
             name="email"
             value={user.email}
             onChange={handleInputChange}
+            placeholder='ejemplo123@ejemplo.com'
           ></input>
           {errors.email && <span className="danger">{errors.email}</span>}
-          <label>Teléfono: </label>
+          <label>Contraseña: </label>
           <input
-            type="text"
-            name="phone"
-            value={user.phone}
+            className={errors.password && "danger"}
+            type="password"
+            name="password"
+            value={user.password}
             onChange={handleInputChange}
+            placeholder='Ejemplo*123'
           ></input>
+          {errors.password && <span className="danger">{errors.password}</span>}
           <input type="submit" />
         </div>
       </form>
     </div>
   );
 }
+export default FormUsers;
