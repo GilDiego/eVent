@@ -10,11 +10,9 @@ const ActivityCard = ({ event }) => {
 
   return (
     <div className={styles.card}>
-      <h1 className={styles.titleCard}>{event.name}</h1>
+      <h2 className={styles.titleCard}>{event.name}</h2>
+      <h4 className={styles.tagsCard}>{event.tags}</h4>
       <img src={event.pictures[0]} alt="Imagen Evento" className={styles.imgCard} />
-
-      <p className={styles.infoCard}>Lugar: {event.location}</p>
-      <p className={styles.infoCard}>Fecha: sin fecha</p>
       <p className={styles.infoCard}>Precio: {event.price}$</p>
       {/* <button className={styles.btnCard} onClick={() => setId(activity.id)}>
         Info
@@ -25,7 +23,7 @@ const ActivityCard = ({ event }) => {
       </Link> */}
       
       <Link to={`/eventDetailsUsuario/${event.id}`}>
-        <button className="EbtnCard margTop40" onClick={() => setId(event.id)}>Info</button>
+        <button className={styles.btnCard} onClick={() => setId(event.id)}>Info</button>
       </Link>
     </div>
   );

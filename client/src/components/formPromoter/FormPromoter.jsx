@@ -98,7 +98,7 @@ function FormPromoter(){
     }
     
     return(
-        <div className={styles.container}>
+
             <form onSubmit={handleSubmit}>
                 <div className={!form.country?styles.cont:styles.contRend}>
                     <span className={styles.formTitle}>{!form.country ? "Selecciona un país" : "Completa el formulario"}</span>
@@ -249,7 +249,7 @@ function FormPromoter(){
                     /*(Cierra el condicional form.country*/ }
                 </div>
             </form>
-        </div>
+      
        )
 }
 

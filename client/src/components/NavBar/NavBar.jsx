@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useState} from "react";
 import { Link } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import { setUser } from "../../actions/actions";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
+import Logout from '../Logout/Logout'
 
 const NavBar = ({ user, setUser }) => {
   const history = useHistory();
+
+  const [Out, setOut] = useState(false)
 
   //*Funciones
   const redirec = () => {
     history.push("/");
   };
   const setLogout = () => {
-    setUser({});
-    redirec();
+    setOut(true)
+    // setUser({});
+    // redirec();
   };
 
   return (
@@ -45,19 +49,18 @@ const NavBar = ({ user, setUser }) => {
             </Link>
           )}
         </div>
-
-        {/* {login?<Link to="/" className={styles.loginBtn}>Salir</Link>:<Link to="/login" className={styles.loginBtn}>Login</Link>} */}
       </nav>
+      {Out?<Logout 
+        setOut={setOut}
+        setUser={setUser}
+        redirec={redirec}
+      />: <div></div> }
     </>
   );
 };
 
-//____________________________________________________________________
-const container = `
-background: papayawhip;
-`;
 
-//_____________________________________________________________________
+//*_____________________________________________________________________
 function mapStateToProps(state) {
   return {
     switchSide: state.sideBarSwitch,
