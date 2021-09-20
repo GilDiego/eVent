@@ -14,9 +14,11 @@ import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetai
 import FormEvent from './components/FormEvent/FormEvent';
 import Comments from './components/Comments/CreateComment/CreateComment.jsx'
 import Registration from './components/Registration/Registration';
+import UserPorfile from './components/UserPorfile/UserPorfile';
+import {Redirect} from 'react-router-dom'
  
 
-function App({ setUser }) {
+function App({ user,setUser }) {
   // Usuario en local storage
   let loginUser = JSON.parse(localStorage.getItem( 'User' )) 
   useEffect(() => {
@@ -68,6 +70,11 @@ function App({ setUser }) {
       {/* Diego: Ruta provisional para pruebas de Comentarios */}
       <Route path='/nuevoComentario'>
         <Comments />
+      </Route>
+
+      <Route exact path='/perfil' >
+        {console.log(user)}
+         {user.googleId? <UserPorfile/> : <Redirect to='/login'/>}
       </Route>
 
       <Footer />
