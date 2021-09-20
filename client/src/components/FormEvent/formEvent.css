@@ -16,9 +16,9 @@
 input{
     width: 50%;
 }
-select{
+/* select{
     width: 40%;
-}
+} POR FAVOR MIGRAR A MODULE.CSS*/
 .button-event{
     background-color: var(--Button);
     width: 12%;
