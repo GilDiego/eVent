@@ -34,7 +34,7 @@ const validate =(form)=>{
     }
 
     if(!(
-        /[A-Za-zÑñ.-]/.test(form.address) && 
+        /[A-Za-zÑñ.-]/.test(form.address) &&
         /\d/.test(form.address) &&
         /[' ']/.test(form.address)
         ))  {
@@ -42,16 +42,33 @@ const validate =(form)=>{
         } else {
             errors.address = false
     }
-        
-    
-    return errors
+
+    if (!(/['+']*[0-9]{7,}/.test(form.phone))) {
+        errors.phone = true;
+    } else {
+        errors.phone = false;
+    }
+
+    if(!(
+        /[A-Za-zÑñ.-]/.test(form.password) &&
+        /\d/.test(form.password) &&
+        form.password.length >= 6
+        ))  {
+            errors.password = true;
+        } else {
+            errors.password = false;
+    }
+
+    return errors;
 }
 function FormPromoter(){
-    
+
     const [errors, setErrors]=useState({
-        tax_id:true,
-        address:true,
-        email:true,
+        tax_id: true,
+        address: true,
+        email: true,
+        password: true,
+        phone: true,
     });
     const [condition, setCondition] = useState({//este estado valida 
         divCountry:'',// como esta dividido el pais ?
@@ -63,7 +80,7 @@ function FormPromoter(){
         bio:'',//
         phone:'',//leo:numero de telefono del promotor//
         email:'',//leo:email del promotor//
-        password:'',//leo: contraseña// 
+        password:'',//leo: contraseña//
         address:'',//dereccion del negocio//
         legal_name:'',//nombre legal//
         tax_id:'',//numero tributario//
@@ -105,7 +122,7 @@ function FormPromoter(){
             ...form,
             [e.target.name]: e.target.value
         });
-        
+
         setErrors(validate({
             ...form,
             [e.target.name]: e.target.value
@@ -127,9 +144,9 @@ function FormPromoter(){
     }
     
     return(
-
+        <div className={styles.container}>
             <form onSubmit={handleSubmit}>
-                <div className={!form.country?styles.cont:styles.contRend}>
+                <div className={!form.country ? styles.cont : styles.contRend}>
                         <span className={styles.formTitle}>
                             {!form.country ? "Selecciona un país" : "Completa el formulario"}
                         </span>
@@ -145,7 +162,7 @@ function FormPromoter(){
                             <option value="Colombia">Colombia</option>
                             <option value="Mexico">México</option>
                         </select>
-                        {form.country && 
+                        {form.country &&
                             <span className={styles.tick}> ✓ </span>
                         }
                     </div>
@@ -158,7 +175,6 @@ function FormPromoter(){
                                     <input
                                         type="text"
                                         name='state'
-                                        placeholder={condition.divCountry}
                                         onChange={handleChange}
                                         className={!form.state && styles.errorState}
                                     />
@@ -171,7 +187,6 @@ function FormPromoter(){
                                     <input
                                         type="text"
                                         name='city'
-                                        placeholder='Ciudad/Municipio'
                                         onChange={handleChange}
                                         className={!form.city && styles.errorState}
                                     />
@@ -194,21 +209,20 @@ function FormPromoter(){
                                         <option value="" disabled>Selecciona:</option>
                                         {businessTypes.map((el) => <option value={el}>{el}</option>)}
                                     </select>
-                                    {form.business_type && 
+                                    {form.business_type &&
                                         <span className={styles.tick}> ✓ </span>
                                     }
                                 </div>
                                 <div className={styles.row}>
-                                    <span>Nombre Negocio: </span>
+                                    <span>Nombre del negocio: </span>
                                     <input
                                         type="text"
                                         name='business_name'
                                         value={form.business_name}
-                                        placeholder='Nombre'
                                         onChange={handleChange}
                                         className={!form.business_name && styles.errorState}
                                     />
-                                    {form.business_name && 
+                                    {form.business_name && form.business_name.length >= 3 &&
                                         <span className={styles.tick}> ✓ </span>
                                     }{/*legal_name*/}
                                 </div>
@@ -217,10 +231,9 @@ function FormPromoter(){
                                     <input
                                         type="text"
                                         name='legal_name'
-                                        placeholder='Nombre'
                                         onChange={handleChange}
                                     />
-                                    {form.legal_name && 
+                                    {form.legal_name && form.legal_name.length >= 3 &&
                                         <span className={styles.tick}> ✓ </span>
                                     }
                                 </div>
@@ -240,10 +253,9 @@ function FormPromoter(){
                                     <input
                                         type="text"
                                         name='address'
-                                        placeholder='Dirección'
                                         onChange={handleChange}
                                     />
-                                    {!errors.address && 
+                                    {!errors.address &&
                                         <span className={styles.tick}> ✓ </span>
                                     }
                                 </div>
@@ -255,10 +267,9 @@ function FormPromoter(){
                                     <input
                                         type="text"
                                         name='promoter_name'
-                                        placeholder='Nombre Promotor'
                                         onChange={handleChange}
                                     />
-                                    {form.promoter_name && 
+                                    {form.promoter_name && form.promoter_name.length >= 2 &&
                                         <span className={styles.tick}> ✓ </span>
                                     }
                                 </div>
@@ -267,22 +278,20 @@ function FormPromoter(){
                                     <input
                                         type="text"
                                         name='promoter_lastName'
-                                        placeholder='Apellido Promotor'
                                         onChange={handleChange}
                                     />
-                                    {form.promoter_lastName && 
+                                    {form.promoter_lastName && form.promoter_lastName.length >= 2 &&
                                         <span className={styles.tick}> ✓ </span>
                                     }
                                 </div>
                                 <div className={styles.row}>
-                                    <span>Teléfono: </span>
+                                    <span>Teléfono (sólo números): </span>
                                     <input
                                         type="text"
                                         name='phone'
-                                        placeholder='Celular/fijo'
                                         onChange={handleChange}
                                     />
-                                    {form.phone && 
+                                    {!errors.phone &&
                                         <span className={styles.tick}> ✓ </span>
                                     }
                                 </div>
@@ -294,7 +303,7 @@ function FormPromoter(){
                                     <input
                                         type='email'
                                         name='email'
-                                        placeholder='Correo Electrónico'
+                                        placeholder='usuario@dominio.abc'
                                         onChange={handleChange}
                                     />
                                     {!errors.email &&
@@ -302,14 +311,14 @@ function FormPromoter(){
                                     }
                                 </div>
                                 <div className={styles.row}>
-                                    <span >Contraseña: </span>
+                                    <span >Contraseña (6+ caracteres): </span>
                                     <input
                                         type="password"
                                         name='password'
-                                        placeholder='Password'
+                                        placeholder='¡Si no tilda, no es segura!'
                                         onChange={handleChange}
                                     />
-                                    {form.password && 
+                                    {!errors.password &&
                                         <span className={styles.tick}> ✓ </span>
                                     }
                                 </div>
@@ -321,7 +330,7 @@ function FormPromoter(){
                     /*(Cierra el condicional form.country*/ }
                 </div>
             </form>
-      
+        </div>
        )
 }
 
