@@ -8,7 +8,10 @@ export const POST_EVENT = 'POST_EVENT';
 //*user
 export const SET_USER = 'SET_USER'
 //*activities home
-export const GET_EVENTS_HOME = 'GET_EVENTS_HOME'
+export const GET_EVENTS_HOME = 'GET_EVENTS_HOME';
+//filter
+export const FILTER_TAGS = 'FILTER_TAGS';
+export const FILTER_AGE_RATING = 'FILTER_AGE_RATING';
 
 
 const API = 'http://localhost:3001/api/'
@@ -72,5 +75,21 @@ export function postEvent(event){
         payload: res.data
       })
     })
+  }
+}
+
+// * FILTER 
+export function filterTags(type){
+  console.log(type,'action')
+  return{
+    type:FILTER_TAGS,
+    payload: type
+  }
+}
+export function filterAgeRating(type){
+  console.log(type,'action rating')
+  return{
+    type:FILTER_AGE_RATING,
+    payload: type
   }
 }
