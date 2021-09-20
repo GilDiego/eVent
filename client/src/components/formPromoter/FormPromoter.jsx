@@ -25,24 +25,34 @@ const validate =(form)=>{
             errors.tax_id = false
         }
     }else if(form.country === 'Mexico'){
-
+        if(!(/^[A-ZÑ&]{3,4}\d{6}(?:[A-Z\d]{3})?$/.test(form.tax_id)))
+        {
+            errors.tax_id = true
+        } else {
+            errors.tax_id = false
+        }
     }
-    // if(!(form.country === 'Argentina' &&
-    //     /[0-9]{2}-[0-9]{8}-[0-9]{1}|[0-9]{11}/g.test(form.tax_id))
-    // ){
-    //     errors.tax_id = true
-    // }
-    // if(!(form.country === 'Colombia' &&
-    // /[0-9]{9}-[0-9]{1}|[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{1}/g.test(form.tax_id))
-    // ){
-    //     errors.tax_id = true
-    // }
+
+    if(!(
+        /[A-Za-zÑñ.-]/.test(form.address) && 
+        /\d/.test(form.address) &&
+        /[' ']/.test(form.address)
+        ))  {
+            errors.address = true
+        } else {
+            errors.address = false
+    }
+        
     
     return errors
 }
 function FormPromoter(){
     
-    const [errors, setErrors]=useState({tax_id:true});
+    const [errors, setErrors]=useState({
+        tax_id:true,
+        address:true,
+        email:true,
+    });
     const [condition, setCondition] = useState({//este estado valida 
         divCountry:'',// como esta dividido el pais ?
         idNumber:'',// qu tipo de identificacion maneja el pais
@@ -233,7 +243,7 @@ function FormPromoter(){
                                         placeholder='Dirección'
                                         onChange={handleChange}
                                     />
-                                    {form.address && 
+                                    {!errors.address && 
                                         <span className={styles.tick}> ✓ </span>
                                     }
                                 </div>
