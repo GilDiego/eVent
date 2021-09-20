@@ -3,18 +3,13 @@ import axios from 'axios'
 import styles from './FormPromoter.module.css'
 
 const validate =(form)=>{
-    console.log(/[0-9]{2}-[0-9]{8}-[0-9]{1}|[0-9]{11}/g.test(form.tax_id))
     let errors = {}
-    if (!/\S+@\S+\.\S+/.test(form.email)) {
+    if (!/^\S+@\S+\.[a-z]+$/.test(form.email)) {
         errors.email = true
     }else {
         errors.email = false
     }
 
-    // }else{
-    //     setErrors({...errors, email:true});
-    // }
-    //CUIT
     if(form.country === 'Argentina'){
         if(!(/^([0-9]{2}-[0-9]{8}-[0-9])$|^([0-9]{11})$/.test(form.tax_id)))
         {
