@@ -14,6 +14,9 @@ import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetai
 import FormEvent from './components/FormEvent/FormEvent';
 import Comments from './components/Comments/CreateComment/CreateComment.jsx'
 
+
+
+
 function App({ setUser }) {
   // Usuario en local storage
   let loginUser = JSON.parse(localStorage.getItem( 'User' )) 
@@ -27,6 +30,8 @@ function App({ setUser }) {
   return (
     <>
       <NavBar />
+
+
 
       <Route exact path='/'>
         <Home />
