@@ -7,7 +7,7 @@ import {useParams} from 'react-router-dom'
 import {getEventDetail} from '../../../actions/actions'
 import { Carousel } from 'react-carousel-minimal';
 import Loading from '../../Loading/Loading'
-import './EventDetailsUsario.css'
+import styles from './EventDetailsUsario.module.css'
 
 //Diego: Componente que muestra los detalles de un evento para el tipo Usuario.
 export default function EventDetailsUsario() {
@@ -57,15 +57,15 @@ export default function EventDetailsUsario() {
         
     
         return(
-            <>
-            <div className='detailsAllUser'>
+            
+            <div className={styles.detailsAllUser}>
                 <div className='detailsCardUser'>
                     
                     {
                         
                         detailsEvent.result.name!==undefined?   
                         <div className='deailscard2User'>
-                            <h1 className='titleCard'>{detailsEvent.result.name}</h1>
+                            <h1 className={styles.titleCard}>{detailsEvent.result.name}</h1>
                             <div className='img'>
                          
                               <Carousel   
@@ -93,42 +93,50 @@ export default function EventDetailsUsario() {
                     
                                  
                       </div>  
-                            <div className='otherDetailsUser'>  
+                            <div className={styles.otherDetailsUser}>  
                              <br/> 
                               <h4 className='h4'>Descripcion:</h4>
-                             <p className='p'>{ detailsEvent.result.description}</p>
-                             <div className='detailsUsers2User'>
-                                <h4 className='h4'>Artistas:</h4>
-                                <p className='p'>{` ${detailsEvent.result.starring}`}</p>
-                                <h4 className='h4'>Dirrecion:</h4>
-                                <p className='p'> {` ${detailsEvent.result.address}`}</p>
-                                <h4 className='h4'>Fecha:</h4>
-                                 <p className='p'>{` ${detailsEvent.result.start_date}`}</p>
-                                <h4 className='h4'>Fecha Termino:</h4>
-                                <p className='p'>{` ${detailsEvent.result.finish_date}`}</p>
-                                <h4 className='h4'>Dias:</h4>
-                                <p className='p'>{` ${detailsEvent.result.weekdays.map((e)=>(e))}`}</p>
-                                <h4 className='h4'>Horarios:</h4>
-                                <p className='p'>{` ${detailsEvent.result.schedule.map((e)=>(e))}`}</p>
-                                <h4 className='h4'>Tipo de Evento:</h4>
-                                <p className='p'>{` ${detailsEvent.result.tags}`}</p>
-                                <h4 className='h4'>Calsificación:</h4>                            
-                                <p className='p'>{` ${detailsEvent.result.age_rating}`}</p>
-                                <h4 className='h4'>Precio:</h4>
-                                <p className='p'>{` $${detailsEvent.result.price}`}</p>
+                             <p className={styles.description}>{ detailsEvent.result.description}</p>
+                             <div className={styles.detailsUsers2User}>
+                                 <div className={styles.leftColumn}>
+                                    <h4 className='h4'>Artistas:</h4>
+                                    <p className='p'>{` ${detailsEvent.result.starring}`}</p>
+                                    <h4 className='h4'>Dirrecion:</h4>
+                                    <p className='p'> {` ${detailsEvent.result.address}`}</p>
+                                    <h4 className='h4'>Fecha:</h4>
+                                    <p className='p'>{` ${detailsEvent.result.start_date}`}</p>
+                                    <h4 className='h4'>Fecha Termino:</h4>
+                                    <p className='p'>{` ${detailsEvent.result.finish_date}`}</p>
+                                    <h4 className='h4'>Dias:</h4>
+                                    <p className='p'>{` ${detailsEvent.result.weekdays.map((e)=>(e))}`}</p>
+                                 </div>
+                                 <div className={styles.rightColumn}>
+                                    <h4 className='h4'>Horarios:</h4>
+                                    <p className='p'>{` ${detailsEvent.result.schedule.map((e)=>(e))}`}</p>
+                                    <h4 className='h4'>Tipo de Evento:</h4>
+                                    <p className='p'>{` ${detailsEvent.result.tags}`}</p>
+                                    <h4 className='h4'>Calsificación:</h4>                            
+                                    <p className='p'>{` ${detailsEvent.result.age_rating}`}</p>
+                                    <h4 className='h4'>Precio:</h4>
+                                    <p className='p'>{` $${detailsEvent.result.price}`}</p>
+                                 </div>
+                                
                         </div>
                             </div>
-                <div className='button-container'>
-                    <button className='button'>Reservar</button>
+                <div className={styles.buttonContainer}>
+                    <button className={styles.button}>Reservar</button>
                     <Link to={{
                         pathname:'/nuevoComentario',
                         state: id
                     }}>
-                    <button className='button'>Reseña</button>
+                    <button className={styles.button}>Reseña</button>
                     </Link>
                 </div>
                 <div className='comments-container'>
                         <DisplayComments state={id}/>
+                        <br />
+                        <br />
+
                 </div>
 
                          </div>: <Loading/>
@@ -145,7 +153,7 @@ export default function EventDetailsUsario() {
        
     
         
-        </>
+        
     )} 
     else{
         return (<Loading/>)
