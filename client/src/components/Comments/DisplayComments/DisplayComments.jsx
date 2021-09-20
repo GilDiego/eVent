@@ -4,17 +4,17 @@ import Card from '../Card/Card'
 import './DisplayComments.css'
 
 
-export default function Reviews({postId}) {
+export default function Reviews(id) {
     const [comments, setComments] = useState([])
     const [average, setAverage] = useState(0)
-
 
     useEffect(() => {
     async function fetchComments(){
         const response = await axios.get(`http://localhost:3001/api/comment/all`)
-        setComments(response.data)
+        setComments(response.data.filter(event => Number(event.eventId) === Number(id.state)))
     }
     fetchComments()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
     
     useEffect(() =>{
@@ -50,26 +50,28 @@ export default function Reviews({postId}) {
 
     let keyGenerator = 0
     return (
-        <div className='wrapper'>
+
+        <div className='comments-wrapper'>
         {
             !comments.length ? (
-                    <div>
-                        <p>Este evento todavia no tiene comentarios.</p>
-                    </div>
+                    
+                        <p className='no-reviews'>Este evento todavia no tiene comentarios.</p>
+                    
                 ) : (
                     <div>
                         {
-                            average !== 0 ? (
-                                <p>Rating General: {average > 0 ? setStars(Math.floor(average)) : 'x/x'}</p>
+                            average > 0 ? (
+                                <p className='general-rating'>Rating General: <span className='general-stars'>{setStars(Math.floor(average))}</span></p>
                             ) : (
-                                <p>Este evento todavia no tiene calificaciones.</p>
+                                <p className='no-rating'>Este evento todavia no tiene calificaciones.</p>
                             )
                         }
                         {
                         comments.map(comment => (
                             <Card
                                 key={keyGenerator++}
-                                userId={comment.user.first_name}
+                                // userId={comment.user.userId}
+                                userId={'Cesar'}
                                 rating={setStars(comment.rating)}
                                 review={comment.review}
                             />
