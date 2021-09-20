@@ -51,9 +51,9 @@ export default function CreateComment() {
         if (!rating || !review) return alert('Todos los campos son requeridos.')
         else if (review.length < 40) return alert('El comentario debe tener un mínimo de 40 caracteres.')
         else {
-                await fetchUserComments(user_id)
-                if (userCheck.length) return alert('Solamente puedes crear un comentario por evento.')
-                else {
+                // await fetchUserComments(user_id)
+                // if (userCheck.length) return alert('Solamente puedes crear un comentario por evento.')
+                // else {
                     axios.post('http://localhost:3001/api/comment', {
                         review,
                         rating,
@@ -61,7 +61,7 @@ export default function CreateComment() {
                         event_id
                     })
                     setEditing(false)           
-            }
+            // }
         }
     }
     return (

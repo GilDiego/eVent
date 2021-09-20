@@ -2,16 +2,17 @@
   text-align: center;
   background-color: var(--Primary);
 }
-.general-comments {
+/* .general-comments {
 }
 
 .item {
-  /* display: inline-block; */
-}
+
+} */
 
 .general-rating {
   color: var(--White);
   font-size: x-large;
+  text-shadow: 2px 2px 3px black;
 }
 .general-stars {
   font-size: x-large;
