@@ -61,19 +61,21 @@ export default function EventDetailsUsario() {
     
         return(
             <>
-            <div className='detailsAll'>
-                <div className='detailsCard'>
+            <div className='detailsAllUser'>
+                <div className='detailsCardUser'>
+                    
                     {
                         
                         detailsEvent.result.name!==undefined?   
-                        <div className='deailscard2'>
+                        <div className='deailscard2User'>
                             <h1 className='titleCard'>{detailsEvent.result.name}</h1>
+                            <div className='img'>
                             <Carousel
                 data={data}
                 
                 time={5000}
-                width="850px"
-                height="500px"
+                width="650px"
+                height="400px"
                 
                 radius="10px"
                 slideNumber={true}
@@ -94,62 +96,35 @@ export default function EventDetailsUsario() {
                   margin: "40px auto",
                 }} />
                             
-                        
+                      </div>  
                                
-                             <div className='otherDetails'>  
+                             <div className='otherDetailsUser'>  
                              <br/> 
-                             <div>
-                                 <h4>Descripcion:</h4>
-                             <p>{ detailsEvent.result.description}</p>
-                             </div>
-                             <div>
-                             <h4>Artistas:</h4>
-                             <p>{` ${detailsEvent.result.starring}`}</p>
-                             </div>
-                             <div>
-                                 <h4>Dirección:</h4>
-                             <p>{` ${detailsEvent.result.location}`}</p>
-                             </div>
-                             <div>
-                                 <h4>Dirrecion:</h4>
-                             <p> {` ${detailsEvent.result.address}`}</p>
-    
-                             </div>
-                             <div>
-                                 <h4>Fecha:</h4>
-                                 <p>{` ${detailsEvent.result.start_date}`}</p>
-                            </div>
-                            <div>
-                                <h4>Fecha Termino:</h4>
-                            <p>{` ${detailsEvent.result.finish_date}`}</p>
-                            </div>
-                            <div>
-                                <h4>Dias:</h4>
-                                <p>{` ${detailsEvent.result.weekdays.map((e)=>(e))}`}</p>
-                            </div>
-                            <div>
-                                <h4>Horarios:</h4>
-                                <p>{` ${detailsEvent.result.schedule.map((e)=>(e))}`}</p>
-                            </div>
-                            <div>
-                                <h4>Tipo de Evento:</h4>
-                                <p>{` ${detailsEvent.result.tags}`}</p>
-                            </div>
-                            <div>
-                                <h4>Calsificación:</h4>                            
-                                <p>{` ${detailsEvent.result.age_rating}`}</p>
-                            </div>
-                            <div>
-                                <h4>Precio:</h4>
-                                <p>{` $${detailsEvent.result.price}`}</p>
-                            </div>
-                            <div> 
-                                <h4>limite de asiastentes:</h4>
-                                <p>{` ${detailsEvent.result.ticket_limit}`}</p>
-                            </div>
-                            <div>
-                                <h4>Croquis:</h4>
-                                {` ${detailsEvent.result.seat_booking} `} </div>
+                             
+                                 <h4 className='h4'>Descripcion:</h4>
+                             <p className='p'>{ detailsEvent.result.description}</p>
+                            
+                             
+                             <div className='detailsUsers2User'>
+                                <h4 className='h4'>Artistas:</h4>
+                                <p className='p'>{` ${detailsEvent.result.starring}`}</p>
+                                <h4 className='h4'>Dirrecion:</h4>
+                                <p className='p'> {` ${detailsEvent.result.address}`}</p>
+                                <h4 className='h4'>Fecha:</h4>
+                                 <p className='p'>{` ${detailsEvent.result.start_date}`}</p>
+                                <h4 className='h4'>Fecha Termino:</h4>
+                                <p className='p'>{` ${detailsEvent.result.finish_date}`}</p>
+                                <h4 className='h4'>Dias:</h4>
+                                <p className='p'>{` ${detailsEvent.result.weekdays.map((e)=>(e))}`}</p>
+                                <h4 className='h4'>Horarios:</h4>
+                                <p className='p'>{` ${detailsEvent.result.schedule.map((e)=>(e))}`}</p>
+                                <h4 className='h4'>Tipo de Evento:</h4>
+                                <p className='p'>{` ${detailsEvent.result.tags}`}</p>
+                                <h4 className='h4'>Calsificación:</h4>                            
+                                <p className='p'>{` ${detailsEvent.result.age_rating}`}</p>
+                                <h4 className='h4'>Precio:</h4>
+                                <p className='p'>{` $${detailsEvent.result.price}`}</p>
+                        </div>
                             </div>
                          </div>: <Loading/>
     
