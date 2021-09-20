@@ -1,0 +1,33 @@
+.new-comment-wrapper {
+  background-color: var(--Primary);
+  color: var(--White);
+  height: 35vw;
+}
+.new-comment-title {
+  margin-top: 0;
+  text-align: center;
+}
+.new-comment {
+  text-align: center;
+}
+.new-comment input {
+  width: 500px;
+}
+.new-comment-form {
+  font-size: large;
+  display: block;
+  margin: auto;
+}
+.new-comment-btn {
+  margin-top: 10px;
+  font-size: large;
+  width: 150px;
+  height: 30px;
+  color: var(--White);
+  background-color: var(--Button);
+  border: none;
+  border-radius: var(--RadiusOne);
+}
+.new-comment-success {
+  text-align: center;
+}
