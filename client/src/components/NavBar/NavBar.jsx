@@ -26,15 +26,16 @@ const NavBar = ({ user, setUser }) => {
         <div className="contFlex">
           {user.email ? (
             <>
-              <div className="contFlex margRgth20" container>
-                <img
-                  src={user.imageUrl}
-                  alt=""
-                  className="imgSize10 margRgth10"
-                />
-                <p className="txColorWht txSize15">{user.givenName}</p>
-              </div>
-
+              <Link to='perfil'>
+                <div className="contFlex margRgth20" container>
+                  <img
+                    src={user.imageUrl}
+                    alt=""
+                    className="imgSize10 margRgth10"
+                  />
+                  <p className="txColorWht txSize15">{user.givenName}</p>
+                </div>
+              </Link>
               <a className="logoutBtn pointer" onClick={setLogout}>
                 Logout
               </a>
