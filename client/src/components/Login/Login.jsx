@@ -13,15 +13,60 @@ const Login = ({ setUser, user }) => {
   const URL = 'http://localhost:3000/'
   const history = useHistory()
 
-  const redirec = () => {
-    history.push('/')
+
+  //*Estados______________________________________________________________________
+  const [FormState, setFormState] = useState({
+    nick: "",
+    email: " ",
+    pass: "",
+  });
+  // const [MessageNick, setMessageNick] = useState('Escribe tu Alias')
+  const [MessageMail, setMessageMail] = useState(" ");
+  const [SwitchMail, setSwitchMail] = useState(null);
+  const [MessagePass, setMessagePass] = useState(" ");
+  const [SwitchPass, setSwitchPass] = useState(null);
+  const [Message, setMessage] = useState('')
+  const [Logger, setLogger] = useState(false);
+  
+  //*Funciones__________________________________________________________________
+  const redirec = (dir) => {
+    history.push(dir)
   }
 
   //*Google
-  const responseGoogle = (resG) => {
-    setUser(resG.profileObj)//Envia a store
-    redirec()//Redirecciona a home
-    console.log(resG.profileObj)
+  const responseGoogle = async (resG) => {
+  
+    let obj = {}
+
+    console.log(resG)
+    if(resG.Ws !== undefined){
+      obj.email = resG.Ws.Ht
+    } else {
+      obj.email = resG.Rs.Ct
+    }
+    
+    try {
+      let config = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(obj),
+      };
+      let res = await fetch("http://localhost:3001/api/user/login", config);
+      let json = await res.json();
+   
+      if(!json.msg){
+       setLogger(true)
+      }else{
+        setUser(resG.profileObj)//Envia a store
+        redirec('/')//Redirecciona a home
+        setLogger(true)
+      }
+    } catch (err) {
+      console.log('error__________________',err)
+    }
   };
 
   //*Facebook
@@ -43,18 +88,7 @@ const Login = ({ setUser, user }) => {
   // No espacios en blanco
   // Al menos 1 caracter especial
 
-  //*Estados
-  const [FormState, setFormState] = useState({
-    nick: "",
-    email: " ",
-    pass: "",
-  });
-  // const [MessageNick, setMessageNick] = useState('Escribe tu Alias')
-  const [MessageMail, setMessageMail] = useState(" ");
-  const [SwitchMail, setSwitchMail] = useState(null);
-  const [MessagePass, setMessagePass] = useState(" ");
-  const [SwitchPass, setSwitchPass] = useState(null);
-  const [Message, setMessage] = useState('')
+  
 
   //*Funciones onChange
   const upgradeEmail = (e) => {
@@ -84,20 +118,41 @@ const Login = ({ setUser, user }) => {
     setFormState({ ...FormState, [e.target.name]: e.target.value });
   };
 
+  //*Funcion on click
+  const setNotFound = () => {
+    setLogger(false)
+  }
+
   //*Funcion on submit
   const setLog = (e) => {
     e.preventDefault();
     if(!FormState.mail && !FormState.pass){
       setMessage('Todos los campos son obligatorios')
+      setTimeout(function(){setMessage('')}, 2000)
     }else redirec()
     
   };
 
   return (
     <div className={styles.container}>
+    <h5 className={styles.message}> {Message}</h5>  
       <form className={styles.form} onSubmit={setLog}>
+        {Logger?
+        <> 
         <h4 className={styles.title}>Login</h4>
-        {Message}
+        <span className={styles.icon}>
+            <i className="fas fa-exclamation-circle"></i>
+          </span>
+          <p className='txColorWht margin0'>El usuario no se encuentra registrado </p>
+          <p className='txColorWht margin0'>Intentalo de nuevo </p>
+          <button className='btnForm margTop70' onClick={setNotFound}>
+            ok
+          </button>
+        </>
+        : 
+        <>
+        <h4 className={styles.title}>Login</h4>
+       
         <div className={styles.subContainer}>
           <label className={styles.label}>Email</label>
           <input
@@ -140,7 +195,7 @@ const Login = ({ setUser, user }) => {
             //   <button onClick={renderProps.onClick} disabled={renderProps.disabled}>Google</button>
             // )}
           />
-          <Link to="/formUser">
+          <Link to="/registration">
           <h4 className='txColorWht txAligneCntr margTop40'>Crea tu cuenta</h4>
           </Link>
           
@@ -163,6 +218,7 @@ const Login = ({ setUser, user }) => {
             callback={responseFacebook}
           />
         </div> */}
+        </>}
       </form>
     </div>
   );

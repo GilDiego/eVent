@@ -1,42 +1,4 @@
-/* 
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
 
 /**_VARIABLES__________________________________________________________________________________ */
 
@@ -48,6 +10,8 @@
   --Other: #ce0b0b;
   --White: #f1f1f1;
   --Black: #00171f;
+  --Alert: #ff4444;
+  --Success: #09e74c;
 
   /* Fonts */
   --TitleCard: 27px;
@@ -167,7 +131,12 @@ filter: brightness(60%);
 
 
 /** MARGIN_____________________________________________________ */
-
+.margin0{
+  margin: 0px;
+}
+.margin15{
+  margin: 15px;
+}
 /** marginTop */
 .margTop20{
   margin-top: 20px;
@@ -191,6 +160,10 @@ filter: brightness(60%);
   margin-right: 20px;
 }
 
+/* marginBottom */
+.margBtm0{
+  margin-bottom: 0px;
+}
 
 
 /** Colores */
@@ -206,6 +179,10 @@ filter: brightness(60%);
  .txColorWht{
    color: var(--White);
  }
+
+ .txColorAlert{
+  color: var(--Alert);
+}
 
 
  .txAligneCntr{

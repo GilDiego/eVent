@@ -13,9 +13,12 @@ import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDet
 import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter'
 import FormEvent from './components/FormEvent/FormEvent.jsx';
 import Comments from './components/Comments/CreateComment/CreateComment.jsx'
+import Registration from './components/Registration/Registration';
 import UserPorfile from './components/UserPorfile/UserPorfile';
 import {Redirect} from 'react-router-dom'
+
 function App({ setUser, user }) {
+
   // Usuario en local storage
   let loginUser = JSON.parse(localStorage.getItem( 'User' )) 
   useEffect(() => {
@@ -27,7 +30,10 @@ function App({ setUser, user }) {
 
   return (
     <>
+     
       <NavBar />
+
+
 
       <Route exact path='/'>
         <Home />
@@ -35,6 +41,10 @@ function App({ setUser, user }) {
 
       <Route exact path='/login'>
         <Login />
+      </Route>
+
+      <Route exact path='/registration'>
+        <Registration />
       </Route>
 
       <Route path='/formUser' >
