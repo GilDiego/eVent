@@ -1,7 +1,7 @@
 import React from 'react'
 import DisplayComments from '../../Comments/DisplayComments/DisplayComments'
 import { Link } from 'react-router-dom'
-import { useEffect} from 'react'
+import { useEffect,useState} from 'react'
 import  {useDispatch , useSelector} from 'react-redux'
 import {useParams} from 'react-router-dom'
 import {getEventDetail} from '../../../actions/actions'
@@ -23,40 +23,38 @@ export default function EventDetailsUsario() {
         const {id}=params
         const detailsEvent = useSelector(state => state.detailsEvent)
         console.log(detailsEvent,'details event')
-    
+       
         useEffect(async()=>{
             await dispatch(getEventDetail(id))
         },[dispatch , id])
-    
-        console.log('soy get detalle',getEventDetail)
+        
+       const  [picture, setPicture]=useState(false)
       
-      console.log('hola q Ondix ')
+      
      const slideNumberStyle = {
         fontSize: '20px',
         fontWeight: 'bold',
       }
-        console.log(detailsEvent)
+        
         if(!detailsEvent[0]=== true){
     
             
          
             let data = [];
             let picture = detailsEvent.result.pictures
-            console.log('soy imagenes de for', picture)
+            
     
              for (let index = 0; index < picture.length; index++) {
               const img=  data.push({image:picture[index]});
-               console.log('soy img ', img)  
+                
              }
            
-    
-             
              
             
                                           
             
          
-         console.log('hola soy data ',data);
+        
     
         return(
             <>
@@ -69,41 +67,36 @@ export default function EventDetailsUsario() {
                         <div className='deailscard2User'>
                             <h1 className='titleCard'>{detailsEvent.result.name}</h1>
                             <div className='img'>
-                            <Carousel
+                         
+                              <Carousel   
                 data={data}
-                
                 time={5000}
                 width="650px"
                 height="400px"
-                
                 radius="10px"
                 slideNumber={true}
                 slideNumberStyle={slideNumberStyle}
                 captionPosition="bottom"
-                automatic={true}
+                automatic={false}
                 dots={true}
                 pauseIconColor="white"
                 pauseIconSize="40px"
                 slideBackgroundColor="darkgrey"
-                slideImageFit="cover"
+                slideImageFit="auto"
                 thumbnails={true}
                 thumbnailWidth="100px"
                 style={{
-                  textAlign: "center",
-                  maxWidth: "850px",
-                  maxHeight: "500px",
+                  maxWidth: "650px",
+                  maxHeight: "450px",
                   margin: "40px auto",
                 }} />
-                            
+                    
+                                 
                       </div>  
-                               
-                             <div className='otherDetailsUser'>  
+                            <div className='otherDetailsUser'>  
                              <br/> 
-                             
-                                 <h4 className='h4'>Descripcion:</h4>
+                              <h4 className='h4'>Descripcion:</h4>
                              <p className='p'>{ detailsEvent.result.description}</p>
-                            
-                            
                              <div className='detailsUsers2User'>
                                 <h4 className='h4'>Artistas:</h4>
                                 <p className='p'>{` ${detailsEvent.result.starring}`}</p>
