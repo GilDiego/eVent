@@ -18,11 +18,15 @@ const validate =(form)=>{
             errors.tax_id = false
         }
     }else if(form.country === 'Colombia'){
-
+        if(!(/^([0-9]{9}-[0-9]{1})$|^([0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{1})$/.test(form.tax_id)))
+        {
+            errors.tax_id = true
+        }else{
+            errors.tax_id = false
+        }
     }else if(form.country === 'Mexico'){
 
     }
-    console.log('gfdgdfgdf',form.tax_id)
     // if(!(form.country === 'Argentina' &&
     //     /[0-9]{2}-[0-9]{8}-[0-9]{1}|[0-9]{11}/g.test(form.tax_id))
     // ){
