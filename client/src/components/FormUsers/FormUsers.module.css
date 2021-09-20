@@ -5,7 +5,7 @@
     color: var(--White);
     background-color: var(--Primary);
     border-radius: var(--RadiusOne);
-    width: 1000px;
+    width: 50%;
     margin: auto;
     margin-top: 70px;
     margin-bottom: 70px;
@@ -13,7 +13,24 @@
 }
 
 .form{
-  
-    
-    
+  display: flex;
+    height: 500px;
+    width: 100%;
+    justify-content: center;
+}
+.divsSection{
+    display: flex;
+    justify-content: space-between;
+}
+.buttonUser{
+    display: flex; 
+    justify-content: center;
+}
+.but{
+    border-radius: var(--RadiusOne);
+}
+.but:hover{
+    background-color: var(--Other);
+    color: var(--White);
+    cursor: pointer;
 }
