@@ -242,7 +242,7 @@ function FormPromoter(){
                                     />{/*password*/}
                                 </div>
                             </div>
-                            <button className={styles.btn} type="submit" >
+                            <button className={styles.btn} type="submit">
                             ¡Registrarme!
                             </button>
                         </div>
