@@ -13,7 +13,8 @@ import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDet
 import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter'
 import FormEvent from './components/FormEvent/FormEvent';
 import Comments from './components/Comments/CreateComment/CreateComment.jsx'
-
+import Registration from './components/Registration/Registration';
+ 
 function App({ setUser }) {
   // Usuario en local storage
   let loginUser = JSON.parse(localStorage.getItem( 'User' )) 
@@ -26,6 +27,7 @@ function App({ setUser }) {
 
   return (
     <>
+     
       <NavBar />
 
       <Route exact path='/'>
@@ -34,6 +36,10 @@ function App({ setUser }) {
 
       <Route exact path='/login'>
         <Login />
+      </Route>
+
+      <Route exact path='/registration'>
+        <Registration />
       </Route>
 
       <Route path='/formUser' >
