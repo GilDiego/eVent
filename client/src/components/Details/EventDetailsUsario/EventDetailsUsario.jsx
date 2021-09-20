@@ -104,7 +104,7 @@ export default function EventDetailsUsario() {
                                  <h4 className='h4'>Descripcion:</h4>
                              <p className='p'>{ detailsEvent.result.description}</p>
                             
-                             
+                            
                              <div className='detailsUsers2User'>
                                 <h4 className='h4'>Artistas:</h4>
                                 <p className='p'>{` ${detailsEvent.result.starring}`}</p>
