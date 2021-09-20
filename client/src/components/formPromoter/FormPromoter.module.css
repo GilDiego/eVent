@@ -15,7 +15,9 @@
     background-color: var(--Button);
     transition-duration: 300ms;
     }
-
+.business_type {
+    width: 300px;
+}
 .container{
     display: flex;
     flex-direction: column;
@@ -89,23 +91,18 @@ select:-webkit-autofill:focus {
     justify-content: center;
     text-align: right;
 }
-.errorState{
+/* .errorState{
     border: 1px red solid;
 }
 
 .errorState select {
     width: 200px;
-}
-/* .ubication span{
-    width: 130px;
-    height: auto;
-    text-align: right;
-}
-.ubication input{
-    width: 150px;
-    height: auto;
-    margin-right: 20px; 
 } */
+.countrySelect{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 /* infonegocio */
 .formTitle {
     font-size: 1.5rem;
@@ -144,76 +141,12 @@ select:-webkit-autofill:focus {
     justify-content: space-between;
     margin-block: 0.25rem;
 }
+
 /* btn */
 .submitBtn{
     margin-top: 20px;
 }
-/* .nameP{
-    display: flex;
-    margin: 5px;
+.tick {
+    color: var(--Button);
+    font-weight: 600;
 }
-.nameP span{
-    width: 85px;
-    height: auto;
-    text-align: right;
-}
-.nameP input{
-    width: 150px;
-    height: auto;
-    margin-right: 20px;
-}
-/* contact */
-/* .contact{
-    display: flex;
-    margin: 5px;
-}
-.contact span{
-    width: 85px;
-    height: auto;
-    text-align: right;
-}
-.contact input{
-    width: 150px;
-    height: auto;
-    margin-right: 20px;
-}
-/* password */
-/* .password{
-    margin: 5px;
-    display: flex;
-}
-.password span{
-    width: 85px;
-    height: auto;
-    text-align: right;
-}
-.password input{
-    width: 150px;
-    height: auto;
-    margin-right: 20px;
-} */
-/* contPais */
-/* .contPais{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px;
-} */
-/* pais */
-/* .pais{
-    width: 200px;
-} */
-/* ubication */
-/* .ubication{
-    display: flex;
-    justify-content: center;
-}
-.ubication span{
-    width: 130px;
-    height: auto;
-    text-align: right;
-}
-.ubication input{
-    width: 150px;
-    height: auto;
-    margin-right: 20px; */
