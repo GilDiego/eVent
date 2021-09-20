@@ -17,7 +17,9 @@ import Registration from './components/Registration/Registration';
 import UserPorfile from './components/UserPorfile/UserPorfile';
 import {Redirect} from 'react-router-dom'
 
+
 function App({ setUser, user }) {
+
 
   // Usuario en local storage
   let loginUser = JSON.parse(localStorage.getItem( 'User' )) 
@@ -76,6 +78,11 @@ function App({ setUser, user }) {
       {/* Diego: Ruta provisional para pruebas de Comentarios */}
       <Route path='/nuevoComentario'>
         <Comments />
+      </Route>
+
+      <Route exact path='/perfil' >
+        {console.log(user)}
+         {user.googleId? <UserPorfile/> : <Redirect to='/login'/>}
       </Route>
 
       <Footer />

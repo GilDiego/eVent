@@ -26,7 +26,7 @@ export default function EventDetailsUsario() {
        
         useEffect(async()=>{
             await dispatch(getEventDetail(id))
-        },[dispatch , id])
+        },[ id])
         
        const  [picture, setPicture]=useState(false)
       
