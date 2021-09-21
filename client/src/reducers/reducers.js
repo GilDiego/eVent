@@ -4,7 +4,11 @@ import {
    SWITCH_SIDE_BAR,
    POST_EVENT,
    SET_USER,
-   GET_EVENTS_HOME
+   GET_EVENTS_HOME,
+   FILTER_TAGS,
+   FILTER_AGE_RATING,
+   FILTER_WEEKDAYS,
+   REMOVE_FILTERS,
   } from "../actions/actions";
 
   // Pruebas para guardar usuario en el local storage
@@ -18,7 +22,9 @@ import {
     //*post
     posts:[],
     //*user
-    userState:{}
+    userState:{},
+    //*filter
+    filters:[]
   };
 
  
@@ -57,6 +63,31 @@ import {
       return{
         ...state,
         userState: action.payload
+      }
+    }
+    //*__FILTER 
+    if(action.type === FILTER_TAGS){
+      return{
+        ...state,
+        filters: state.eventsHome.filter((e)=> e.tags === action.payload)
+      }
+    }
+    if(action.type === FILTER_AGE_RATING){
+      return{
+        ...state,
+        filters: state.eventsHome.filter((e)=> e.age_rating === action.payload)
+      }
+    }
+    if(action.type === FILTER_WEEKDAYS){
+      return{
+        ...state,
+        filters: state.eventsHome.filter((e)=> e.weekdays.find((day)=> day === action.payload))
+      }// state.todo.filter((pais)=> pais.activities.find((act) => act.nombre === action.payload))
+    }
+    if(action.type === REMOVE_FILTERS){
+      return{
+        ...state,
+        filters:[]
       }
     }
   

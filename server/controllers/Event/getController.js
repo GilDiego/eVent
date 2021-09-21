@@ -17,6 +17,7 @@ exports.getController = async (req,res) => {
             pictures,
             tags,
             age_rating,
+            weekdays
         } = dataValues;
 
         return {
@@ -26,6 +27,7 @@ exports.getController = async (req,res) => {
             location,
             tags,
             age_rating,
+            weekdays,
             pictures
         };
     })
