@@ -1,19 +1,19 @@
 import React, {useEffect, useState } from 'react';
 import { connect,useSelector } from 'react-redux';
-import { filterTags, filterAgeRating, filerWeekdays, getEventsHome,removeFilters } from '../../actions/actions';
+import { filterTags, filterAgeRating, filerWeekdays, getEvents,removeFilters } from '../../actions/actions';
 
 //tags -- age_rating
 
 export function Filters(props) {
-    console.log(props)
+    // console.log(props)
     const stateFilters = useSelector(state => state.filters)
     const tags = ["Exteriores", "Interiores", "En vivo", "Recital", "Teatro", "Película", "Disco", "Deportes"]
     const age_rating = ["0+", "7+", "13+", "18+"]
     const weekdays = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]
-    const get =props.getEventsHome
-    // useEffect(() => {
-    //     props.getEventsHome()
-    //   }, [get])
+    const get =props.getEvents
+    useEffect(() => {
+        props.getEvents()
+      }, [get])
     // const [type, setType] = useState()
 
     const handleChange = (e) =>{
@@ -47,4 +47,4 @@ export function Filters(props) {
         </div>
     )
 }
-export default connect(null, { filterTags, filterAgeRating,getEventsHome, filerWeekdays, removeFilters })(Filters)
+export default connect(null, { filterTags, filterAgeRating,getEvents, filerWeekdays, removeFilters })(Filters)

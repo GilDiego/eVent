@@ -25,7 +25,6 @@ const Home = ({ switchSide, getEventsHome, events, filters }) => {
         </div>: <div></div> }
       <div>
         <Carousel />
-        {console.log(filters,'filters home')}
         {filters.length > 0 ?
         <ActivityCards events={filters}/>
         :<ActivityCards events={events} />}

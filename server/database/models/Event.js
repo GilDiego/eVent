@@ -79,6 +79,10 @@ const Event = sequelize.define('event', {
         type: DataTypes.STRING,
         allowNull: true,
     },
+    country:{
+        type: DataTypes.STRING,
+        // allowNull: false
+    }
 })
 
 module.exports = Event;

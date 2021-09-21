@@ -6,7 +6,7 @@ exports.saveInfoEvent = async (req,res) => {
         name,           description,    starring,   virtual,        location,   
         address,        pictures,       start_date, finish_date,    schedule,   
         isRecurrent,    weekdays,       tags,       age_rating,     price,  
-        ticket_limit
+        ticket_limit,   country,
     } = req.body;
 
     try {
@@ -18,7 +18,7 @@ exports.saveInfoEvent = async (req,res) => {
             name,           description,    starring,   virtual,        location,   
             address,        pictures,       start_date, finish_date,    schedule,   
             isRecurrent,    weekdays,       tags,       age_rating,     price,  
-            ticket_limit
+            ticket_limit,   country,
             }
         });
     
