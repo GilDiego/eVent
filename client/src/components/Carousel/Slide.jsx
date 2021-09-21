@@ -2,7 +2,7 @@ import React from "react";
 import styles from './Slide.module.css'
 
 const Slide = ({img, name, date, place})=>{
-    console.log(img)
+    // console.log(img)
     return(
         <div className={styles.slides}>
             <a href='https://www.google.com'>
