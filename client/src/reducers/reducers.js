@@ -82,7 +82,7 @@ import {
       return{
         ...state,
         filters: state.eventsHome.filter((e)=> e.weekdays.find((day)=> day === action.payload))
-      }// state.todo.filter((pais)=> pais.activities.find((act) => act.nombre === action.payload))
+      }
     }
     if(action.type === REMOVE_FILTERS){
       return{
