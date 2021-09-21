@@ -91,11 +91,11 @@ export default function EventDetailsUsario() {
                                  <div className={styles.leftColumn}>
                                     <h4 className='h4'>Artistas:</h4>
                                     <p className='p'>{` ${detailsEvent.result.starring}`}</p>
-                                    <h4 className='h4'>Dirrecion:</h4>
+                                    <h4 className='h4'>Dirreción:</h4>
                                     <p className='p'> {` ${detailsEvent.result.address}`}</p>
                                     <h4 className='h4'>Fecha:</h4>
                                     <p className='p'>{` ${detailsEvent.result.start_date}`}</p>
-                                    <h4 className='h4'>Fecha Termino:</h4>
+                                    <h4 className='h4'>Fecha Finalización:</h4>
                                     <p className='p'>{` ${detailsEvent.result.finish_date}`}</p>
                                     <h4 className='h4'>Dias:</h4>
                                     <p className='p'>{` ${detailsEvent.result.weekdays.map((e)=>(e))}`}</p>
@@ -105,7 +105,7 @@ export default function EventDetailsUsario() {
                                     <p className='p'>{` ${detailsEvent.result.schedule.map((e)=>(e))}`}</p>
                                     <h4 className='h4'>Tipo de Evento:</h4>
                                     <p className='p'>{` ${detailsEvent.result.tags}`}</p>
-                                    <h4 className='h4'>Calsificación:</h4>                            
+                                    <h4 className='h4'>Clasificación:</h4>                            
                                     <p className='p'>{` ${detailsEvent.result.age_rating}`}</p>
                                     <h4 className='h4'>Precio:</h4>
                                     <p className='p'>{` $${detailsEvent.result.price}`}</p>
