@@ -1,80 +1,16 @@
-import {useState} from "react";
-import axios from 'axios'
-import styles from './FormPromoter.module.css'
+import { useState } from "react";
+import axios from 'axios';
+import styles from './FormPromoter.module.css';
+import validate from './validate.js';
 
-const validate =(form)=>{
-    let errors = {}
-    if (!/^\S+@\S+\.[a-z]+$/.test(form.email)) {
-        errors.email = true
-    }else {
-        errors.email = false
-    }
-
-    if(form.country === 'Argentina'){
-        if(!(/^([0-9]{2}-[0-9]{8}-[0-9])$|^([0-9]{11})$/.test(form.tax_id)))
-        {
-            errors.tax_id = true
-        }else{
-            errors.tax_id = false
-        }
-    }else if(form.country === 'Colombia'){
-        if(!(/^([0-9]{9}-[0-9]{1})$|^([0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{1})$/.test(form.tax_id)))
-        {
-            errors.tax_id = true
-        }else{
-            errors.tax_id = false
-        }
-    }else if(form.country === 'Mexico'){
-        if(!(/^[A-ZÑ&]{3,4}\d{6}(?:[A-Z\d]{3})?$/.test(form.tax_id)))
-        {
-            errors.tax_id = true
-        } else {
-            errors.tax_id = false
-        }
-    }
-
-    if(!(
-        /[A-Za-zÑñ.-]/.test(form.address) &&
-        /\d/.test(form.address) &&
-        /[' ']/.test(form.address)
-        ))  {
-            errors.address = true
-        } else {
-            errors.address = false
-    }
-
-    if (!(/['+']*[0-9]{7,}/.test(form.phone))) {
-        errors.phone = true;
-    } else {
-        errors.phone = false;
-    }
-
-    if(!(
-        /[A-Za-zÑñ.-]/.test(form.password) &&
-        /\d/.test(form.password) &&
-        form.password.length >= 6
-        ))  {
-            errors.password = true;
-        } else {
-            errors.password = false;
-    }
-
-    return errors;
-}
 function FormPromoter(){
 
-    const [errors, setErrors]=useState({
-        tax_id: true,
-        address: true,
-        email: true,
-        password: true,
-        phone: true,
-    });
+    const [pass, setPass] = useState({});
     const [condition, setCondition] = useState({//este estado valida 
         divCountry:'',// como esta dividido el pais ?
         idNumber:'',// qu tipo de identificacion maneja el pais
     });
-    const [form, setForm]=useState({
+    const [form, setForm] = useState({
         promoter_name:'',//leo:nombre y apellido del promotor//
         promoter_lastName:'',
         bio:'',//
@@ -123,27 +59,38 @@ function FormPromoter(){
             [e.target.name]: e.target.value
         });
 
-        setErrors(validate({
+        setPass(validate({
             ...form,
             [e.target.name]: e.target.value
           }))
     }
 
-    const handleSubmit = async (e)=>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        //validate(form);
-        try{
-            const res = await axios.post('http://localhost:3001/api/promoter',{form})
-            alert(res.data.msg) // ERROR DE VIOLACIÓN UNIQUE
-        }catch(error){
-            console.log('catchhh',error)
+        let validation = Object.values(pass);
+        if(validation.includes(false) || validation.length === 0) {
+            alert('Completa correctamente los campos');
+        } else {
+            try{
+                const res = await axios.post('http://localhost:3001/api/promoter',{form})
+                alert(res.data.msg); // Respuesta del back
+                alert(`Promotor creado con éxito. \n Espere 48hrs para su autorización. Bienvenido a eVent, ${form.promoter_name}!`);
+                setPass({});
+                for(const property in form){
+                    setForm(...form,form[property] = '')
+                }
+               
+                
+            }catch(error){
+                console.log('catchhh',error);
+                alert("No hubo caso. Chequea los datos");
+            }
+
+            //alert(`${form.promoter_name}  `)
         }
-       
-        //alert(`${form.promoter_name} Promotor creado con satisfacion, espere 48hrs para su autoriazación Bienvenido a eVent `)
-        e.target.reset();
     }
-    
-    return(
+
+    return (
         <div className={styles.container}>
             <form onSubmit={handleSubmit}>
                 <div className={!form.country ? styles.cont : styles.contRend}>
@@ -151,7 +98,7 @@ function FormPromoter(){
                             {!form.country ? "Selecciona un país" : "Completa el formulario"}
                         </span>
                     <div className={styles.countrySelect}>
-                        <select 
+                        <select
                             name="country"
                             value={form.country}
                             onChange={namesInputs}
@@ -175,24 +122,21 @@ function FormPromoter(){
                                     <input
                                         type="text"
                                         name='state'
+                                    
                                         onChange={handleChange}
                                         className={!form.state && styles.errorState}
                                     />
-                                    {form.state && 
-                                        <span className={styles.tick}> ✓ </span>
-                                    }
+                                    { pass.state && <span className={styles.tick}> ✓ </span> }
                                 </div>
                                 <div className={styles.row}>
-                                    <span>Ciudad/Municipio: </span> 
+                                    <span>Ciudad/Municipio: </span>
                                     <input
                                         type="text"
                                         name='city'
                                         onChange={handleChange}
                                         className={!form.city && styles.errorState}
                                     />
-                                    {form.city && 
-                                        <span className={styles.tick}> ✓ </span>
-                                    }
+                                    { pass.city && <span className={styles.tick}> ✓ </span> }
                                 </div>
                             </div>
                              {/*Informacion empresarial*/}
@@ -209,7 +153,7 @@ function FormPromoter(){
                                         <option value="" disabled>Selecciona:</option>
                                         {businessTypes.map((el) => <option value={el}>{el}</option>)}
                                     </select>
-                                    {form.business_type &&
+                                    {pass.business_type &&
                                         <span className={styles.tick}> ✓ </span>
                                     }
                                 </div>
@@ -222,9 +166,8 @@ function FormPromoter(){
                                         onChange={handleChange}
                                         className={!form.business_name && styles.errorState}
                                     />
-                                    {form.business_name && form.business_name.length >= 3 &&
-                                        <span className={styles.tick}> ✓ </span>
-                                    }{/*legal_name*/}
+                                    {pass.business_name && <span className={styles.tick}> ✓ </span>}
+                                    {/*legal_name*/}
                                 </div>
                                 <div className={styles.row}>
                                     <span>Razón social: </span>
@@ -233,9 +176,7 @@ function FormPromoter(){
                                         name='legal_name'
                                         onChange={handleChange}
                                     />
-                                    {form.legal_name && form.legal_name.length >= 3 &&
-                                        <span className={styles.tick}> ✓ </span>
-                                    }
+                                    {pass.legal_name && <span className={styles.tick}> ✓ </span> }
                                 </div>
                                 <div className={styles.row}>
                                     <span >{condition.idNumber}: </span>
@@ -244,7 +185,7 @@ function FormPromoter(){
                                         type="text"
                                         onChange={handleChange}
                                     />
-                                    {!errors.tax_id &&
+                                    {pass.tax_id &&
                                         <span className={styles.tick}> ✓ </span>
                                     }
                                 </div>
@@ -255,7 +196,7 @@ function FormPromoter(){
                                         name='address'
                                         onChange={handleChange}
                                     />
-                                    {!errors.address &&
+                                    {pass.address &&
                                         <span className={styles.tick}> ✓ </span>
                                     }
                                 </div>
@@ -269,9 +210,7 @@ function FormPromoter(){
                                         name='promoter_name'
                                         onChange={handleChange}
                                     />
-                                    {form.promoter_name && form.promoter_name.length >= 2 &&
-                                        <span className={styles.tick}> ✓ </span>
-                                    }
+                                    {pass.promoter_name && <span className={styles.tick}> ✓ </span> }
                                 </div>
                                 <div className={styles.row}>
                                     <span>Apellido: </span>
@@ -280,9 +219,7 @@ function FormPromoter(){
                                         name='promoter_lastName'
                                         onChange={handleChange}
                                     />
-                                    {form.promoter_lastName && form.promoter_lastName.length >= 2 &&
-                                        <span className={styles.tick}> ✓ </span>
-                                    }
+                                    {pass.promoter_lastName && <span className={styles.tick}> ✓ </span> }
                                 </div>
                                 <div className={styles.row}>
                                     <span>Teléfono (sólo números): </span>
@@ -291,7 +228,7 @@ function FormPromoter(){
                                         name='phone'
                                         onChange={handleChange}
                                     />
-                                    {!errors.phone &&
+                                    {pass.phone &&
                                         <span className={styles.tick}> ✓ </span>
                                     }
                                 </div>
@@ -306,7 +243,7 @@ function FormPromoter(){
                                         placeholder='usuario@dominio.abc'
                                         onChange={handleChange}
                                     />
-                                    {!errors.email &&
+                                    {pass.email &&
                                         <span className={styles.tick}> ✓ </span>
                                     }
                                 </div>
@@ -318,7 +255,7 @@ function FormPromoter(){
                                         placeholder='¡Si no tilda, no es segura!'
                                         onChange={handleChange}
                                     />
-                                    {!errors.password &&
+                                    {pass.password &&
                                         <span className={styles.tick}> ✓ </span>
                                     }
                                 </div>
