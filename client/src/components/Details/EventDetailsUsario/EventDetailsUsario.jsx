@@ -122,12 +122,12 @@ export default function EventDetailsUsario() {
                     <button className={styles.button}>Reseña</button>
                     </Link>
                 </div>
-                <div className='comments-container'>
+                {/* <div className='comments-container'>
                         <DisplayComments state={id}/>
                         <br />
                         <br />
 
-                </div>
+                </div> */}
 
                          </div>: <Loading/>
     
