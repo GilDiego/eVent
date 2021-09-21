@@ -15,7 +15,8 @@ import FormEvent from './components/FormEvent/FormEvent.jsx';
 import Comments from './components/Comments/CreateComment/CreateComment.jsx'
 import Registration from './components/Registration/Registration';
 import UserPorfile from './components/UserPorfile/UserPorfile';
-import {Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom';
+import Filter from './components/Filters/Filter';
 
 
 function App({ setUser, user }) {
@@ -34,7 +35,9 @@ function App({ setUser, user }) {
     <>
      
       <NavBar />
-
+      <Route exact path='/filter'>
+        <Filter />
+      </Route>
 
 
       <Route exact path='/'>

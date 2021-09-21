@@ -6,7 +6,9 @@ import {
    SET_USER,
    GET_EVENTS_HOME,
    FILTER_TAGS,
-   FILTER_AGE_RATING
+   FILTER_AGE_RATING,
+   FILTER_WEEKDAYS,
+   REMOVE_FILTERS,
   } from "../actions/actions";
 
   // Pruebas para guardar usuario en el local storage
@@ -74,6 +76,18 @@ import {
       return{
         ...state,
         filters: state.eventsHome.filter((e)=> e.age_rating === action.payload)
+      }
+    }
+    if(action.type === FILTER_WEEKDAYS){
+      return{
+        ...state,
+        filters: state.eventsHome.filter((e)=> e.weekdays.find((day)=> day === action.payload))
+      }// state.todo.filter((pais)=> pais.activities.find((act) => act.nombre === action.payload))
+    }
+    if(action.type === REMOVE_FILTERS){
+      return{
+        ...state,
+        filters:[]
       }
     }
   
