@@ -11,7 +11,7 @@ const UserPorfile = ({userState})=>{
                 <div className={styles.porfileImg}>
                     <img src={userState.imageUrl} alt="xx" />
                 </div>
-                <h3 className={styles.nombre}>Juan Perez</h3>
+                <h3 className={styles.nombre}>{userState.name}</h3>
                 <h4 className={styles.ciudad}>Bogotá, Colombia</h4>
             </div>
 

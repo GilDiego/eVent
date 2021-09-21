@@ -35,7 +35,16 @@ const Login = ({ setUser, user }) => {
 
   //*Google
   const responseGoogle = async (resG) => {
-    let obj = { email: resG.Ws.Ht}
+  
+    let obj = {}
+
+    console.log(resG)
+    if(resG.Ws !== undefined){
+      obj.email = resG.Ws.Ht
+    } else {
+      obj.email = resG.Rs.Ct
+    }
+    
     try {
       let config = {
         method: "POST",
@@ -47,7 +56,7 @@ const Login = ({ setUser, user }) => {
       };
       let res = await fetch("http://localhost:3001/api/user/login", config);
       let json = await res.json();
-      console.log(json);
+   
       if(!json.msg){
        setLogger(true)
       }else{

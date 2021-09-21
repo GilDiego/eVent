@@ -44,7 +44,10 @@ ul{
 a{
   text-decoration: none;
 }
-
+.thumbnail {
+  margin: 0 5px;
+  height: 90px;
+}
 
 /** EventStrap */
 

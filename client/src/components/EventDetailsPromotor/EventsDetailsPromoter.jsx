@@ -20,8 +20,11 @@ function DetailPromoter() {
     const detailsEvent = useSelector(state => state.detailsEvent)
     console.log(detailsEvent,'details event')
 
-    useEffect(async()=>{
-        await dispatch(getEventDetail(id))
+    useEffect(()=>{
+        async function getDetails(){
+            await dispatch(getEventDetail(id))
+        }
+        getDetails()
     },[dispatch , id])
 
     console.log('soy get detalle',getEventDetail)
