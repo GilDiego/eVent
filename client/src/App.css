@@ -1,5 +1,18 @@
 
-
+ #root{
+  position: relative;
+}
+/* #modal{
+  position: absolute;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center; 
+  background: rgba(0, 0, 0, 0.5);
+} */ 
 /**_VARIABLES__________________________________________________________________________________ */
 
 :root {

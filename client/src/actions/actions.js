@@ -11,12 +11,14 @@ export const SET_USER = 'SET_USER'
 export const GET_EVENTS_HOME = 'GET_EVENTS_HOME';
 export const GET_EVENTS = 'GET_EVENTS'; //Abi
 //filter
-export const FILTER_TAGS = 'FILTER_TAGS'; //Abi
-export const FILTER_AGE_RATING = 'FILTER_AGE_RATING'; //Abi
-export const FILTER_WEEKDAYS = 'FILTER_WEEKDAYS'; //Abi
-export const REMOVE_FILTERS = 'REMOVE_FILTERS'; //Abi
-//*Search
+
+export const FILTER_TAGS = 'FILTER_TAGS';
+export const FILTER_AGE_RATING = 'FILTER_AGE_RATING';
+export const FILTER_WEEKDAYS = 'FILTER_WEEKDAYS';
+export const REMOVE_FILTERS = 'REMOVE_FILTERS';
+export const CHANGE_MODAL = 'CHANGE_MODAL'
 export const SEARCH_NAME = 'SEARCH_NAME'; //Abi
+
 
 
 const API = 'http://localhost:3001/api/'
@@ -122,6 +124,14 @@ export function removeFilters(){
     type: REMOVE_FILTERS
   }
 }
+
+// Modal
+export function changeModal(type,message){
+  return{
+    type: CHANGE_MODAL, payload:{type,message}
+  }
+}
+
 // * Search
 export function searchName(name){
   console.log(name,'action name')
