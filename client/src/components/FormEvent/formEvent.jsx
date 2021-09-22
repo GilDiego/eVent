@@ -3,6 +3,10 @@ import './FormEvent.css'
 import { connect } from 'react-redux';
 import { postEvent } from '../../actions/actions.js';
 
+const ESTADOS = ['Aguascalientes', 'Baja California', 'Baja California Sur', 'Campeche', 'Coahuila', 'Colima', 'Chiapas', 'Chihuahua', 'Durango', 'Distrito Federal', 'Guanajuato', 'Guerrero', 'Hidalgo', 'Jalisco', 'México', 'Michoacán', 'Morelos', 'Nayarit', 'Nuevo León', 'Oaxaca', 'Puebla', 'Querétaro', 'Quintana Roo', 'San Luis Potosí', 'Sinaloa', 'Sonora', 'Tabasco', 'Tamaulipas', 'Tlaxcala', 'Veracruz', 'Yucatán', 'Zacatecas']
+const DEPARTAMENTOS = ['Amazonas', 'Antioquia', 'Arauca', 'Atlántico', 'Bolívar', 'Boyacá', 'Caldas', 'Caquetá', 'Casanare', 'Cauca', 'Cesar', 'Chocó', 'Córdoba', 'Cundinamarca', 'Guainía', 'Guaviare', 'Huila', 'La Guajira', 'Magdalena', 'Meta', 'Nariño', 'Norte de Santander', 'Putumayo', 'Quindío', 'Risaralda', 'San Andrés y Providencia', 'Santander', 'Sucre', 'Tolima', 'Valle del Cauca', 'Vaupés', 'Vichada']
+const PROVINCIAS = ['Buenos Aires', 'Catamarca', 'Chaco', 'Chubut', 'Córdoba', 'Corrientes', 'Entre Ríos', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquén', 'Río Negro', 'Salta', 'San Juan', 'San Luis', 'Santa Cruz', 'Santa Fe', 'Santiago del Estero', 'Tierra del Fuego', 'Tucumán']
+
 export function Validate(input) {
     let errors = {};
     // console.log(input, 'validate')
@@ -18,8 +22,8 @@ export function Validate(input) {
     if (input.weekdays.length === 0) {
         errors.weekdays = '*Campo obligatorio'
     }
-    if (!input.location) {
-        errors.location = '*Campo obligatorio'
+    if (!input.country) {
+        errors.country = '*Campo obligatorio'
     }
     if (!input.start_date) {
         errors.start_date = '*Campo obligatorio'
@@ -40,7 +44,10 @@ export function Validate(input) {
     //     errors.ticket_limit = '*Campo obligatorio'
     // }
     if (input.pictures.length === 0) {
-        errors.pictures = '*Campo obligatorio, mínimo 1 imagen'
+        errors.pictures = '*Campo obligatorio, mínimo 3 imagen'
+    }
+    if (input.pictures.length === 1 || input.pictures.length === 2) {
+        errors.pictures = 'Mínimo 3 imagen'
     }
     if (input.pictures.length > 5) {
         errors.pictures = 'Límite 5 imágenes'
@@ -56,7 +63,8 @@ export function FormEvent(props) {
         description: '',
         starring: '',
         address: '',
-        location: '',
+        country: '',
+        region:'',
         start_date: '',
         finish_date: '',
         isRecurrent: false,
@@ -85,7 +93,7 @@ export function FormEvent(props) {
         const res = await fetch(`https://api.cloudinary.com/v1_1/event-pf/image/upload`, op)
         const file = await res.json();
         setImg([...img, file.secure_url])
-        setTimeout(() => setEvent({ ...event, pictures: [file.secure_url, ...event.pictures] }), 1000)
+        setTimeout(() => setEvent({ ...event, pictures: [file.secure_url, ...event.pictures] }), setLoad(false), 1000)
     }
     const deletePictures = function (e) {
         e.preventDefault()
@@ -134,6 +142,7 @@ export function FormEvent(props) {
         }
     }
     const deleteScedule = function (e) {
+        e.preventDefault()
         setEvent({
             ...event,
             schedule: event.schedule.filter((d) => d !== e.target.value)
@@ -172,10 +181,22 @@ export function FormEvent(props) {
         setEvent({ ...event, tags: e.target.value })
     }
     const handleInputChange = function (e) {
-        setEvent({
-            ...event,
-            [e.target.name]: e.target.value
-        });
+        if (e.target.value === 'México' || e.target.value === 'Colombia' || e.target.value === 'Argentina' || e.target.value === '') {
+            setEvent({ ...event, country: e.target.value })
+        } else {
+            setEvent({
+                ...event,
+                [e.target.name]: e.target.value
+            });
+        }
+    }
+    const regionChange = function(e){
+        setEvent({...event,region:e.target.value})
+    }
+    const nameChange = function (e) {
+        let NAME = e.target.value
+        NAME ? NAME = NAME[0].toUpperCase() + NAME.slice(1) : NAME = e.target.value
+        setEvent({ ...event, name: NAME })
     }
     let INDEX = 0;
     return (
@@ -192,7 +213,8 @@ export function FormEvent(props) {
                         description: '',
                         starring: '',
                         address: '',
-                        location: '',
+                        country: '',
+                        region: '',
                         start_date: '',
                         finish_date: '',
                         isRecurrent: false,
@@ -202,8 +224,9 @@ export function FormEvent(props) {
                         age_rating: '',
                         price: '',
                         ticket_limit: ''
-                    }), setHour(''), setMins(''), setDay(), setImg([]), 
-                    console.log(event, '¿'), alert(`Se creo correctamente el evento '${event.name}' `), 1000)
+                    }), setHour(''), setMins(''), setDay(), setImg([]),
+                    console.log(event, '¿')
+                    , alert(`Se creo correctamente el evento '${event.name}' !`), 1000)
             } else {
                 setErrors(Validate({
                     ...event,
@@ -215,7 +238,7 @@ export function FormEvent(props) {
         }}>
             <div className='container-event'>
                 <label>Nombre del Evento: </label>
-                <><input className={errors.name && 'danger'} type='text' name='name' value={event.name} onChange={handleInputChange} placeholder='Nombre del evento' />
+                <><input className={errors.name && 'danger'} type='text' name='name' value={event.name} onChange={nameChange} placeholder='Nombre del evento' />
                     {errors.name && (<span className="danger">{errors.name}</span>)}</>
 
                 <label>Imagenes: </label>
@@ -227,12 +250,17 @@ export function FormEvent(props) {
                     <p style={{ fontFamily: 'serif', fontSize: 'smaller', textDecoration: 'underline', margin: 0 }}>esperar que cargue la imagen para seleccionar otra</p>
                     <br />
                     <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', width: '60%' }}>
+
                         {img && img.map((i) => {
                             return <div style={{ display: 'flex', alignItems: 'flex-start' }}>
                                 <button style={{ position: 'relative', left: '14%' }} key={INDEX++} value={i} onClick={deletePictures}>X</button>
                                 <img key={INDEX++} src={i} alt='foto' width='150px' height='100px' />
                             </div>
-                        })}</div>
+                        })}
+                        {load === true ?
+                            <span>cargando..</span>
+                            : null}
+                    </div>
                 </div>
 
                 <label>Descripción: </label>
@@ -241,14 +269,54 @@ export function FormEvent(props) {
                 <label>Elenco/Participantes: </label>
                 <input type='text' name='starring' value={event.starring} onChange={handleInputChange} placeholder='Ejemplo: Michael Jackson, Leonardo DiCaprio..' />
 
-                <label>Ubicación: </label>
-                <input className={errors.location && 'danger'} type='text' name='location' value={event.location} onChange={handleInputChange} placeholder='pais/provincia(estado,departamento)/ciudad' />
-                {errors.location && (<span className="danger">{errors.location}</span>)}
+                <label>País: </label>
+                {/* <input className={errors.country && 'danger'} type='text' name='country' value={event.country} onChange={handleInputChange} placeholder='pais/provincia(estado,departamento)/ciudad' /> */}
+                {errors.country && (<span className="danger">{errors.country}</span>)}
+                <select style={{ width: '50%' }} className={errors.country && 'danger'} onChange={handleInputChange}>
+                    <option value=''>Seleccionar</option>
+                    <option value='México'>México</option>
+                    <option value='Colombia'>Colombia</option>
+                    <option value='Argentina'>Argentina</option>
+                </select>
+                {event.country === 'México' ?
+                    <>
+                        <label> Estados</label>
+                        <select style={{ width: '50%' }} onChange={regionChange}>
+                        <option value=''>Seleccionar</option>
+                            {ESTADOS.map((e) => {
+                                return <option key={INDEX++} value={e}>{e}</option>
+                            })}
+                        </select>
+                    </>
+                    : event.country === 'Colombia' ?
+                        <>
+                            <label> Departamentos</label>
+                            <select style={{ width: '50%' }} onChange={regionChange}>
+                        <option value=''>Seleccionar</option>
+
+                                {DEPARTAMENTOS.map((e) => {
+                                    return <option key={INDEX++} value={e}>{e}</option>
+                                })}
+                            </select>
+                        </>
+                        : event.country === 'Argentina' ?
+                            <>
+                                <label> Provincias</label>
+                                <select style={{ width: '50%' }} onChange={regionChange}>
+                        <option value=''>Seleccionar</option>
+    
+                                    {PROVINCIAS.map((e) => {
+                                        return <option key={INDEX++} value={e}>{e}</option>
+                                    })}
+                                </select>
+                            </>
+                            : null
+                }
                 <label>Dirección: </label>
                 <input className={errors.address && 'danger'} type='text' name='address' value={event.address} onChange={handleInputChange} placeholder='Calle Falsa 123 ☺' />
                 {errors.address && (<span className="danger">{errors.address}</span>)}
                 <label>Fecha de Inicio: </label>
-                <input className={errors.start_date && 'danger'} type='text' name='start_date' value={event.start_date} onChange={handleInputChange} placeholder='AAAA/MM/DD' />
+                <input className={errors.start_date && 'danger'} type='date' name='start_date' value={event.start_date} onChange={handleInputChange} placeholder='AAAA/MM/DD' />
                 {errors.start_date && (<span className="danger">{errors.start_date}</span>)}
 
                 <label>Recurrente</label>
@@ -260,25 +328,34 @@ export function FormEvent(props) {
                 </div>
                 <>
                     <label>Fecha de finalización: </label>
-                    <input type='text' name='finish_date' value={event.finish_date} onChange={handleInputChange} placeholder='AAAA/MM/DD' />
+                    <input type='date' name='finish_date' value={event.finish_date} onChange={handleInputChange} placeholder='AAAA/MM/DD' />
                 </>
 
                 <label>Horarios: </label>
                 <div >
-                    <input className={errors.weekdays && 'danger'} style={{ width: '10%' }} type='number' min='1' max='23' name='hours' value={hour} onChange={scheduleInputChange} placeholder='horas' />
-                    :
+                    <input className={errors.weekdays && 'danger'} style={{ width: '10%' }} type='number' min='1' max='23' name='hours' value={hour} onChange={scheduleInputChange} placeholder='horas' />:
                     <input className={errors.weekdays && 'danger'} style={{ width: '10%' }} type='number' min='0' max='59' name='mins' value={mins} onChange={scheduleInputChange} placeholder='minutos' />
                     <button className='button-event' onClick={scheduleChange}>agregar</button>
                 </div>
                 {errors.schedule && (<span className="danger">{errors.schedule}</span>)}
 
                 {event.schedule.length !== 0 ?
-                    <select onChange={deleteScedule}>
-                        <option>Horarios Disponibles</option>
-                        {event.schedule.map((e, i) => {
-                            return <option key={i}>{e}</option>
-                        })}
-                    </select>
+                    <><span style={{ fontFamily: 'serif', fontSize: 'smaller' }}>si desea eliminar seleccione uno ↓</span>
+                        <select style={{ width: '50%' }} onChange={deleteScedule}>
+                            <option>Horarios Disponibles</option>
+                            {event.schedule.map((e, i) => {
+                                return <option key={i}>{e}</option>
+                            })}
+                        </select></>
+                    // OTRA OPCION: ↓↓
+                    // <ul>
+                    //     {event.schedule.map((e, i) => {
+                    //             return <>
+                    //             <button value={e} onClick={deleteScedule}>X</button>
+                    //             <li key={i}>{e}</li>
+                    //             </>
+                    //         })}
+                    // </ul>
                     : null}
 
                 <label>Días: </label>
@@ -294,12 +371,13 @@ export function FormEvent(props) {
                 {errors.weekdays && (<span className="danger">{errors.weekdays}</span>)}
 
                 {event.weekdays.length !== 0 ?
-                    <select onChange={deleteDay}>
-                        <option>Días Seleccionados</option>
-                        {event.weekdays.map((e, i) => {
-                            return <option key={i}>{e}</option>
-                        })}
-                    </select>
+                    <><span style={{ fontFamily: 'serif', fontSize: 'smaller' }}>si desea eliminar seleccione uno ↓</span>
+                        <select style={{ width: '50%' }} onChange={deleteDay}>
+                            <option>Días Seleccionados</option>
+                            {event.weekdays.map((e, i) => {
+                                return <option key={i}>{e}</option>
+                            })}
+                        </select></>
                     : null}
                 <label>Tipo de Evento: </label>
                 <div>
@@ -313,7 +391,7 @@ export function FormEvent(props) {
                 {errors.tags && (<span className="danger">{errors.tags}</span>)}
 
                 <label>Clasificación: </label>
-                <select className={errors.age_rating && 'danger'} onChange={(e) => options(e)}>
+                <select style={{ width: '50%' }} className={errors.age_rating && 'danger'} onChange={(e) => options(e)}>
                     <option value=''>Seleccionar</option>
                     <option value='0+'>0+</option>
                     <option value='7+'>7+</option>

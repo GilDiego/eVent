@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { setSideBar } from "../../actions/actions";
+import Search from "../Search/Search";
 import styles from './NavBarHome.module.css'
 
 const NavBarHome = ({ setSideBar, switchSide}) => {
@@ -17,6 +18,7 @@ const NavBarHome = ({ setSideBar, switchSide}) => {
             <i className="fas fa-bars"></i>
           </span>
         </button>
+        <Search/>
       </div>
     </div>
   );

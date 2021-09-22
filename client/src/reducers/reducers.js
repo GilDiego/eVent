@@ -4,7 +4,15 @@ import {
    SWITCH_SIDE_BAR,
    POST_EVENT,
    SET_USER,
-   GET_EVENTS_HOME
+   GET_EVENTS_HOME,
+   FILTER_TAGS,
+   FILTER_AGE_RATING,
+   FILTER_WEEKDAYS,
+   REMOVE_FILTERS,
+   CHANGE_MODAL,
+   SEARCH_NAME,
+   GET_EVENTS,
+
   } from "../actions/actions";
 
   // Pruebas para guardar usuario en el local storage
@@ -15,10 +23,20 @@ import {
     detailsEvent:[true],
     //*switch de nav-bar
     sideBarSwitch: false,
-    //*post
+    //*post //Abi
     posts:[],
     //*user
-    userState:{}
+    userState:{},
+   //modal
+    modal:{
+      render:false,
+      type:null,
+      message:null,
+    },
+    //*filter //Abi
+    filters:[],
+    home:[],
+
   };
 
  
@@ -30,6 +48,13 @@ import {
         ...state,
         eventsHome: action.payload,
       } 
+    }
+    // Abi
+    if(action.type === GET_EVENTS){
+      return{
+        ...state,
+        home:action.payload
+      }
     }
     //*__DETALLES_DE_EVENTOS
     if(action.type=== GET_DETAIL){
@@ -45,7 +70,7 @@ import {
         sideBarSwitch: action.payload
       }
     }
-    //*__POST
+    //*__POST //Abi
     if(action.type=== POST_EVENT){
       return{
         ...state,
@@ -57,6 +82,51 @@ import {
       return{
         ...state,
         userState: action.payload
+      }
+    }
+    //*__FILTER  //Abi
+    if(action.type === FILTER_TAGS){
+      return{
+        ...state,
+        filters: state.home.filter((e)=> e.tags === action.payload)
+      }
+    }
+    if(action.type === FILTER_AGE_RATING){
+      return{
+        ...state,
+        filters: state.home.filter((e)=> e.age_rating === action.payload)
+      }
+    }
+    if(action.type === FILTER_WEEKDAYS){
+      return{
+        ...state,
+        filters: state.home.filter((e)=> e.weekdays.find((day)=> day === action.payload))
+      }
+    }
+    if(action.type === REMOVE_FILTERS){
+      return{
+        ...state,
+        filters:[]
+      }
+    }
+
+    if(action.type === CHANGE_MODAL){
+     
+      return{
+        ...state,
+        modal:{
+          ...state.modal,
+          render:!state.modal.render,
+          message: action.payload.message,
+          type: action.payload.type
+        }
+      }
+    }
+    if(action.type === SEARCH_NAME){
+      return{
+        ...state,
+        home: state.home.filter((e)=> e.name.includes(action.payload))
+
       }
     }
   

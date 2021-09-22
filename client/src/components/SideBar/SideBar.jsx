@@ -1,11 +1,13 @@
 import React from "react";
 import styles from "./SideBar.module.css";
+import Filter from "../Filters/Filter";
 
 const SideBar = () => {
   return (
     <div className={styles.container}>
       <aside className={styles.aside}>
-        <h1  className={styles.title}>From Side Bar</h1>
+        <h2  className={styles.title}>Filtrar eventos por:</h2>
+        <Filter/>
       </aside>
     </div>
   );

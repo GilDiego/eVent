@@ -7,18 +7,19 @@ import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
-import FormUsers from './components/FormUsers/FormUsers.jsx';
-import FormPromoter from './components/FormPromoter/FormPromoter';
+import FormUsers from './components/FormUsers/FormUsers';
+import FormPromoter from './components/FormPromoter/FormPromoter.jsx';
 import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDetailsUsario';
 import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter'
 import FormEvent from './components/FormEvent/FormEvent.jsx';
 import Comments from './components/Comments/CreateComment/CreateComment.jsx'
 import Registration from './components/Registration/Registration';
 import UserPorfile from './components/UserPorfile/UserPorfile';
-import {Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom';
+import Modal from './components/Modal/Modal';
 
 
-function App({ setUser, user }) {
+function App({ setUser, user, modal }) {
 
 
   // Usuario en local storage
@@ -34,7 +35,7 @@ function App({ setUser, user }) {
     <>
      
       <NavBar />
-
+     
 
 
       <Route exact path='/'>
@@ -86,6 +87,7 @@ function App({ setUser, user }) {
       </Route>
 
       <Footer />
+      {modal.render?<Modal message={modal.message} type={modal.type}/>:null}
     </>
   );
 }
@@ -93,7 +95,8 @@ function App({ setUser, user }) {
 
 function mapStateToProps(state) {
   return {
-    user: state.userState
+    user: state.userState,
+    modal: state.modal
   };
 }
 export default connect(mapStateToProps, { setUser })( App);
