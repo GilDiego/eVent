@@ -1,7 +1,7 @@
 .container{
   background-color: var(--Primary);
   z-index: 100;
-  width: 300px;
+  width: 250px;
   position: sticky;
   top: 0px;
   margin-right: 0px;
@@ -17,7 +17,7 @@
 
 .aside{
     background-color: var(--Primary);
-    width: 300px;
+    width: 250px;
     height: 100vh;
     z-index: 15;
     border-radius: var(--RadiusSide);
