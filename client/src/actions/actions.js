@@ -14,6 +14,7 @@ export const FILTER_TAGS = 'FILTER_TAGS';
 export const FILTER_AGE_RATING = 'FILTER_AGE_RATING';
 export const FILTER_WEEKDAYS = 'FILTER_WEEKDAYS';
 export const REMOVE_FILTERS = 'REMOVE_FILTERS';
+export const CHANGE_MODAL = 'CHANGE_MODAL'
 
 
 const API = 'http://localhost:3001/api/'
@@ -105,5 +106,11 @@ export function filerWeekdays(type){
 export function removeFilters(){
   return{
     type: REMOVE_FILTERS
+  }
+}
+export function changeModal(type,message){
+  console.log('vamossssssssssssssssssss')
+  return{
+    type: CHANGE_MODAL, payload:{type,message}
   }
 }

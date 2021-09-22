@@ -9,6 +9,7 @@ import {
    FILTER_AGE_RATING,
    FILTER_WEEKDAYS,
    REMOVE_FILTERS,
+   CHANGE_MODAL,
   } from "../actions/actions";
 
   // Pruebas para guardar usuario en el local storage
@@ -24,7 +25,13 @@ import {
     //*user
     userState:{},
     //*filter
-    filters:[]
+    filters:[],
+
+    modal:{
+      render:false,
+      type:null,
+      message:null,
+    }
   };
 
  
@@ -88,6 +95,18 @@ import {
       return{
         ...state,
         filters:[]
+      }
+    }
+    if(action.type === CHANGE_MODAL){
+      console.log('reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee vamos')
+      return{
+        ...state,
+        modal:{
+          ...state.modal,
+          render:!state.modal.render,
+          message: action.payload.message,
+          type: action.payload.type
+        }
       }
     }
   
