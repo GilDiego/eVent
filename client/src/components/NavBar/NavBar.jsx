@@ -28,7 +28,7 @@ const NavBar = ({ user, setUser }) => {
           Home
         </Link>
         <div className="contFlex">
-          {user.email ? (
+          {user.msg ? (
             <>
 
               <Link to='/perfil'>
