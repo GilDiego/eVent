@@ -44,7 +44,10 @@ export function Validate(input) {
     //     errors.ticket_limit = '*Campo obligatorio'
     // }
     if (input.pictures.length === 0) {
-        errors.pictures = '*Campo obligatorio, mínimo 1 imagen'
+        errors.pictures = '*Campo obligatorio, mínimo 3 imagen'
+    }
+    if (input.pictures.length === 1 || input.pictures.length === 2) {
+        errors.pictures = 'Mínimo 3 imagen'
     }
     if (input.pictures.length > 5) {
         errors.pictures = 'Límite 5 imágenes'
@@ -195,7 +198,6 @@ export function FormEvent(props) {
         NAME ? NAME = NAME[0].toUpperCase() + NAME.slice(1) : NAME = e.target.value
         setEvent({ ...event, name: NAME })
     }
-    console.log(event.name, 'ok')
     let INDEX = 0;
     return (
         <form className='form-event' onSubmit={(e) => {
@@ -223,7 +225,8 @@ export function FormEvent(props) {
                         price: '',
                         ticket_limit: ''
                     }), setHour(''), setMins(''), setDay(), setImg([]),
-                    console.log(event, '¿'), alert(`Se creo correctamente el evento '${event.name}' !`), 1000)
+                    console.log(event, '¿')
+                    , alert(`Se creo correctamente el evento '${event.name}' !`), 1000)
             } else {
                 setErrors(Validate({
                     ...event,
