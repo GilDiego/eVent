@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios';
 import styles from './FormPromoter.module.css';
 import validate from './validate.js';
+import {connect} from 'react-redux'
+import {changeModal} from '../../actions/actions'
 
-function FormPromoter(){
+function FormPromoter({changeModal}){ 
 
-    const [pass, setPass] = useState({});
+    const [error, setError] = useState({});
     const [condition, setCondition] = useState({//este estado valida 
         divCountry:'',// como esta dividido el pais ?
         idNumber:'',// qu tipo de identificacion maneja el pais
@@ -38,7 +40,9 @@ function FormPromoter(){
         'Otros'
     ];
 
-
+    useEffect(()=>{
+        setError(validate(form))
+    },[])
 
     const namesInputs = (e)=>{//asiganar caracteristicas por pais
         setForm({...form, country:e.target.value});
@@ -51,6 +55,7 @@ function FormPromoter(){
         else {
             setCondition({...condition, divCountry:'Estado', idNumber:'RFC'});
         }
+        handleChange(e)
     }
 
     const handleChange = (e)=>{
@@ -58,36 +63,35 @@ function FormPromoter(){
             ...form,
             [e.target.name]: e.target.value
         });
-
-        setPass(validate({
+        console.log('voyy')
+        setError(validate({
             ...form,
             [e.target.name]: e.target.value
-          }))
+        }))
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let validation = Object.values(pass);
-        if(validation.includes(false) || validation.length === 0) {
+        let obj = validate(form)
+       
+        if(Object.keys(obj).length !== 0) {
             alert('Completa correctamente los campos');
         } else {
             try{
                 const res = await axios.post('http://localhost:3001/api/promoter',{form})
-                alert(res.data.msg); // Respuesta del back
-                alert(`Promotor creado con éxito. \n Espere 48hrs para su autorización. Bienvenido a eVent, ${form.promoter_name}!`);
-                setPass({});
-                for(const property in form){
-                    setForm(...form,form[property] = '')
-                }
-               
-                
+                //alert(res.data.msg); // Respuesta del back
+                changeModal('correct', `Promotor creado con éxito. \n Espere 48hrs para su autorización. Bienvenido a eVent, ${form.promoter_name}!`)
+                //alert(`Promotor creado con éxito. \n Espere 48hrs para su autorización. Bienvenido a eVent, ${form.promoter_name}!`);
+                setError({});
+                //window.location.reload()
+                //e.target.reset()
+  
             }catch(error){
                 console.log('catchhh',error);
                 alert("No hubo caso. Chequea los datos");
             }
-
-            //alert(`${form.promoter_name}  `)
         }
+        
     }
 
     return (
@@ -109,7 +113,7 @@ function FormPromoter(){
                             <option value="Colombia">Colombia</option>
                             <option value="Mexico">México</option>
                         </select>
-                        {form.country &&
+                        {!error.country &&
                             <span className={styles.tick}> ✓ </span>
                         }
                     </div>
@@ -119,24 +123,28 @@ function FormPromoter(){
                             <div className={styles.ubication}>
                                 <div className={styles.row}>
                                     <span>{condition.divCountry}: </span>
-                                    <input
-                                        type="text"
-                                        name='state'
-                                    
-                                        onChange={handleChange}
-                                        className={!form.state && styles.errorState}
-                                    />
-                                    { pass.state && <span className={styles.tick}> ✓ </span> }
+                                    <div className={styles.inputCheck}>
+                                        <input
+                                            type="text"
+                                            name='state'
+
+                                            onChange={handleChange}
+                                            className={!form.state && styles.errorState}
+                                        />
+                                        <span className={styles.tick}>{!error.state && '✓' }</span> 
+                                    </div>
                                 </div>
                                 <div className={styles.row}>
                                     <span>Ciudad/Municipio: </span>
-                                    <input
-                                        type="text"
-                                        name='city'
-                                        onChange={handleChange}
-                                        className={!form.city && styles.errorState}
-                                    />
-                                    { pass.city && <span className={styles.tick}> ✓ </span> }
+                                    <div>
+                                        <input
+                                            type="text"
+                                            name='city'
+                                            onChange={handleChange}
+                                            className={!form.city && styles.errorState}
+                                        />
+                                        <span className={styles.tick}>{ !error.city && '✓'}  </span> 
+                                    </div>
                                 </div>
                             </div>
                              {/*Informacion empresarial*/}
@@ -153,7 +161,7 @@ function FormPromoter(){
                                         <option value="" disabled>Selecciona:</option>
                                         {businessTypes.map((el) => <option value={el}>{el}</option>)}
                                     </select>
-                                    {pass.business_type &&
+                                    {!error.business_type &&
                                         <span className={styles.tick}> ✓ </span>
                                     }
                                 </div>
@@ -166,7 +174,7 @@ function FormPromoter(){
                                         onChange={handleChange}
                                         className={!form.business_name && styles.errorState}
                                     />
-                                    {pass.business_name && <span className={styles.tick}> ✓ </span>}
+                                    {!error.business_name && <span className={styles.tick}> ✓ </span>}
                                     {/*legal_name*/}
                                 </div>
                                 <div className={styles.row}>
@@ -176,7 +184,7 @@ function FormPromoter(){
                                         name='legal_name'
                                         onChange={handleChange}
                                     />
-                                    {pass.legal_name && <span className={styles.tick}> ✓ </span> }
+                                    {!error.legal_name && <span className={styles.tick}> ✓ </span> }
                                 </div>
                                 <div className={styles.row}>
                                     <span >{condition.idNumber}: </span>
@@ -185,7 +193,7 @@ function FormPromoter(){
                                         type="text"
                                         onChange={handleChange}
                                     />
-                                    {pass.tax_id &&
+                                    {!error.tax_id &&
                                         <span className={styles.tick}> ✓ </span>
                                     }
                                 </div>
@@ -196,7 +204,7 @@ function FormPromoter(){
                                         name='address'
                                         onChange={handleChange}
                                     />
-                                    {pass.address &&
+                                    {!error.address &&
                                         <span className={styles.tick}> ✓ </span>
                                     }
                                 </div>
@@ -210,7 +218,7 @@ function FormPromoter(){
                                         name='promoter_name'
                                         onChange={handleChange}
                                     />
-                                    {pass.promoter_name && <span className={styles.tick}> ✓ </span> }
+                                    {!error.promoter_name && <span className={styles.tick}> ✓ </span> }
                                 </div>
                                 <div className={styles.row}>
                                     <span>Apellido: </span>
@@ -219,7 +227,7 @@ function FormPromoter(){
                                         name='promoter_lastName'
                                         onChange={handleChange}
                                     />
-                                    {pass.promoter_lastName && <span className={styles.tick}> ✓ </span> }
+                                    {!error.promoter_lastName && <span className={styles.tick}> ✓ </span> }
                                 </div>
                                 <div className={styles.row}>
                                     <span>Teléfono (sólo números): </span>
@@ -228,7 +236,7 @@ function FormPromoter(){
                                         name='phone'
                                         onChange={handleChange}
                                     />
-                                    {pass.phone &&
+                                    {!error.phone &&
                                         <span className={styles.tick}> ✓ </span>
                                     }
                                 </div>
@@ -243,7 +251,7 @@ function FormPromoter(){
                                         placeholder='usuario@dominio.abc'
                                         onChange={handleChange}
                                     />
-                                    {pass.email &&
+                                    {!error.email &&
                                         <span className={styles.tick}> ✓ </span>
                                     }
                                 </div>
@@ -255,7 +263,7 @@ function FormPromoter(){
                                         placeholder='¡Si no tilda, no es segura!'
                                         onChange={handleChange}
                                     />
-                                    {pass.password &&
+                                    {!error.password &&
                                         <span className={styles.tick}> ✓ </span>
                                     }
                                 </div>
@@ -270,6 +278,10 @@ function FormPromoter(){
         </div>
        )
 }
-
-export default FormPromoter;
+function mapStateToProps(state){
+    return{
+        modal:state.modal
+    }
+}
+export default connect(null,{changeModal})(FormPromoter);
 

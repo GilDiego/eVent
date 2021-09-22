@@ -32,7 +32,7 @@ import {
       render:false,
       type:null,
       message:null,
-    }
+    },
     //*filter //Abi
     filters:[],
     home:[],
@@ -121,7 +121,7 @@ import {
           type: action.payload.type
         }
       }
-
+    }
     if(action.type === SEARCH_NAME){
       return{
         ...state,
