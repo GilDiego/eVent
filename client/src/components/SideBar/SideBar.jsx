@@ -6,7 +6,7 @@ const SideBar = () => {
   return (
     <div className={styles.container}>
       <aside className={styles.aside}>
-        <h2  className={styles.title}>Side Bar</h2>
+        <h2  className={styles.title}>Filtrar eventos por:</h2>
         <Filter/>
       </aside>
     </div>
