@@ -5,7 +5,8 @@ import { useEffect,useState} from 'react'
 import  {useDispatch , useSelector} from 'react-redux'
 import {useParams} from 'react-router-dom'
 import {getEventDetail} from '../../../actions/actions'
-import { Carousel } from 'react-carousel-minimal';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 import Loading from '../../Loading/Loading'
 import styles from './EventDetailsUsario.module.css'
 
@@ -26,9 +27,10 @@ export default function EventDetailsUsario() {
        
         useEffect(async()=>{
             await dispatch(getEventDetail(id))
+          
         },[dispatch , id])
         
-       const  [picture, setPicture]=useState(false)
+       
       
       
      const slideNumberStyle = {
@@ -37,15 +39,46 @@ export default function EventDetailsUsario() {
       }
         
         if(!detailsEvent[0]=== true){
-
-            let data = [];
-            let picture = detailsEvent.result.pictures
             
-    
-             for (let index = 0; index < picture.length; index++) {
-              const img=  data.push({image:picture[index]});
+            let data=[];
+            let data2=[];
+            let data3 = [];
+            let data4=[];
+            let data5=[];
+            
+
+            let picture = detailsEvent.result.pictures
+
+            data.push(picture[0])
+            data2.push(picture[1])
+            data3.push(picture[2])
+            data4.push(picture[3])
+            data5.push(picture[4])
+            
+             console.log('holis soy elemento o de picture',data)
+             console.log('holis soy elemento o de picture',data2)
+             console.log('holis soy elemento o de picture',data3)
+             console.log('holis soy elemento o de picture',data4)
+             console.log('holis soy elemento o de picture',data5)
+            
+
+
+
+             // si pictues lenght pictures  tiene 3 retorname este si tiene 4 retorname este otro y si tiene 5 retorname este otro 
+            //  for (let index = 0; index < picture.length; index++) {
+            //      data6.push(picture[4])
+               
                 
-             }
+            //  }
+            //  const image =data6.filter((e)=>{
+            //       return e[0]
+            //  })
+            //  console.log('hola soy image2',image)
+            
+            //  console.log('holis soy data6',data6)
+          //si data es iguala a 3 retorname data3  el carrucel lo ponemos en el if donde le paso solo la  data 3
+          // y asi con 4,5,6
+
         return(
             
             <div className={styles.detailsAllUser}>
@@ -57,30 +90,152 @@ export default function EventDetailsUsario() {
                         <div className='deailscard2User'>
                             <h1 className={styles.titleCard}>{detailsEvent.result.name}</h1>
                             <div className='img'>
-                         
-                              <Carousel   
-                                    data={data}
-                                    time={5000}
-                                    width="650px"
-                                    height="400px"
-                                    radius="10px"
-                                    slideNumber={true}
-                                    slideNumberStyle={slideNumberStyle}
-                                    captionPosition="bottom"
-                                    automatic={false}
-                                    dots={true}
-                                    pauseIconColor="white"
-                                    pauseIconSize="40px"
-                                    slideBackgroundColor="darkgrey"
-                                    slideImageFit="auto"
-                                    thumbnails={true}
-                                    thumbnailWidth="100px"
-                                    style={{
-                                    maxWidth: "650px",
-                                    maxHeight: "450px",
-                                    margin: "40px auto",
-                            }} />
-                    
+                            {/* {(()=>{
+                                console.log('entre al if ')
+                                if(picture.length===1){
+                                    {console.log('entre antes del carrucel',picture.length)}
+                                    <Carousel 
+                                    showArrows={true} 
+         
+                                    >
+                                        <div>
+                                         <img src={data} id='img'/>
+                                         {console.log('hola soy dat dentro de carrucel',data)}
+                                         <p className={styles.description}>{ detailsEvent.result.description}</p>
+                                     </div>
+                                    </Carousel>
+                                }else if(picture.length===2){
+                                    
+                                    <Carousel 
+                                    showArrows={true} 
+         
+                                    >
+                                    <div>
+                                         <img src={data} id='img'/>
+                                         <p className={styles.description}>{ detailsEvent.result.description}</p>
+                                     </div>
+                                     <div>
+                                         <img src={data2} id='img'/>
+                                         <p className={styles.description}>{ detailsEvent.result.description}</p>
+                                     </div>
+                                    </Carousel>
+                                }else if(picture.length===3){
+                                    <Carousel 
+                                    showArrows={true} 
+         
+                                    >
+                                    <div>
+                                         <img src={data} id='img'/>
+                                         <p className={styles.description}>{ detailsEvent.result.description}</p>
+                                     </div>
+                                     <div>
+                                         <img src={data2} id='img'/>
+                                         <p className={styles.description}>{ detailsEvent.result.description}</p>
+                                     </div>
+                                     <div>
+                                         <img src={data3} id='img'/>
+                                         <p className={styles.description}>{ detailsEvent.result.description}</p>
+                                     </div>
+                                     </Carousel>
+                                }else if(picture.length===4){
+                                    <Carousel 
+                                    showArrows={true} 
+         
+                                    >
+                                    <div>
+                                         <img src={data} id='img'/>
+                                         <p className={styles.description}>{ detailsEvent.result.description}</p>
+                                     </div>
+                                     <div>
+                                         <img src={data2} id='img'/>
+                                         <p className={styles.description}>{ detailsEvent.result.description}</p>
+                                     </div>
+                                     <div>
+                                         <img src={data3} id='img'/>
+                                         <p className={styles.description}>{ detailsEvent.result.description}</p>
+                                     </div>
+                                     <div>
+                                         <img src={data4} id='img'/>
+                                         <p className={styles.description}>{ detailsEvent.result.description}</p>
+                                     </div>
+                                     </Carousel>
+                                }else if(picture.length===6){
+                                    {console.log('hoa te odio')}
+
+                        
+                                    <Carousel 
+                                    showArrows={true} 
+         
+                                    >
+                                        
+                                    <div>
+                                         <img src={data} id='img'/>
+                                         {console.log('hola soy data dentro de carrucel',data)}
+                                         <p className={styles.description}>{ detailsEvent.result.description}</p>
+                                     </div>
+                                     <div>
+                                         <img src={data2} id='img'/>
+                                         <p className={styles.description}>{ detailsEvent.result.description}</p>
+                                     </div>
+                                     <div>
+                                         <img src={data3} id='img'/>
+                                         <p className={styles.description}>{ detailsEvent.result.description}</p>
+                                     </div>
+                                     <div>
+                                         <img src={data4} id='img'/>
+                                         <p className={styles.description}>{ detailsEvent.result.description}</p>
+                                     </div>
+                                     <div>
+                                         <img src={data5} id='img'/>
+                                         <p className={styles.description}>{ detailsEvent.result.description}</p>
+                                     </div>
+                                     </Carousel>
+                                }
+                                
+                                
+                                })()} */}
+
+                          
+                                   <Carousel 
+                                    showArrows={true} 
+                                    axis={'horizontal'}
+                                    autoFocus={true}
+                                    autoPlay={true}
+                                    centerMode={false}
+                                    centerSlidePercentage={40}
+                                    dynamicHeight={false}
+                                    emulateTouch={true}
+                                    infiniteLoop={true}
+                                    interval={5000}
+                                    stopOnHover={false}
+                                    swipeScrollTolerance={0}
+                                    thumbWidth={90}
+                                    width={1000}
+                                    
+                                    >
+                                        
+                                    <div>
+                                         <img src={data} id='img'/>
+                                         {console.log('hola soy data dentro de carrucel',data)}
+                                         <p className={styles.description}>{ detailsEvent.result.description}</p>
+                                     </div>
+                                     <div>
+                                         <img src={data2} id='img'/>
+                                         <p className={styles.description}>{ detailsEvent.result.description}</p>
+                                     </div>
+                                     <div>
+                                         <img src={data3} id='img'/>
+                                         <p className={styles.description}>{ detailsEvent.result.description}</p>
+                                     </div>
+                                     <div>
+                                         <img src={data4} id='img'/>
+                                         <p className={styles.description}>{ detailsEvent.result.description}</p>
+                                     </div>
+                                     <div>
+                                         <img src={data5} id='img'/>
+                                         <p className={styles.description}>{ detailsEvent.result.description}</p>
+                                     </div>
+                                     </Carousel>
                                  
                       </div>  
                             <div className={styles.otherDetailsUser}>  
