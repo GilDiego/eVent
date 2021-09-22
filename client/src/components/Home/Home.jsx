@@ -8,7 +8,7 @@ import NavBarHome from "../NavBarHome/NavBarHome";
 import activitiesList from "../../FakeDB/FakeDB";
 import { getEventsHome } from "../../actions/actions";
 
-const Home = ({ switchSide, getEventsHome, events }) => {
+const Home = ({ switchSide, getEventsHome, events, filters }) => {
   //* La informacion de las actividades esta en el archivo FakeDB
 
   useEffect(() => {
@@ -25,7 +25,10 @@ const Home = ({ switchSide, getEventsHome, events }) => {
         </div>: <div></div> }
       <div>
         <Carousel />
-        <ActivityCards events={events} />
+        {filters.length > 0 ?
+        <ActivityCards events={filters}/>
+        :<ActivityCards events={events} />}
+        
       </div>
     
     </div>
@@ -37,6 +40,7 @@ function mapStateToProps(state) {
   return {
     events: state.eventsHome,
     switchSide: state.sideBarSwitch,
+    filters: state.filters
   };
 }
 

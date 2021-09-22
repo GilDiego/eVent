@@ -13,19 +13,25 @@ exports.getController = async (req,res) => {
             id,
             name,
             price,
+            // country,
+            // region,
             location,
             pictures,
             tags,
             age_rating,
+            weekdays
         } = dataValues;
 
         return {
             id,
             name,
             price,
+            // country,
+            // region,
             location,
             tags,
             age_rating,
+            weekdays,
             pictures
         };
     })

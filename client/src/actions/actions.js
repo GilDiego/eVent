@@ -4,11 +4,19 @@ export const GET_DETAIL = "GET_DETAIL"
 //*detalle switch
 export const SWITCH_SIDE_BAR = 'SWITCH_SIDE_BAR';
 //*event
-export const POST_EVENT = 'POST_EVENT';
+export const POST_EVENT = 'POST_EVENT'; //Abi
 //*user
 export const SET_USER = 'SET_USER'
 //*activities home
-export const GET_EVENTS_HOME = 'GET_EVENTS_HOME'
+export const GET_EVENTS_HOME = 'GET_EVENTS_HOME';
+export const GET_EVENTS = 'GET_EVENTS'; //Abi
+//filter
+export const FILTER_TAGS = 'FILTER_TAGS'; //Abi
+export const FILTER_AGE_RATING = 'FILTER_AGE_RATING'; //Abi
+export const FILTER_WEEKDAYS = 'FILTER_WEEKDAYS'; //Abi
+export const REMOVE_FILTERS = 'REMOVE_FILTERS'; //Abi
+//*Search
+export const SEARCH_NAME = 'SEARCH_NAME'; //Abi
 
 
 const API = 'http://localhost:3001/api/'
@@ -28,6 +36,18 @@ export function getEventsHome(){
     }
   };
 }
+ // GET_EVENTs Abi
+ export function getEvents(){
+   return function(dispatch){
+     axios.get(`${API}main`)
+     .then((res)=>{
+       dispatch({
+         type:GET_EVENTS,
+         payload:res.data
+       })
+     })
+   }
+ }
 
 //*_detalle dafne_____________________________________________________ 
 export function getEventDetail(id){
@@ -65,12 +85,48 @@ export function setUser(user){
 export function postEvent(event){
   console.log(event,'event ACTIONS')
   return function(dispatch){
-    axios.post(`http://localhost:3001/api/event`,event)
+    axios.post(`${API}event`,event)
     .then((res)=> {
       dispatch({
         type:POST_EVENT,
         payload: res.data
       })
     })
+  }
+}
+
+// * FILTER 
+export function filterTags(type){
+  console.log(type,'action')
+  return{
+    type:FILTER_TAGS,
+    payload: type
+  }
+}
+export function filterAgeRating(type){
+  console.log(type,'action rating')
+  return{
+    type:FILTER_AGE_RATING,
+    payload: type
+  }
+}
+export function filerWeekdays(type){
+  console.log(type,'action weekdays')
+  return{
+    type:FILTER_WEEKDAYS,
+    payload: type
+  }
+}
+export function removeFilters(){
+  return{
+    type: REMOVE_FILTERS
+  }
+}
+// * Search
+export function searchName(name){
+  console.log(name,'action name')
+  return{
+    type: SEARCH_NAME,
+    payload: name
   }
 }
