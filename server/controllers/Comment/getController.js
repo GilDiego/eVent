@@ -1,7 +1,7 @@
 const Comment = require('../../database/models/Comment');
 const User = require('../../database/models/User');
 
-
+// Diego: Antiguo y original get de comments, guardandolo por un rato mas por seguridad...
 // exports.getAllComments = (req, res) => {
 
 //     Comment.findAll({
@@ -19,6 +19,7 @@ const User = require('../../database/models/User');
 
 // }
 
+// Nuevo get de comments. Separa todos los comentarios por rating y los envia en un objeto.
 exports.getAllComments = async (req, res) => {
     try {
         // Fetches all comments
@@ -102,36 +103,3 @@ exports.getGeneralRating = async (req, res) => {
 
 
 }
-
-// exports.getSomeComments = async (req, res) => {
-    //     const { id } = req.query;
-
-    //     // switch with 5 cases. conditional to fill array with varied comments.
-
-
-    // }
-    // exports.getAllComments = async (req, res) => {
-
-    //     const consult = await Comment.findAll({
-    //         include: User,
-
-    //     })
-
-    //     if (!consult.length > 4) {
-    //         let lowRating = []
-    //         let highRating = []
-    //         consult.forEach(comment => Number(comment.rating) > 3 ? 
-    //             highRating.push(Number(comment.rating)) 
-    //             : 
-    //             lowRating.push(Number(comment.rating))
-    //         )
-    //         res.json('hola')
-    //     }
-    //     else res.json(consult)
-
-    //         .catch(error => {
-    //             console.log(error);
-    //             res.json({ msg: 'error!!' })
-    //         })
-
-    // }

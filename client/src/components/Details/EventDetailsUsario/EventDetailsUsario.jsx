@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createContext, useContext }from 'react'
 import DisplayComments from '../../Comments/DisplayComments/DisplayComments'
 import { Link } from 'react-router-dom'
 import { useEffect,useState} from 'react'
@@ -21,6 +21,7 @@ export default function EventDetailsUsario() {
         const dispatch = useDispatch()
         const params =useParams()
         const {id}=params
+        const context = createContext()
         const detailsEvent = useSelector(state => state.detailsEvent)
         console.log(detailsEvent,'details event')
        
@@ -117,17 +118,22 @@ export default function EventDetailsUsario() {
                     <button className={styles.button}>Reservar</button>
                     <Link to={{
                         pathname:'/nuevoComentario',
-                        state: id
+                        state: {
+                            id: id,
+                            eventName: detailsEvent.result.name
+                        }
+                        
                     }}>
                     <button className={styles.button}>Reseña</button>
                     </Link>
                 </div>
-                {/* <div className='comments-container'>
+                <div className='comments-container'>
+                
                         <DisplayComments state={id}/>
                         <br />
                         <br />
 
-                </div> */}
+                </div>
 
                          </div>: <Loading/>
     
