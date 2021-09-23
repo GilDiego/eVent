@@ -17,7 +17,7 @@ import Registration from './components/Registration/Registration';
 import UserPorfile from './components/UserPorfile/UserPorfile';
 import {Redirect} from 'react-router-dom';
 import Modal from './components/Modal/Modal';
-
+import PromotorePorfile from './components/PromotorePorfile/PromotoreProfile';
 
 function App({ setUser, user, modal }) {
 
@@ -82,8 +82,13 @@ function App({ setUser, user, modal }) {
       </Route>
 
       <Route exact path='/perfil' >
-        {console.log(user)}
-         {user.googleId? <UserPorfile/> : <Redirect to='/login'/>}
+        {/* {console.log(user)} */}
+         {user.googleId? 
+         <UserPorfile/> : <Redirect to='/login'/>  } 
+      </Route>
+
+      <Route path='/perfilPromotor'>
+        <PromotorePorfile />
       </Route>
 
       <Footer />
