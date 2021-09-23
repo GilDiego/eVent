@@ -61,7 +61,20 @@ a{
   margin: 0 5px;
   height: 90px;
 }
+.carousel-caption-bottom{
+ opacity: 0%;
+ font-size: 18px;
+ 
+}
 
+.carousel-caption-bottom:hover{
+  
+  opacity: 100%;
+  font-size: 18px;
+  background: var(--Black ) 50%;
+  
+
+}
 /** EventStrap */
 
 /** Cards */

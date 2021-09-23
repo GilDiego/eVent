@@ -1,20 +1,22 @@
 import React from 'react'
 import DisplayComments from '../../Comments/DisplayComments/DisplayComments'
 import { Link } from 'react-router-dom'
-import { useEffect,useState} from 'react'
+import { useEffect} from 'react'
 import  {useDispatch , useSelector} from 'react-redux'
 import {useParams} from 'react-router-dom'
 import {getEventDetail} from '../../../actions/actions'
 import { Carousel } from 'react-carousel-minimal';
 import Loading from '../../Loading/Loading'
 import styles from './EventDetailsUsario.module.css'
+import Logo from '../../../Utilities/logodivinacodi.gif'
+import eVent from '../../../Utilities/eVent-05.svg'
 
 //Diego: Componente que muestra los detalles de un evento para el tipo Usuario.
 export default function EventDetailsUsario() {
 
 
     // Diego: Variable solo para que no tire Warning en la consola sobre unique keys
-    let listId = 0
+ 
 
   
         
@@ -28,24 +30,62 @@ export default function EventDetailsUsario() {
             await dispatch(getEventDetail(id))
         },[ id])
         
-       const  [picture, setPicture]=useState(false)
-      
+       
+      const  logo = Logo 
+      console.log('soy logo',logo)
+      const event = eVent
+      console.log('soy event ',event)
+
       
      const slideNumberStyle = {
         fontSize: '20px',
         fontWeight: 'bold',
       }
+    //   const captionStyle = {
+    //     fontSize: '2em',
+    //     fontWeight: 'bold',
         
+    //   }
+
         if(!detailsEvent[0]=== true){
 
-            let data = [];
+            let data3 = [];
+            let data4 = [];
+            let data5= [];
             let picture = detailsEvent.result.pictures
             
-    
-             for (let index = 0; index < picture.length; index++) {
-              const img=  data.push({image:picture[index]});
+            
+            if(picture.length===3){
                 
+                //data3.shift()
+             for (let index = 0; index < picture.length; index++) {
+              const img=  data3.push({image:picture[index], caption:detailsEvent.result.description});
+                 
              }
+             data3.push({image:logo})
+              data3.push({image:event})
+            } 
+             else if (picture.length===4){
+               
+                for (let index = 0; index < picture.length; index++) {
+                    const img=  data4.push({image:picture[index], caption:detailsEvent.result.description});
+                    
+                      
+                   }
+                   data4.push({image:logo})
+
+             }else {
+                for (let index = 0; index < picture.length; index++) {
+                    const img=  data5.push({image:picture[index],caption:detailsEvent.result.description});
+                      
+                   }
+             }
+             
+               console.log('holis hermosa soy data 3 ',data3)
+               console.log('holis hermosa soy data 4 ',data4)
+               console.log('holis hermosa soy data 5 ',data5)
+
+
         return(
             
             <div className={styles.detailsAllUser}>
@@ -57,29 +97,107 @@ export default function EventDetailsUsario() {
                         <div className='deailscard2User'>
                             <h1 className={styles.titleCard}>{detailsEvent.result.name}</h1>
                             <div className='img'>
-                         
+                                
+                              {(()=>{if(picture.length===3)return(
+                                  <Carousel   
+                                  data={data3}
+                                  time={5000}
+                                  width="650px"
+                                  height="400px"
+                                  radius="10px"
+                                  //captionStyle={captionStyle}
+                                  slideNumber={true}
+                                  slideNumberStyle={slideNumberStyle}
+                                  captionPosition="bottom"
+                                  automatic={true}
+                                  dots={false}
+                                  pauseIconColor="white"
+                                  pauseIconSize="40px"
+                                  slideBackgroundColor="darkgrey"
+                                  slideImageFit="auto"
+                                  thumbnails={true}
+                                  thumbnailWidth="100px"
+                                  style={{
+                                  maxWidth: "650px",
+                                  maxHeight: "450px",
+                                  margin: "40px auto",
+                          }} />
+                              
+                        
+                              )
+                              else if(picture.length===4)return(
+                                <Carousel   
+                                data={data4}
+                                time={5000}
+                                width="650px"
+                                height="400px"
+                                radius="10px"
+                                slideNumber={true}
+                                slideNumberStyle={slideNumberStyle}
+                                captionPosition="bottom"
+                                automatic={true}
+                                dots={true}
+                                pauseIconColor="white"
+                                pauseIconSize="40px"
+                                slideBackgroundColor="darkgrey"
+                                slideImageFit="auto"
+                                thumbnails={true}
+                                thumbnailWidth="100px"
+                                style={{
+                                maxWidth: "650px",
+                                maxHeight: "450px",
+                                margin: "40px auto",
+                        }} />
+                              )
+                              else if(picture.length===5)return(   
                               <Carousel   
-                                    data={data}
-                                    time={5000}
-                                    width="650px"
-                                    height="400px"
-                                    radius="10px"
-                                    slideNumber={true}
-                                    slideNumberStyle={slideNumberStyle}
-                                    captionPosition="bottom"
-                                    automatic={false}
-                                    dots={true}
-                                    pauseIconColor="white"
-                                    pauseIconSize="40px"
-                                    slideBackgroundColor="darkgrey"
-                                    slideImageFit="auto"
-                                    thumbnails={true}
-                                    thumbnailWidth="100px"
-                                    style={{
-                                    maxWidth: "650px",
-                                    maxHeight: "450px",
-                                    margin: "40px auto",
-                            }} />
+                                data={data5}
+                                time={5000}
+                                width="650px"
+                                height="400px"
+                                radius="10px"
+                                slideNumber={true}
+                                slideNumberStyle={slideNumberStyle}
+                                captionPosition="bottom"
+                                automatic={true}
+                                dots={true}
+                                pauseIconColor="white"
+                                pauseIconSize="40px"
+                                slideBackgroundColor="darkgrey"
+                                slideImageFit="auto"
+                                thumbnails={true}
+                                thumbnailWidth="100px"
+                                style={{
+                                maxWidth: "650px",
+                                maxHeight: "450px",
+                                margin: "40px auto",
+                        }} />)
+                        else{return(
+                            <Carousel   
+                            data={data5}
+                            time={5000}
+                            width="650px"
+                            height="400px"
+                            radius="10px"
+                            slideNumber={true}
+                            slideNumberStyle={slideNumberStyle}
+                            captionPosition="bottom"
+                            automatic={true}
+                            dots={true}
+                            pauseIconColor="white"
+                            pauseIconSize="40px"
+                            slideBackgroundColor="darkgrey"
+                            slideImageFit="auto"
+                            thumbnails={true}
+                            thumbnailWidth="100px"
+                            style={{
+                            maxWidth: "650px",
+                            maxHeight: "450px",
+                            margin: "40px auto",
+                    }} />
+                        )}
+                              })()}
+                              
                     
                                  
                       </div>  
