@@ -24,10 +24,12 @@ const Home = ({ switchSide, getEventsHome, events, filters }) => {
         <SideBar />
         </div>: <div></div> }
       <div>
-        <Carousel />
+        {/* <Carousel /> */}
         {filters.length > 0 ?
         <ActivityCards events={filters}/>
-        :<ActivityCards events={events} />}
+        :<div>
+        <Carousel />
+          <ActivityCards events={events} /></div>}
         
       </div>
     
