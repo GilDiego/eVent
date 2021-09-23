@@ -4,8 +4,8 @@ import styles from './PromotorePorfile.module.css';
 const PromotorePorfile = () =>{
     return(
         <div className={styles.contPrin}>
-            <div className={styles.contPorfile}>
-                <div className={styles.imgPorfile}>
+            <div className={styles.contProfile}>
+                <div className={styles.imgProfile}>
                     <img src="" alt="" />
                 </div>
             </div>
