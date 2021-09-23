@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.contPorfile {
+.contProfile {
     position: relative;
     background: var(--Secondary);
     width: 70%;
@@ -17,7 +17,7 @@
     justify-content: center;
 }
 @media (max-width: 768px) { 
-    .contPorfile{
+    .contProfile{
         position: relative;
         background: black;
         width: 100%;
@@ -35,13 +35,20 @@
       }
     } */
 
-.imgPorfile{
+.imgProfile{
     position: absolute;
     background: gray;
     width: 200px;
     height: 200px;
     border-radius: 50%;
     top:25px;
+    overflow: hidden;
+}
+
+.imgProfile img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .contInfo {
