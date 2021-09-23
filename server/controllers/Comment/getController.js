@@ -27,7 +27,6 @@ exports.getAllComments = async (req, res) => {
 
         })
         // Sorts comments into arrays by rating
-        console.log(consult)
         if (consult.length) {
             let result = {
                 oneStar: [],
@@ -37,7 +36,7 @@ exports.getAllComments = async (req, res) => {
                 fiveStars: []
             }
             consult.forEach(comment => {
-                switch (Number(comment.rating)) {
+                switch (parseInt(comment.rating)) {
                     case 1:
                         result.oneStar.push(comment)
                         break;
@@ -53,7 +52,6 @@ exports.getAllComments = async (req, res) => {
                     case 5:
                         result.fiveStars.push(comment)
                         break;
-
                     default:
                         break;
                 }
