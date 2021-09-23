@@ -11,32 +11,30 @@ import FormUsers from './components/FormUsers/FormUsers';
 import FormPromoter from './components/FormPromoter/FormPromoter.jsx';
 import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDetailsUsario';
 import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter'
-import FormEvent from './components/FormEvent/FormEvent.jsx';
+import FormEvent from './components/FormEvent/FormEvent';
 import Comments from './components/Comments/CreateComment/CreateComment.jsx'
 import Registration from './components/Registration/Registration';
 import UserPorfile from './components/UserPorfile/UserPorfile';
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import Modal from './components/Modal/Modal';
-
+import PromotorePorfile from './components/PromotorePorfile/PromotoreProfile';
 
 function App({ setUser, user, modal }) {
-
+  
 
   // Usuario en local storage
-  let loginUser = JSON.parse(localStorage.getItem( 'User' )) 
+  let loginUser = JSON.parse(localStorage.getItem('User'))
   useEffect(() => {
-    if( loginUser){
+    if (loginUser) {
       setUser(loginUser)
-    }else
-    setUser({})
+    } else
+      setUser({})
   }, [setUser])
 
   return (
     <>
-     
-      <NavBar />
-     
 
+      <NavBar />
 
       <Route exact path='/'>
         <Home />
@@ -62,7 +60,7 @@ function App({ setUser, user, modal }) {
         <EventDetailsUsario />
       </Route>
 
-       <Route path='/FormEvent' >
+      <Route path='/FormEvent' >
         <FormEvent />
       </Route>
 
@@ -72,22 +70,20 @@ function App({ setUser, user, modal }) {
 
       <Route path='/perfil' >
         {console.log(user)}
-         {user.googleId? <UserPorfile/> : <Redirect to='/login'/>}
+        {user.msg? <UserPorfile/> : <Redirect to='/login'/>}
       </Route>
 
 
-      {/* Diego: Ruta provisional para pruebas de Comentarios */}
       <Route path='/nuevoComentario'>
         <Comments />
       </Route>
 
-      <Route exact path='/perfil' >
-        {console.log(user)}
-         {user.googleId? <UserPorfile/> : <Redirect to='/login'/>}
+      <Route path='/perfilPromotor'>
+        <PromotorePorfile />
       </Route>
 
       <Footer />
-      {modal.render?<Modal message={modal.message} type={modal.type}/>:null}
+      {modal.render ? <Modal message={modal.message} type={modal.type} /> : null}
     </>
   );
 }
@@ -99,4 +95,4 @@ function mapStateToProps(state) {
     modal: state.modal
   };
 }
-export default connect(mapStateToProps, { setUser })( App);
+export default connect(mapStateToProps, { setUser })(App);
