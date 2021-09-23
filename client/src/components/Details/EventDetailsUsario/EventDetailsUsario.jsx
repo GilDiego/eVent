@@ -13,25 +13,24 @@ import Logo from '../../../Utilities/logodivinacodi.gif'
 import eVent from '../../../Utilities/eVent-05.svg'
 
 const pushDta=(detailsEvent)=>{
-    let data = []
+    let data = [];
     let picture = detailsEvent.result?.pictures
     
     for (let index = 0; index < picture?.length; index++) {
         data.push({image:picture[index],caption:detailsEvent.result.description})
         console.log(data)
     }
-    return data
+    return data;
 }
 //Diego: Componente que muestra los detalles de un evento para el tipo Usuario.
 export default function EventDetailsUsario() {
 
-    
     // Diego: Variable solo para que no tire Warning en la consola sobre unique keys
-        
         const [render, setRender] = useState(false)
         const [data , setData] = useState()
         const dispatch = useDispatch()
         const params =useParams()
+        const [data , setData] = useState();
         const {id}=params
         const detailsEvent = useSelector(state => state.detailsEvent)
 
