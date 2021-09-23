@@ -27,6 +27,7 @@ export default function EventDetailsUsario() {
 
     // Diego: Variable solo para que no tire Warning en la consola sobre unique keys
         const [render, setRender] = useState(false)
+        const [data , setData] = useState()
         const dispatch = useDispatch()
         const params =useParams()
         const [data , setData] = useState();
@@ -42,10 +43,9 @@ export default function EventDetailsUsario() {
             }
         },[id])
   
-        const  logo = Logo 
-        console.log('soy logo',logo)
+        const  logo = Logo
         const event = eVent
-        console.log('soy event ',event)
+       
 
       
         const slideNumberStyle = {
@@ -114,6 +114,10 @@ export default function EventDetailsUsario() {
                                     <p className='p'>{` ${detailsEvent.result.age_rating}`}</p>
                                     <h4 className='h4'>Precio:</h4>
                                     <p className='p'>{` $${detailsEvent.result.price}`}</p>
+                                     <h4>limite de asiastentes:</h4>
+                                    <p>{` ${detailsEvent.result.ticket_limit}`}</p>
+                                    <h4>Croquis:</h4> {` ${detailsEvent.result.seat_booking} `} 
+                                    
                                 </div>                                
                             </div>
                         </div>
