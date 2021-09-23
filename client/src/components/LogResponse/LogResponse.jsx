@@ -3,7 +3,7 @@ import React from 'react'
 const LogResponse = ( { styles,setNotFound, icono, message, messageTwo, switchBtn, switchStyle, name } ) => {
     return (
         <div className={styles.formCont}>
-            <h4 className={styles.title}>Login</h4>
+            <h4 className={styles.title}>Log in</h4>
                 <span className={switchStyle}>
                   <i className={icono}></i>
                 </span>

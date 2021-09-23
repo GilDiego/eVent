@@ -17,6 +17,7 @@ import Registration from './components/Registration/Registration';
 import UserPorfile from './components/UserPorfile/UserPorfile';
 import {Redirect} from 'react-router-dom';
 import Modal from './components/Modal/Modal';
+import LoginContainer from './components/LoginContainer/LoginContainer';
 
 
 function App({ setUser, user, modal }) {
@@ -43,7 +44,7 @@ function App({ setUser, user, modal }) {
       </Route>
 
       <Route exact path='/login'>
-        <Login />
+        <LoginContainer />
       </Route>
 
       <Route exact path='/registration'>
