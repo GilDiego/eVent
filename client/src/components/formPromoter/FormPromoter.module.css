@@ -18,22 +18,15 @@
 .business_type {
     width: 300px;
 }
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 800px;
-    background: var(--Black);
-    color: var(--White);
-}
-.container input, select {
+
+.contRend input, select {
     border: 1px var(--Black) solid;
     border-radius: 10px;
     background: var(--Black);
     color: var(--White);
 }
 
-.container span {
+.contRend span {
     min-width: max-content;
 }
 
@@ -70,7 +63,7 @@ select:-webkit-autofill:focus {
     display: flex;
     flex-direction: column;
     align-items: center;
-  
+    color: var(--White);
     border-radius: 10px;
     background: var(--Primary);
     box-shadow: 0px 0px 50px black;
@@ -145,6 +138,13 @@ select:-webkit-autofill:focus {
     width: auto;
     margin-block: 0.25rem;
 }
+@media (max-width: 420px) { 
+    .row {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
 
 /* btn */
 .submitBtn{
@@ -158,4 +158,18 @@ select:-webkit-autofill:focus {
 
 .inputCheck{
     width: 50%;
+    display: flex;
+}
+@media (max-width: 420px) { 
+    .inputCheck{
+        width: 100%;
+        display: flex;
+        
+    }
+}
+
+
+
+.inputCheck select{
+    width: 100%;
 }
