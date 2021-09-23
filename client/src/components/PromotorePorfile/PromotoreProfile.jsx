@@ -1,4 +1,5 @@
 import React from "react";
+import ListEvent from "./ListEvent";
 import styles from './PromotorePorfile.module.css';
 
 const PromotorePorfile = () =>{
@@ -10,10 +11,13 @@ const PromotorePorfile = () =>{
                 </div>
             </div>
             <div className={styles.contInfo} >
-                <h3 >Eventos pepita juaga ltda</h3>
+                <h3>Teatro Julio Mario Santodomingo</h3>
             </div>
+            <hr/>
+            
             <div className={styles.contEvents}>
-
+                <h4>Mis Eventos</h4>
+                <ListEvent />
             </div>
         </div>
     );

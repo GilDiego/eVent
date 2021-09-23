@@ -1,0 +1,35 @@
+.contEvent{
+    display: flex;
+    margin: 5px;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px var(--Black) solid;
+    padding-bottom: 10px;
+}
+.contName{
+   width: 50%;
+   font-weight: 600;
+   /* color: white; */
+}
+.contQuali{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    color: var(--Secondary);
+    font-size: 30px;
+}
+@media (max-width: 768px) { 
+    .contQuali{
+        width: 30%;
+        display: flex;
+        justify-content: center;
+        color: var(--Secondary);
+        font-size: 20px;
+    }
+}
+.btn{
+    display: flex;
+    width: 20%;
+    justify-content: end;
+}
