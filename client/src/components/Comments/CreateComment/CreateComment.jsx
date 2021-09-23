@@ -3,8 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import success from '../../../Utilities/successGif.gif'
-import { useSelector } from 'react-redux';
-import './CreateComment.css'
+import style from './CreateComment.module.css'
 
 //Diego: Componente de creacion de comentarios. Falta obtener dinamicamente user_id.
 export default function CreateComment() {
@@ -13,29 +12,39 @@ export default function CreateComment() {
         review: '',
         rating: '',
         user_id: '1',
-        event_id: ''
+        event_id: '',
+        checkbox: false,
     })
 
-    const userInfo = useSelector(state => state.userState)
-    console.log(userInfo, 'esto es lo que me llega de Google en mi create comment')
+    // const userInfo = useSelector(state => state.userState)
+    // console.log(userInfo, 'esto es lo que me llega de Google en mi create comment')
 
     const location = useLocation()
 
     useEffect(() => {
         setInput({
             ...input,
-            event_id: location.state,
-            // user_id: userInfo.googleId
+            event_id: location.state.id,
+            // user_id: aqui iria el ID que me llega por estado de redux
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
 
     function handleChange(e){
-        setInput({
-            ...input,
-            [e.target.name]: e.target.value
-            });
+        if (e.target.name === 'checkbox') {
+            setInput({
+                ...input,
+                checkbox: !input.checkbox
+                });
+        }
+        else {
+            setInput({
+                ...input,
+                [e.target.name]: e.target.value
+                });
+        
+        }
     }
 
     // Diego: Funcion para revisar que el usuario no haya comentado anteriormente
@@ -47,9 +56,10 @@ export default function CreateComment() {
 
     async function handleSubmit(e){
         e.preventDefault();
-        const { review, rating, user_id, event_id } = input
+        const { review, rating, user_id, event_id, checkbox } = input
         if (!rating || !review) return alert('Todos los campos son requeridos.')
         else if (review.length < 40) return alert('El comentario debe tener un mínimo de 40 caracteres.')
+        else if (!checkbox) return alert('Es necesario que confirmes que tu comentario sigue nuestras normas.')
         else {
                 // await fetchUserComments(user_id)
                 // if (userCheck.length) return alert('Solamente puedes crear un comentario por evento.')
@@ -65,27 +75,36 @@ export default function CreateComment() {
         }
     }
     return (
-        <div className='new-comment-wrapper'>
+        <div className={style.newCommentWrapper}>
             {
                 editing ? (
-                    <div className='new-comment'>
-                        <h2 className='new-comment-title'>Agregar Comentario:</h2>
-                        <form className='new-comment-form' onSubmit={e => handleSubmit(e)}>
+                    <div className={style.newComment}>
+                        <h2 className={style.newCommentTitle}>Agregar Comentario:</h2>
+                        <form className={style.newCommentForm} onSubmit={e => handleSubmit(e)}>
+                            <p>¡Cuéntanos cómo te fue en <b>{location.state.eventName.trim()}</b>!</p>
                             <label> Calificacion*: </label>
                             <input name='rating' type="number" min='1' max='5'  onChange={e => handleChange(e)}/>
                             <br />
                             <label> Comentario*: </label>
                             <input name='review' onChange={e => handleChange(e)}/>
                             <br />
-                            <button type='submit' className='new-comment-btn'>Enviar</button>                            
+                            <br />
+                            <li className={style.confirmation}>
+                                <p className={style.newCommentConfirmation}>
+                                <input type="checkbox" name='checkbox' className={style.newCommentCheckbox} onChange={e => handleChange(e)}/>
+                                Confirmo que mi comentario respeta las normas del sitio.
+                                </p>
+                            </li>
+                            <br />
+                            <button type='submit' className={style.newCommentButton}>Enviar</button>                            
                         </form>
                     </div>
                 ) : (
-                    <div className='new-comment-success'>
-                        <img className='new-comment-success-img'src={success} alt="Fue un éxito." />
+                    <div className={style.newCommentSuccess}>
+                        <img className={style.newCommentSuccessImg}src={success} alt="Fue un éxito." />
                         <p>Gracias por compartir tu opinión!</p> 
                         <Link to={`/eventDetailsUsuario/${input.event_id}`}>
-                            <button className='new-comment-btn'>Listo</button>
+                            <button className={style.newCommentButton}>Listo</button>
                         </Link>
                     </div>
                 )
@@ -93,3 +112,4 @@ export default function CreateComment() {
         </div>
     )
 }
+

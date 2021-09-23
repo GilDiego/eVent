@@ -1,13 +1,13 @@
-.new-comment-wrapper {
+.newCommentWrapper {
   background-color: var(--White);
   color: var(--White);
   height: 35vw;
 }
-.new-comment-title {
+.newCommentTitle {
   margin-top: 0;
   text-align: center;
 }
-.new-comment {
+.newComment {
   text-align: center;
   background-color: var(--Primary);
   width: 700px;
@@ -18,15 +18,15 @@
   border-radius: var(--RadiusOne);
   box-shadow: var(--ShadowOne);
 }
-.new-comment input {
+.newComment input {
   width: 500px;
 }
-.new-comment-form {
+.newCommentForm {
   font-size: large;
   display: block;
   margin: auto;
 }
-.new-comment-btn {
+.newCommentButton {
   margin-top: 10px;
   font-size: large;
   width: 150px;
@@ -36,7 +36,7 @@
   border: none;
   border-radius: var(--RadiusOne);
 }
-.new-comment-success {
+.newCommentSuccess {
   text-align: center;
   background-color: var(--Primary);
   width: 700px;
@@ -47,4 +47,12 @@
   border-radius: var(--RadiusOne);
   box-shadow: var(--ShadowOne);
   margin-bottom: 100px;
+}
+.confirmation {
+  vertical-align: middle;
+}
+.newCommentCheckbox {
+}
+.newCommentConfirmation {
+  font-size: smaller;
 }

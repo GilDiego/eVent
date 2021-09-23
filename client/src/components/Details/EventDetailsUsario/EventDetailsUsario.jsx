@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import DisplayComments from '../../Comments/DisplayComments/DisplayComments'
 import { Link } from 'react-router-dom'
@@ -26,7 +27,7 @@ export default function EventDetailsUsario() {
 
     
     // Diego: Variable solo para que no tire Warning en la consola sobre unique keys
-        const [data , setData] = useState([])
+        
         const [render, setRender] = useState(false)
         const dispatch = useDispatch()
         const params =useParams()
@@ -134,3 +135,4 @@ export default function EventDetailsUsario() {
         return (<Loading/>)
     }
 }
+
