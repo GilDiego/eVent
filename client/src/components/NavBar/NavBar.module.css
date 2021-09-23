@@ -1,9 +1,11 @@
 .Navbar {
-  height: 55px;
+  position: fixed;
+  top: 0;
+  z-index: 500;
+  height: 4rem; /* CORRESPONDE CON App.css: body {margin-top: 4rem;} */
   width: 100%;
   font-size: 70px;
-  background-color: var(--Black);
-  border-bottom: black solid 1px;
+  background-color: var(--Primary);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,10 +18,16 @@
  margin-right: 15px;
 }
 .homeBtn{
+  display: flex;
+  flex-direction: row;
   font-size: 20px;
   text-decoration: none;
   color: var(--White);
   margin-left: 15px;
+ }
+
+ .homeLogo {
+   width: 6rem;
  }
 
  .subNav{

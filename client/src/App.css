@@ -27,8 +27,8 @@
   --Success: #09e74c;
 
   /* Fonts */
-  --logoFont1: 'Alumni Sans';
-  --logoFont2: 'Exo 2';
+  --logoFont1: 'Alumni Sans', sans-serif;
+  --logoFont2: 'Exo 2', sans-serif;
   --TitleCard: 27px;
   --TitleForm: 30px;
   --TitleFormTwo: 25px;
@@ -45,7 +45,9 @@
 
 /**_GLOBALS____________________________________________________________________________________*/
 body{
-  background: var(--White);
+  position: relative;
+  margin-top: 4rem;  /* CORRESPONDE CON NavBar.module.css: .Navbar {height: 4rem;} */
+  background: var(--Black);
 }
 ul {
 padding-left: 0px;
