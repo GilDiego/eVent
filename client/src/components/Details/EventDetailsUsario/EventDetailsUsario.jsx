@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import DisplayComments from '../../Comments/DisplayComments/DisplayComments'
 import { Link } from 'react-router-dom'
@@ -12,24 +13,24 @@ import Logo from '../../../Utilities/logodivinacodi.gif'
 import eVent from '../../../Utilities/eVent-05.svg'
 
 const pushDta=(detailsEvent)=>{
-    let data = []
+    let data = [];
     let picture = detailsEvent.result?.pictures
     
     for (let index = 0; index < picture?.length; index++) {
         data.push({image:picture[index],caption:detailsEvent.result.description})
         console.log(data)
     }
-    return data
+    return data;
 }
 //Diego: Componente que muestra los detalles de un evento para el tipo Usuario.
 export default function EventDetailsUsario() {
 
-    
     // Diego: Variable solo para que no tire Warning en la consola sobre unique keys
-        const [data , setData] = useState([])
         const [render, setRender] = useState(false)
+        const [data , setData] = useState()
         const dispatch = useDispatch()
         const params =useParams()
+        const [data , setData] = useState();
         const {id}=params
         const detailsEvent = useSelector(state => state.detailsEvent)
 
@@ -42,10 +43,9 @@ export default function EventDetailsUsario() {
             }
         },[id])
   
-        const  logo = Logo 
-        console.log('soy logo',logo)
+        const  logo = Logo
         const event = eVent
-        console.log('soy event ',event)
+       
 
       
         const slideNumberStyle = {
@@ -114,6 +114,10 @@ export default function EventDetailsUsario() {
                                     <p className='p'>{` ${detailsEvent.result.age_rating}`}</p>
                                     <h4 className='h4'>Precio:</h4>
                                     <p className='p'>{` $${detailsEvent.result.price}`}</p>
+                                     <h4>limite de asiastentes:</h4>
+                                    <p>{` ${detailsEvent.result.ticket_limit}`}</p>
+                                    <h4>Croquis:</h4> {` ${detailsEvent.result.seat_booking} `} 
+                                    
                                 </div>                                
                             </div>
                         </div>
@@ -134,3 +138,4 @@ export default function EventDetailsUsario() {
         return (<Loading/>)
     }
 }
+
