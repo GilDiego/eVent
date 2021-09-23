@@ -65,14 +65,17 @@ a{
 .carousel-caption-bottom{
  opacity: 0%;
  font-size: 18px;
+
  
 }
 
 .carousel-caption-bottom:hover{
-  
+  padding:5px;
+  margin:0px;
   opacity: 100%;
   font-size: 18px;
   background: var(--Black ) 50%;
+  rgba:0.5;
 }
 /** EventStrap */
 
