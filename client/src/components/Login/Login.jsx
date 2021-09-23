@@ -17,7 +17,7 @@ const Login = ({ setUser, user }) => {
   const [FormState, setFormState] = useState({
     username: "",
     email: "",
-    pass: "",
+    password: "",
   });
   // const [MessageNick, setMessageNick] = useState('Escribe tu Alias')
   const [MessageMail, setMessageMail] = useState(" ");
@@ -28,7 +28,7 @@ const Login = ({ setUser, user }) => {
   const [Logger, setLogger] = useState("true");
   const [Button, setButton] = useState(false);
   const [Loading, setLoading] = useState(false)
-
+ 
   //*Funciones__________________________________________________________________
   const redirec = (dir) => {
     history.push(dir);
@@ -41,7 +41,6 @@ const Login = ({ setUser, user }) => {
       email: resG.profileObj.email ,
       password: false
     };
-
     setLoading(true)
     try {
       let config = {
@@ -54,6 +53,13 @@ const Login = ({ setUser, user }) => {
       };
       let res = await fetch("http://localhost:3001/api/user/login", config);
       let json = await res.json();
+      let user = {
+        msg:json.msg,
+        id: json.id,
+        username: resG.profileObj.givenName,
+        picture: resG.profileObj.imageUrl,
+        type: json.type
+      }
       setButton(true);
       setLoading(false)
       if (!json.msg) {
@@ -61,7 +67,7 @@ const Login = ({ setUser, user }) => {
       } else {
         
         setLogger(true);
-        setUser(resG.profileObj);
+        setUser(user);
         setTimeout(function () {
           redirec("/");
         }, 2000);
@@ -128,7 +134,7 @@ const Login = ({ setUser, user }) => {
     let obj = { 
       type:'email',
       email: FormState.email ,
-      password: FormState.pass
+      password: FormState.password
     };
     e.preventDefault();
     // if (!FormState.mail || !FormState.pass) {
@@ -149,9 +155,18 @@ const Login = ({ setUser, user }) => {
       };
       let res = await fetch("http://localhost:3001/api/user/login", config);
       let json = await res.json();
+   
+      let user = {
+        msg: json.msg,
+        id: json.id,
+        username: json.username,
+        picture: json.picture,
+        type: json.type
+      }
+     
       setButton(true);
       setLoading(false)
-      if (!json.msg) {
+      if (json.msg === false) {
         setLogger(false);
       } else {
         setLogger(true);

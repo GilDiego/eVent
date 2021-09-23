@@ -35,11 +35,11 @@ const NavBar = ({ user, setUser }) => {
 
                 <div className="contFlex margRgth20" container>
                   <img
-                    src={user.imageUrl}
+                    src={user.picture}
                     alt=""
                     className="imgSize10 margRgth10"
                   />
-                  <p className="txColorWht txSize15">{user.givenName}</p>
+                  <p className="txColorWht txSize15">{user.username}</p>
                 </div>
               </Link>
 

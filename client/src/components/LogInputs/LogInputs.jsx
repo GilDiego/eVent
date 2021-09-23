@@ -34,8 +34,8 @@ const LogInputs = ({
         <input
           type="password"
           onChange={upgradePass}
-          value={FormState.pass}
-          name="pass"
+          value={FormState.password}
+          name="password"
         />
         <span className={SwitchPass ? styles.true : styles.false}>
           {MessagePass}
