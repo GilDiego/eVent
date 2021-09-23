@@ -1,12 +1,12 @@
 import React from 'react'
 import './Card.css'
 
-export default function Card({ userId, rating, review }) {
+export default function Card({ name, rating, review }) {
 
     return (
         <div className='comment-card'>
             <div className='comment-top-half'>
-                <span>{userId}</span>
+                <span>{name}</span>
                 &nbsp;
                 <span className='stars'>{rating}</span>
             </div>
