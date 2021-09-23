@@ -1,6 +1,5 @@
 import {
     GET_DETAIL, 
-    GET_EDIT,
    SWITCH_SIDE_BAR,
    POST_EVENT,
    SET_USER,
