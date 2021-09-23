@@ -5,6 +5,10 @@
     flex-direction: column;
     align-items: center;
 }
+.contPrin hr{
+    width: 80%;
+    background-color: var(--Secondary);
+}
 
 .contProfile {
     position: relative;
@@ -55,4 +59,9 @@
     margin-top: 10px;
     font-size: large;
     font-weight: 600;
+    text-align: center;
+}
+
+.contEvents{
+    width: 80%;
 }
