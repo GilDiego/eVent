@@ -11,6 +11,15 @@
     border-radius: var(--RadiusOne);
     box-shadow: var(--ShadowOne) ;
     position: relative;
+    transform: scale(1);
+    transition-duration: var(--Transition);
+    transition-timing-function: var(--CustomBezier);
+
+}
+.card:hover {
+  transform: scale(1.1);
+  transition-duration: var(--Transition);
+  transition-timing-function: var(--CustomBezier);
 }
 @media (max-width: 768px) { 
   .card{
@@ -38,12 +47,14 @@ filter: brightness(60%);
 }
 
 .titleCard{
+display: flex;
+font-family: var(--Exo);
+font-weight: inherit;
+text-align: center;
 color: var(--White);
 z-index: 10;
-font-size: var(--TitleCard);
-font-size: 30px;
-margin-bottom: 0px;
 font-size: 20px;
+margin-bottom: 0px;
 }
 @media (max-width: 720px) { 
   .titleCard{

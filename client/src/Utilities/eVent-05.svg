@@ -15,7 +15,6 @@
 	.st9{fill:#F0F0FF;stroke:#F0F0FF;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st10{fill:#004B64;stroke:#004B64;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 </style>
-<rect x="1" y="34" class="st0" width="1439" height="806"/>
 <g>
 	<path class="st2" d="M331.6,762.9c-24.9,0-45-20.1-45-45V156.3c0-24.9,20.1-45,45-45h318.9c24.9,0,45,20.1,45,45v561.7
 		c0,24.9-20.1,45-45,45H331.6z"/>
