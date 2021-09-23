@@ -6,34 +6,21 @@ import './DisplayComments.css'
 
 export default function Reviews(id) {
     const [comments, setComments] = useState([])
-    const [average, setAverage] = useState(0)
+    const [eventRating, setEventRating] = useState(0)
+
 
     useEffect(() => {
-    async function fetchComments(){
+    const fetchData = async () => {
         const response = await axios.get(`http://localhost:3001/api/comment/all`)
-        setComments(response.data.filter(event => Number(event.eventId) === Number(id.state)))
+        const generalRating = await axios.get(`http://localhost:3001/api/comment/generalRating?id=${id}`)
+        if (response.data.length) setComments(response.data.filter(event => Number(event.eventId) === Number(id.state)));
+        if (generalRating) setEventRating(generalRating)
     }
-    fetchComments()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
-    
-    useEffect(() =>{
-        setAverage(findAvg(comments))
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[comments])
-    
-    // Diego: Funcion para promediar calificacion general del evento
-    let arr = []
-    function findAvg(data){
-        if (!data.length) return
-        else {
-            data.forEach(comment => arr.push(Number(comment.rating)))
-            let quantity = arr.length
-            let sum = arr.reduce((a, b) => a + b, 0)
-            return sum / quantity
-        }
-    }
-    
+    fetchData()
+        
+    },[id])
+
+
     //Diego: Funcion que recibe una calificacion y la convierte a estrellas. Puede recibir numeros enteros 1-5
     function setStars(grade){
         let result = ''
@@ -50,7 +37,6 @@ export default function Reviews(id) {
 
     let keyGenerator = 0
     return (
-
         <div className='comments-wrapper'>
         {
             !comments.length ? (
@@ -60,8 +46,8 @@ export default function Reviews(id) {
                 ) : (
                     <div>
                         {
-                            average > 0 ? (
-                                <p className='general-rating'>Rating General: <span className='general-stars'>{setStars(Math.floor(average))}</span></p>
+                            eventRating ? (
+                                <p className='general-rating'>Rating General: <span className='general-stars'>{setStars(eventRating)}</span></p>
                             ) : (
                                 <p className='no-rating'>Este evento todavia no tiene calificaciones.</p>
                             )
@@ -70,8 +56,7 @@ export default function Reviews(id) {
                         comments.map(comment => (
                             <Card
                                 key={keyGenerator++}
-                                // userId={comment.user.userId}
-                                userId={'Cesar'}
+                                userId={comment.user.userId}
                                 rating={setStars(comment.rating)}
                                 review={comment.review}
                             />
