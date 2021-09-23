@@ -15,7 +15,7 @@ import eVent from '../../../Utilities/eVent-05.svg'
 const pushDta=(detailsEvent)=>{
     let data = [];
     let picture = detailsEvent.result?.pictures
-    
+
     for (let index = 0; index < picture?.length; index++) {
         data.push({image:picture[index],caption:detailsEvent.result.description})
         console.log(data)
@@ -30,7 +30,7 @@ export default function EventDetailsUsario() {
         const dispatch = useDispatch()
         const params =useParams()
         const [data , setData] = useState();
-        const {id}=params
+        const {id} = params;
         const detailsEvent = useSelector(state => state.detailsEvent)
 
         useEffect(async()=>{
@@ -41,13 +41,12 @@ export default function EventDetailsUsario() {
                 alert('intentalo mas tarde')
             }
         },[id])
-  
-        const  logo = Logo 
+
+        const logo = Logo
         console.log('soy logo',logo)
         const event = eVent
         console.log('soy event ',event)
 
-      
         const slideNumberStyle = {
             fontSize: '20px',
             fontWeight: 'bold',
@@ -58,13 +57,12 @@ export default function EventDetailsUsario() {
         },[detailsEvent])
 
     if(render){
-            return(   
+            return(
             <div className={styles.detailsAllUser}>
-                <div className='detailsCardUser'> 
-                    <div className='deailscard2User'>
-                        <h1 className={styles.titleCard}>{detailsEvent.result.name}</h1>
-                        <div className='img'>                               
-                            <Carousel   
+                         <h1 className={styles.titleCard}>{detailsEvent.result.name}</h1>
+                         <div className={styles.detailContainer}>
+                        <div className={styles.carousel}>
+                            <Carousel
                                 data={data}
                                 time={5000}
                                 width="650px"
@@ -86,51 +84,50 @@ export default function EventDetailsUsario() {
                                     maxWidth: "650px",
                                     maxHeight: "450px",
                                     margin: "40px auto",
-                                }} />                               
-                        </div>  
-                        <div className={styles.otherDetailsUser}>  
-                            <br/> 
+                                }} />
+                        </div>
+                        <div className={styles.otherDetailsUser}>
+                            <br/>
                             <h4 className='h4'>Descripcion:</h4>
                             <p className={styles.description}>{ detailsEvent.result.description}</p>
                             <div className={styles.detailsUsers2User}>
                                 <div className={styles.leftColumn}>
                                     <h4 className='h4'>Artistas:</h4>
-                                    <p className='p'>{` ${detailsEvent.result.starring}`}</p>
+                                    <span>{` ${detailsEvent.result.starring}`}</span>
                                     <h4 className='h4'>Dirreción:</h4>
-                                    <p className='p'> {` ${detailsEvent.result.address}`}</p>
+                                    <span> {` ${detailsEvent.result.address}`}</span>
                                     <h4 className='h4'>Fecha:</h4>
-                                    <p className='p'>{` ${detailsEvent.result.start_date}`}</p>
+                                    <span>{` ${detailsEvent.result.start_date}`}</span>
                                     <h4 className='h4'>Fecha Finalización:</h4>
-                                    <p className='p'>{` ${detailsEvent.result.finish_date}`}</p>
+                                    <span>{` ${detailsEvent.result.finish_date}`}</span>
                                     <h4 className='h4'>Dias:</h4>
-                                    <p className='p'>{` ${detailsEvent.result.weekdays.map((e)=>(e))}`}</p>
+                                    <span>{` ${detailsEvent.result.weekdays.map((e)=>(e))}`}</span>
                                 </div>
                                 <div className={styles.rightColumn}>
                                     <h4 className='h4'>Horarios:</h4>
-                                    <p className='p'>{` ${detailsEvent.result.schedule.map((e)=>(e))}`}</p>
+                                    <span>{` ${detailsEvent.result.schedule.map((e)=>(e))}`}</span>
                                     <h4 className='h4'>Tipo de Evento:</h4>
-                                    <p className='p'>{` ${detailsEvent.result.tags}`}</p>
-                                    <h4 className='h4'>Clasificación:</h4>                            
-                                    <p className='p'>{` ${detailsEvent.result.age_rating}`}</p>
+                                    <span>{` ${detailsEvent.result.tags}`}</span>
+                                    <h4 className='h4'>Clasificación:</h4>
+                                    <span>{` ${detailsEvent.result.age_rating}`}</span>
                                     <h4 className='h4'>Precio:</h4>
-                                    <p className='p'>{` $${detailsEvent.result.price}`}</p>
-                                </div>                                
+                                    <span>{` $${detailsEvent.result.price}`}</span>
+                                </div>
+                                <div className={styles.buttonContainer}>
+                                    <button className={styles.button}>Reservar</button>
+                                    <Link to={{
+                                        pathname:'/nuevoComentario',
+                                        state: id
+                                    }}>
+                                        <button className={styles.button}>Reseña</button>
+                                    </Link>
+                                </div>
                             </div>
                         </div>
-                        <div className={styles.buttonContainer}>
-                            <button className={styles.button}>Reservar</button>
-                            <Link to={{
-                                pathname:'/nuevoComentario',
-                                state: id
-                            }}>
-                            <button className={styles.button}>Reseña</button>
-                            </Link>
-                         </div>
-                    </div>   
-                </div>
-            </div>      
-    )} 
-    else{
+                    </div>
+            </div>
+    )}
+    else {
         return (<Loading/>)
     }
 }
