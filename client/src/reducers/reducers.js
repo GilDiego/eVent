@@ -20,7 +20,7 @@ import {
   const initialState = {
     eventsHome: [],
     //*detalles de evento
-    detailsEvent:[true],
+    detailsEvent:{},
     //*switch de nav-bar
     sideBarSwitch: false,
     //*post //Abi
