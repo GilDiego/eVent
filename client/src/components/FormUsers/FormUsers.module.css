@@ -28,6 +28,7 @@
 }
 .but{
     border-radius: var(--RadiusOne);
+    background-color: var(--Button);
 }
 .but:hover{
     background-color: var(--Other);

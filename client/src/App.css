@@ -27,6 +27,8 @@
   --Success: #09e74c;
 
   /* Fonts */
+  --logoFont1: 'Alumni Sans';
+  --logoFont2: 'Exo 2';
   --TitleCard: 27px;
   --TitleForm: 30px;
   --TitleFormTwo: 25px;
@@ -73,8 +75,33 @@ a{
   font-size: 18px;
   background: var(--Black ) 50%;
   
-
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+  padding-right: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--Black); 
+  border-radius: 5px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--Secondary); 
+  width: 20px;
+  height: 10px;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #00b4d8df; 
+}
+
+
 /** EventStrap */
 
 /** Cards */
