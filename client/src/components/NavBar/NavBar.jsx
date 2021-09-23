@@ -27,9 +27,8 @@ const NavBar = ({ user, setUser }) => {
     <>
       <nav className={styles.Navbar}>
         <Link to="/" className={styles.homeBtn}>
-          Home
-          <img className={styles.homeLogo} src={img1} alt="eVent" />
-          <img className={styles.homeLogo} src={img2} alt="eVent" />
+          <img className={styles.homeLogo} src={img1} alt="eVent " />
+          <img className={styles.homeLogo} src={img2} alt=" eVent" />
         </Link>
         <div className="contFlex">
           {user.email ? (

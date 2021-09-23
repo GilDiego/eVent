@@ -27,8 +27,8 @@
   --Success: #09e74c;
 
   /* Fonts */
-  --logoFont1: 'Alumni Sans', sans-serif;
-  --logoFont2: 'Exo 2', sans-serif;
+  --Alumni: 'Alumni Sans', sans-serif;
+  --Exo: 'Exo 2', sans-serif;
   --TitleCard: 27px;
   --TitleForm: 30px;
   --TitleFormTwo: 25px;
@@ -41,12 +41,13 @@
   --ShadowTwo: 2px 2px 2px rgba(0, 0, 0, 1);
   --ShadowBtn:  1px 1px 1px rgba(0, 0, 0, 1);
   --Transition: .4s;
+  --CustomBezier: cubic-bezier(0.1, 0.9, 1, 1); /* Transición animada personalizada */
 }
 
 /**_GLOBALS____________________________________________________________________________________*/
 body{
   position: relative;
-  margin-top: 4rem;  /* CORRESPONDE CON NavBar.module.css: .Navbar {height: 4rem;} */
+  margin-top: 6rem;  /* CORRESPONDE CON NavBar.module.css: .Navbar {height: 4rem;} */
   background: var(--Black);
 }
 ul {
@@ -69,15 +70,15 @@ a{
 
 ::-webkit-scrollbar {
   width: 10px;
-  padding-right: 5px;
+  background-color: transparent;
 }
 
 /* Track */
-::-webkit-scrollbar-track {
-  background: var(--Black); 
+::-webkit-scrollbar-track-piece {
+  background: var(--Black);
   border-radius: 5px;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: var(--Secondary); 
