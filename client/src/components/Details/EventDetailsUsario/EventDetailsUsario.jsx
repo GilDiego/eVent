@@ -18,7 +18,6 @@ const pushDta=(detailsEvent)=>{
     
     for (let index = 0; index < picture?.length; index++) {
         data.push({image:picture[index],caption:detailsEvent.result.description})
-        console.log(data)
     }
     return data;
 }
@@ -30,7 +29,6 @@ export default function EventDetailsUsario() {
         const [data , setData] = useState()
         const dispatch = useDispatch()
         const params =useParams()
-        const [data , setData] = useState();
         const {id}=params
         const detailsEvent = useSelector(state => state.detailsEvent)
 
