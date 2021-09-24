@@ -121,11 +121,19 @@ export default function EventDetailsUsario() {
                             <button className={styles.button}>Reservar</button>
                             <Link to={{
                                 pathname:'/nuevoComentario',
-                                state: id
+                                state: {
+                                    id: id,
+                                    eventName: detailsEvent.result.name
+                                }
                             }}>
                             <button className={styles.button}>Reseña</button>
                             </Link>
-                         </div>
+                        </div>
+                        <div className='comments-container'>
+                            <DisplayComments state={id}/>
+                            <br />
+                            <br />
+                        </div>
                     </div>   
                 </div>
             </div>      
