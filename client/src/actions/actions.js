@@ -7,6 +7,8 @@ export const SWITCH_SIDE_BAR = 'SWITCH_SIDE_BAR';
 export const POST_EVENT = 'POST_EVENT'; //Abi
 //*user
 export const SET_USER = 'SET_USER'
+//*promoter
+export const SET_PROMOTER = 'SET_PROMOTER'
 //*activities home
 export const GET_EVENTS_HOME = 'GET_EVENTS_HOME';
 export const GET_EVENTS = 'GET_EVENTS'; //Abi
@@ -80,6 +82,14 @@ export function setUser(user){
   return{
     type: SET_USER,
     payload: user
+  }
+}
+//*___PROMOTER_________________________________________________________________
+export function setPromoter(promoter){
+  localStorage.setItem('User',JSON.stringify(promoter))//Envia a localStorage
+  return{
+    type: SET_PROMOTER,
+    payload: promoter
   }
 }
 

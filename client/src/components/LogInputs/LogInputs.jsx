@@ -11,11 +11,12 @@ const LogInputs = ({
   MessagePass,
   responseGoogle,
   GoogleLogin,
-  Link
+  Link,
+  nameComponent
 }) => {
   return (
     <>
-      <h4 className={styles.title}>Log in</h4>
+      <h4 className={styles.title}>{ nameComponent }</h4>
 
       <div className={styles.subContainer}>
         <label className={styles.label}>Email</label>

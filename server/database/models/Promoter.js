@@ -20,6 +20,10 @@ const Promoter = sequelize.define('promoter', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    // picture: {
+    //     type: DataTypes.STRING,
+    //     defaultValue: "https://cdn2.vectorstock.com/i/thumb-large/04/96/user-icon-vector-19240496.jpg",
+    // },
     bio: {
        type: DataTypes.TEXT,
        allowNull: true,

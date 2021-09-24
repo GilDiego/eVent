@@ -17,8 +17,6 @@ const NavBar = ({ user, setUser }) => {
   };
   const setLogout = () => {
     setOut(true)
-    // setUser({});
-    // redirec();
   };
 
   return (
@@ -39,7 +37,7 @@ const NavBar = ({ user, setUser }) => {
                     alt=""
                     className="imgSize10 margRgth10"
                   />
-                  <p className="txColorWht txSize15">{user.username}</p>
+                  <p className="txColorWht txSize15">{user.type === 'user'?user.username:user.business_name}</p>
                 </div>
               </Link>
 

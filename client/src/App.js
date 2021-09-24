@@ -6,7 +6,6 @@ import { Route } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
-import Login from './components/Login/Login';
 import FormUsers from './components/FormUsers/FormUsers';
 import FormPromoter from './components/FormPromoter/FormPromoter.jsx';
 import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDetailsUsario';
@@ -18,6 +17,7 @@ import UserPorfile from './components/UserPorfile/UserPorfile';
 import {Redirect} from 'react-router-dom';
 import Modal from './components/Modal/Modal';
 import LoginContainer from './components/LoginContainer/LoginContainer';
+import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 
 
 function App({ setUser, user, modal }) {
@@ -85,6 +85,10 @@ function App({ setUser, user, modal }) {
       <Route exact path='/perfil' >
         {console.log(user)}
          {user.googleId? <UserPorfile/> : <Redirect to='/login'/>}
+      </Route>
+
+      <Route path='/shoppingCart'>
+        <ShoppingCart />
       </Route>
 
       <Footer />
