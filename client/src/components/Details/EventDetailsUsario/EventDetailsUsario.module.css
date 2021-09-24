@@ -5,17 +5,18 @@
 }
 
 .detailContainer {
- display: flex;
- flex-direction: row;
- flex-wrap: wrap;
- align-items: center;
- justify-content: space-around;
- margin: auto;
-/*  margin: 20px; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  margin: auto;
+  /*  margin: 20px; */
 }
 
 /* @media {} MEDIA QUERY PARA HACER EL FLEX*/
-.carousel, .otherDetailsUser {
+.carousel,
+.otherDetailsUser {
   background-color: var(--Black);
   box-shadow: 5px 10px #00000081;
   border-radius: 4px;
@@ -45,6 +46,7 @@
   margin: auto;
 }
 .button {
+  cursor: pointer;
   font-size: large;
   width: 150px;
   height: 30px;

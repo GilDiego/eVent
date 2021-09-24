@@ -9,6 +9,7 @@ export default function DisplayComments(id) {
     const [tempDisplay, setTempDisplay] = useState([]) // Solo se muestra mientras que no haya click en estrellas izq
     const [display, setDisplay] = useState([]) // Solo se muestra cuando click en las estrellas de la izq
     const [eventRating, setEventRating] = useState(0) // Calificacion general
+    const [totalComments, setTotalComments] = useState(0) // Cuenta todos los comentarios recopilados de este evento
 
     
     useEffect(() => {
@@ -31,6 +32,10 @@ export default function DisplayComments(id) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
+    useEffect(() => {
+        setTotalComments(countComments(data))
+    },[data])
+
     //Diego: Recibe una calificacion y la convierte a estrellas. Puede recibir numeros enteros 1-5
     const toStars = (grade) => {
         let result = ''
@@ -42,6 +47,16 @@ export default function DisplayComments(id) {
             result += '☆'
         }
         return result
+    }
+
+    //Diego: Funcion que obtiene la longitud total de los comentarios del evento.
+    const countComments = (reviews) => {
+        let res = 0
+        for (let i = 0; i < reviews.length; i++) {
+            res += reviews[i][`star${i+1}`].length
+        }
+        
+        return res
     }
 
     let keyGenerator = 0
@@ -62,26 +77,26 @@ export default function DisplayComments(id) {
                                     Rating General: <span className='general-stars'>{toStars(eventRating)}</span>
                                     </p>
                                     <p>
-                                        (falta ajustar este numero para arreglar igual los porcentajes***) calificaciones para este evento.
+                                        {totalComments} calificaciones para este evento.
                                     </p>
                                     <p onClick={e => setDisplay(tempDisplay)}>
                                         Ver algunas
                                     </p>
                                     <div className={style.starContainer}>
-                                        <p onClick={e => setDisplay(data[4].fiveStars)}>
-                                            ★★★★★ {data[4].fiveStars.length / data.length * 100}%
+                                        <p onClick={e => setDisplay(data[4].star5)}>
+                                            ★★★★★ {data[4].star5.length / totalComments * 100}%
                                         </p>
-                                        <p onClick={e => setDisplay(data[3].fourStars)}>
-                                            ★★★★☆ {data[3].fourStars.length / data.length * 100}%
+                                        <p onClick={e => setDisplay(data[3].star4)}>
+                                            ★★★★☆ {data[3].star4.length / totalComments * 100}%
                                         </p>
-                                        <p onClick={e => setDisplay(data[2].threeStars)}>
-                                            ★★★☆☆ {data[2].threeStars.length / data.length * 100}%
+                                        <p onClick={e => setDisplay(data[2].star3)}>
+                                            ★★★☆☆ {data[2].star3.length / totalComments * 100}%
                                         </p>
-                                        <p onClick={e => setDisplay(data[1].twoStars)}>
-                                            ★★☆☆☆ {data[1].twoStars.length / data.length * 100}%
+                                        <p onClick={e => setDisplay(data[1].star2)}>
+                                            ★★☆☆☆ {data[1].star2.length / totalComments * 100}%
                                         </p>
-                                        <p onClick={e => setDisplay(data[0].oneStar)}>
-                                            ★☆☆☆☆ {data[0].oneStar.length / data.length * 100}%
+                                        <p onClick={e => setDisplay(data[0].star1)}>
+                                            ★☆☆☆☆ {data[0].star1.length / totalComments * 100}%
                                         </p>
                                     </div>
                                 </>
