@@ -9,7 +9,7 @@ const PROVINCIAS = ['Buenos Aires', 'Catamarca', 'Chaco', 'Chubut', 'Córdoba', 
 
 export function Validate(input) {
     let errors = {};
-    // console.log(input, 'validate')
+    // console.log(input, 'validate') /
     if (!input.name) {
         errors.name = '*Campo obligatorio'
     }

@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes, UUIDV4 } = require('sequelize');
 const sequelize = require('../db');
 
 const Promoter = sequelize.define('promoter', {
@@ -26,10 +26,14 @@ const Promoter = sequelize.define('promoter', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    bio: {
-       type: DataTypes.TEXT,
-       allowNull: true,
+    picture: {
+        type: DataTypes.STRING,
+        defaultValue: "https://cdn2.vectorstock.com/i/thumb-large/04/96/user-icon-vector-19240496.jpg",
     },
+    // bio: {
+    //    type: DataTypes.TEXT,
+    //    allowNull: true,
+    // },
     phone: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -64,6 +68,7 @@ const Promoter = sequelize.define('promoter', {
 },
 {
     timestamps: false
+
 });
 
 module.exports = Promoter;

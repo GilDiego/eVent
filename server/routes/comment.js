@@ -8,7 +8,7 @@ const {
 const {
     getAllComments,
     getGeneralRating,
-    // getSomeComments
+    getSomeComments
 } = require('../controllers/Comment/getController');
 
 
@@ -16,7 +16,7 @@ const {
 //GET
 router.get('/all', getAllComments);
 router.get('/generalRating', getGeneralRating);
-// router.get('/someComments', getSomeComments);
+router.get('/someComments', getSomeComments);
 
 
 //POST

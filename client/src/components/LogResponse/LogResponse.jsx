@@ -1,9 +1,9 @@
 import React from 'react'
 
-const LogResponse = ( { styles,setNotFound, icono, message, messageTwo, switchBtn, switchStyle, name } ) => {
+const LogResponse = ( { styles,setNotFound, icono, message, messageTwo, switchBtn, switchStyle, name, nameComponent } ) => {
     return (
         <div className={styles.formCont}>
-            <h4 className={styles.title}>Login</h4>
+            <h4 className={styles.title}>{ nameComponent }</h4>
                 <span className={switchStyle}>
                   <i className={icono}></i>
                 </span>
