@@ -61,7 +61,7 @@ export default function DisplayComments(id) {
                                     Rating General: <span className='general-stars'>{toStars(eventRating)}</span>
                                     </p>
                                     <p>
-                                        {data.length} calificaciones para este evento.
+                                        (falta ajustar este numero para arreglar igual los porcentajes***) calificaciones para este evento.
                                     </p>
                                     <p onClick={e => setDisplay(tempDisplay)}>
                                         Ver todas
