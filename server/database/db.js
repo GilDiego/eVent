@@ -9,8 +9,9 @@ const { database } = require('../config');
 //     database.username,
 //     database.password, {
 //         host: database.host,
-//         dialect: 'postgres'
-//     }
+//         dialect: 'postgres',
+//         logging: false
+//     },
 // );
 
 const sequelize = new Sequelize('postgres://hoyicmlg:8QFr5bF5Kt3fmPkDbJDpXpmkH5n46KVd@motty.db.elephantsql.com/hoyicmlg', {

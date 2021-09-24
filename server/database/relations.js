@@ -11,18 +11,32 @@ const Comment = require('./models/Comment');
 // const Favorite = require('./models/Favorite');
 
 // Event related models
-// const Location = require('./models/Location');
+const Location = require('./models/Location');
 // const Schedule = require('./models/Schedule');
 // const Tag = require('./models/Tag');
 // const Guest = require('./models/Guest');
 
 ////////////////////////// E/R
 
+//user - comment
 User.hasMany(Comment);
 Comment.belongsTo(User);
 
+
+
+//event - comment
 Event.hasMany(Comment);
 Comment.belongsTo(Event);
+
+//event-location
+Location.hasMany(Event);
+Event.belongsTo(Location);
+
+
+
+
+
+
 // User.hasOne(Location);
 // User.hasMany(Comment);
 // User.hasMany(Favorite); ***** REVISAR.
