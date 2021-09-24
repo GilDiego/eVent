@@ -91,7 +91,10 @@ function FormPromoter({changeModal}){
             try{
                 const res = await axios.post('http://localhost:3001/api/promoter',{form})
                 console.log('respuesta del backkkkkkkkk',res.data)
-                if(res.data.created){
+                if(res.data.msg){
+                    changeModal('correct', `Intentalo de nuevo más tarde`) 
+                }
+                else if(res.data.created){
                     changeModal('correct', `Promotor creado con éxito. \n Espere 48hrs para su autorización. Bienvenido a eVent, ${form.promoter_name}!`)
                     setForm({promoter_name:'',
                     promoter_lastName:'',
@@ -107,9 +110,9 @@ function FormPromoter({changeModal}){
                     country:form.country,
                     state:'',
                     city:'',
-                });
-                
-                }else{
+                });               
+                }else if(!res.data.created){
+                    console.log('eyyyyyyyy', res.data.created)
                     changeModal('correct', `Revisa los datos 'Nombre del negocio', 'Telefono', 'Correo' o '${condition.idNumber}' ya se encuentran registrados.`)
                 }
             }catch(error){
