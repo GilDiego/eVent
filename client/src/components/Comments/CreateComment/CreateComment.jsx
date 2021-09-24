@@ -39,6 +39,7 @@ export default function CreateComment() {
             if (userCheck) setCommentedBefore(true)
         }
         fetchUserComments(userInfo.id)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[userInfo])
 
     useEffect(() => {

@@ -28,6 +28,7 @@ export default function DisplayComments(id) {
         }
         }
     fetchData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     //Diego: Recibe una calificacion y la convierte a estrellas. Puede recibir numeros enteros 1-5
@@ -64,7 +65,7 @@ export default function DisplayComments(id) {
                                         (falta ajustar este numero para arreglar igual los porcentajes***) calificaciones para este evento.
                                     </p>
                                     <p onClick={e => setDisplay(tempDisplay)}>
-                                        Ver todas
+                                        Ver algunas
                                     </p>
                                     <div className={style.starContainer}>
                                         <p onClick={e => setDisplay(data[4].fiveStars)}>
@@ -94,7 +95,7 @@ export default function DisplayComments(id) {
                         <div className={style.rightContainer}>
                         {
                             !display.length ? (
-
+                                
                                     tempDisplay.map(comment => (
                                     <Card
                                         key={keyGenerator++}
@@ -105,14 +106,14 @@ export default function DisplayComments(id) {
                                     )
                                 
                             ) : (
-                                display.map(comment => (
-                                    <Card
-                                        key={keyGenerator++}
-                                        name={`${comment.user.first_name} ${comment.user.last_name}`}
-                                        rating={toStars(comment.rating)}
-                                        review={comment.review}
-                                    />)
-                                )
+                                    display.map(comment => (
+                                        <Card
+                                            key={keyGenerator++}
+                                            name={`${comment.user.first_name} ${comment.user.last_name}`}
+                                            rating={toStars(comment.rating)}
+                                            review={comment.review}
+                                        />)
+                                    )
                             )
                         
                         }
