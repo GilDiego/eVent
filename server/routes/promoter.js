@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { 
     getAllPromoters,
+    getEventPromoter
 } = require('../controllers/Promoter/getController');
 const {
     saveInfoPromotor, 
@@ -12,7 +13,7 @@ const {
 
 //GET
  router.get('/all',getAllPromoters);
-
+ router.get('/EventPromoter',getEventPromoter); 
 
 
 //POST

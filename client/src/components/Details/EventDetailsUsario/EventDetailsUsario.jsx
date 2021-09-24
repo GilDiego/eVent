@@ -22,12 +22,14 @@ const pushDta=(detailsEvent)=>{
 //Diego: Componente que muestra los detalles de un evento para el tipo Usuario.
 export default function EventDetailsUsario() {
 
+
     const [render, setRender] = useState(false)
     const [data , setData] = useState()
     const dispatch = useDispatch()
     const params =useParams()
     const {id}=params
     const detailsEvent = useSelector(state => state.detailsEvent)
+
 
     useEffect( () => {
         const fetchData = async () => {

@@ -22,7 +22,7 @@ import PromotorePorfile from './components/PromotorePorfile/PromotoreProfile';
 
 
 function App({ setUser, user, modal }) {
-  
+  console.log(user)
 
   // Usuario en local storage
   let loginUser = JSON.parse(localStorage.getItem('User'))
@@ -75,8 +75,7 @@ function App({ setUser, user, modal }) {
       </Route>
 
       <Route path='/perfil' >
-        {console.log(user)}
-        {user.msg? <UserPorfile/> : <Redirect to='/login'/>}
+        {user.msg? user.type === 'user' ?<UserPorfile/> : <PromotorePorfile userData={user}/> : <Redirect to='/login'/>}
       </Route>
 
 
