@@ -29,6 +29,7 @@ export default function EventDetailsUsario() {
     const params =useParams()
     const {id}=params
     const detailsEvent = useSelector(state => state.detailsEvent)
+    const userInfo = useSelector(state => state.userState)
 
 
 
@@ -119,16 +120,25 @@ export default function EventDetailsUsario() {
                             </div>
                         </div>
                         <div className={styles.buttonContainer}>
-                            <button className={styles.button}>Reservar</button>
-                            <Link to={{
-                                pathname:'/nuevoComentario',
-                                state: {
-                                    id: id,
-                                    eventName: detailsEvent.consult.name
-                                }
-                            }}>
-                            <button className={styles.button}>Reseña</button>
-                            </Link>
+                                <button className={styles.button}>Reservar</button>
+                                {
+                                userInfo.userID !== undefined ? (
+                                        <Link to={{
+                                            pathname:'/nuevoComentario',
+                                            state: {
+                                                id: id,
+                                                eventName: detailsEvent.consult.name
+                                            }
+                                        }}>
+                                        <button className={styles.button}>Reseña</button>
+                                        </Link>
+                                ) : (
+                                    <button 
+                                        onClick={e => alert('Solo usuarios logeados pueden dejar comentarios')}
+                                        className={styles.button}>    
+                                        Reseña
+                                    </button>
+                                )}
                         </div>
                         <div className='comments-container'>
                             <DisplayComments state={id}/>
