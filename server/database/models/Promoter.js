@@ -4,9 +4,10 @@ const sequelize = require('../db');
 const Promoter = sequelize.define('promoter', {
     id:{
         type: DataTypes.UUID,
-        defaultValue: UUIDV4,
-        primaryKey: true
-    },
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+        allowNull: false
+      },
     legal_name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -60,10 +61,14 @@ const Promoter = sequelize.define('promoter', {
         type: DataTypes.STRING,
         allowNull: false,
     }, */
-    // authorized: {
-    //     type: DataTypes.BOOLEAN,
-    //     defaultValue: false,
-    // },
+    authorized: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+    },
+},
+{
+    timestamps: false
+
 });
 
 module.exports = Promoter;

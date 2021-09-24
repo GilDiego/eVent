@@ -1,13 +1,13 @@
 const Event = require('../../database/models/Event');
 const Promoter = require ('../../database/models/Promoter');
+const Location = require('../../database/models/Location');
 
 exports.saveInfoEvent = async (req,res) => {
     const { 
-        name,           description,    starring,   virtual,        location,   
+        name,           description,    starring,   virtual,        ticket_limit,       
         address,        pictures,       start_date, finish_date,    schedule,   
         isRecurrent,    weekdays,       tags,       age_rating,     price,  
-        ticket_limit,   
-        // country,        region
+        country,        city,           province
     } = req.body;
 
     try {
@@ -16,22 +16,32 @@ exports.saveInfoEvent = async (req,res) => {
                 name
             },
             defaults:{
-            name,           description,    starring,   virtual,        location,   
+            name,           description,    starring,   virtual,        ticket_limit,        
             address,        pictures,       start_date, finish_date,    schedule,   
             isRecurrent,    weekdays,       tags,       age_rating,     price,  
-            ticket_limit,   
-            // country,        region
             }
         });
     
         if(!created){
             return res.json({msg:'The event name already exists'})
-        } else {
-            return res.json({
-                msg:'Event created!!!',
-                event
-            }) 
         }
+        
+        
+        const location = await Location.findOrCreate({
+            where:{
+                country,
+                province,
+                city
+            }
+        })
+
+        event.setLocation(location[0]);
+
+        return res.json({
+            msg:'Event created!!!',
+            event
+        }) 
+        
     
          
         

@@ -30,6 +30,9 @@ app.use('/api/comment', require('./routes/comment'));
 //Promoter Routes
 app.use('/api/promoter', require('./routes/promoter'));
 
+//Location Routes
+app.use('/api/location', require('./routes/location'))
+
 //Cloudinary Routes
 app.use('/cloudinary',require('./routes/cloudinary'));
 
@@ -40,7 +43,7 @@ app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 
   //conectar base de datos
-  sequelize.sync( {force: false}).then(() => {
+  sequelize.sync( {force: true}).then(() => {
       console.log('Conection to the DB Success');
   }).catch(error => {
       console.log('An error has been found: ',error)
