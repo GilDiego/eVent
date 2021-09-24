@@ -15,7 +15,8 @@
   }
 }
 
-.aside{
+.aside {
+    position: relative;
     background-color: var(--Primary);
     width: 250px;
     height: 100vh;
@@ -23,11 +24,12 @@
     border-radius: var(--RadiusSide);
     box-shadow: var(--ShadowOne);
     margin-top: 0px;
+    padding-right: 5px; /* YESSSS! Acá está para darle margen al scroll del sidebar. */
     padding-top: 10px;
 }
 @media (max-width: 750px) { 
   .aside{
- width: 100vw;
+width: 100vw;
 margin-top: 0;
 border-radius: 0px ;
   }

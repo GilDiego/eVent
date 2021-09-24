@@ -1,28 +1,38 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import Card from '../Card/Card'
-import './DisplayComments.css'
+import style from './DisplayComments.module.css'
 
 
-export default function Reviews(id) {
-    const [comments, setComments] = useState([])
-    const [eventRating, setEventRating] = useState(0)
+export default function DisplayComments(id) {
+    const [data, setData] = useState([]) // Backup intocable
+    const [tempDisplay, setTempDisplay] = useState([]) // Solo se muestra mientras que no haya click en estrellas izq
+    const [display, setDisplay] = useState([]) // Solo se muestra cuando click en las estrellas de la izq
+    const [eventRating, setEventRating] = useState(0) // Calificacion general
 
-
+    
     useEffect(() => {
-    const fetchData = async () => {
-        const response = await axios.get(`http://localhost:3001/api/comment/all`)
-        const generalRating = await axios.get(`http://localhost:3001/api/comment/generalRating?id=${id}`)
-        if (response.data.length) setComments(response.data.filter(event => Number(event.eventId) === Number(id.state)));
-        if (generalRating) setEventRating(generalRating)
-    }
+        const fetchData = async () => {
+        let backup;
+        let temporary;
+        let generalRating;
+        try {
+            backup = await axios.get(`http://localhost:3001/api/comment/all?id=${id.state}`)
+            temporary = await axios.get(`http://localhost:3001/api/comment/someComments?id=${id.state}`)
+            generalRating = await axios.get(`http://localhost:3001/api/comment/generalRating?id=${id.state}`)
+            if (backup && backup.data.length) setData(backup.data);
+            if (temporary && temporary.data.length) setTempDisplay(temporary.data)
+            if (generalRating && generalRating.data !== 0) setEventRating(generalRating.data)
+        } catch (error) {
+            console.log(error)
+        }
+        }
     fetchData()
-        
-    },[id])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
 
-
-    //Diego: Funcion que recibe una calificacion y la convierte a estrellas. Puede recibir numeros enteros 1-5
-    function setStars(grade){
+    //Diego: Recibe una calificacion y la convierte a estrellas. Puede recibir numeros enteros 1-5
+    const toStars = (grade) => {
         let result = ''
         while (grade !== 0){
             result += '★'
@@ -34,34 +44,80 @@ export default function Reviews(id) {
         return result
     }
 
-
     let keyGenerator = 0
     return (
-        <div className='comments-wrapper'>
+        <div className={style.commentsWrapper}>
         {
-            !comments.length ? (
+            !tempDisplay.length ? (
                     
-                        <p className='no-reviews'>Este evento todavia no tiene comentarios.</p>
+                        <p className={style.noReviews}>Este evento todavia no tiene comentarios.</p>
                     
                 ) : (
                     <div>
+                        <div className={style.leftContainer}>
                         {
-                            eventRating ? (
-                                <p className='general-rating'>Rating General: <span className='general-stars'>{setStars(eventRating)}</span></p>
+                            eventRating !== 0 ? (
+                                <>
+                                    <p className={style.generalRating}>
+                                    Rating General: <span className='general-stars'>{toStars(eventRating)}</span>
+                                    </p>
+                                    <p>
+                                        (falta ajustar este numero para arreglar igual los porcentajes***) calificaciones para este evento.
+                                    </p>
+                                    <p onClick={e => setDisplay(tempDisplay)}>
+                                        Ver algunas
+                                    </p>
+                                    <div className={style.starContainer}>
+                                        <p onClick={e => setDisplay(data[4].fiveStars)}>
+                                            ★★★★★ {data[4].fiveStars.length / data.length * 100}%
+                                        </p>
+                                        <p onClick={e => setDisplay(data[3].fourStars)}>
+                                            ★★★★☆ {data[3].fourStars.length / data.length * 100}%
+                                        </p>
+                                        <p onClick={e => setDisplay(data[2].threeStars)}>
+                                            ★★★☆☆ {data[2].threeStars.length / data.length * 100}%
+                                        </p>
+                                        <p onClick={e => setDisplay(data[1].twoStars)}>
+                                            ★★☆☆☆ {data[1].twoStars.length / data.length * 100}%
+                                        </p>
+                                        <p onClick={e => setDisplay(data[0].oneStar)}>
+                                            ★☆☆☆☆ {data[0].oneStar.length / data.length * 100}%
+                                        </p>
+                                    </div>
+                                </>
                             ) : (
-                                <p className='no-rating'>Este evento todavia no tiene calificaciones.</p>
+                                <p className={style.noRating}>
+                                    Este evento todavia no tiene calificaciones.
+                                </p>
                             )
                         }
+                        </div>
+                        <div className={style.rightContainer}>
                         {
-                        comments.map(comment => (
-                            <Card
-                                key={keyGenerator++}
-                                userId={comment.user.userId}
-                                rating={setStars(comment.rating)}
-                                review={comment.review}
-                            />
-                        ))
+                            !display.length ? (
+                                
+                                    tempDisplay.map(comment => (
+                                    <Card
+                                        key={keyGenerator++}
+                                        name={`${comment.user.first_name} ${comment.user.last_name}`}
+                                        rating={toStars(comment.rating)}
+                                        review={comment.review}
+                                    />)
+                                    )
+                                
+                            ) : (
+                                    display.map(comment => (
+                                        <Card
+                                            key={keyGenerator++}
+                                            name={`${comment.user.first_name} ${comment.user.last_name}`}
+                                            rating={toStars(comment.rating)}
+                                            review={comment.review}
+                                        />)
+                                    )
+                            )
+                        
                         }
+                        </div>
                     </div>
             )
         }

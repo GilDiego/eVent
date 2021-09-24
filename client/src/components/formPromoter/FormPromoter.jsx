@@ -9,13 +9,13 @@ function FormPromoter({changeModal}){
 
     const [error, setError] = useState({});
     const [condition, setCondition] = useState({//este estado valida 
-        divCountry:'',// como esta dividido el pais ?
-        idNumber:'',// qu tipo de identificacion maneja el pais
+        divCountry:'Provicia',// como esta dividido el pais ?
+        idNumber:'CUIT',// qu tipo de identificacion maneja el pais
     });
     const [form, setForm] = useState({
         promoter_name:'',//leo:nombre y apellido del promotor//
         promoter_lastName:'',
-        bio:'',//
+        // bio:'',//
         phone:'',//leo:numero de telefono del promotor//
         email:'',//leo:email del promotor//
         password:'',//leo: contraseña//
@@ -24,9 +24,10 @@ function FormPromoter({changeModal}){
         tax_id:'',//numero tributario//
         business_type:'',//typo de negocio//
         business_name:'',//
-        country:'',//pais
+        country:'Argentina',//pais
         state:'',//estado,provincia o departamento
         city:'',//ciudad o municipio
+        picture: undefined      
     });
 
     const businessTypes = [
@@ -42,7 +43,7 @@ function FormPromoter({changeModal}){
 
     useEffect(()=>{
         setError(validate(form))
-    },[])
+    },[form])
 
     const namesInputs = (e)=>{//asiganar caracteristicas por pais
         setForm({...form, country:e.target.value});
@@ -63,11 +64,21 @@ function FormPromoter({changeModal}){
             ...form,
             [e.target.name]: e.target.value
         });
-        console.log('voyy')
         setError(validate({
             ...form,
             [e.target.name]: e.target.value
         }))
+    }
+
+    const changePicture = async (e) => {
+        const file = e.target.files[0]
+        const data = new FormData();
+        data.append('file', file)
+        data.append('upload_preset', 'cloudinary_event')
+        const op = {method : 'POST', body : data}
+        const res = await fetch(`https://api.cloudinary.com/v1_1/event-pf/image/upload`, op)
+        const fileUp = await res.json();
+        setForm({...form,picture:fileUp.secure_url})
     }
 
     const handleSubmit = async (e) => {
@@ -75,29 +86,42 @@ function FormPromoter({changeModal}){
         let obj = validate(form)
        
         if(Object.keys(obj).length !== 0) {
-            alert('Completa correctamente los campos');
+            changeModal('correct', `Revisa todos los campos`);
         } else {
             try{
                 const res = await axios.post('http://localhost:3001/api/promoter',{form})
-                //alert(res.data.msg); // Respuesta del back
-                changeModal('correct', `Promotor creado con éxito. \n Espere 48hrs para su autorización. Bienvenido a eVent, ${form.promoter_name}!`)
-                //alert(`Promotor creado con éxito. \n Espere 48hrs para su autorización. Bienvenido a eVent, ${form.promoter_name}!`);
-                setError({});
-                //window.location.reload()
-                //e.target.reset()
-  
+                console.log('respuesta del backkkkkkkkk',res.data)
+                if(res.data.created){
+                    changeModal('correct', `Promotor creado con éxito. \n Espere 48hrs para su autorización. Bienvenido a eVent, ${form.promoter_name}!`)
+                    setForm({promoter_name:'',
+                    promoter_lastName:'',
+                    bio:'',
+                    phone:'',
+                    email:'',
+                    password:'',
+                    address:'',
+                    legal_name:'',
+                    tax_id:'',
+                    business_type:'',
+                    business_name:'',
+                    country:form.country,
+                    state:'',
+                    city:'',
+                });
+                
+                }else{
+                    changeModal('correct', `Revisa los datos 'Nombre del negocio', 'Telefono', 'Correo' o '${condition.idNumber}' ya se encuentran registrados.`)
+                }
             }catch(error){
-                console.log('catchhh',error);
-                alert("No hubo caso. Chequea los datos");
+                changeModal('correct', `Intentalo de nuevo más tarde`)
             }
-        }
-        
+        }  
     }
 
     return (
-        <div className={styles.container}>
+/*         <div className={styles.container}> */
             <form onSubmit={handleSubmit}>
-                <div className={!form.country ? styles.cont : styles.contRend}>
+                <div className={styles.contRend}>
                         <span className={styles.formTitle}>
                             {!form.country ? "Selecciona un país" : "Completa el formulario"}
                         </span>
@@ -108,8 +132,8 @@ function FormPromoter({changeModal}){
                             onChange={namesInputs}
                             className={styles.pais}
                         >
-                            <option value="" disabled>País</option>
-                            <option value="Argentina">Argentina</option>
+                            {/* <option value="" disabled>País</option> */}
+                            <option value="Argentina" selected='select'>Argentina</option>
                             <option value="Colombia">Colombia</option>
                             <option value="Mexico">México</option>
                         </select>
@@ -117,7 +141,7 @@ function FormPromoter({changeModal}){
                             <span className={styles.tick}> ✓ </span>
                         }
                     </div>
-                    {form.country &&
+                    {/* {form.country && */}
                         <div className={styles.contForm2}>
                              {/*Ubicacion*/}
                             <div className={styles.ubication}>
@@ -127,7 +151,7 @@ function FormPromoter({changeModal}){
                                         <input
                                             type="text"
                                             name='state'
-
+                                            value={form.state}
                                             onChange={handleChange}
                                             className={!form.state && styles.errorState}
                                         />
@@ -136,11 +160,12 @@ function FormPromoter({changeModal}){
                                 </div>
                                 <div className={styles.row}>
                                     <span>Ciudad/Municipio: </span>
-                                    <div>
+                                    <div className={styles.inputCheck}>
                                         <input
                                             type="text"
                                             name='city'
                                             onChange={handleChange}
+                                            value={form.city}
                                             className={!form.city && styles.errorState}
                                         />
                                         <span className={styles.tick}>{ !error.city && '✓'}  </span> 
@@ -151,131 +176,153 @@ function FormPromoter({changeModal}){
                             <div className={styles.datesCompany}>
                                 <div className={styles.row}>
                                     <span >Tipo de Negocio: </span>
-                                    {/* <input type="text" name='business_type' placeholder='Tipo de Emprendimiento' onChange={handleChange} className={!form.business_type && styles.errorState}/>nisiness_type */}
-                                    <select
-                                        name="business_type"
-                                        value={form.business_type}
-                                        onChange={handleChange}
-                                        className={form.business_type}
-                                    >
-                                        <option value="" disabled>Selecciona:</option>
-                                        {businessTypes.map((el) => <option value={el}>{el}</option>)}
-                                    </select>
-                                    {!error.business_type &&
-                                        <span className={styles.tick}> ✓ </span>
-                                    }
+                                    <div className={styles.inputCheck}>
+                                        <select
+                                            name="business_type"
+                                            value={form.business_type}
+                                            onChange={handleChange}
+                                            className={form.business_type}
+                                        >
+                                            <option value="" disabled>Selecciona:</option>
+                                            {businessTypes.map((el) => <option value={el}>{el}</option>)}
+                                        </select>
+                                        <span className={styles.tick}>{!error.business_type && '✓' }</span>                                 
+                                    </div>
                                 </div>
                                 <div className={styles.row}>
                                     <span>Nombre del negocio: </span>
-                                    <input
-                                        type="text"
-                                        name='business_name'
-                                        value={form.business_name}
-                                        onChange={handleChange}
-                                        className={!form.business_name && styles.errorState}
-                                    />
-                                    {!error.business_name && <span className={styles.tick}> ✓ </span>}
-                                    {/*legal_name*/}
+                                    <div className={styles.inputCheck}>
+                                        <input
+                                            type="text"
+                                            name='business_name'
+                                            value={form.business_name}
+                                            onChange={handleChange}
+                                            className={!form.business_name && styles.errorState}
+                                        />
+                                        <span className={styles.tick}>{!error.business_name && '✓' }</span>
+                                    </div>
                                 </div>
                                 <div className={styles.row}>
                                     <span>Razón social: </span>
-                                    <input
-                                        type="text"
-                                        name='legal_name'
-                                        onChange={handleChange}
-                                    />
-                                    {!error.legal_name && <span className={styles.tick}> ✓ </span> }
+                                    <div className={styles.inputCheck}>
+                                        <input
+                                            type="text"
+                                            name='legal_name'
+                                            onChange={handleChange}
+                                            value={form.legal_name}
+                                        />                                   
+                                        <span className={styles.tick}>{!error.legal_name && '✓' }</span>
+                                    </div>
                                 </div>
                                 <div className={styles.row}>
                                     <span >{condition.idNumber}: </span>
-                                    <input
-                                        name='tax_id'
-                                        type="text"
-                                        onChange={handleChange}
-                                    />
-                                    {!error.tax_id &&
-                                        <span className={styles.tick}> ✓ </span>
-                                    }
+                                    <div className={styles.inputCheck}>
+                                        <input
+                                            name='tax_id'
+                                            type="text"
+                                            value={form.tax_id}
+                                            onChange={handleChange}
+                                        />
+                                        <span className={styles.tick}>{!error.tax_id && '✓' }</span>
+                                    </div>
                                 </div>
-                                <div className={styles.row}>
+                                <div className={styles.row}>                                    
                                     <span>Dirección: </span>
-                                    <input
-                                        type="text"
-                                        name='address'
-                                        onChange={handleChange}
-                                    />
-                                    {!error.address &&
-                                        <span className={styles.tick}> ✓ </span>
-                                    }
+                                    <div className={styles.inputCheck}>
+                                        <input
+                                            type="text"
+                                            name='address'
+                                            onChange={handleChange}
+                                            value={form.address}
+                                        />
+                                        <span className={styles.tick}>{!error.address && '✓' }</span>
+                                    </div>
                                 </div>
                             </div>
                               {/*Contacto*/}
                             <div className={styles.contact}>
                                 <div className={styles.row}>
                                     <span>Nombre: </span>
-                                    <input
-                                        type="text"
-                                        name='promoter_name'
-                                        onChange={handleChange}
-                                    />
-                                    {!error.promoter_name && <span className={styles.tick}> ✓ </span> }
+                                    <div className={styles.inputCheck}>
+                                        <input
+                                            type="text"
+                                            name='promoter_name'
+                                            onChange={handleChange}
+                                            value={form.promoter_name}
+                                        />
+                                        <span className={styles.tick}>{!error.promoter_name && '✓'} </span> 
+                                    </div>
                                 </div>
                                 <div className={styles.row}>
                                     <span>Apellido: </span>
-                                    <input
-                                        type="text"
-                                        name='promoter_lastName'
-                                        onChange={handleChange}
-                                    />
-                                    {!error.promoter_lastName && <span className={styles.tick}> ✓ </span> }
+                                    <div className={styles.inputCheck}>
+                                        <input
+                                            type="text"
+                                            name='promoter_lastName'
+                                            onChange={handleChange}
+                                            value={form.promoter_lastName}
+                                        />
+                                        <span className={styles.tick}>{!error.promoter_lastName && '✓' }</span>
+                                    </div>
                                 </div>
                                 <div className={styles.row}>
-                                    <span>Teléfono (sólo números): </span>
-                                    <input
-                                        type="text"
-                                        name='phone'
-                                        onChange={handleChange}
-                                    />
-                                    {!error.phone &&
-                                        <span className={styles.tick}> ✓ </span>
-                                    }
+                                    <span>Teléfono: </span>
+                                    <div className={styles.inputCheck}>
+                                        <input
+                                            type="text"
+                                            name='phone'
+                                            onChange={handleChange}
+                                            value={form.phone}
+                                        />                                   
+                                        <span className={styles.tick}>{!error.phone && '✓' }</span>
+                                    </div>
+                                </div>
+                                <div className={styles.rowFile}>
+                                    <span>Foto de Perfil: </span>
+                                    <div className={styles.inputCheckFile}>
+                                        <input 
+                                            type="file" onChange={changePicture} 
+                                        />                                
+                                        <span className={styles.tick}></span>
+                                    </div>
                                 </div>
                             </div>
                               {/*datos login*/}
                             <div className={styles.password}>
                                 <div className={styles.row}>
                                     <span >Email: </span>
-                                    <input
-                                        type='email'
-                                        name='email'
-                                        placeholder='usuario@dominio.abc'
-                                        onChange={handleChange}
-                                    />
-                                    {!error.email &&
-                                        <span className={styles.tick}> ✓ </span>
-                                    }
+                                    <div className={styles.inputCheck}>
+                                        <input
+                                            type='email'
+                                            name='email'
+                                            placeholder='usuario@dominio.abc'
+                                            onChange={handleChange}
+                                            value={form.email}
+                                        />                                        
+                                        <span className={styles.tick}> {!error.email && '✓'} </span>
+                                    </div>
                                 </div>
                                 <div className={styles.row}>
-                                    <span >Contraseña (6+ caracteres): </span>
-                                    <input
-                                        type="password"
-                                        name='password'
-                                        placeholder='¡Si no tilda, no es segura!'
-                                        onChange={handleChange}
-                                    />
-                                    {!error.password &&
-                                        <span className={styles.tick}> ✓ </span>
-                                    }
+                                    <span >Contraseña: </span>
+                                    <div className={styles.inputCheck}>
+                                        <input
+                                            type="password"
+                                            name='password'
+                                            placeholder='¡Si no tilda, no es segura!'
+                                            onChange={handleChange}
+                                            value={form.password}
+                                        />                                        
+                                        <span className={styles.tick}>{!error.password && '✓'} </span>
+                                    </div>
                                 </div>
                             </div>
                             <button className={styles.btn} type="submit">
                             ¡Registrarme!
                             </button>
-                        </div>
-                    /*(Cierra el condicional form.country*/ }
+                        </div>                  
                 </div>
             </form>
-        </div>
+/*         </div> */
        )
 }
 function mapStateToProps(state){

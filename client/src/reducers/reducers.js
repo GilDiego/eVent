@@ -1,9 +1,9 @@
 import {
     GET_DETAIL, 
-    GET_EDIT,
    SWITCH_SIDE_BAR,
    POST_EVENT,
    SET_USER,
+   SET_PROMOTER,
    GET_EVENTS_HOME,
    FILTER_TAGS,
    FILTER_AGE_RATING,
@@ -20,13 +20,15 @@ import {
   const initialState = {
     eventsHome: [],
     //*detalles de evento
-    detailsEvent:[true],
+    detailsEvent:{},
     //*switch de nav-bar
     sideBarSwitch: false,
     //*post //Abi
     posts:[],
     //*user
     userState:{},
+    //*promoter
+    promoterState:{},
    //modal
     modal:{
       render:false,
@@ -82,6 +84,13 @@ import {
       return{
         ...state,
         userState: action.payload
+      }
+    }
+    //*_PRMOTER_______
+    if(action.type=== SET_PROMOTER){
+      return{
+        ...state,
+        promoterState: action.payload
       }
     }
     //*__FILTER  //Abi

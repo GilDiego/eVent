@@ -9,6 +9,7 @@ const ActivityCard = ({ event }) => {
   }
 
   return (
+    <Link to={`/eventDetailsUsuario/${event.id}`}>
     <div className={styles.card}>
       <h2 className={styles.titleCard}>{event.name}</h2>
       <h4 className={styles.tagsCard}>{event.tags}</h4>
@@ -22,10 +23,11 @@ const ActivityCard = ({ event }) => {
         <button className={styles.btnCard} onClick={() => setId(activity.id)}>Info</button>
       </Link> */}
       
-      <Link to={`/eventDetailsUsuario/${event.id}`}>
+        {/* <Link to={`/eventDetailsUsuario/${event.id}`}>
         <button className={styles.btnCard} onClick={() => setId(event.id)}>Info</button>
-      </Link>
+        </Link> */}
     </div>
+    </Link>
   );
 };
 

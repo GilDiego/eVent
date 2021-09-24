@@ -1,18 +1,20 @@
 import React from "react";
 import styles from './UserPorfile.module.css'
-import SubCarousel from '../SubCarousel/SubCarousel'
 import { connect } from 'react-redux';
-
+import SubCarousel from '../subCarousel/SubCarousel'
 const UserPorfile = ({userState})=>{
-    console.log(userState.imageUrl)
+    console.log(userState)
     return(
         <div className={styles.contain}>
-            <div className={styles.barPorfile}>
-                <div className={styles.porfileImg}>
-                    <img src={userState.imageUrl} alt="xx" />
+            <div className={styles.barProfile}>
+                <div className={styles.profileImg}>
+                    <img src={userState.picture} alt="xx" />
                 </div>
-                <h3 className={styles.nombre}>{userState.name}</h3>
-                <h4 className={styles.ciudad}>Bogotá, Colombia</h4>
+                {/* <h3 className={styles.nombre}>{userState.name}</h3>
+                <h4 className={styles.ciudad}>Bogotá, Colombia</h4> */}
+            </div>
+            <div className={styles.contInfo} >
+                <h3>¡Bievenido! {userState.username}</h3>
             </div>
 
             <div className={styles.myEvents}>

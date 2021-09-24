@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import FormPromoter from "../FormPromoter/FormPromoter";
+import FormPromoter from "../FormPromoter/FormPromoter.jsx";
 import FormUsers from "../FormUsers/FormUsers";
 import styles from './Registration.module.css'
 
