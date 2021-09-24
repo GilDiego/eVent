@@ -4,30 +4,34 @@ import Card from '../Card/Card'
 import style from './DisplayComments.module.css'
 
 
-export default function Reviews(id) {
-    const [data, setData] = useState([])
-    const [display, setDisplay] = useState([])
-    const [eventRating, setEventRating] = useState(0)
+export default function DisplayComments(id) {
+    const [data, setData] = useState([]) // Backup intocable
+    const [tempDisplay, setTempDisplay] = useState([]) // Solo se muestra mientras que no haya click en estrellas izq
+    const [display, setDisplay] = useState([]) // Solo se muestra cuando click en las estrellas de la izq
+    const [eventRating, setEventRating] = useState(0) // Calificacion general
 
-
+    
     useEffect(() => {
-    const fetchData = async () => {
-        const response = await axios.get(`http://localhost:3001/api/comment/all?id=${id.state}`)
-        const generalRating = await axios.get(`http://localhost:3001/api/comment/generalRating?id=${id.state}`)
-console.log(response.data, 'esta es mi respuesta')
-        if (response.data.length) {
-            // por cada array filtrar solo comentarios que tengan el ID del evento
-            setData(Object.entries(response.data).forEach(arr => arr.filter(event =>Number(event.eventId) === Number(id.state))));
-            setDisplay(data)
+        const fetchData = async () => {
+        let backup;
+        let temporary;
+        let generalRating;
+        try {
+            backup = await axios.get(`http://localhost:3001/api/comment/all?id=${id.state}`)
+            temporary = await axios.get(`http://localhost:3001/api/comment/someComments?id=${id.state}`)
+            generalRating = await axios.get(`http://localhost:3001/api/comment/generalRating?id=${id.state}`)
+            if (backup && backup.data.length) setData(backup.data);
+            if (temporary && temporary.data.length) setTempDisplay(temporary.data)
+            if (generalRating && generalRating.data !== 0) setEventRating(generalRating.data)
+        } catch (error) {
+            console.log(error)
         }
-        if (generalRating) setEventRating(generalRating)
-    }
+        }
     fetchData()
     },[])
 
-
-    //Diego: Funcion que recibe una calificacion y la convierte a estrellas. Puede recibir numeros enteros 1-5
-    function toStars(grade){
+    //Diego: Recibe una calificacion y la convierte a estrellas. Puede recibir numeros enteros 1-5
+    const toStars = (grade) => {
         let result = ''
         while (grade !== 0){
             result += '★'
@@ -43,7 +47,7 @@ console.log(response.data, 'esta es mi respuesta')
     return (
         <div className={style.commentsWrapper}>
         {
-            !data.length ? (
+            !tempDisplay.length ? (
                     
                         <p className={style.noReviews}>Este evento todavia no tiene comentarios.</p>
                     
@@ -51,7 +55,7 @@ console.log(response.data, 'esta es mi respuesta')
                     <div>
                         <div className={style.leftContainer}>
                         {
-                            eventRating ? (
+                            eventRating !== 0 ? (
                                 <>
                                     <p className={style.generalRating}>
                                     Rating General: <span className='general-stars'>{toStars(eventRating)}</span>
@@ -59,21 +63,24 @@ console.log(response.data, 'esta es mi respuesta')
                                     <p>
                                         {data.length} calificaciones para este evento.
                                     </p>
+                                    <p onClick={e => setDisplay(tempDisplay)}>
+                                        Ver todas
+                                    </p>
                                     <div className={style.starContainer}>
-                                        <p onClick={setDisplay(data.fiveStars)}>
-                                            ★★★★★ {data.fiveStars.length}%
+                                        <p onClick={e => setDisplay(data[4].fiveStars)}>
+                                            ★★★★★ {data[4].fiveStars.length / data.length * 100}%
                                         </p>
-                                        <p onClick={setDisplay(data.fourStars)}>
-                                            ★★★★☆ {data.fourStars.length}%
+                                        <p onClick={e => setDisplay(data[3].fourStars)}>
+                                            ★★★★☆ {data[3].fourStars.length / data.length * 100}%
                                         </p>
-                                        <p onClick={setDisplay(data.threeStars)}>
-                                            ★★★☆☆ {data.threeStars.length}%
+                                        <p onClick={e => setDisplay(data[2].threeStars)}>
+                                            ★★★☆☆ {data[2].threeStars.length / data.length * 100}%
                                         </p>
-                                        <p onClick={setDisplay(data.twoStars)}>
-                                            ★★☆☆☆ {data.twoStars.length}%
+                                        <p onClick={e => setDisplay(data[1].twoStars)}>
+                                            ★★☆☆☆ {data[1].twoStars.length / data.length * 100}%
                                         </p>
-                                        <p onClick={setDisplay(data.oneStar)}>
-                                            ★☆☆☆☆ {data.oneStar.length}%
+                                        <p onClick={e => setDisplay(data[0].oneStar)}>
+                                            ★☆☆☆☆ {data[0].oneStar.length / data.length * 100}%
                                         </p>
                                     </div>
                                 </>
@@ -83,18 +90,33 @@ console.log(response.data, 'esta es mi respuesta')
                                 </p>
                             )
                         }
-
                         </div>
+                        <div className={style.rightContainer}>
                         {
-                        display.map(comment => (
-                            <Card
-                                key={keyGenerator++}
-                                name={`${comment.user.first_name} ${comment.user.last_name}`}
-                                rating={toStars(comment.rating)}
-                                review={comment.review}
-                            />
-                        ))
+                            !display.length ? (
+
+                                    tempDisplay.map(comment => (
+                                    <Card
+                                        key={keyGenerator++}
+                                        name={`${comment.user.first_name} ${comment.user.last_name}`}
+                                        rating={toStars(comment.rating)}
+                                        review={comment.review}
+                                    />)
+                                    )
+                                
+                            ) : (
+                                display.map(comment => (
+                                    <Card
+                                        key={keyGenerator++}
+                                        name={`${comment.user.first_name} ${comment.user.last_name}`}
+                                        rating={toStars(comment.rating)}
+                                        review={comment.review}
+                                    />)
+                                )
+                            )
+                        
                         }
+                        </div>
                     </div>
             )
         }
