@@ -95,7 +95,7 @@ exports.loginPromoter =  (req, res) => {
             });
             else return res.json({ msg: false })
         }).catch(error => {
-            console.log(,error);
+            console.log(error);
             res.json({ msg: 'error' });
         })
 }
