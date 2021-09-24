@@ -29,7 +29,7 @@ export default function EventDetailsUsario() {
     const params =useParams()
     const {id}=params
     const detailsEvent = useSelector(state => state.detailsEvent)
-    console.log('holis ', detailsEvent)
+
 
 
     useEffect( () => {
@@ -114,10 +114,7 @@ export default function EventDetailsUsario() {
                                     <p className='p'>{` ${detailsEvent.consult.age_rating}`}</p>
                                     <h4 className='h4'>Precio:</h4>
                                     <p className='p'>{` $${detailsEvent.consult.price}`}</p>
-                                    <h4>limite de asiastentes:</h4>
-                                    <p>{` ${detailsEvent.consult.ticket_limit}`}</p>
-                                    <h4>Croquis:</h4> {` ${detailsEvent.consult.seat_booking} `} 
-                                    
+                                  
                                 </div>                                
                             </div>
                         </div>
@@ -146,4 +143,3 @@ export default function EventDetailsUsario() {
         return (<Loading/>)
     }
 }
-
