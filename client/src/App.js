@@ -67,7 +67,7 @@ function App({ setUser, user, modal }) {
       </Route>
 
       <Route path='/FormEvent' >
-        <FormEvent />
+        {user.msg? user.type === 'user'?<Home />:<FormEvent promoterId={user.id}/>: <Redirect to='/login'/>}
       </Route>
 
       <Route path='/EventsDetailsPromoter/:id' >
@@ -83,9 +83,9 @@ function App({ setUser, user, modal }) {
         <Comments />
       </Route>
 
-      <Route path='/perfilPromotor'>
+      {/* <Route path='/perfilPromotor'>
         <PromotorePorfile />
-      </Route>
+      </Route> */}
 
       <Route path='/shoppingCart'>
         <ShoppingCart />
