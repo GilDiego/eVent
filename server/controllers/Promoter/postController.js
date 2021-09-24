@@ -15,7 +15,7 @@ exports.saveInfoPromotor = async (req,res) =>{
         business_type,
         address, 
         picture,
-    } = req.body.form;
+    } = req.body;
 
     try{
         const [promoter,created] = await Promoter.findOrCreate({
