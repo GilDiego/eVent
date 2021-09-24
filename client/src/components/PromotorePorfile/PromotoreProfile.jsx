@@ -1,5 +1,6 @@
 import React from "react";
 import ListEvent from "./ListEvent";
+import Grafica from  './GraphPromoter'
 import styles from './PromotorePorfile.module.css';
 import {Link} from 'react-router-dom'
 const PromotorePorfile = () =>{
@@ -27,6 +28,8 @@ const PromotorePorfile = () =>{
             
                 <ListEvent />
             </div>
+            <Grafica/>
+
         </div>
     );
 }

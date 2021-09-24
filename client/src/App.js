@@ -31,12 +31,16 @@ function App({ setUser, user, modal }) {
       setUser(loginUser)
     } else
       setUser({})
-  }, [setUser])
+  }, [setUser]) 
 
   return (
     <>
 
       <NavBar />
+       
+       
+
+
 
       <Route exact path='/'>
         <Home />
