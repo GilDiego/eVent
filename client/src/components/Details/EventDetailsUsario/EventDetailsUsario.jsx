@@ -12,10 +12,10 @@ import styles from './EventDetailsUsario.module.css'
 
 const pushDta=(detailsEvent)=>{
     let data = [];
-    let picture = detailsEvent.result?.pictures
+    let picture = detailsEvent.consult?.pictures
     
     for (let index = 0; index < picture?.length; index++) {
-        data.push({image:picture[index],caption:detailsEvent.result.description})
+        data.push({image:picture[index],caption:detailsEvent.consult.description})
     }
     return data;
 }
@@ -29,6 +29,7 @@ export default function EventDetailsUsario() {
     const params =useParams()
     const {id}=params
     const detailsEvent = useSelector(state => state.detailsEvent)
+    console.log('holis ', detailsEvent)
 
 
     useEffect( () => {
@@ -61,7 +62,7 @@ export default function EventDetailsUsario() {
             <div className={styles.detailsAllUser}>
                 <div className='detailsCardUser'> 
                     <div className='deailscard2User'>
-                        <h1 className={styles.titleCard}>{detailsEvent.result.name}</h1>
+                        <h1 className={styles.titleCard}>{detailsEvent.consult.name}</h1>
                         <div className='img'>                               
                             <Carousel   
                                 data={data}
@@ -90,32 +91,32 @@ export default function EventDetailsUsario() {
                         <div className={styles.otherDetailsUser}>  
                             <br/> 
                             <h4 className='h4'>Descripcion:</h4>
-                            <p className={styles.description}>{ detailsEvent.result.description}</p>
+                            <p className={styles.description}>{ detailsEvent.consult.description}</p>
                             <div className={styles.detailsUsers2User}>
                                 <div className={styles.leftColumn}>
                                     <h4 className='h4'>Artistas:</h4>
-                                    <p className='p'>{` ${detailsEvent.result.starring}`}</p>
+                                    <p className='p'>{` ${detailsEvent.consult.starring}`}</p>
                                     <h4 className='h4'>Dirreción:</h4>
-                                    <p className='p'> {` ${detailsEvent.result.address}`}</p>
+                                    <p className='p'> {` ${detailsEvent.consult.address}`}</p>
                                     <h4 className='h4'>Fecha:</h4>
-                                    <p className='p'>{` ${detailsEvent.result.start_date}`}</p>
+                                    <p className='p'>{` ${detailsEvent.consult.start_date}`}</p>
                                     <h4 className='h4'>Fecha Finalización:</h4>
-                                    <p className='p'>{` ${detailsEvent.result.finish_date}`}</p>
+                                    <p className='p'>{` ${detailsEvent.consult.finish_date}`}</p>
                                     <h4 className='h4'>Dias:</h4>
-                                    <p className='p'>{` ${detailsEvent.result.weekdays.map((e)=>(e))}`}</p>
+                                    <p className='p'>{` ${detailsEvent.consult.weekdays.map((e)=>(e))}`}</p>
                                 </div>
                                 <div className={styles.rightColumn}>
                                     <h4 className='h4'>Horarios:</h4>
-                                    <p className='p'>{` ${detailsEvent.result.schedule.map((e)=>(e))}`}</p>
+                                    <p className='p'>{` ${detailsEvent.consult.schedule.map((e)=>(e))}`}</p>
                                     <h4 className='h4'>Tipo de Evento:</h4>
-                                    <p className='p'>{` ${detailsEvent.result.tags}`}</p>
+                                    <p className='p'>{` ${detailsEvent.consult.tags}`}</p>
                                     <h4 className='h4'>Clasificación:</h4>                            
-                                    <p className='p'>{` ${detailsEvent.result.age_rating}`}</p>
+                                    <p className='p'>{` ${detailsEvent.consult.age_rating}`}</p>
                                     <h4 className='h4'>Precio:</h4>
-                                    <p className='p'>{` $${detailsEvent.result.price}`}</p>
+                                    <p className='p'>{` $${detailsEvent.consult.price}`}</p>
                                     <h4>limite de asiastentes:</h4>
-                                    <p>{` ${detailsEvent.result.ticket_limit}`}</p>
-                                    <h4>Croquis:</h4> {` ${detailsEvent.result.seat_booking} `} 
+                                    <p>{` ${detailsEvent.consult.ticket_limit}`}</p>
+                                    <h4>Croquis:</h4> {` ${detailsEvent.consult.seat_booking} `} 
                                     
                                 </div>                                
                             </div>
@@ -126,7 +127,7 @@ export default function EventDetailsUsario() {
                                 pathname:'/nuevoComentario',
                                 state: {
                                     id: id,
-                                    eventName: detailsEvent.result.name
+                                    eventName: detailsEvent.consult.name
                                 }
                             }}>
                             <button className={styles.button}>Reseña</button>
