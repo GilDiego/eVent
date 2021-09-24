@@ -56,6 +56,7 @@ export function Validate(input) {
 }
 
 export function FormEvent(props) {
+    console.log(props,'propssssss deee event')
     const [errors, setErrors] = useState({})
     const [event, setEvent] = useState({
         name: '',
@@ -73,12 +74,13 @@ export function FormEvent(props) {
         tags: '',
         age_rating: '',
         price: '',
-        ticket_limit: ''
+        ticket_limit: '',
+        promoter_id: props.promoterId
     })
     const [hour, setHour] = useState('')
     const [mins, setMins] = useState('')
     const [day, setDay] = useState()
-    const tags = ["Exteriores", "Interiores", "En vivo", "Recital", "Teatro", "Película", "Disco", "Deportes"]
+    const tags = ["exteriores", "Interiores", "En vivo", "Recital", "Teatro", "Película", "Disco", "Deportes"]
     const weeks = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]//"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"
 
     const [img, setImg] = useState([]);

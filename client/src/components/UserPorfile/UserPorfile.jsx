@@ -1,7 +1,8 @@
 import React from "react";
 import styles from './UserPorfile.module.css'
 import { connect } from 'react-redux';
-import SubCarousel from '../SubCarousel/SubCarousel.jsx'
+//import SubCarousel from '../SubCarousel/SubCarousel.jsx'
+import SubCarousel from '../subCarousel/SubCarousel'
 const UserPorfile = ({userState})=>{
     console.log(userState)
     return(
