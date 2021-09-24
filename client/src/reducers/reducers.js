@@ -1,6 +1,5 @@
 import {
     GET_DETAIL, 
-    GET_EDIT,
    SWITCH_SIDE_BAR,
    POST_EVENT,
    SET_USER,
@@ -21,7 +20,7 @@ import {
   const initialState = {
     eventsHome: [],
     //*detalles de evento
-    detailsEvent:[true],
+    detailsEvent:{},
     //*switch de nav-bar
     sideBarSwitch: false,
     //*post //Abi

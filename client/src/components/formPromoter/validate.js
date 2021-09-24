@@ -9,7 +9,7 @@ export default function validate(form) {
     }else if(form.country === 'Colombia') {
         if(!(/^([0-9]{9}-[0-9]{1})$|^([0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{1})$/.test(form.tax_id))) pass.tax_id = true
     }else if(form.country === 'Mexico') {
-        if((/^[A-ZÑ&]{3,4}\d{6}(?:[A-Z\d]{3})?$/.test(form.tax_id))) pass.tax_id = true
+        if(!(/^[A-ZÑ&]{3,4}\d{6}(?:[A-Z\d]{3})?$/.test(form.tax_id))) pass.tax_id = true
     }
     
     if(form.country.length < 3) pass.country = true;

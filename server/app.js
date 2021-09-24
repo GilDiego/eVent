@@ -30,6 +30,9 @@ app.use('/api/comment', require('./routes/comment'));
 //Promoter Routes
 app.use('/api/promoter', require('./routes/promoter'));
 
+//Location Routes
+app.use('/api/location', require('./routes/location'))
+
 //Cloudinary Routes
 app.use('/cloudinary',require('./routes/cloudinary'));
 

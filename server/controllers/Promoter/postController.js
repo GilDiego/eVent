@@ -1,7 +1,9 @@
 const Promoter = require ('../../database/models/Promoter');
+const { Sequelize } = require('sequelize');
+const Op = Sequelize.Op;
 
 exports.saveInfoPromotor = async (req,res) =>{
-    console.log(req.body)
+ 
     const {
         legal_name,
         business_name,
@@ -11,36 +13,39 @@ exports.saveInfoPromotor = async (req,res) =>{
         email,
         password,
         business_type,
-        address,  
-    } = req.body.form;
+        address, 
+        picture,
+    } = req.body;
 
     try{
         const [promoter,created] = await Promoter.findOrCreate({
             where:{
-                //¿la tabla deberia tener tipo de identificacion segun el pais?, por si se repiten en paises distintos
-                tax_id
+                [Op.or]:[              
+                    {email},
+                    {tax_id},
+                    {phone},
+                    {legal_name}]
             },
             defaults:{
+                email,
+                tax_id,
+                phone,
                 legal_name,
                 business_name,
                 promoter_name,
-                phone,
-                email,
                 password,
                 business_type,
                 address,
+                picture,
             },
         });
         if(!created){
-            return res.json({msg:'Exist'}); 
+            return res.json({created:false}); 
         }else {
-            return res.json({
-                msg:'Created',
-                promoter,
-            }) ;
-            
+            return res.json({created:true,promoter}) ; 
         }
     }catch(error){
+        console.log(error)
         res.json({msg:'No se pudo crear'});
     }
 }
@@ -62,7 +67,7 @@ exports.loginPromoter =  (req, res) => {
                 id: promoter.id,
                 business_name: promoter.business_name,
                 promoter_name:promoter.promoter_name, 
-                picture: "https://cdn2.vectorstock.com/i/thumb-large/04/96/user-icon-vector-19240496.jpg",
+                picture: promoter.picture,
                 business_type: promoter.business_type,
                 type: 'promoter'
             });

@@ -4,7 +4,10 @@ import styles from "./NavBar.module.css";
 import { setUser } from "../../actions/actions";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
-import Logout from "../Logout/Logout";
+import Logout from '../Logout/Logout'
+import img1 from '../../Utilities/eVent-05.svg';
+import img2 from '../../Utilities/eVent-08.svg';
+
 
 const NavBar = ({ user, setUser }) => {
   const history = useHistory();
@@ -23,7 +26,8 @@ const NavBar = ({ user, setUser }) => {
     <>
       <nav className={styles.Navbar}>
         <Link to="/" className={styles.homeBtn}>
-          Home
+          <img className={styles.homeLogo} src={img1} alt="eVent " />
+          <img className={styles.homeLogo} src={img2} alt=" eVent" />
         </Link>
         <div className="contFlex">
           {user.msg ? (

@@ -2,6 +2,12 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../db');
 
 const Event = sequelize.define('event', {
+    id:{
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+        allowNull: false
+      },
     name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -13,17 +19,16 @@ const Event = sequelize.define('event', {
     },
     starring: {
         type: DataTypes.STRING,
-        allowNull: true
     },
     remote: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
     },
-    /* IF LOCATION MODEL IS DISCARDED:
-    location: {
-        type: DataTypes.STRING, //Previously processed at frontend.
-        allowNull: false,
-    },*/
+    //IF LOCATION MODEL IS DISCARDED:
+    // location: {
+    //     type: DataTypes.STRING, //Previously processed at frontend.
+    //     allowNull: false,
+    // },
     address: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -40,11 +45,9 @@ const Event = sequelize.define('event', {
     finish_date: { // AAAA-MM-DD
         type: DataTypes.STRING,
         validate: { isDate: true, },
-        allowNull: true,
     },
     schedule: { //TEMPORARY. CONVERT INTO SEPARATE MODEL AFTERWARDS
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: true,
     },
     isrecurrent: {
         type: DataTypes.BOOLEAN,
@@ -52,13 +55,13 @@ const Event = sequelize.define('event', {
     },
     weekdays: {
         type: DataTypes.ARRAY(DataTypes.ENUM(
-            "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"
+            "domingo", "lunes", "martes", "miércoles","miercoles", "jueves", "viernes", "sábado","sabado"
             )),
         allowNull: false,
     },
     tags: { // TEMPORARY. TURN INTO SEPARATE MODEL AFTERWARDS
         type: DataTypes.ENUM(
-            "Exteriores", "Interiores", "En vivo", "Recital", "Teatro", "Película", "Disco", "Deportes"
+            "exteriores", "interiores", "en vivo", "recital", "teatro", "película", "disco", "deportes","pelicula"
             ),
         allowNull: false,
     },
@@ -72,7 +75,6 @@ const Event = sequelize.define('event', {
     },
     ticket_limit: {
         type: DataTypes.INTEGER,
-        allowNull: true,
     },
     seat_booking: {
         /* ?????????????? */
@@ -87,6 +89,10 @@ const Event = sequelize.define('event', {
     //     type: DataTypes.STRING,
     //     // allowNull:false,
     // }
-})
+},
+{
+    timestamps: false
+}
+)
 
 module.exports = Event;
