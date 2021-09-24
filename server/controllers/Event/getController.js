@@ -1,42 +1,32 @@
 const Event = require('../../database/models/Event');
 const Comment = require('../../database/models/Comment');
+const Location = require('../../database/models/Location');
+const Promoter = require('../../database/models/Promoter');
 
 
 exports.getController = async (req,res) => {
 
-    const consult = await Event.findAll();
+    const consult = await Event.findAll({
+        attributes:[
+            "id",
+            "name",
+            "price",
+            "pictures",
+            "tags",
+            "age_rating",
+            "weekdays"
+        ],
+        include:{
+            model: Location,
+            attributes: [
+                "country",
+                "province",
+                "city"
+            ]
+        }
+    });
 
-    const result = consult.map(event => {
-        const { dataValues } = event;
-
-        const {
-            id,
-            name,
-            price,
-            // country,
-            // region,
-            location,
-            pictures,
-            tags,
-            age_rating,
-            weekdays
-        } = dataValues;
-
-        return {
-            id,
-            name,
-            price,
-            // country,
-            // region,
-            location,
-            tags,
-            age_rating,
-            weekdays,
-            pictures
-        };
-    })
-
-    res.json(result)
+    res.json(consult)
 }
 
 exports.getEventByIdController = async (req,res) => {
@@ -44,20 +34,26 @@ exports.getEventByIdController = async (req,res) => {
 
 
     try {
-        const consult = await Event.findOne({
-            where: {
-                id
-            },
-            include:Comment
-        });
+        const consult = await Event.findByPk(id,{
+            include:[
+                {
+                    model: Location,
+                    attributes:['country','province','city']
+                },
+                Comment,
+                {
+                    model: Promoter,
+                    attributes:['id','legal_name']
+                }
+            ]
+        });     
     
-        const result = consult;
 
-        if(!result) return res.json({msg:'ID does not match with any event'});
+        if(!consult) return res.json({msg:'ID does not match with any event'});
         
         res.json({
             msg:`Search ID: ${id} Success!`,
-            result
+            consult
         });
         
     } catch (error) {
