@@ -3,16 +3,17 @@ import ListEvent from "./ListEvent";
 import Grafica from  './GraphPromoter'
 import styles from './PromotorePorfile.module.css';
 import {Link} from 'react-router-dom'
-const PromotorePorfile = () =>{
+const PromotorePorfile = ({userData}) =>{
+    console.log(userData)
     return(
         <div className={styles.contPrin}>
             <div className={styles.contProfile}>
                 <div className={styles.imgProfile}>
-                    <img src="" alt="" />
+                    <img src={userData.picture} alt="" />
                 </div>
             </div>
             <div className={styles.contInfo} >
-                <h3>Teatro Julio Mario Santodomingo</h3>
+                <h3>{userData.business_type} {userData.business_name}</h3>
             </div>
             <hr/>
             

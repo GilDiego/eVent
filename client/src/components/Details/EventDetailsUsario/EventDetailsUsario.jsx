@@ -27,7 +27,7 @@ export default function EventDetailsUsario() {
 
     // Diego: Variable solo para que no tire Warning en la consola sobre unique keys
         const [render, setRender] = useState(false)
-        const [data , setData] = useState()
+        //const [data , setData] = useState()
         const dispatch = useDispatch()
         const params =useParams()
         const [data , setData] = useState();

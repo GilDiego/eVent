@@ -69,7 +69,7 @@ exports.loginPromoter =  (req, res) => {
                 id: promoter.id,
                 business_name: promoter.business_name,
                 promoter_name:promoter.promoter_name, 
-                picture: "https://cdn2.vectorstock.com/i/thumb-large/04/96/user-icon-vector-19240496.jpg",
+                picture: promoter.picture,
                 business_type: promoter.business_type,
                 type: 'promoter'
             });
@@ -95,7 +95,7 @@ exports.loginPromoter =  (req, res) => {
             });
             else return res.json({ msg: false })
         }).catch(error => {
-            console.log(error);
+            console.log(,error);
             res.json({ msg: 'error' });
         })
 }
