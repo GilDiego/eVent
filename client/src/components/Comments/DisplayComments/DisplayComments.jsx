@@ -100,6 +100,7 @@ export default function DisplayComments(id) {
                                     <Card
                                         key={keyGenerator++}
                                         name={`${comment.user.first_name} ${comment.user.last_name}`}
+                                        // avatar={comment.user.picture || }
                                         rating={toStars(comment.rating)}
                                         review={comment.review}
                                     />)
