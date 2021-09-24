@@ -6,13 +6,14 @@ const Evento=({name, qualification, id})=>{
     return (
         <div className={styles.contEvent}>
             <div className={styles.contName}>
-                {name}
+                <div>{name}</div>
+                <div>{'01/02/2021'}</div>               
             </div>
             <div className={styles.contQuali}>
                 ★★★☆☆
             </div>
             <div className={styles.btn}>
-                <Link to ={`/eventDetailsUsuario/${id}`}>Edit</Link>
+                <Link to ={`/eventDetailsUsuario/${id}`}>Detalle</Link>
             </div>
         </div>
     );
