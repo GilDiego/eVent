@@ -12,26 +12,16 @@ import styles from './EventDetailsUsario.module.css'
 
 const pushDta=(detailsEvent)=>{
     let data = [];
-    let picture = detailsEvent.result?.pictures
-
+    let picture = detailsEvent.consult?.pictures
+    
     for (let index = 0; index < picture?.length; index++) {
-        data.push({image:picture[index],caption:detailsEvent.result.description})
+        data.push({image:picture[index],caption:detailsEvent.consult.description})
     }
     return data;
 }
 //Diego: Componente que muestra los detalles de un evento para el tipo Usuario.
 export default function EventDetailsUsario() {
 
-<<<<<<< HEAD
-    // Diego: Variable solo para que no tire Warning en la consola sobre unique keys
-        const [render, setRender] = useState(false)
-        const dispatch = useDispatch()
-        const params =useParams()
-        const [data , setData] = useState();
-        const {id} = params;
-        const detailsEvent = useSelector(state => state.detailsEvent)
-=======
->>>>>>> 2952d9b2e2fc6b317072c9c8ae22b0cb70401c61
 
     const [render, setRender] = useState(false)
     const [data , setData] = useState()
@@ -39,6 +29,7 @@ export default function EventDetailsUsario() {
     const params =useParams()
     const {id}=params
     const detailsEvent = useSelector(state => state.detailsEvent)
+
 
 
     useEffect( () => {
@@ -49,19 +40,6 @@ export default function EventDetailsUsario() {
             }catch(error){
                 alert('intentalo mas tarde')
             }
-<<<<<<< HEAD
-        },[id])
-
-        const logo = Logo
-        console.log('soy logo',logo)
-        const event = eVent
-        console.log('soy event ',event)
-
-        const slideNumberStyle = {
-            fontSize: '20px',
-            fontWeight: 'bold',
-=======
->>>>>>> 2952d9b2e2fc6b317072c9c8ae22b0cb70401c61
         }
         fetchData()
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -80,12 +58,13 @@ export default function EventDetailsUsario() {
     },[detailsEvent])
 
     if(render){
-            return(
+            return(   
             <div className={styles.detailsAllUser}>
-                         <h1 className={styles.titleCard}>{detailsEvent.result.name}</h1>
-                         <div className={styles.detailContainer}>
-                        <div className={styles.carousel}>
-                            <Carousel
+                <div className='detailsCardUser'> 
+                    <div className='deailscard2User'>
+                        <h1 className={styles.titleCard}>{detailsEvent.consult.name}</h1>
+                        <div className='img'>                               
+                            <Carousel   
                                 data={data}
                                 time={5000}
                                 width="650px"
@@ -107,57 +86,35 @@ export default function EventDetailsUsario() {
                                     maxWidth: "650px",
                                     maxHeight: "450px",
                                     margin: "40px auto",
-                                }} />
-                        </div>
-                        <div className={styles.otherDetailsUser}>
-                            <br/>
+                                }} />                               
+                        </div>  
+                        <div className={styles.otherDetailsUser}>  
+                            <br/> 
                             <h4 className='h4'>Descripcion:</h4>
-                            <p className={styles.description}>{ detailsEvent.result.description}</p>
+                            <p className={styles.description}>{ detailsEvent.consult.description}</p>
                             <div className={styles.detailsUsers2User}>
                                 <div className={styles.leftColumn}>
                                     <h4 className='h4'>Artistas:</h4>
-                                    <span>{` ${detailsEvent.result.starring}`}</span>
+                                    <p className='p'>{` ${detailsEvent.consult.starring}`}</p>
                                     <h4 className='h4'>Dirreción:</h4>
-                                    <span> {` ${detailsEvent.result.address}`}</span>
+                                    <p className='p'> {` ${detailsEvent.consult.address}`}</p>
                                     <h4 className='h4'>Fecha:</h4>
-                                    <span>{` ${detailsEvent.result.start_date}`}</span>
+                                    <p className='p'>{` ${detailsEvent.consult.start_date}`}</p>
                                     <h4 className='h4'>Fecha Finalización:</h4>
-                                    <span>{` ${detailsEvent.result.finish_date}`}</span>
+                                    <p className='p'>{` ${detailsEvent.consult.finish_date}`}</p>
                                     <h4 className='h4'>Dias:</h4>
-                                    <span>{` ${detailsEvent.result.weekdays.map((e)=>(e))}`}</span>
+                                    <p className='p'>{` ${detailsEvent.consult.weekdays.map((e)=>(e))}`}</p>
                                 </div>
                                 <div className={styles.rightColumn}>
                                     <h4 className='h4'>Horarios:</h4>
-                                    <span>{` ${detailsEvent.result.schedule.map((e)=>(e))}`}</span>
+                                    <p className='p'>{` ${detailsEvent.consult.schedule.map((e)=>(e))}`}</p>
                                     <h4 className='h4'>Tipo de Evento:</h4>
-                                    <span>{` ${detailsEvent.result.tags}`}</span>
-                                    <h4 className='h4'>Clasificación:</h4>
-                                    <span>{` ${detailsEvent.result.age_rating}`}</span>
+                                    <p className='p'>{` ${detailsEvent.consult.tags}`}</p>
+                                    <h4 className='h4'>Clasificación:</h4>                            
+                                    <p className='p'>{` ${detailsEvent.consult.age_rating}`}</p>
                                     <h4 className='h4'>Precio:</h4>
-<<<<<<< HEAD
-                                    <span>{` $${detailsEvent.result.price}`}</span>
-                                </div>
-                                <div className={styles.buttonContainer}>
-                                    <button className={styles.button}>Reservar</button>
-                                    <Link to={{
-                                        pathname:'/nuevoComentario',
-                                        state: id
-                                    }}>
-                                        <button className={styles.button}>Reseña</button>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-    )}
-    else {
-=======
-                                    <p className='p'>{` $${detailsEvent.result.price}`}</p>
-                                    <h4>limite de asiastentes:</h4>
-                                    <p>{` ${detailsEvent.result.ticket_limit}`}</p>
-                                    <h4>Croquis:</h4> {` ${detailsEvent.result.seat_booking} `} 
-                                    
+                                    <p className='p'>{` $${detailsEvent.consult.price}`}</p>
+                                  
                                 </div>                                
                             </div>
                         </div>
@@ -167,7 +124,7 @@ export default function EventDetailsUsario() {
                                 pathname:'/nuevoComentario',
                                 state: {
                                     id: id,
-                                    eventName: detailsEvent.result.name
+                                    eventName: detailsEvent.consult.name
                                 }
                             }}>
                             <button className={styles.button}>Reseña</button>
@@ -183,8 +140,6 @@ export default function EventDetailsUsario() {
             </div>      
     )} 
     else{
->>>>>>> 2952d9b2e2fc6b317072c9c8ae22b0cb70401c61
         return (<Loading/>)
     }
 }
-

@@ -5,33 +5,15 @@ import styles from './Graph.css'
 
 
 
-export function Graph (id){
+export function Graph (){
 
 
+//lo que hay q hacer  es una grafica de pie donde la ruta q nos vamos a traer es que tendra la 
+// cantidad de estrellas por cada categoria por 1/2/3/4/5  por lo que cada lenght  se debe pushear en un arreglo 
+// el cual se tendra que sacar el total de la suma de esto y con un for multiplicarlo por 100 y luego dividir por 
+// la suma total 
 
-    //dafne: primero tengo que traerme unicamente los de cada evento en este caso es event id 
-    //luego tengo que buscar cada comentario que este en 5/4/3/2/1/0 lo pongo enun array para poder
-    // si se esgna dfividindo por estrelalas ya solo saco los q son del evento 
-    // sacar el tammaño y asi mandarse lo a la grafica 
-
-   
-  const [comments, setComments] = useState([])
-    const [eventRating, setEventRating] = useState(0)
-
-
-    useEffect(() => {
-    const fetchData = async () => {
-        const response = await axios.get(`http://localhost:3001/api/comment/all`)
-        const generalRating = await axios.get(`http://localhost:3001/api/comment/generalRating?id=${id}`)
-        if (response.data.length) setComments(response.data.filter(event => Number(event.eventId) === Number(id.state)));
-        console.log('soy data ',response.data )
-        if (generalRating) setEventRating(generalRating)
-        console.log('soy  commengs ',setComments)
-    }
-    fetchData()
-        
-    },[id])
-    console.log('soy comments ',setComments)
+    let cincoEstrellas =[]
 
 
     return( 
