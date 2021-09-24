@@ -1,5 +1,6 @@
 import React from "react";
 import ListEvent from "./ListEvent";
+import Grafica from  './GraphPromoter'
 import styles from './PromotorePorfile.module.css';
 
 const PromotorePorfile = () =>{
@@ -19,6 +20,8 @@ const PromotorePorfile = () =>{
                 <h4>Mis Eventos</h4>
                 <ListEvent />
             </div>
+            <Grafica/>
+
         </div>
     );
 }
