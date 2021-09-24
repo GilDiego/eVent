@@ -32,6 +32,10 @@ Comment.belongsTo(Event);
 Location.hasMany(Event);
 Event.belongsTo(Location);
 
+//promoter-event
+Promoter.hasMany(Event);
+Event.belongsTo(Promoter);
+
 
 
 

@@ -7,7 +7,7 @@ exports.saveInfoEvent = async (req,res) => {
         name,           description,    starring,   virtual,        ticket_limit,       
         address,        pictures,       start_date, finish_date,    schedule,   
         isRecurrent,    weekdays,       tags,       age_rating,     price,  
-        country,        city,           province
+        country,        city,           province,   promoter_id
     } = req.body;
 
     try {
@@ -36,6 +36,7 @@ exports.saveInfoEvent = async (req,res) => {
         })
 
         event.setLocation(location[0]);
+        event.setPromoter(promoter_id);
 
         return res.json({
             msg:'Event created!!!',
