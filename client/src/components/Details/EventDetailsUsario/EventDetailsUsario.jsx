@@ -21,8 +21,6 @@ const pushDta=(detailsEvent)=>{
 }
 //Diego: Componente que muestra los detalles de un evento para el tipo Usuario.
 export default function EventDetailsUsario() {
-
-
     const [render, setRender] = useState(false)
     const [data , setData] = useState()
     const dispatch = useDispatch()
@@ -30,8 +28,6 @@ export default function EventDetailsUsario() {
     const {id}=params
     const detailsEvent = useSelector(state => state.detailsEvent)
     const userInfo = useSelector(state => state.userState)
-
-
 
     useEffect( () => {
         const fetchData = async () => {
@@ -122,7 +118,7 @@ export default function EventDetailsUsario() {
                         <div className={styles.buttonContainer}>
                                 <button className={styles.button}>Reservar</button>
                                 {
-                                userInfo.userID !== undefined ? (
+                                userInfo.id ? (
                                         <Link to={{
                                             pathname:'/nuevoComentario',
                                             state: {
