@@ -22,9 +22,11 @@
   --Button: #f5af00;
   --Other: #ce0b0b;
   --White: #f1f1f1;
+  --WhiteTwo: #d8d8d8;
   --Black: #00171f;
   --Alert: #ff4444;
   --Success: #09e74c;
+  --Back: #e7e7e7;
 
   /* Fonts */
   --logoFont1: 'Alumni Sans';
@@ -38,6 +40,8 @@
   --RadiusBtn: 4px;
   --RadiusSide: 0 10px 10px 0;
   --ShadowOne: 3px 3px 3px rgba(0, 0, 0, 1);
+  --InnerShadowOne: -3px -3px 3px rgba(0, 0, 0, 1);
+  --ShadowOneInv: -3px -3px 3px rgba(0, 0, 0, 1);
   --ShadowTwo: 2px 2px 2px rgba(0, 0, 0, 1);
   --ShadowBtn:  1px 1px 1px rgba(0, 0, 0, 1);
   --Transition: .4s;
@@ -45,7 +49,7 @@
 
 /**_GLOBALS____________________________________________________________________________________*/
 body{
-  background: var(--White);
+  background: var(--Back);
 }
 ul {
 padding-left: 0px;
