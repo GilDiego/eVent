@@ -18,7 +18,6 @@ exports.saveInfoPromotor = async (req,res) =>{
 
     try{
         const [promoter,created] = await Promoter.findOrCreate({
-            
             where:{
                 [Op.or]:[              
                     {email},
@@ -41,10 +40,7 @@ exports.saveInfoPromotor = async (req,res) =>{
         if(!created){
             return res.json({created:false}); 
         }else {
-            return res.json({
-                created:true,
-            }) ;
-            
+            return res.json({created:true}) ; 
         }
     }catch(error){
         res.json({error:error.errors[0]});
