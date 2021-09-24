@@ -20,9 +20,11 @@ exports.getAllPromoters = async (req,res) => {
 exports.getEventPromoter = async (req,res) => {
     const {id} = req.params
     try{
-        const eventPromotor = Promoter.findOne({
-            where:{id},
-            include:Event,
+        const eventPromotor = await Promoter.findByPk(id,{
+            include:{
+                model:Event,
+                attributes:['id','name']
+            },
         });
         res.json({
             error:false,

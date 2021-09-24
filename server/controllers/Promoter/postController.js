@@ -3,7 +3,7 @@ const { Sequelize } = require('sequelize');
 const Op = Sequelize.Op;
 
 exports.saveInfoPromotor = async (req,res) =>{
-    console.log(req.body)
+ 
     const {
         legal_name,
         business_name,
@@ -40,11 +40,9 @@ exports.saveInfoPromotor = async (req,res) =>{
             },
         });
         if(!created){
-            console.log(promoter)
             return res.json({created:false}); 
         }else {
-            console.log(promoter)
-            return res.json({created:true}) ; 
+            return res.json({created:true,promoter}) ; 
         }
     }catch(error){
         console.log(error)

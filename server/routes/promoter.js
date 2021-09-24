@@ -13,7 +13,7 @@ const {
 
 //GET
  router.get('/all',getAllPromoters);
- router.get('/EventPromoter',getEventPromoter); 
+ router.get('/:id',getEventPromoter); 
 
 
 //POST

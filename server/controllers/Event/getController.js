@@ -1,6 +1,7 @@
 const Event = require('../../database/models/Event');
 const Comment = require('../../database/models/Comment');
-const Location = require('../../database/models/Location')
+const Location = require('../../database/models/Location');
+const Promoter = require('../../database/models/Promoter');
 
 
 exports.getController = async (req,res) => {
@@ -34,10 +35,17 @@ exports.getEventByIdController = async (req,res) => {
 
     try {
         const consult = await Event.findByPk(id,{
-            include:[{
-                model: Location,
-                attributes:['country','province','city']
-            },Comment]
+            include:[
+                {
+                    model: Location,
+                    attributes:['country','province','city']
+                },
+                Comment,
+                {
+                    model: Promoter,
+                    attributes:['id','legal_name']
+                }
+            ]
         });     
     
 
