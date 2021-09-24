@@ -13,7 +13,8 @@ exports.saveInfoPromotor = async (req,res) =>{
         email,
         password,
         business_type,
-        address,  
+        address, 
+        picture,
     } = req.body.form;
 
     try{
@@ -35,14 +36,18 @@ exports.saveInfoPromotor = async (req,res) =>{
                 password,
                 business_type,
                 address,
+                picture,
             },
         });
         if(!created){
+            console.log(promoter)
             return res.json({created:false}); 
         }else {
+            console.log(promoter)
             return res.json({created:true}) ; 
         }
     }catch(error){
+        console.log(error)
         res.json({msg:'No se pudo crear'});
     }
 }

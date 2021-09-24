@@ -15,7 +15,7 @@ function FormPromoter({changeModal}){
     const [form, setForm] = useState({
         promoter_name:'',//leo:nombre y apellido del promotor//
         promoter_lastName:'',
-        bio:'',//
+        // bio:'',//
         phone:'',//leo:numero de telefono del promotor//
         email:'',//leo:email del promotor//
         password:'',//leo: contraseña//
@@ -27,6 +27,7 @@ function FormPromoter({changeModal}){
         country:'Argentina',//pais
         state:'',//estado,provincia o departamento
         city:'',//ciudad o municipio
+        picture: undefined      
     });
 
     const businessTypes = [
@@ -67,6 +68,17 @@ function FormPromoter({changeModal}){
             ...form,
             [e.target.name]: e.target.value
         }))
+    }
+
+    const changePicture = async (e) => {
+        const file = e.target.files[0]
+        const data = new FormData();
+        data.append('file', file)
+        data.append('upload_preset', 'cloudinary_event')
+        const op = {method : 'POST', body : data}
+        const res = await fetch(`https://api.cloudinary.com/v1_1/event-pf/image/upload`, op)
+        const fileUp = await res.json();
+        setForm({...form,picture:fileUp.secure_url})
     }
 
     const handleSubmit = async (e) => {
@@ -263,6 +275,15 @@ function FormPromoter({changeModal}){
                                             value={form.phone}
                                         />                                   
                                         <span className={styles.tick}>{!error.phone && '✓' }</span>
+                                    </div>
+                                </div>
+                                <div className={styles.rowFile}>
+                                    <span>Foto de Perfil: </span>
+                                    <div className={styles.inputCheckFile}>
+                                        <input 
+                                            type="file" onChange={changePicture} 
+                                        />                                
+                                        <span className={styles.tick}></span>
                                     </div>
                                 </div>
                             </div>
