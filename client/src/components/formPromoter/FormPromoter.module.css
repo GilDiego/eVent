@@ -145,7 +145,25 @@ select:-webkit-autofill:focus {
         align-items: flex-start;
     }
 }
-
+.rowFile{
+    display: flex;
+    flex-direction: column;
+}
+.rowFile span{
+    text-align: left;
+}
+.inputCheckFile{
+    width: 100%;
+}
+.inputCheckFile input{
+    width: 100%;   
+}
+@media (max-width: 720px) { 
+    .inputCheckFile input{
+        width: 100%; 
+        font-size: 3vw;  
+    }
+}
 /* btn */
 .submitBtn{
     margin-top: 20px;
