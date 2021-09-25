@@ -12,7 +12,7 @@ import {
    CHANGE_MODAL,
    SEARCH_NAME,
    GET_EVENTS,
-
+   GET_EVENTS_PROMOTER,
   } from "../actions/actions";
 
   // Pruebas para guardar usuario en el local storage
@@ -29,6 +29,7 @@ import {
     userState:{},
     //*promoter
     promoterState:{},
+    promoterEvents:[],
    //modal
     modal:{
       render:false,
@@ -91,6 +92,12 @@ import {
       return{
         ...state,
         promoterState: action.payload
+      }
+    }
+    if(action.type=== GET_EVENTS_PROMOTER){
+      return{
+        ...state,
+        promoterEvents: action.payload
       }
     }
     //*__FILTER  //Abi

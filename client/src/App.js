@@ -26,10 +26,13 @@ function App({ setUser, user, modal }) {
 
   // Usuario en local storage
   let loginUser = JSON.parse(localStorage.getItem('User'))
+  console.log(loginUser)
   useEffect(() => {
     if (loginUser) {
+      console.log('ENTREEE EL IF', user)
       setUser(loginUser)
     } else
+    console.log('ENTREEE EL ELSE')
       setUser({})
   }, [setUser]) 
 

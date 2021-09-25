@@ -55,13 +55,13 @@ const Event = sequelize.define('event', {
     },
     weekdays: {
         type: DataTypes.ARRAY(DataTypes.ENUM(
-            "domingo", "lunes", "martes", "miércoles","miercoles", "jueves", "viernes", "sábado","sabado"
+            "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado","Domingo"
             )),
         allowNull: false,
     },
     tags: { // TEMPORARY. TURN INTO SEPARATE MODEL AFTERWARDS
         type: DataTypes.ENUM(
-            "exteriores", "interiores", "en vivo", "recital", "teatro", "película", "disco", "deportes","pelicula"
+            "exteriores", "Interiores", "En vivo", "Recital", "Teatro", "Película", "Disco", "Deportes","Pelicula"
             ),
         allowNull: false,
     },
