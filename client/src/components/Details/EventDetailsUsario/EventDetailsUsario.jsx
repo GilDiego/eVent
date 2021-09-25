@@ -1,12 +1,15 @@
 
 import React, { useState, useEffect } from 'react'
 import DisplayComments from '../../Comments/DisplayComments/DisplayComments'
-import { Link , useParams} from 'react-router-dom'
+import { Link , useParams, useHistory} from 'react-router-dom'
 import  {useDispatch , useSelector} from 'react-redux'
-import {getEventDetail} from '../../../actions/actions'
+import {getEventDetail, changeModal} from '../../../actions/actions'
 import { Carousel } from 'react-carousel-minimal';
 import Loading from '../../Loading/Loading'
 import styles from './EventDetailsUsario.module.css'
+
+
+
 // import Logo from '../../../Utilities/logodivinacodi.gif'
 // import eVent from '../../../Utilities/eVent-05.svg'
 
@@ -28,8 +31,11 @@ export default function EventDetailsUsario() {
     const {id}=params
     const detailsEvent = useSelector(state => state.detailsEvent)
     const userInfo = useSelector(state => state.userState)
+    const history = useHistory();
 
+    console.log(detailsEvent,'SOY DETAIL EVENT')
     useEffect( () => {
+        console.log('cambiooooooooo 1')
         const fetchData = async () => {
             try{
                 await dispatch(getEventDetail(id))
@@ -40,17 +46,37 @@ export default function EventDetailsUsario() {
         }
         fetchData()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[id])
+    },[id]);
+
 
     // const  logo = Logo
     // const event = eVent
-
+    //Borrar evento boton unicamente disponoble para promotor
+    const deleteEvent = async()=>{
+        console.log(detailsEvent.consult.promoterId,userInfo.id)       
+        if(detailsEvent.consult.promoterId === userInfo.id){
+            const res = await fetch(`http://localhost:3001/api/event/delete/${id}`,
+                {
+                    method:'DELETE'
+                }
+            )
+            const data = await res.text();
+            history.push('/perfil');
+            // console.log(data)
+        }else{
+            dispatch(changeModal(
+                'correct','No puedes eliminar un evento que no te pertenece'
+            ))
+        }
+    }
+    const editEvent = () =>{}
     const slideNumberStyle = {
         fontSize: '20px',
         fontWeight: 'bold',
     }
 
     useEffect(()=>{
+        console.log('cambiooooooooo 2')
         setData(pushDta(detailsEvent))
     },[detailsEvent])
 
@@ -116,9 +142,12 @@ export default function EventDetailsUsario() {
                             </div>
                         </div>
                         <div className={styles.buttonContainer}>
+                            {userInfo?.type === "promoter"?
+                                <button className={styles.button} onClick={editEvent}>Editar</button>:
                                 <button className={styles.button}>Reservar</button>
+                            }                               
                                 {
-                                userInfo.id ? (
+                                userInfo?.type === "user" ? (
                                         <Link to={{
                                             pathname:'/nuevoComentario',
                                             state: {
@@ -128,7 +157,12 @@ export default function EventDetailsUsario() {
                                         }}>
                                         <button className={styles.button}>Reseña</button>
                                         </Link>
-                                ) : (
+                                ) : 
+                                userInfo?.type ==="promoter" ? 
+                                (
+                                    <button className={styles.button} onClick={deleteEvent}>Eliminar</button>
+                                ):
+                                (
                                     <button 
                                         onClick={e => alert('Solo usuarios logeados pueden dejar comentarios')}
                                         className={styles.button}>    
@@ -149,3 +183,5 @@ export default function EventDetailsUsario() {
         return (<Loading/>)
     }
 }
+
+

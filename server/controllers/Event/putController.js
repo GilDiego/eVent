@@ -1,6 +1,7 @@
 const Event = require('../../database/models/Event');
 
 exports.putController = async (req, res) => {
+
     const { id } = req.params;
     const { 
         name,           description,    starring,   virtual,        location,   

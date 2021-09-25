@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ListEvent from "./ListEvent";
 import Grafica from  './GraphPromoter'
 import styles from './PromotorePorfile.module.css';
 import {Link} from 'react-router-dom'
-const PromotorePorfile = ({userData}) =>{
+import { getEventPromoter } from "../../actions/actions";
+import { connect } from 'react-redux';
+
+const PromotorePorfile = ({userData, getEventPromoter, promoterEvents}) =>{
     console.log(userData)
+    useEffect(()=>{
+        console.log('entreeeee el use efect')
+        const getEvents = async()=>{
+            try{
+            const events = await getEventPromoter(userData.id)
+            return events
+            }catch(error){
+                console.log(error)
+                return error
+            }
+        }
+        const eventos = getEvents()
+    },[])
     return(
         <div className={styles.contPrin}>
             <div className={styles.contProfile}>
@@ -27,11 +43,18 @@ const PromotorePorfile = ({userData}) =>{
                     </Link>           
                 </div>
             
-                <ListEvent />
+                <ListEvent events={promoterEvents}/>
             </div>
             <Grafica/>
 
         </div>
     );
 }
-export default PromotorePorfile
+
+function mapStateToProps(state){
+    return {
+        promoterEvents:state.promoterEvents
+    }
+}
+
+export default connect(mapStateToProps,{getEventPromoter})(PromotorePorfile)

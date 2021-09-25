@@ -56,7 +56,7 @@ export function Validate(input) {
 }
 
 export function FormEvent(props) {
-    console.log(props,'propssssss deee event')
+    console.log(props.promoterId,'propssssss deee event')
     const [errors, setErrors] = useState({})
     const [event, setEvent] = useState({
         name: '',

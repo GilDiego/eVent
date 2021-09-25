@@ -14,11 +14,11 @@ const Location = sequelize.define('location', {
     },
     province: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     city: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
 },
 {
