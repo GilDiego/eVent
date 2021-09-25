@@ -38,7 +38,7 @@ exports.saveInfoEvent = async (req,res) => {
         // event.setLocation(location[0]);
 
 
-        event.setPromoter(promoterId);
+        event.setPromoter(promoter_id);
 
         return res.json({
             msg:'Event created!!!',

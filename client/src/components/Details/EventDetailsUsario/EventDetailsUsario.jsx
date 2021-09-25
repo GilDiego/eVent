@@ -35,7 +35,6 @@ export default function EventDetailsUsario() {
 
     console.log(detailsEvent,'SOY DETAIL EVENT')
     useEffect( () => {
-        console.log('cambiooooooooo 1')
         const fetchData = async () => {
             try{
                 await dispatch(getEventDetail(id))
@@ -76,7 +75,6 @@ export default function EventDetailsUsario() {
     }
 
     useEffect(()=>{
-        console.log('cambiooooooooo 2')
         setData(pushDta(detailsEvent))
     },[detailsEvent])
 
