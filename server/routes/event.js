@@ -8,7 +8,7 @@ const {
 
 const {
     saveInfoEvent,
-    saveInfoPromotor,
+    saveInfoPromoter,
 } = require('../controllers/Event/postController');
 
 const {

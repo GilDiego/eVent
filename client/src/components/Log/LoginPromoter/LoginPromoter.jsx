@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { setUser } from "../../actions/actions";
+import { setUser, setPromoter } from "../../../redux/actions";
 import { Link } from "react-router-dom";
-import styles from "./LoginUser.module.css";
+import styles from "./LoginPromoter.module.css";
 import { useHistory } from "react-router-dom";
 import LogResponse from "../LogResponse/LogResponse.jsx";
 import LogInputs from "../LogInputs/LogInputs.jsx";
 import { GoogleLogin } from "react-google-login";
 // import FacebookLogin from 'react-facebook-login';
- import loading from "../../Utilities/ajax-loader.gif";
+ import loading from "../../../Utilities/ajax-loader.gif";
 
-const Login = ({ setUser, user, nameComponent, nameComponentOne, nameComponentTwo, messageFalse, messageTwoFalse }) => {
+const LoginPromoter = ({setUser, setPromoter, user,  promoter, nameComponent, nameComponentOne, nameComponentTwo, messageFalse, messageTwoFalse }) => {
   const history = useHistory();
 
   //*Estados______________________________________________________________________
@@ -51,23 +51,24 @@ const Login = ({ setUser, user, nameComponent, nameComponentOne, nameComponentTw
         },
         body: JSON.stringify(obj),
       };
-      let res = await fetch("http://localhost:3001/api/user/login", config);
+      let res = await fetch("http://localhost:3001/api/promoter/login", config);
       let json = await res.json();
-      let user = {
+      let promoter = {
         msg:json.msg,
         id: json.id,
-        username: resG.profileObj.givenName,
+        business_name: json.business_name,
+        promoter_name: resG.profileObj.name,
         picture: resG.profileObj.imageUrl,
-        type: json.type
+        business_type: json.business_type,
+        type: 'promoter'       
       }
       setButton(true);
       setLoading(false)
-      if (!json.msg) {
+      if (json.msg === 'error') {
         setLogger(false);
       } else {
-        
         setLogger(true);
-        setUser(user);
+        setUser(promoter);
         setTimeout(function () {
           redirec("/");
         }, 2000);
@@ -153,24 +154,15 @@ const Login = ({ setUser, user, nameComponent, nameComponentOne, nameComponentTw
         },
         body: JSON.stringify(obj),
       };
-      let res = await fetch("http://localhost:3001/api/user/login", config);
-      let json = await res.json();
-   
-      let user = {
-        msg: json.msg,
-        id: json.id,
-        username: json.username,
-        picture: json.picture,
-        type: json.type
-      }
-     
+      let res = await fetch("http://localhost:3001/api/promoter/login", config);
+      let promoter = await res.json();
       setButton(true);
       setLoading(false)
-      if (json.msg === false) {
+      if (promoter.msg === false) {
         setLogger(false);
       } else {
         setLogger(true);
-        setUser(json);
+        setUser(promoter);
         setTimeout(function () {
           redirec("/");
         }, 2000);
@@ -222,7 +214,7 @@ const Login = ({ setUser, user, nameComponent, nameComponentOne, nameComponentTw
                 messageTwo="estas ingresado a Event"
                 switchBtn={false}
                 switchStyle={styles.iconTrue}
-                name={user.username}
+                name={promoter.username}
               />
             ) : (
               <LogResponse
@@ -249,7 +241,7 @@ const Login = ({ setUser, user, nameComponent, nameComponentOne, nameComponentTw
 function mapStateToProps(state) {
   return {
     user: state.userState,
+    promoter: state.promoterState,
   };
 }
-export default connect(mapStateToProps, { setUser })(Login);
-
+export default connect(mapStateToProps, { setUser, setPromoter })(LoginPromoter);

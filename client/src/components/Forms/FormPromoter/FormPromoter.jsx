@@ -3,7 +3,7 @@ import axios from 'axios';
 import styles from './FormPromoter.module.css';
 import validate from './validate.js';
 import {connect} from 'react-redux'
-import {changeModal} from '../../actions/actions'
+import {changeModal} from '../../../redux/actions'
 
 function FormPromoter({changeModal}){ 
 
@@ -13,11 +13,11 @@ function FormPromoter({changeModal}){
         idNumber:'CUIT',// qu tipo de identificacion maneja el pais
     });
     const [form, setForm] = useState({
-        promoter_name:'',//leo:nombre y apellido del promotor//
+        promoter_name:'',//leo:nombre y apellido del Promoter//
         promoter_lastName:'',
         // bio:'',//
-        phone:'',//leo:numero de telefono del promotor//
-        email:'',//leo:email del promotor//
+        phone:'',//leo:numero de telefono del Promoter//
+        email:'',//leo:email del Promoter//
         password:'',//leo: contraseña//
         address:'',//dereccion del negocio//
         legal_name:'',//nombre legal//
@@ -95,7 +95,7 @@ function FormPromoter({changeModal}){
                     changeModal('correct', `Intentalo de nuevo más tarde`) 
                 }
                 else if(res.data.created){
-                    changeModal('correct', `Promotor creado con éxito. \n Espere 48hrs para su autorización. Bienvenido a eVent, ${form.promoter_name}!`)
+                    changeModal('correct', `Promoter creado con éxito. \n Espere 48hrs para su autorización. Bienvenido a eVent, ${form.promoter_name}!`)
                     setForm({promoter_name:'',
                     promoter_lastName:'',
                     bio:'',

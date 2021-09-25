@@ -13,7 +13,7 @@ import {
    SEARCH_NAME,
    GET_EVENTS,
    GET_EVENTS_PROMOTER,
-  } from "../actions/actions";
+  } from "./actions";
 
   // Pruebas para guardar usuario en el local storage
   // let loginUser = JSON.parse(localStorage.getItem( user )) 

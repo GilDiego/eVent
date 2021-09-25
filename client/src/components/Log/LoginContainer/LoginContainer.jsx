@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './LoginContainer.module.css';
-import LoginPromoter from '../../LoginPromoter/LoginPromoter';
-import LoginUser from '../../LoginUser/LoginUser';
+import LoginPromoter from '../LoginPromoter/LoginPromoter';
+import LoginUser from '../LoginUser/LoginUser';
 
 const LoginContainer = () => {
     const [Switch, setSwitch] = useState(true)

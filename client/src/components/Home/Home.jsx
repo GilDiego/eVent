@@ -6,7 +6,7 @@ import Carousel from "../Carousel/Carousel";
 import SideBar from "../SideBar/SideBar";
 import NavBarHome from "../NavBarHome/NavBarHome";
 import activitiesList from "../../FakeDB/FakeDB";
-import { getEventsHome } from "../../actions/actions";
+import { getEventsHome } from "../../redux/actions";
 
 const Home = ({ switchSide, getEventsHome, events, filters }) => {
   //* La informacion de las actividades esta en el archivo FakeDB

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import DisplayComments from '../../Comments/DisplayComments/DisplayComments'
 import { Link , useParams, useHistory} from 'react-router-dom'
 import  {useDispatch , useSelector} from 'react-redux'
-import {getEventDetail, changeModal} from '../../../actions/actions'
+import {getEventDetail, changeModal} from '../../../redux/actions'
 import { Carousel } from 'react-carousel-minimal';
 import Loading from '../../Loading/Loading'
 import styles from './EventDetailsUsario.module.css'
@@ -50,7 +50,7 @@ export default function EventDetailsUsario() {
 
     // const  logo = Logo
     // const event = eVent
-    //Borrar evento boton unicamente disponoble para promotor
+    //Borrar evento boton unicamente disponoble para Promoter
     const deleteEvent = async()=>{
         console.log(detailsEvent.consult.promoterId,userInfo.id)       
         if(detailsEvent.consult.promoterId === userInfo.id){

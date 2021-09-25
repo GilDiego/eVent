@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import FormPromoter from "../Forms/FormPromoter/FormPromoter.jsx";
-import FormUsers from "../Forms/FormUsers/FormUsers";
+import FormPromoter from "../../components/FormPromoter/FormPromoter.jsx";
+import FormUsers from "../../components/Forms/FormUsers/FormUsers";
 import styles from './Registration.module.css'
 
 const Registration = () => {

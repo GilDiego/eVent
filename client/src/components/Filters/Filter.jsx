@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect, useSelector } from 'react-redux';
-import { filterTags, filterAgeRating, filerWeekdays, getEvents, removeFilters } from '../../actions/actions';
+import { filterTags, filterAgeRating, filerWeekdays, getEvents, removeFilters } from '../../redux/actions';
 import styles from './Filter.module.css';
 
 //tags -- age_rating

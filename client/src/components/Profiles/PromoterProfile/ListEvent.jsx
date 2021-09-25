@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ListEvent.module.css';
 import Evento from './Event';
-import FakeDB from '../../FakeDB/FakeDB'
+/* import FakeDB from '../../../FakeDB/FakeDB' */
 const ListEvent = ({events})=>{
     return(
         <div className={styles.containerList}>

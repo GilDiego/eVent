@@ -93,15 +93,15 @@ export function setPromoter(promoter){
     payload: promoter
   }
 }
-// get eventos por promotor-------------------------------------------
+// get eventos por Promoter-------------------------------------------
 export function getEventPromoter (id){
   console.log(id, 'SOY ID')
   return async function(dispatch){
     const response = await axios(`http://localhost:3001/api/promoter/${id}`);
-    console.log(response.data.eventPromotor.events,'SOY RESPUESTA EVENTO')
+    console.log(response.data.eventPromoter.events,'SOY RESPUESTA EVENTO')
     return dispatch({
       type:GET_EVENTS_PROMOTER,
-      payload:response.data.eventPromotor.events,
+      payload:response.data.eventPromoter.events,
     });
   }
 }

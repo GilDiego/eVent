@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import ListEvent from "./ListEvent";
 import Grafica from  './GraphPromoter'
-import styles from './PromotorePorfile.module.css';
+import styles from './PromoterProfile.module.css';
 import {Link} from 'react-router-dom'
-import { getEventPromoter } from "../../actions/actions";
+import { getEventPromoter } from "../../../redux/actions";
 import { connect } from 'react-redux';
 
-const PromotorePorfile = ({userData, getEventPromoter, promoterEvents}) =>{
+const PromoterProfile = ({userData, getEventPromoter, promoterEvents}) =>{
     console.log(userData)
     useEffect(()=>{
         console.log('entreeeee el use efect')
@@ -57,4 +57,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps,{getEventPromoter})(PromotorePorfile)
+export default connect(mapStateToProps,{getEventPromoter})(PromoterProfile)
