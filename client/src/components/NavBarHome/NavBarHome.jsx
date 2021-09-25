@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setSideBar } from "../../actions/actions";
+import { setSideBar } from "../../redux/actions";
 import Search from "../Search/Search";
 import styles from './NavBarHome.module.css'
 

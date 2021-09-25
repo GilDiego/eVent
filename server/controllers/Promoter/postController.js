@@ -2,7 +2,7 @@ const Promoter = require ('../../database/models/Promoter');
 const { Sequelize } = require('sequelize');
 const Op = Sequelize.Op;
 
-exports.saveInfoPromotor = async (req,res) =>{
+exports.saveInfoPromoter = async (req,res) =>{
  
     const {
         legal_name,

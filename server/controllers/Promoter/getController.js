@@ -16,19 +16,19 @@ exports.getAllPromoters = async (req,res) => {
     }  
 }
 
-//Get Eventos por promotor
+//Get Eventos por Promoter
 exports.getEventPromoter = async (req,res) => {
     const {id} = req.params
     console.log('aquiiiiiiiii entre a gett')
     try{
-        const eventPromotor = await Promoter.findByPk(id,{
+        const eventPromoter = await Promoter.findByPk(id,{
             include:[
                 Event,   
             ],
         });
         res.json({
             error:false,
-            eventPromotor
+            eventPromoter
         })
     }catch(error){
         console.log(error)

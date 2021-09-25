@@ -1,16 +1,16 @@
 
 import React, { useState } from 'react'
-import DisplayComments from '../Comments/DisplayComments/DisplayComments'
+import DisplayComments from '../../Comments/DisplayComments/DisplayComments'
 import { Link } from 'react-router-dom'
 import { useEffect} from 'react'
 import  {useDispatch , useSelector} from 'react-redux'
 import {useParams} from 'react-router-dom'
-import {getEventDetail} from '../../actions/actions'
+import {getEventDetail} from '../../../redux/actions'
 import { Carousel } from 'react-carousel-minimal';
-import Loading from '../Loading/Loading'
+import Loading from '../../Loading/Loading'
 import styles from './EventsDetailsPromoter.css'
-import Logo from '../../Utilities/logodivinacodi.gif'
-import eVent from '../../Utilities/eVent-05.svg'
+import Logo from '../../../Utilities/logodivinacodi.gif'
+import eVent from '../../../Utilities/eVent-08.svg'
 
 const pushDta=(detailsEvent)=>{
     let data = []

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { searchName, getEvents } from '../../actions/actions';
+import { searchName, getEvents } from '../../redux/actions';
 
 
 export function Search(props){

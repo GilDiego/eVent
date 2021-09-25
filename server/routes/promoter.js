@@ -5,7 +5,7 @@ const {
     getEventPromoter
 } = require('../controllers/Promoter/getController');
 const {
-    saveInfoPromotor, 
+    saveInfoPromoter, 
     loginPromoter,
 } = require('../controllers/Promoter/postController');
 
@@ -17,7 +17,7 @@ const {
 
 
 //POST
-router.post('/',saveInfoPromotor);
+router.post('/',saveInfoPromoter);
 router.post('/login',loginPromoter);
 
 

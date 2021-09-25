@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import  {useDispatch , useSelector} from 'react-redux'
-import {getEventDetail} from '../../actions/actions'
+import {getEventDetail} from '../../redux/actions'
 
 //dafne: es para poder editar los eventos  
 

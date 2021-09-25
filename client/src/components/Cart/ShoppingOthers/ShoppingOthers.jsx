@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import ActivityCard from '../ActivityCard/ActivityCard';
+import ActivityCard from '../../ActivityCard/ActivityCard';
 import styles from './ShoppingOthers.module.css'
 
 

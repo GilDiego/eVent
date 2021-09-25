@@ -2,7 +2,7 @@ import React from "react";
 import styles from './Modal.module.css';
 import correct from '../../Utilities/successGif.gif'
 import ReactDOM  from "react-dom";
-import { changeModal } from "../../actions/actions";
+import { changeModal } from "../../redux/actions";
 import { connect } from "react-redux";
 
 

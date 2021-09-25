@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { setUser, setPromoter } from "../../../redux/actions";
+import { setUser, setPromoter } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import styles from "./LoginPromoter.module.css";
 import { useHistory } from "react-router-dom";
-import LogResponse from "../../LogResponse/LogResponse.jsx";
-import LogInputs from "../../LogInputs/LogInputs.jsx";
+import LogResponse from "../LogResponse/LogResponse.jsx.js.js";
+import LogInputs from "../LogInputs/LogInputs.jsx.js.js";
 import { GoogleLogin } from "react-google-login";
 // import FacebookLogin from 'react-facebook-login';
  import loading from "../../Utilities/ajax-loader.gif";

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './LoginContainer.module.css';
-import LoginPromoter from '../../LoginPromoter/LoginPromoter';
-import LoginUser from '../../LoginUser/LoginUser';
+import LoginPromoter from '../../components/Log/LoginPromoter/LoginPromoter';
+import LoginUser from '../../components/Log/LoginUser/LoginUser';
 
 const LoginContainer = () => {
     const [Switch, setSwitch] = useState(true)
@@ -17,7 +17,7 @@ const LoginContainer = () => {
         <div className={ styles.container }>
             <div>
             <button onClick={ setUser }>Usuario</button>
-            <button onClick={ setPromoter }>Promoter</button>
+            <button onClick={ setPromoter }>Promotor</button>
             </div>
             
             {Switch
@@ -31,10 +31,10 @@ const LoginContainer = () => {
             />
             :
             <LoginPromoter 
-            nameComponent='Log in Promoter'
-                nameComponentOne='Ingresando Promoter'
-                nameComponentTwo='Promoter no encontrado'
-                messageFalse='El Promoter no se encuentra registrado'
+            nameComponent='Log in Promotor'
+                nameComponentOne='Ingresando Promotor'
+                nameComponentTwo='promotor no encontrado'
+                messageFalse='El promotor no se encuentra registrado'
                 messageTwoFalse='o el password no es correcto'
             />
         }

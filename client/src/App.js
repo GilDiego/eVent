@@ -1,24 +1,24 @@
 import './App.css';
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { setUser } from "./actions/actions";
+import { setUser } from "./redux/actions";
 import { Route } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
-import FormUsers from './components/FormUsers/FormUsers';
-import FormPromoter from './components/FormPromoter/FormPromoter.jsx';
+import FormUsers from './components/Forms/FormUsers/FormUsers';
+import FormPromoter from './components/Forms/FormPromoter/FormPromoter.jsx';
 import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDetailsUsario';
-import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter'
-import FormEvent from './components/FormEvent/FormEvent';
+import EventsDetailsPromoter from './components/Details/EventDetailsPromoter/EventsDetailsPromoter'
+import FormEvent from './components/Forms/FormEvent/FormEvent';
 import Comments from './components/Comments/CreateComment/CreateComment.jsx'
 import Registration from './components/Registration/Registration';
-import UserPorfile from './components/UserPorfile/UserPorfile';
+import UserProfile from './components/Profiles/UserProfile/UserProfile';
 import { Redirect } from 'react-router-dom';
 import Modal from './components/Modal/Modal';
-import LoginContainer from './components/LoginContainer/LoginContainer';
-import ShoppingCart from './components/ShoppingCart/ShoppingCart';
-import PromotorePorfile from './components/PromotorePorfile/PromotoreProfile';
+import LoginContainer from './components/Log/LoginContainer/LoginContainer';
+import ShoppingCart from './components/Cart/ShoppingCart/ShoppingCart';
+import PromoterProfile from './components/Profiles/PromoterProfile/PromoterProfile';
 
 
 function App({ setUser, user, modal }) {
@@ -78,7 +78,7 @@ function App({ setUser, user, modal }) {
       </Route>
 
       <Route path='/perfil' >
-        {user.msg? user.type === 'user' ?<UserPorfile/> : <PromotorePorfile userData={user}/> : <Redirect to='/login'/>}
+        {user.msg? user.type === 'user' ?<UserProfile/> : <PromoterProfile userData={user}/> : <Redirect to='/login'/>}
       </Route>
 
 
@@ -86,8 +86,8 @@ function App({ setUser, user, modal }) {
         <Comments />
       </Route>
 
-      {/* <Route path='/perfilPromotor'>
-        <PromotorePorfile />
+      {/* <Route path='/perfilPromoter'>
+        <PromoterProfile />
       </Route> */}
 
       <Route path='/shoppingCart'>
