@@ -13,6 +13,7 @@ export default function CreateComment() {
 
     const [editing, setEditing] = useState(true)
     const [commentedBefore, setCommentedBefore] = useState(false)
+    const [minimumRequired, setMinimumRequired] = useState('false')
     const [input, setInput] = useState({
         review: '',
         rating: '',
@@ -42,10 +43,14 @@ export default function CreateComment() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[userInfo])
 
-    useEffect(() => {
-        if (commentedBefore) return alert('esto va a estallar porque ya habias comentado anteriormente asi que te voy a redirigir al evento en el que estabas... pero todavia porque me duele la cabeza')
-    },[commentedBefore])
+    // useEffect(() => {
+    //     if (commentedBefore) return alert('esto va a estallar porque ya habias comentado anteriormente asi que te voy a redirigir al evento en el que estabas... pero todavia porque me duele la cabeza')
+    // },[commentedBefore])
 
+    // Diego: Handler para la longitud minima del comentario
+    useEffect(() => {
+        setMinimumRequired(input.review.length >= 39 ? true : false)
+    },[input.review.length])
 
 
     function handleChange(e){
@@ -63,7 +68,7 @@ export default function CreateComment() {
         
         }
     }
-    
+
 
     async function handleSubmit(e){
         e.preventDefault();
@@ -90,10 +95,24 @@ export default function CreateComment() {
                         <form className={style.newCommentForm} onSubmit={e => handleSubmit(e)}>
                             <p>¡Cuéntanos cómo te fue en <b>{location.state.eventName.trim()}</b>!</p>
                             <label> Calificacion*: </label>
-                            <input name='rating' type="number" min='1' max='5'  onChange={e => handleChange(e)}/>
+                            <input name='rating' type="number" min='1' max='5' placeholder='1-5' onChange={e => handleChange(e)}/>
                             <br />
                             <label> Comentario*: </label>
-                            <input name='review' onChange={e => handleChange(e)}/>
+                            <input name='review' placeholder='Mínimo 40 caracteres...' onChange={e => handleChange(e)}/>
+                            <p> 
+                                {
+                                    !minimumRequired ? (                                  
+                                        <span className={style.notMinimumRequired}>
+                                            {input.review.length}
+                                        </span>
+                                    ) : (
+                                        <span className={style.minimumRequired}>
+                                            {input.review.length}
+                                        </span>
+                                    )
+                                }
+                                /40
+                            </p>
                             <br />
                             <br />
                             <li className={style.confirmation}>

@@ -56,3 +56,11 @@
 .newCommentConfirmation {
   font-size: smaller;
 }
+
+.minimumRequired {
+  color: green;
+}
+
+.notMinimumRequired {
+  color: red;
+}
