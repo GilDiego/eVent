@@ -125,8 +125,7 @@ function FormPromoter({changeModal}) {
     }
 
     return (
-/*         <div className={styles.container}> */
-            <form className={styles.form} onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <div className={styles.contRend}>
                         <span className={styles.formTitle}>
                             {!form.country ? "Selecciona un país" : "Completa el formulario"}
@@ -136,7 +135,6 @@ function FormPromoter({changeModal}) {
                             name="country"
                             value={form.country}
                             onChange={namesInputs}
-                            className={styles.pais}
                         >
                             {/* <option value="" disabled>País</option> */}
                             <option value="Argentina" selected='select'>Argentina</option>
@@ -329,7 +327,6 @@ function FormPromoter({changeModal}) {
                         </div>
                 </div>
             </form>
-/*         </div> */
        )
 }
 function mapStateToProps(state){
