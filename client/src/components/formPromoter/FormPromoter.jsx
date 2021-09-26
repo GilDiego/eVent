@@ -78,7 +78,10 @@ function FormPromoter({changeModal}) {
         const op = {method : 'POST', body : data}
         const res = await fetch(`https://api.cloudinary.com/v1_1/event-pf/image/upload`, op)
         const fileUp = await res.json();
-        setForm({...form,picture:fileUp.secure_url})
+        setForm({
+            ...form,
+            picture:fileUp.secure_url
+        })
     }
 
     const handleSubmit = async (e) => {
@@ -147,7 +150,7 @@ function FormPromoter({changeModal}) {
                     {/* {form.country && */}
                         <div className={styles.contForm2}>
                              {/*Ubicacion*/}
-                            <div className={styles.ubication}>
+                            <div className={styles.category}>
                                 <div className={styles.row}>
                                     <span>{condition.divCountry}: </span>
                                     <div className={styles.inputCheck}>
@@ -176,7 +179,7 @@ function FormPromoter({changeModal}) {
                                 </div>
                             </div>
                              {/*Informacion empresarial*/}
-                            <div className={styles.datesCompany}>
+                            <div className={styles.category}>
                                 <div className={styles.row}>
                                     <span >Tipo de Negocio: </span>
                                     <div className={styles.inputCheck}>
@@ -194,6 +197,7 @@ function FormPromoter({changeModal}) {
                                 </div>
                                 <div className={styles.row}>
                                     <span>Nombre del negocio: </span>
+                                    <div className={styles.separator}></div>
                                     <div className={styles.inputCheck}>
                                         <input
                                             type="text"
@@ -243,7 +247,7 @@ function FormPromoter({changeModal}) {
                                 </div>
                             </div>
                               {/*Contacto*/}
-                            <div className={styles.contact}>
+                            <div className={styles.category}>
                                 <div className={styles.row}>
                                     <span>Nombre: </span>
                                     <div className={styles.inputCheck}>
@@ -280,18 +284,18 @@ function FormPromoter({changeModal}) {
                                         <span className={styles.tick}>{!error.phone && '✓' }</span>
                                     </div>
                                 </div>
-                                <div className={styles.rowFile}>
+                                <div className={styles.file}>
                                     <span>Foto de Perfil: </span>
-                                    <div className={styles.inputCheckFile}>
+                                    <div className={styles.inputCheck}>
                                         <input
                                             type="file" onChange={changePicture}
                                         />
-                                        <span className={styles.tick}></span>
+                                        <span className={styles.tick}>{form.picture && '✓' }</span>
                                     </div>
                                 </div>
                             </div>
                               {/*datos login*/}
-                            <div className={styles.password}>
+                            <div className={styles.category}>
                                 <div className={styles.row}>
                                     <span >Email: </span>
                                     <div className={styles.inputCheck}>
