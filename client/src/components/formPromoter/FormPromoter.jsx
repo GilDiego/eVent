@@ -1,23 +1,22 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import styles from './FormPromoter.module.css';
+import styles from './Forms.module.css';
 import validate from './validate.js';
-import {connect} from 'react-redux'
-import {changeModal} from '../../actions/actions'
+import {connect} from 'react-redux';
+import {changeModal} from '../../actions/actions';
 
-function FormPromoter({changeModal}){ 
-
+function FormPromoter({changeModal}) {
     const [error, setError] = useState({});
-    const [condition, setCondition] = useState({//este estado valida 
-        divCountry:'Provicia',// como esta dividido el pais ?
+    const [condition, setCondition] = useState({//este estado valida
+        divCountry:'Provincia',// como esta dividido el pais ?
         idNumber:'CUIT',// qu tipo de identificacion maneja el pais
     });
     const [form, setForm] = useState({
-        promoter_name:'',//leo:nombre y apellido del promotor//
+        promoter_name:'',//leo:nombre y apellido del Promoter//
         promoter_lastName:'',
         // bio:'',//
-        phone:'',//leo:numero de telefono del promotor//
-        email:'',//leo:email del promotor//
+        phone:'',//leo:numero de telefono del Promoter//
+        email:'',//leo:email del Promoter//
         password:'',//leo: contraseña//
         address:'',//dereccion del negocio//
         legal_name:'',//nombre legal//
@@ -27,7 +26,7 @@ function FormPromoter({changeModal}){
         country:'Argentina',//pais
         state:'',//estado,provincia o departamento
         city:'',//ciudad o municipio
-        picture: undefined      
+        picture: undefined,
     });
 
     const businessTypes = [
@@ -45,7 +44,7 @@ function FormPromoter({changeModal}){
         setError(validate(form))
     },[form])
 
-    const namesInputs = (e)=>{//asiganar caracteristicas por pais
+    const namesInputs = (e)=>{//asignar caracteristicas por pais
         setForm({...form, country:e.target.value});
         if(e.target.value==='Argentina') {
             setCondition({ ...condition, divCountry:'Provincia', idNumber:'CUIT',});
@@ -78,13 +77,16 @@ function FormPromoter({changeModal}){
         const op = {method : 'POST', body : data}
         const res = await fetch(`https://api.cloudinary.com/v1_1/event-pf/image/upload`, op)
         const fileUp = await res.json();
-        setForm({...form,picture:fileUp.secure_url})
+        setForm({
+            ...form,
+            picture:fileUp.secure_url
+        })
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         let obj = validate(form)
-       
+
         if(Object.keys(obj).length !== 0) {
             changeModal('correct', `Revisa todos los campos`);
         } else {
@@ -92,10 +94,10 @@ function FormPromoter({changeModal}){
                 const res = await axios.post('http://localhost:3001/api/promoter',form)
                 console.log('respuesta del backkkkkkkkk',res.data)
                 if(res.data.msg){
-                    changeModal('correct', `Intentalo de nuevo más tarde`) 
+                    changeModal('correct', `Intentalo de nuevo más tarde`)
                 }
                 else if(res.data.created){
-                    changeModal('correct', `Promotor creado con éxito. \n Espere 48hrs para su autorización. Bienvenido a eVent, ${form.promoter_name}!`)
+                    changeModal('correct', `Promoter creado con éxito. \n Espere 48hrs para su autorización. Bienvenido a eVent, ${form.promoter_name}!`)
                     setForm({promoter_name:'',
                     promoter_lastName:'',
                     bio:'',
@@ -110,7 +112,7 @@ function FormPromoter({changeModal}){
                     country:form.country,
                     state:'',
                     city:'',
-                });               
+                });
                 }else if(!res.data.created){
                     console.log('eyyyyyyyy', res.data.created)
                     changeModal('correct', `Revisa los datos 'Nombre del negocio', 'Telefono', 'Correo' o '${condition.idNumber}' ya se encuentran registrados.`)
@@ -118,11 +120,10 @@ function FormPromoter({changeModal}){
             }catch(error){
                 changeModal('correct', `Intentalo de nuevo más tarde`)
             }
-        }  
+        }
     }
 
     return (
-/*         <div className={styles.container}> */
             <form onSubmit={handleSubmit}>
                 <div className={styles.contRend}>
                         <span className={styles.formTitle}>
@@ -133,7 +134,6 @@ function FormPromoter({changeModal}){
                             name="country"
                             value={form.country}
                             onChange={namesInputs}
-                            className={styles.pais}
                         >
                             {/* <option value="" disabled>País</option> */}
                             <option value="Argentina" selected='select'>Argentina</option>
@@ -147,7 +147,7 @@ function FormPromoter({changeModal}){
                     {/* {form.country && */}
                         <div className={styles.contForm2}>
                              {/*Ubicacion*/}
-                            <div className={styles.ubication}>
+                            <div className={styles.category}>
                                 <div className={styles.row}>
                                     <span>{condition.divCountry}: </span>
                                     <div className={styles.inputCheck}>
@@ -158,7 +158,7 @@ function FormPromoter({changeModal}){
                                             onChange={handleChange}
                                             className={!form.state && styles.errorState}
                                         />
-                                        <span className={styles.tick}>{!error.state && '✓' }</span> 
+                                        <span className={styles.tick}>{!error.state && '✓' }</span>
                                     </div>
                                 </div>
                                 <div className={styles.row}>
@@ -171,12 +171,23 @@ function FormPromoter({changeModal}){
                                             value={form.city}
                                             className={!form.city && styles.errorState}
                                         />
-                                        <span className={styles.tick}>{ !error.city && '✓'}  </span> 
+                                        <span className={styles.tick}>{ !error.city && '✓'}  </span>
                                     </div>
                                 </div>
                             </div>
+                            <div className={styles.category}>
+                                <div className={styles.file}>
+                                        <span>Foto de Perfil: </span>
+                                        <div className={styles.inputCheck}>
+                                            <input
+                                            type="file" onChange={changePicture}
+                                            />
+                                            <span className={styles.tick}>{form.picture && '✓' }</span>
+                                        </div>
+                                    </div>
+                                </div>
                              {/*Informacion empresarial*/}
-                            <div className={styles.datesCompany}>
+                            <div className={styles.category}>
                                 <div className={styles.row}>
                                     <span >Tipo de Negocio: </span>
                                     <div className={styles.inputCheck}>
@@ -189,11 +200,12 @@ function FormPromoter({changeModal}){
                                             <option value="" disabled>Selecciona:</option>
                                             {businessTypes.map((el) => <option value={el}>{el}</option>)}
                                         </select>
-                                        <span className={styles.tick}>{!error.business_type && '✓' }</span>                                 
+                                        <span className={styles.tick}>{!error.business_type && '✓' }</span>
                                     </div>
                                 </div>
                                 <div className={styles.row}>
                                     <span>Nombre del negocio: </span>
+                                    <div className={styles.separator}></div>
                                     <div className={styles.inputCheck}>
                                         <input
                                             type="text"
@@ -213,7 +225,7 @@ function FormPromoter({changeModal}){
                                             name='legal_name'
                                             onChange={handleChange}
                                             value={form.legal_name}
-                                        />                                   
+                                        />
                                         <span className={styles.tick}>{!error.legal_name && '✓' }</span>
                                     </div>
                                 </div>
@@ -229,7 +241,7 @@ function FormPromoter({changeModal}){
                                         <span className={styles.tick}>{!error.tax_id && '✓' }</span>
                                     </div>
                                 </div>
-                                <div className={styles.row}>                                    
+                                <div className={styles.row}>
                                     <span>Dirección: </span>
                                     <div className={styles.inputCheck}>
                                         <input
@@ -243,7 +255,7 @@ function FormPromoter({changeModal}){
                                 </div>
                             </div>
                               {/*Contacto*/}
-                            <div className={styles.contact}>
+                            <div className={styles.category}>
                                 <div className={styles.row}>
                                     <span>Nombre: </span>
                                     <div className={styles.inputCheck}>
@@ -253,7 +265,7 @@ function FormPromoter({changeModal}){
                                             onChange={handleChange}
                                             value={form.promoter_name}
                                         />
-                                        <span className={styles.tick}>{!error.promoter_name && '✓'} </span> 
+                                        <span className={styles.tick}>{!error.promoter_name && '✓'} </span>
                                     </div>
                                 </div>
                                 <div className={styles.row}>
@@ -276,22 +288,13 @@ function FormPromoter({changeModal}){
                                             name='phone'
                                             onChange={handleChange}
                                             value={form.phone}
-                                        />                                   
+                                        />
                                         <span className={styles.tick}>{!error.phone && '✓' }</span>
-                                    </div>
-                                </div>
-                                <div className={styles.rowFile}>
-                                    <span>Foto de Perfil: </span>
-                                    <div className={styles.inputCheckFile}>
-                                        <input 
-                                            type="file" onChange={changePicture} 
-                                        />                                
-                                        <span className={styles.tick}></span>
                                     </div>
                                 </div>
                             </div>
                               {/*datos login*/}
-                            <div className={styles.password}>
+                            <div className={styles.category}>
                                 <div className={styles.row}>
                                     <span >Email: </span>
                                     <div className={styles.inputCheck}>
@@ -301,7 +304,7 @@ function FormPromoter({changeModal}){
                                             placeholder='usuario@dominio.abc'
                                             onChange={handleChange}
                                             value={form.email}
-                                        />                                        
+                                        />
                                         <span className={styles.tick}> {!error.email && '✓'} </span>
                                     </div>
                                 </div>
@@ -314,7 +317,7 @@ function FormPromoter({changeModal}){
                                             placeholder='¡Si no tilda, no es segura!'
                                             onChange={handleChange}
                                             value={form.password}
-                                        />                                        
+                                        />
                                         <span className={styles.tick}>{!error.password && '✓'} </span>
                                     </div>
                                 </div>
@@ -322,16 +325,13 @@ function FormPromoter({changeModal}){
                             <button className={styles.btn} type="submit">
                             ¡Registrarme!
                             </button>
-                        </div>                  
+                        </div>
                 </div>
             </form>
-/*         </div> */
        )
 }
+
 function mapStateToProps(state){
-    return{
-        modal:state.modal
-    }
+    return { modal: state.modal }
 }
 export default connect(null,{changeModal})(FormPromoter);
-

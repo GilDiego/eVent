@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react'
 import DisplayComments from '../../Comments/DisplayComments/DisplayComments'
 import { Link , useParams, useHistory} from 'react-router-dom'
@@ -7,6 +6,7 @@ import {getEventDetail, changeModal} from '../../../actions/actions'
 import { Carousel } from 'react-carousel-minimal';
 import Loading from '../../Loading/Loading'
 import styles from './EventDetailsUsario.module.css'
+
 
 
 
@@ -33,7 +33,7 @@ export default function EventDetailsUsario() {
     const userInfo = useSelector(state => state.userState)
     const history = useHistory();
 
-    console.log(detailsEvent,'SOY DETAIL EVENT')
+    console.log(userInfo)
     useEffect( () => {
         const fetchData = async () => {
             try{
@@ -78,7 +78,12 @@ export default function EventDetailsUsario() {
         setData(pushDta(detailsEvent))
     },[detailsEvent])
 
+
+
     if(render){
+        const whats ={whats:`https://api.whatsapp.com/send?phone=${detailsEvent.consult.promoter.phone}`}
+        console.log('hola',whats)
+        console.log('whats',whats.whats)
             return(   
             <div className={styles.detailsAllUser}>
                 <div className='detailsCardUser'> 
@@ -91,7 +96,6 @@ export default function EventDetailsUsario() {
                                 width="650px"
                                 height="400px"
                                 radius="10px"
-                                //captionStyle={captionStyle}
                                 slideNumber={true}
                                 slideNumberStyle={slideNumberStyle}
                                 captionPosition="bottom"
@@ -135,38 +139,89 @@ export default function EventDetailsUsario() {
                                     <p className='p'>{` ${detailsEvent.consult.age_rating}`}</p>
                                     <h4 className='h4'>Precio:</h4>
                                     <p className='p'>{` $${detailsEvent.consult.price}`}</p>
+                                    
                                   
                                 </div>                                
                             </div>
                         </div>
                         <div className={styles.buttonContainer}>
+                        {userInfo?.type=== 'promoter'||
+                             <div className={styles.promoter}>
+                                 <Link to='/PromoterPorfileUser'>
+                                 <div>
+                                     
+                                    <h2 className='h4'>Promotor:</h2>
+                                    <p className='p'>{` ${detailsEvent.consult.promoter.business_name}`}</p>
+                                 </div>
+                                 <div className={styles.promoterPicture}>
+                                    <img src={detailsEvent.consult.promoter.picture} className={styles.promoterPicture}/>
+                                 </div>
+                                <div className={styles.whats}>
+                                 <a href={whats.whats} target="_blank" rel="noopener noreferrer">
+                                    <img src='https://1.bp.blogspot.com/-c156R1-yBRg/YIJJXWpUS9I/AAAAAAAAFP4/Q7eQOnTtqesWS2Q7s8CxireQvnB1OwNUwCLcBGAsYHQ/w680/logo-whatsApp-'className={styles.whats}/>
+                                 </a>  
+                                 
+                                 </div>
+                               </Link>
+                             </div>
+                        }
+                            
                             {userInfo?.type === "promoter"?
                                 <button className={styles.button} onClick={editEvent}>Editar</button>:
                                 <button className={styles.button}>Reservar</button>
-                            }                               
+                            }   
+                            {/* Si usuario no logeado, arrojar alerta de "no puedes comentar". Si usuario logeado de
+                            tipo 'user', permitir linkear a ruta de creacion de comentarios. Si usuario logeado de
+                            tipo 'promoter', no permitir dejar reseña pero si permitir eliminar el evento. */}
                                 {
                                 userInfo?.type === "user" ? (
-                                        <Link to={{
+
+                                    <Link to={{
                                             pathname:'/nuevoComentario',
                                             state: {
                                                 id: id,
                                                 eventName: detailsEvent.consult.name
                                             }
                                         }}>
+
                                         <button className={styles.button}>Reseña</button>
                                         </Link>
-                                ) : 
-                                userInfo?.type ==="promoter" ? 
+                                ) :
+                                userInfo?.type === "promoter" ?
                                 (
                                     <button className={styles.button} onClick={deleteEvent}>Eliminar</button>
                                 ):
                                 (
+                                   
                                     <button 
                                         onClick={e => alert('Solo usuarios logeados pueden dejar comentarios')}
                                         className={styles.button}>    
                                         Reseña
                                     </button>
-                                )}
+                                )} {
+
+                                    !userInfo.type ? (
+                                        <button 
+                                            onClick={e => alert('Solo usuarios logeados pueden dejar comentarios')}
+                                            className={styles.button}>    
+                                                Reseña
+                                        </button>
+                                    ) : (
+                                            userInfo.type === 'user' ? (
+                                                <Link to={{
+                                                    pathname:'/nuevoComentario',
+                                                    state: {
+                                                        id: id,
+                                                        eventName: detailsEvent.consult.name
+                                                    }
+                                                }}>
+                                                <button className={styles.button}>Reseña</button>
+                                                </Link>
+                                            ) : (
+                                                <button className={styles.button} onClick={deleteEvent}>Eliminar</button>
+                                            )
+                                    )
+                                }
                         </div>
                         <div className='comments-container'>
                             <DisplayComments state={id}/>
@@ -181,5 +236,3 @@ export default function EventDetailsUsario() {
         return (<Loading/>)
     }
 }
-
-
