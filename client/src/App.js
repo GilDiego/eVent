@@ -19,6 +19,7 @@ import Modal from './components/Modal/Modal';
 import LoginContainer from './components/LoginContainer/LoginContainer';
 import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 import PromotorePorfile from './components/PromotorePorfile/PromotoreProfile';
+import PromoterProfileUser from './components/PromotorePorfile/PerfilPromoterUsuario'
 
 
 function App({ setUser, user, modal }) {
@@ -93,6 +94,11 @@ function App({ setUser, user, modal }) {
       <Route path='/shoppingCart'>
         <ShoppingCart />
       </Route>
+      
+      <Route path='/PromoterPorfileUser'>
+        <PromoterProfileUser  userData={user} />
+      </Route>
+
 
       <Footer />
       {modal.render ? <Modal message={modal.message} type={modal.type} /> : null}
