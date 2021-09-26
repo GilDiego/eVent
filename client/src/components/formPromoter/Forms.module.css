@@ -73,7 +73,7 @@
     border-style: none;
     border-color: var(--Secondary);
     border-radius: 10px;
-    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 .file input::-webkit-file-upload-button {
@@ -140,7 +140,7 @@ select:-webkit-autofill:focus::after
     }
 }
 
-@media (max-width: 420px) { 
+@media (max-width: 420px) {
     .row {
         display: flex;
         flex-direction: column;

@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import styles from './Forms.module.css';
 import validate from './validate.js';
-import {connect} from 'react-redux'
-import {changeModal} from '../../actions/actions'
+import {connect} from 'react-redux';
+import {changeModal} from '../../actions/actions';
 
 function FormPromoter({changeModal}) {
-
     const [error, setError] = useState({});
     const [condition, setCondition] = useState({//este estado valida
         divCountry:'Provincia',// como esta dividido el pais ?
@@ -45,7 +44,7 @@ function FormPromoter({changeModal}) {
         setError(validate(form))
     },[form])
 
-    const namesInputs = (e)=>{//asiganar caracteristicas por pais
+    const namesInputs = (e)=>{//asignar caracteristicas por pais
         setForm({...form, country:e.target.value});
         if(e.target.value==='Argentina') {
             setCondition({ ...condition, divCountry:'Provincia', idNumber:'CUIT',});
@@ -125,7 +124,6 @@ function FormPromoter({changeModal}) {
     }
 
     return (
-
             <form onSubmit={handleSubmit}>
                 <div className={styles.contRend}>
                         <span className={styles.formTitle}>
@@ -332,8 +330,8 @@ function FormPromoter({changeModal}) {
             </form>
        )
 }
+
 function mapStateToProps(state){
     return { modal: state.modal }
 }
 export default connect(null,{changeModal})(FormPromoter);
-
