@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import styles from './FormPromoter.module.css';
+import styles from './Forms.module.css';
 import validate from './validate.js';
 import {connect} from 'react-redux'
 import {changeModal} from '../../actions/actions'
@@ -125,6 +125,7 @@ function FormPromoter({changeModal}) {
     }
 
     return (
+
             <form onSubmit={handleSubmit}>
                 <div className={styles.contRend}>
                         <span className={styles.formTitle}>
@@ -176,6 +177,17 @@ function FormPromoter({changeModal}) {
                                     </div>
                                 </div>
                             </div>
+                            <div className={styles.category}>
+                                <div className={styles.file}>
+                                        <span>Foto de Perfil: </span>
+                                        <div className={styles.inputCheck}>
+                                            <input
+                                            type="file" onChange={changePicture}
+                                            />
+                                            <span className={styles.tick}>{form.picture && '✓' }</span>
+                                        </div>
+                                    </div>
+                                </div>
                              {/*Informacion empresarial*/}
                             <div className={styles.category}>
                                 <div className={styles.row}>
@@ -280,15 +292,6 @@ function FormPromoter({changeModal}) {
                                             value={form.phone}
                                         />
                                         <span className={styles.tick}>{!error.phone && '✓' }</span>
-                                    </div>
-                                </div>
-                                <div className={styles.file}>
-                                    <span>Foto de Perfil: </span>
-                                    <div className={styles.inputCheck}>
-                                        <input
-                                            type="file" onChange={changePicture}
-                                        />
-                                        <span className={styles.tick}>{form.picture && '✓' }</span>
                                     </div>
                                 </div>
                             </div>
