@@ -174,9 +174,8 @@ export default function EventDetailsUsario() {
                             tipo 'user', permitir linkear a ruta de creacion de comentarios. Si usuario logeado de
                             tipo 'promoter', no permitir dejar reseña pero si permitir eliminar el evento. */}
                                 {
-<
                                 userInfo?.type === "user" ? (
-                                    
+
                                     <Link to={{
                                             pathname:'/nuevoComentario',
                                             state: {
@@ -184,11 +183,11 @@ export default function EventDetailsUsario() {
                                                 eventName: detailsEvent.consult.name
                                             }
                                         }}>
-                                         
+
                                         <button className={styles.button}>Reseña</button>
                                         </Link>
-                                ) : 
-                                userInfo?.type ==="promoter" ? 
+                                ) :
+                                userInfo?.type === "promoter" ?
                                 (
                                     <button className={styles.button} onClick={deleteEvent}>Eliminar</button>
                                 ):
@@ -199,7 +198,7 @@ export default function EventDetailsUsario() {
                                         className={styles.button}>    
                                         Reseña
                                     </button>
-                                )}
+                                )} {
 
                                     !userInfo.type ? (
                                         <button 
@@ -222,8 +221,7 @@ export default function EventDetailsUsario() {
                                                 <button className={styles.button} onClick={deleteEvent}>Eliminar</button>
                                             )
                                     )
-                                }                                
-
+                                }
                         </div>
                         <div className='comments-container'>
                             <DisplayComments state={id}/>

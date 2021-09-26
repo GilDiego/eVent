@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './UserPorfile.module.css'
 import { connect } from 'react-redux';
-import SubCarousel from '../SubCarousel/SubCarousel.jsx' // Diego: Este es el correcto, cambienle el nombre a sus carpetas
+import SubCarousel from '../SubCarousel/SubCarousel' // Diego: Este es el correcto, cambienle el nombre a sus carpetas
 // import SubCarousel from '../subCarousel/SubCarousel' <-------- Este no jeje
 
 const UserPorfile = ({userState})=>{
