@@ -12,9 +12,9 @@
     padding: 20px;
 }
 
-.form{
+.form {
   display: flex;
-    height: 500px;
+    height: auto;
     width: 100%;
     justify-content: center;
 }
@@ -26,12 +26,119 @@
     display: flex; 
     justify-content: center;
 }
-.but{
-    border-radius: var(--RadiusOne);
-    background-color: var(--Button);
+
+/* Acá empiezan las variables CSS Modules de FormPromoter */
+.btn {
+    background-color: var(--Secondary);
+    color: var(--Black);
+    padding: 10px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-radius: 10px;
+    border-width: 0;
+    margin-top: 40px;
+    align-self: center;
 }
-.but:hover{
-    background-color: var(--Other);
+
+.btn:hover {
+    transform: scale(1.2);
+    background-color: var(--Button);
+    transition-duration: 300ms;
+}
+
+.formTitle {
+    font-size: 1.5rem;
+    color: var(--Button);
+    font-weight: 350;
+    margin: 20px;
+}
+
+.contRend{
+    margin: 70px;
+    height: auto;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     color: var(--White);
-    cursor: pointer;
+    border-radius: 10px;
+    background: var(--Primary);
+    box-shadow: 0px 0px 50px black;
+}
+
+.contForm2{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow:
+    0px 15px 10px -15px var(--Black),
+    0px -15px 10px -15px var(--Black);
+    margin: 25px 50px 25px 50px;
+}
+.contForm2 input{
+    width: 90%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: auto;
+    height: fit-content;
+    margin-block: 0.25rem;
+}
+@media (max-width: 420px) { 
+    .row {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+.rowFile{
+    display: flex;
+    flex-direction: column;
+}
+.rowFile span{
+    text-align: left;
+}
+
+.inputCheck{
+    width: 50%;
+    display: flex;
+}
+@media (max-width: 420px) {
+    .inputCheck{
+        width: 100%;
+        display: flex;
+    }
+}
+
+.inputCheck select {
+    width: 100%;
+}
+
+/* ESTILOS DE AUTOCOMPLETADO */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--White);
+    -webkit-box-shadow: 0 0 0px 1000px var(--Black) inset;
+    box-shadow: 0; /* Inútil pero me lo pide el VSCode */
+}
+
+.contRend input, select {
+    border: 1px var(--Black) solid;
+    border-radius: 10px;
+    background: var(--Black);
+    color: var(--White);
+}
+
+.contRend span, label {
+    min-width: max-content;
 }

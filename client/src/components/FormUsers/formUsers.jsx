@@ -95,8 +95,10 @@ export function FormUsers() {
   }
 
   return (
-    <div className={styles.container}>
-      <h2 style={{ textAlign: 'center' }}>Formulario de Registro</h2>
+    <div className={styles.contRend}>
+      <span className={styles.formTitle}>
+        Completa el formulario
+      </span>
       <form
         className={styles.form}
         onSubmit={submit}
@@ -130,10 +132,10 @@ export function FormUsers() {
 
       // }}
       >
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: 'space-evenly', width: '70%' }}>
-          <div className={styles.divsSection}>
+        <div className={styles.contForm2}>
+          <div className={styles.row}>
             <label>Nombre: </label>
-            <input
+            <input className={styles.inputCheck}
               className={errors.first_name && "danger"}
               type="text"
               name="first_name"
@@ -143,9 +145,9 @@ export function FormUsers() {
             ></input>
             {errors.first_name && <span className="danger">{errors.first_name}</span>}
           </div>
-          <div className={styles.divsSection}>
+          <div className={styles.row}>
             <label>Apellido: </label>
-            <input
+            <input className={styles.inputCheck}
               className={errors.last_name && "danger"}
               type="text"
               name="last_name"
@@ -154,10 +156,10 @@ export function FormUsers() {
               placeholder='Apellido'
             ></input>
             {errors.last_name && <span className="danger">{errors.last_name}</span>}</div>
-          <div className={styles.divsSection}>
+          <div className={styles.row}>
 
             <label>Nombre Usuario: </label>
-            <input
+            <input className={styles.inputCheck}
               className={errors.username && "danger"}
               type="text"
               name="username"
@@ -166,11 +168,11 @@ export function FormUsers() {
               placeholder='Nombre de usuario'
             ></input>
             {errors.username && <span className="danger">{errors.username}</span>}</div>
-          <div className={styles.divsSection}>
+          <div className={styles.row}>
 
             <label>Foto: </label>
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '40%', alignItems: 'center' }}>
-              <input type="file" onChange={click} />
+            <div>
+              <input className={styles.inputCheck} type="file" onChange={click} />
               {/* <br /> */}
               {img ?
                 load === true ?
@@ -179,15 +181,15 @@ export function FormUsers() {
               {/* {load === true ? <span>cargando..</span> : <img src={img} alt='foto' width='150px' height='120px' />} */}
             </div>
           </div>
-          <div className={styles.divsSection}>
+          <div className={styles.row}>
 
             <label>Fecha de Nacimiento: </label>
-            <input style={{ width: '50%' }} type='date' name='birthdate' value={user.birthdate} onChange={handleInputChange} />
+            <input className={styles.inputCheck} type='date' name='birthdate' value={user.birthdate} onChange={handleInputChange} />
           </div>
-          <div className={styles.divsSection}>
+          <div className={styles.row}>
 
             <label>Teléfono: </label>
-            <input
+            <input className={styles.inputCheck}
               className={errors.phone && "danger"}
               type="text"
               name="phone"
@@ -197,7 +199,7 @@ export function FormUsers() {
             ></input>
             {errors.phone && <span className="danger">{errors.phone}</span>}</div>
           {/* <label>País: </label>
-          <input
+          <input className={styles.inputCheck}
            className={errors.country && "danger"}
             type="text"
             name="country"
@@ -207,7 +209,7 @@ export function FormUsers() {
           ></input> */}
           {/* {errors.country && <span className="danger">{errors.country}</span>}
           <label>Provincia/Estado/Departamento: </label>
-          <input
+          <input className={styles.inputCheck}
             type="text"
             name="provStateDepart"
             value={user.provStateDepart}
@@ -215,17 +217,17 @@ export function FormUsers() {
             placeholder='provincia/stado/departamento'
           ></input>
           <label>Ciudad: </label>
-          <input
+          <input className={styles.inputCheck}
             type="text"
             name="city"
             value={user.city}
             onChange={handleInputChange}
             placeholder='Ciudad..'
           ></input> */}
-          <div className={styles.divsSection}>
+          <div className={styles.row}>
 
             <label>Correo: </label>
-            <input
+            <input className={styles.inputCheck}
               className={errors.email && "danger"}
               type="email"
               name="email"
@@ -235,10 +237,10 @@ export function FormUsers() {
             ></input>
             {errors.email && <span className="danger">{errors.email}</span>}
           </div>
-          <div className={styles.divsSection}>
+          <div className={styles.row}>
 
             <label>Contraseña: </label>
-            <input
+            <input className={styles.inputCheck}
               className={errors.password && "danger"}
               type="password"
               name="password"
@@ -246,10 +248,13 @@ export function FormUsers() {
               onChange={handleInputChange}
               placeholder='Ejemplo*123'
             ></input>
+           </div>
             {errors.password && <span className="danger">{errors.password}</span>}
-          </div>
+
           <div className={styles.buttonUser} >
-            <input className={styles.but} type="submit" />
+          <button className={styles.btn} type="submit">
+            ¡Registrarme!
+          </button>
           </div>
         </div>
       </form>

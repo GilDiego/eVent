@@ -6,7 +6,7 @@ import { Route } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
-import FormUsers from './components/FormUsers/FormUsers';
+import FormUsers from './components/FormUsers/FormUsers.jsx';
 import FormPromoter from './components/FormPromoter/FormPromoter.jsx';
 import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDetailsUsario';
 import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter'
