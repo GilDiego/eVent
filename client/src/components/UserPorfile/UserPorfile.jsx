@@ -16,7 +16,7 @@ const UserPorfile = ({userState})=>{
                 <h4 className={styles.ciudad}>Bogotá, Colombia</h4> */}
             </div>
             <div className={styles.contInfo} >
-                <h3>¡Bievenido! {userState.username}</h3>
+                <h3>¡Bienvenido! {userState.username}</h3>
             </div>
 
             <div className={styles.myEvents}>

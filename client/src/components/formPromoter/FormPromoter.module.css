@@ -6,7 +6,6 @@
     font-weight: 600;
     border-radius: 10px;
     border-width: 0;
-    margin-top: 40px;
     align-self: center;
 }
 
@@ -20,15 +19,21 @@
     width: 300px;
 }
 
-.contRend input, select {
+.contRend input, select, option {
     border: 1px var(--Black) solid;
     border-radius: 10px;
     background: var(--Black);
     color: var(--White);
+
 }
 
-.contRend span, label {
+.contRend input, span {
     min-width: max-content;
+    text-align: left;
+}
+
+.separator {
+    width: 2rem;
 }
 
 /* ESTILOS DE AUTOCOMPLETADO */
@@ -39,8 +44,7 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
     -webkit-text-fill-color: var(--White);
-    -webkit-box-shadow: 0 0 0px 1000px var(--Black) inset;
-    box-shadow: 0; /* Inútil pero me lo pide el VSCode */
+    box-shadow: 0 0 0px 1000px var(--Black) inset;
 }
 
 /* cont */
@@ -71,7 +75,7 @@ select:-webkit-autofill:focus {
     box-shadow: 0px 0px 50px black;
 }
 /* subcont */
-.contForm2{
+.contForm2 {
     display: flex;
     flex-direction: column;
     width: auto;
@@ -81,17 +85,6 @@ select:-webkit-autofill:focus {
     0px 15px 10px -15px var(--Black),
     0px -15px 10px -15px var(--Black);
     margin: 25px 50px 25px 50px;
-}
-.contForm2 input{
-    width: 90%;
-}
-
-/* ubicacion */
-.ubication{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: right;
 }
 
 .countrySelect{
@@ -106,28 +99,13 @@ select:-webkit-autofill:focus {
     font-weight: 350;
     margin: 20px;
 }
-.datesCompany{
+
+.category {
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: right;
-    margin-top: 20px;
-}
-/* contacto */
-.contact{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: right;
-    margin-top: 20px;
-}
-/* password */
-.password{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: right;
-    margin-top: 20px;
+    margin-bottom: 20px;
     justify-self: right;
 }
 
@@ -145,19 +123,11 @@ select:-webkit-autofill:focus {
         align-items: flex-start;
     }
 }
-.rowFile{
+.file {
     display: flex;
     flex-direction: column;
 }
-.rowFile span{
-    text-align: left;
-}
-.inputCheckFile{
-    width: 100%;
-}
-.inputCheckFile input{
-    width: 100%;   
-}
+
 @media (max-width: 720px) { 
     .inputCheckFile input{
         width: 100%; 
@@ -174,10 +144,6 @@ select:-webkit-autofill:focus {
     width: 5px;  
 }
 
-.inputCheck{
-    width: 50%;
-    display: flex;
-}
 @media (max-width: 420px) {
     .inputCheck {
         width: 100%;
@@ -185,7 +151,7 @@ select:-webkit-autofill:focus {
     }
 }
 
-.inputCheck select{
+.file input{
     width: 100%;
 }
 
