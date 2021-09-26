@@ -33,7 +33,7 @@ export default function EventDetailsUsario() {
     const userInfo = useSelector(state => state.userState)
     const history = useHistory();
 
-    console.log(detailsEvent,'SOY DETAIL EVENT')
+    console.log(userInfo)
     useEffect( () => {
         const fetchData = async () => {
             try{
@@ -169,8 +169,12 @@ export default function EventDetailsUsario() {
                             {userInfo?.type === "promoter"?
                                 <button className={styles.button} onClick={editEvent}>Editar</button>:
                                 <button className={styles.button}>Reservar</button>
-                            }                               
+                            }   
+                            {/* Si usuario no logeado, arrojar alerta de "no puedes comentar". Si usuario logeado de
+                            tipo 'user', permitir linkear a ruta de creacion de comentarios. Si usuario logeado de
+                            tipo 'promoter', no permitir dejar reseña pero si permitir eliminar el evento. */}
                                 {
+<
                                 userInfo?.type === "user" ? (
                                     
                                     <Link to={{
@@ -196,6 +200,30 @@ export default function EventDetailsUsario() {
                                         Reseña
                                     </button>
                                 )}
+
+                                    !userInfo.type ? (
+                                        <button 
+                                            onClick={e => alert('Solo usuarios logeados pueden dejar comentarios')}
+                                            className={styles.button}>    
+                                                Reseña
+                                        </button>
+                                    ) : (
+                                            userInfo.type === 'user' ? (
+                                                <Link to={{
+                                                    pathname:'/nuevoComentario',
+                                                    state: {
+                                                        id: id,
+                                                        eventName: detailsEvent.consult.name
+                                                    }
+                                                }}>
+                                                <button className={styles.button}>Reseña</button>
+                                                </Link>
+                                            ) : (
+                                                <button className={styles.button} onClick={deleteEvent}>Eliminar</button>
+                                            )
+                                    )
+                                }                                
+
                         </div>
                         <div className='comments-container'>
                             <DisplayComments state={id}/>

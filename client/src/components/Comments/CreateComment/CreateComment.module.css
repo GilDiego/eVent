@@ -48,6 +48,9 @@
   box-shadow: var(--ShadowOne);
   margin-bottom: 100px;
 }
+.newCommentSuccessImg {
+  max-width: 345px;
+}
 .confirmation {
   vertical-align: middle;
 }
@@ -55,4 +58,12 @@
 }
 .newCommentConfirmation {
   font-size: smaller;
+}
+
+.minimumRequired {
+  color: green;
+}
+
+.notMinimumRequired {
+  color: red;
 }
