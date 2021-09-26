@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import styles from './FormPromoter.module.css';
+import styles from './Forms.module.css';
 import validate from './validate.js';
-import {connect} from 'react-redux'
-import {changeModal} from '../../actions/actions'
+import {connect} from 'react-redux';
+import {changeModal} from '../../actions/actions';
 
 function FormPromoter({changeModal}) {
-
     const [error, setError] = useState({});
     const [condition, setCondition] = useState({//este estado valida
         divCountry:'Provincia',// como esta dividido el pais ?
@@ -45,7 +44,7 @@ function FormPromoter({changeModal}) {
         setError(validate(form))
     },[form])
 
-    const namesInputs = (e)=>{//asiganar caracteristicas por pais
+    const namesInputs = (e)=>{//asignar caracteristicas por pais
         setForm({...form, country:e.target.value});
         if(e.target.value==='Argentina') {
             setCondition({ ...condition, divCountry:'Provincia', idNumber:'CUIT',});
@@ -125,8 +124,7 @@ function FormPromoter({changeModal}) {
     }
 
     return (
-/*         <div className={styles.container}> */
-            <form className={styles.form} onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <div className={styles.contRend}>
                         <span className={styles.formTitle}>
                             {!form.country ? "Selecciona un país" : "Completa el formulario"}
@@ -136,7 +134,6 @@ function FormPromoter({changeModal}) {
                             name="country"
                             value={form.country}
                             onChange={namesInputs}
-                            className={styles.pais}
                         >
                             {/* <option value="" disabled>País</option> */}
                             <option value="Argentina" selected='select'>Argentina</option>
@@ -178,6 +175,17 @@ function FormPromoter({changeModal}) {
                                     </div>
                                 </div>
                             </div>
+                            <div className={styles.category}>
+                                <div className={styles.file}>
+                                        <span>Foto de Perfil: </span>
+                                        <div className={styles.inputCheck}>
+                                            <input
+                                            type="file" onChange={changePicture}
+                                            />
+                                            <span className={styles.tick}>{form.picture && '✓' }</span>
+                                        </div>
+                                    </div>
+                                </div>
                              {/*Informacion empresarial*/}
                             <div className={styles.category}>
                                 <div className={styles.row}>
@@ -284,15 +292,6 @@ function FormPromoter({changeModal}) {
                                         <span className={styles.tick}>{!error.phone && '✓' }</span>
                                     </div>
                                 </div>
-                                <div className={styles.file}>
-                                    <span>Foto de Perfil: </span>
-                                    <div className={styles.inputCheck}>
-                                        <input
-                                            type="file" onChange={changePicture}
-                                        />
-                                        <span className={styles.tick}>{form.picture && '✓' }</span>
-                                    </div>
-                                </div>
                             </div>
                               {/*datos login*/}
                             <div className={styles.category}>
@@ -329,11 +328,10 @@ function FormPromoter({changeModal}) {
                         </div>
                 </div>
             </form>
-/*         </div> */
        )
 }
+
 function mapStateToProps(state){
     return { modal: state.modal }
 }
 export default connect(null,{changeModal})(FormPromoter);
-
