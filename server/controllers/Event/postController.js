@@ -8,10 +8,9 @@ exports.saveInfoEvent = async (req,res) => {
         name,           description,    starring,   virtual,        ticket_limit,       
         address,        pictures,       start_date, finish_date,    schedule,   
         isRecurrent,    weekdays,       tags,       age_rating,     price,  
-        country,        city,           province,   promoter_id
+        country,        city,           region,   promoter_id
     } = req.body;
 
-     
     try {
         const [event,created] = await Event.findOrCreate({
             where:{
@@ -25,26 +24,26 @@ exports.saveInfoEvent = async (req,res) => {
         });
     
         if(!created){
-            return res.json({msg:'The event name already exists'})
+            return res.json({created:false})
         }
         
-        // console.log(country, province,city)
-        // const location = await Location.findOrCreate({
-        //     where:{
-        //         country,
-        //         province,
-        //         city
-        //     }
-        // })
+        console.log(country, region,city)
+        const location = await Location.findOrCreate({
+            where:{
+                country,
+                province:region,
+                city,
+            }
+        })
 
-        // event.setLocation(location[0]);
+        event.setLocation(location[0]);
 
 
         event.setPromoter(promoter_id);
 
         return res.json({
-            msg:'Event created!!!',
-            event
+            created:true,
+            event,
         }) 
         
     

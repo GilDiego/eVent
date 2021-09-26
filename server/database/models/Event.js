@@ -44,7 +44,7 @@ const Event = sequelize.define('event', {
     },
     finish_date: { // AAAA-MM-DD
         type: DataTypes.STRING,
-        validate: { isDate: true, },
+        
     },
     schedule: { //TEMPORARY. CONVERT INTO SEPARATE MODEL AFTERWARDS
         type: DataTypes.ARRAY(DataTypes.STRING),
@@ -61,7 +61,7 @@ const Event = sequelize.define('event', {
     },
     tags: { // TEMPORARY. TURN INTO SEPARATE MODEL AFTERWARDS
         type: DataTypes.ENUM(
-            "exteriores", "Interiores", "En vivo", "Recital", "Teatro", "Película", "Disco", "Deportes","Pelicula"
+            "Exteriores", "Interiores", "En vivo", "Recital", "Teatro", "Película", "Disco", "Deportes",
             ),
         allowNull: false,
     },
