@@ -43,7 +43,7 @@ exports.getEventByIdController = async (req,res) => {
                 Comment,
                 {
                     model: Promoter,
-                    attributes:['id','business_name']
+                    attributes:['id','business_name','phone','picture']
                 }
             ]
         });     

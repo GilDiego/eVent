@@ -10,6 +10,8 @@ exports.saveInfoEvent = async (req,res) => {
         isRecurrent,    weekdays,       tags,       age_rating,     price,  
         country,        city,           province,   promoter_id
     } = req.body;
+
+     
     try {
         const [event,created] = await Event.findOrCreate({
             where:{
