@@ -178,7 +178,52 @@ export default function EventDetailsUsario() {
                             tipo 'user', permitir linkear a ruta de creacion de comentarios. Si usuario logeado de
                             tipo 'promoter', no permitir dejar reseña pero si permitir eliminar el evento. */}
                                 {
-
+                                    !userInfo.type ? (
+                                        <span>&nbsp;</span>
+                                    ) : (
+                                        userInfo.type === 'promoter' ? (
+                                        <>
+                                            <button className={styles.button} onClick={editEvent}>Editar</button>
+                                            <button className={styles.button} onClick={deleteEvent}>Eliminar</button>
+                                        </>
+                                        ) : (
+                                            <button className={styles.button}>Reservar</button>
+                                        )
+                                    )
+                                    // !userInfo.type ? (
+                                    //     <button 
+                                    //     onClick={e => alert('Solo usuarios logeados pueden dejar comentarios')}
+                                    //     className={styles.button}>    
+                                    //             Reseña
+                                    //     </button>
+                                    // ) : (
+                                    //     userInfo.type === 'user' ? (
+                                            // <>
+                                            // <Link to={{
+                                            //     pathname:'/nuevoComentario',
+                                            //     state: {
+                                            //         id: id,
+                                            //         eventName: detailsEvent.consult.name
+                                            //     }
+                                            // }}>
+                                            //     <button className={styles.button}>Reseña</button>
+                                            // </Link>
+                                            /* El siguiente boton se activara y se hara la logica ya que exista pasarela de pagos
+                                            <button className={styles.button}>Reservar</button> */
+                                            // </>
+                                    //     ) : (
+                                    //         <>
+                                    //             <button className={styles.button} onClick={editEvent}>Editar</button>
+                                    //             <button className={styles.button} onClick={deleteEvent}>Eliminar</button>
+                                    //         </>
+                                    //     )
+                                    // )
+                                } 
+                        </div>
+                        <div className='comments-container'>
+                            <DisplayComments state={id}/>
+                            <div>
+                                {
                                     !userInfo.type ? (
                                         <button 
                                         onClick={e => alert('Solo usuarios logeados pueden dejar comentarios')}
@@ -187,36 +232,27 @@ export default function EventDetailsUsario() {
                                         </button>
                                     ) : (
                                         userInfo.type === 'user' ? (
-                                            <>
-                                            <Link to={{
-                                                pathname:'/nuevoComentario',
-                                                state: {
-                                                    id: id,
-                                                    eventName: detailsEvent.consult.name
-                                                }
-                                            }}>
-                                                <button className={styles.button}>Reseña</button>
-                                            </Link>
-                                            {/* El siguiente boton se activara y se hara la logica ya que exista pasarela de pagos
-                                            <button className={styles.button}>Reservar</button> */}
-                                            </>
+                                        <Link to={{
+                                            pathname:'/nuevoComentario',
+                                            state: {
+                                                id: id,
+                                                eventName: detailsEvent.consult.name
+                                            }
+                                        }}>
+                                            <button className={styles.button}>Reseña</button>
+                                        </Link>
                                         ) : (
-                                            <>
-                                                <button className={styles.button} onClick={editEvent}>Editar</button>
-                                                <button className={styles.button} onClick={deleteEvent}>Eliminar</button>
-                                            </>
+                                            <span>&nbsp;</span>
                                         )
                                     )
-                                } */}
-                        </div>
-                        <div className='comments-container'>
-                            <DisplayComments state={id}/>
+                                }
+                            </div>
                             <br />
                             <br />
                         </div>
                     </div>   
                 </div>
-            </div>      
+            
     )} 
     else{
         return (<Loading/>)
