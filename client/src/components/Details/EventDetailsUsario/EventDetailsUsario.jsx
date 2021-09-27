@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import DisplayComments from '../../Comments/DisplayComments/DisplayComments'
-import { Link , useParams, useHistory} from 'react-router-dom'
-import  {useDispatch , useSelector} from 'react-redux'
-import {getEventDetail, changeModal} from '../../../actions/actions'
+import React, { useState, useEffect } from 'react';
+import DisplayComments from '../../Comments/DisplayComments/DisplayComments';
+import { Link , useParams, useHistory} from 'react-router-dom';
+import  {useDispatch , useSelector} from 'react-redux';
+import {getEventDetail, changeModal} from '../../../actions/actions';
 import { Carousel } from 'react-carousel-minimal';
-import Loading from '../../Loading/Loading'
-import styles from './EventDetailsUsario.module.css'
+import Loading from '../../Loading/Loading';
+import styles from './EventDetailsUsario.module.css';
 
 
 
@@ -115,61 +115,70 @@ export default function EventDetailsUsario() {
                         </div>  
                         <div className={styles.otherDetailsUser}>  
                             <br/> 
-                            <h4 className='h4'>Descripcion:</h4>
+                            <h4>Descripcion:</h4>
                             <p className={styles.description}>{ detailsEvent.consult.description}</p>
                             <div className={styles.detailsUsers2User}>
                                 <div className={styles.leftColumn}>
-                                    <h4 className='h4'>Artistas:</h4>
-                                    <p className='p'>{` ${detailsEvent.consult.starring}`}</p>
-                                    <h4 className='h4'>Dirreción:</h4>
-                                    <p className='p'> {` ${detailsEvent.consult.address}`}</p>
-                                    <h4 className='h4'>Fecha:</h4>
-                                    <p className='p'>{` ${detailsEvent.consult.start_date}`}</p>
-                                    <h4 className='h4'>Fecha Finalización:</h4>
-                                    <p className='p'>{` ${detailsEvent.consult.finish_date}`}</p>
-                                    <h4 className='h4'>Dias:</h4>
-                                    <p className='p'>{` ${detailsEvent.consult.weekdays.map((e)=>(e))}`}</p>
+                                    <h4>Artistas:</h4>
+                                    <p>{` ${detailsEvent.consult.starring}`}</p>
+                                    <h4>Dirreción:</h4>
+                                    <p> {` ${detailsEvent.consult.address}`}</p>
+                                    <h4>Fecha:</h4>
+                                    <p>{` ${detailsEvent.consult.start_date}`}</p>
+                                    <h4>Fecha Finalización:</h4>
+                                    <p>{` ${detailsEvent.consult.finish_date}`}</p>
+                                    <h4>Dias:</h4>
+                                    <p>{` ${detailsEvent.consult.weekdays.map((e)=>(e))}`}</p>
                                 </div>
                                 <div className={styles.rightColumn}>
-                                    <h4 className='h4'>Horarios:</h4>
-                                    <p className='p'>{` ${detailsEvent.consult.schedule.map((e)=>(e))}`}</p>
-                                    <h4 className='h4'>Tipo de Evento:</h4>
-                                    <p className='p'>{` ${detailsEvent.consult.tags}`}</p>
-                                    <h4 className='h4'>Clasificación:</h4>                            
-                                    <p className='p'>{` ${detailsEvent.consult.age_rating}`}</p>
-                                    <h4 className='h4'>Precio:</h4>
-                                    <p className='p'>{` $${detailsEvent.consult.price}`}</p>
+                                    <h4>Horarios:</h4>
+                                    <p>{` ${detailsEvent.consult.schedule.map((e)=>(e))}`}</p>
+                                    <h4>Tipo de Evento:</h4>
+                                    <p>{` ${detailsEvent.consult.tags}`}</p>
+                                    <h4>Clasificación:</h4>                            
+                                    <p>{` ${detailsEvent.consult.age_rating}`}</p>
+                                    <h4>Precio:</h4>
+                                    <p>{` $${detailsEvent.consult.price}`}</p>
                                     
                                   
                                 </div>                                
                             </div>
                         </div>
                         {userInfo?.type=== 'promoter'||
-                            <div className={styles.promoter}>
-                                <Link to='/PromoterPorfileUser'>
-                                <div>
-                                    
-                                    <h2 className='h4'>Promotor:</h2>
-                                    <p className='p'>{` ${detailsEvent.consult.promoter.business_name}`}</p>
-                                </div>
-                                <div className={styles.promoterPicture}>
-                                    <img src={detailsEvent.consult.promoter.picture} className={styles.promoterPicture}/>
-                                </div>
+
+                             <div className={styles.contRend}>
+                                    <h2 className='formTitle'>Promotor</h2>
+                                    <div className={styles.promoterRow}>
+                                    <Link to='/PromoterPorfileUser'>
+                                    <img
+                                        src={detailsEvent.consult.promoter.picture}
+                                        className={styles.promoterPicture}
+                                    />
+                                 </Link>
+                                 <Link to='/PromoterPorfileUser'>
+                                 <span className={styles.promoterName}>
+                                        {`${detailsEvent.consult.promoter.business_name}`}
+                                    </span>
+                                </Link>
+                                
                                 <div className={styles.whats}>
                                 <a href={whats.whats} target="_blank" rel="noopener noreferrer">
                                     <img src='https://1.bp.blogspot.com/-c156R1-yBRg/YIJJXWpUS9I/AAAAAAAAFP4/Q7eQOnTtqesWS2Q7s8CxireQvnB1OwNUwCLcBGAsYHQ/w680/logo-whatsApp-'className={styles.whats}/>
-                                </a>  
-                                
-                                </div>
-                            </Link>
-                            </div>
+
+                                 </a>
+                                 </div>
+                                 </div>
+
+                             </div>
                         }
-                        <div className={styles.buttonContainer}>
-                            
+
+                         
+
                             {/* Si usuario no logeado, arrojar alerta de "no puedes comentar". Si usuario logeado de
                             tipo 'user', permitir linkear a ruta de creacion de comentarios. Si usuario logeado de
                             tipo 'promoter', no permitir dejar reseña pero si permitir eliminar el evento. */}
                                 {
+
                                     !userInfo.type ? (
                                         <button 
                                         onClick={e => alert('Solo usuarios logeados pueden dejar comentarios')}
@@ -198,7 +207,7 @@ export default function EventDetailsUsario() {
                                             </>
                                         )
                                     )
-                                }
+                                } */}
                         </div>
                         <div className='comments-container'>
                             <DisplayComments state={id}/>

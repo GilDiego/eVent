@@ -10,7 +10,7 @@ import FormUsers from './components/FormUsers/FormUsers.jsx';
 import FormPromoter from './components/FormPromoter/FormPromoter.jsx';
 import EventDetailsUsario from './components/Details/EventDetailsUsario/EventDetailsUsario';
 import EventsDetailsPromoter from './components/EventDetailsPromotor/EventsDetailsPromoter'
-import FormEvent from './components/FormEvent/FormEvent.jsx';
+import FormEvent from './components/FormEvent/FormEvent';
 import Comments from './components/Comments/CreateComment/CreateComment.jsx'
 import Registration from './components/Registration/Registration';
 import UserPorfile from './components/UserPorfile/UserPorfile';
