@@ -82,12 +82,10 @@ export default function EventDetailsUsario() {
 
     if(render){
         const whats ={whats:`https://api.whatsapp.com/send?phone=${detailsEvent.consult.promoter.phone}`}
-        console.log('hola',whats)
-        console.log('whats',whats.whats)
             return(   
             <div className={styles.detailsAllUser}>
                 <div className='detailsCardUser'> 
-                    <div className='deailscard2User'>
+                    <div className={styles.detailsCard2User}>
                         <h1 className={styles.titleCard}>{detailsEvent.consult.name}</h1>
                         <div className='img'>                               
                             <Carousel   
@@ -146,80 +144,75 @@ export default function EventDetailsUsario() {
                         </div>
                         {userInfo?.type=== 'promoter'||
 
-                             <div className={styles.contRend}>
-                                    <h2 className='formTitle'>Promotor</h2>
-                                    <div className={styles.promoterRow}>
-                                    <Link to='/PromoterPorfileUser'>
-                                    <img
-                                        src={detailsEvent.consult.promoter.picture}
-                                        className={styles.promoterPicture}
-                                    />
-                                 </Link>
-                                 <Link to='/PromoterPorfileUser'>
-                                 <span className={styles.promoterName}>
-                                        {`${detailsEvent.consult.promoter.business_name}`}
-                                    </span>
+                        <div className={styles.contRend}>
+                                <h2 className='formTitle'>Promotor</h2>
+                                <div className={styles.promoterRow}>
+                                <Link to='/PromoterPorfileUser'>
+                                <img
+                                    src={detailsEvent.consult.promoter.picture}
+                                    className={styles.promoterPicture}
+                                    alt=''
+                                />
                                 </Link>
-                                
-                                <div className={styles.whats}>
-                                <a href={whats.whats} target="_blank" rel="noopener noreferrer">
-                                    <img src='https://1.bp.blogspot.com/-c156R1-yBRg/YIJJXWpUS9I/AAAAAAAAFP4/Q7eQOnTtqesWS2Q7s8CxireQvnB1OwNUwCLcBGAsYHQ/w680/logo-whatsApp-'className={styles.whats}/>
-
-                                 </a>
-                                 </div>
-                                 </div>
-
-                             </div>
+                            <Link to='/PromoterPorfileUser'>
+                            <span className={styles.promoterName}>
+                                    {`${detailsEvent.consult.promoter.business_name}`}
+                                </span>
+                            </Link>
+                            
+                            <div className={styles.whats}>
+                            <a href={whats.whats} target="_blank" rel="noopener noreferrer">
+                                <img src='https://1.bp.blogspot.com/-c156R1-yBRg/YIJJXWpUS9I/AAAAAAAAFP4/Q7eQOnTtqesWS2Q7s8CxireQvnB1OwNUwCLcBGAsYHQ/w680/logo-whatsApp-'className={styles.whats} alt=''/>
+                            </a>
+                            </div>
+                            </div>
+                        </div>
                         }
 
-                         
-
-                            {/* Si usuario no logeado, arrojar alerta de "no puedes comentar". Si usuario logeado de
-                            tipo 'user', permitir linkear a ruta de creacion de comentarios. Si usuario logeado de
-                            tipo 'promoter', no permitir dejar reseña pero si permitir eliminar el evento. */}
-                                {
-                                    !userInfo.type ? (
-                                        <span>&nbsp;</span>
-                                    ) : (
-                                        userInfo.type === 'promoter' ? (
-                                        <>
-                                            <button className={styles.button} onClick={editEvent}>Editar</button>
-                                            <button className={styles.button} onClick={deleteEvent}>Eliminar</button>
-                                        </>
-                                        ) : (
-                                            <button className={styles.button}>Reservar</button>
-                                        )
-                                    )
-                                    // !userInfo.type ? (
-                                    //     <button 
-                                    //     onClick={e => alert('Solo usuarios logeados pueden dejar comentarios')}
-                                    //     className={styles.button}>    
-                                    //             Reseña
-                                    //     </button>
-                                    // ) : (
-                                    //     userInfo.type === 'user' ? (
-                                            // <>
-                                            // <Link to={{
-                                            //     pathname:'/nuevoComentario',
-                                            //     state: {
-                                            //         id: id,
-                                            //         eventName: detailsEvent.consult.name
-                                            //     }
-                                            // }}>
-                                            //     <button className={styles.button}>Reseña</button>
-                                            // </Link>
-                                            /* El siguiente boton se activara y se hara la logica ya que exista pasarela de pagos
-                                            <button className={styles.button}>Reservar</button> */
-                                            // </>
-                                    //     ) : (
-                                    //         <>
-                                    //             <button className={styles.button} onClick={editEvent}>Editar</button>
-                                    //             <button className={styles.button} onClick={deleteEvent}>Eliminar</button>
-                                    //         </>
-                                    //     )
-                                    // )
-                                } 
+                        {
+                            !userInfo.type ? (
+                                <span>&nbsp;</span>
+                            ) : (
+                                userInfo.type === 'promoter' ? (
+                                <>
+                                    <button className={styles.button} onClick={editEvent}>Editar</button>
+                                    <button className={styles.button} onClick={deleteEvent}>Eliminar</button>
+                                </>
+                                ) : (
+                                    <button className={styles.button}>Reservar</button>
+                                )
+                            )
+                            // !userInfo.type ? (
+                            //     <button 
+                            //     onClick={e => alert('Solo usuarios logeados pueden dejar comentarios')}
+                            //     className={styles.button}>    
+                            //             Reseña
+                            //     </button>
+                            // ) : (
+                            //     userInfo.type === 'user' ? (
+                                    // <>
+                                    // <Link to={{
+                                    //     pathname:'/nuevoComentario',
+                                    //     state: {
+                                    //         id: id,
+                                    //         eventName: detailsEvent.consult.name
+                                    //     }
+                                    // }}>
+                                    //     <button className={styles.button}>Reseña</button>
+                                    // </Link>
+                                    /* El siguiente boton se activara y se hara la logica ya que exista pasarela de pagos
+                                    <button className={styles.button}>Reservar</button> */
+                                    // </>
+                            //     ) : (
+                            //         <>
+                            //             <button className={styles.button} onClick={editEvent}>Editar</button>
+                            //             <button className={styles.button} onClick={deleteEvent}>Eliminar</button>
+                            //         </>
+                            //     )
+                            // )
+                        } 
                         </div>
+
                         <div className='comments-container'>
                             <DisplayComments state={id}/>
                             <div>
