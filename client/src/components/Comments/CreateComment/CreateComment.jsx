@@ -36,8 +36,8 @@ export default function CreateComment() {
             try {
                 response = await axios.get(`http://localhost:3001/api/user/${userId}`)
                 userCheck = response.data.comments.filter(comment => comment.eventId === location.state.id)
-            } catch (error) {
-                console.log(error)
+            } catch (e) {
+                console.log(e)
                 return
             }
             if (userCheck) setCommentedBefore(true)
