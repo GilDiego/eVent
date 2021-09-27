@@ -1,7 +1,14 @@
 .detailsAllUser {
   text-align: center;
 }
-
+.carouselImages {
+}
+.otherDetailsUser {
+  height: 600px; /* DESPUÉS MODIFICAR. */
+  max-width: 50vw;
+  min-width: 40vw;
+  margin: 20px;
+}
 body {
   color: var(--White);
 }
@@ -19,16 +26,13 @@ body {
 /* @media {} MEDIA QUERY PARA HACER EL FLEX*/
 .carousel,
 .otherDetailsUser {
+  margin: auto;
   background-color: var(--Primary);
   box-shadow: 5px 10px #00000081;
   border-radius: 4px;
-}
-
-.otherDetailsUser {
-  height: 600px; /* DESPUÉS MODIFICAR. */
-  max-width: 50vw;
-  min-width: 40vw;
-  margin: 20px;
+  margin-top: 80px;
+  margin-bottom: 80px;
+  overflow: hidden;
 }
 
 .detailsUsers2User {

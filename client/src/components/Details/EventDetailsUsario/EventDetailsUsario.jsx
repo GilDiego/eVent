@@ -40,7 +40,7 @@ export default function EventDetailsUsario() {
                 await dispatch(getEventDetail(id))
                 setRender(true)
             }catch(error){
-                alert('intentalo mas tarde')
+                alert('Algo salio mal al cargar este evento.')
             }
         }
         fetchData()
@@ -87,7 +87,7 @@ export default function EventDetailsUsario() {
                 <div className='detailsCardUser'> 
                     <div className={styles.detailsCard2User}>
                         <h1 className={styles.titleCard}>{detailsEvent.consult.name}</h1>
-                        <div className='img'>                               
+                        <div className={styles.carouselImages}>                               
                             <Carousel   
                                 data={data}
                                 time={5000}
@@ -137,8 +137,6 @@ export default function EventDetailsUsario() {
                                     <p>{` ${detailsEvent.consult.age_rating}`}</p>
                                     <h4>Precio:</h4>
                                     <p>{` $${detailsEvent.consult.price}`}</p>
-                                    
-                                  
                                 </div>                                
                             </div>
                         </div>
