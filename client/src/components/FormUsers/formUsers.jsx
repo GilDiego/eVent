@@ -117,7 +117,7 @@ export function FormUsers() {
 
   return (
     <div className={styles.contRend}>
-      <span className={styles.formTitle}>Completa el formulario</span>
+      <span className="formTitle">Completa el formulario</span>
       <form
         onSubmit={submit}
         // onSubmit={(e) => {

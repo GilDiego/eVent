@@ -93,13 +93,6 @@
     text-align: left;
 }
 
-.formTitle {
-    font-size: 1.5rem;
-    color: var(--Button);
-    font-weight: 350;
-    margin: 20px;
-}
-
 .row {
     display: flex;
     flex-direction: row;

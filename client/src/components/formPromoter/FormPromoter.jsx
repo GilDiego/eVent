@@ -126,7 +126,7 @@ function FormPromoter({changeModal}) {
     return (
             <form onSubmit={handleSubmit}>
                 <div className={styles.contRend}>
-                        <span className={styles.formTitle}>
+                        <span className="formTitle">
                             {!form.country ? "Selecciona un país" : "Completa el formulario"}
                         </span>
                     <div className={styles.countrySelect}>
