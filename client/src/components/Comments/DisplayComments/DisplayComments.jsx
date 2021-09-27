@@ -79,9 +79,6 @@ export default function DisplayComments(id) {
                                     <p className={style.allRatings} onClick={e => setDisplay(tempDisplay)}>
                                         {totalComments} {totalComments > 1? 'calificaciones' : 'calificación'} para este evento.
                                     </p>
-                                    {/* <p className={style.individual} onClick={e => setDisplay(tempDisplay)}>
-                                        Ver algunas
-                                    </p> */}
                                     <div className={style.starContainer}>
                                         <p className={style.individualStars} onClick={e => setDisplay(data[4].star5)}>
                                             <span className={style.stars}>★★★★★</span>  {Math.floor(data[4].star5.length / totalComments * 100)}%
