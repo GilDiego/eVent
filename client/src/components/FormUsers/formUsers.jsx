@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styles from "../FormPromoter/Forms.module.css";
-
+ 
 export function Validate(input) {
   let errors = {};
   console.log(input, "validate");
