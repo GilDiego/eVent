@@ -80,7 +80,7 @@ exports.getAllComments = async (req, res) => {
         res.json(consult)
     }
 }
-exports.getSomeComments = async (req, res) => {
+exports.getFormattedComments = async (req, res) => {
 
     const { id } = req.query;
     let consult;
@@ -93,10 +93,6 @@ exports.getSomeComments = async (req, res) => {
                 },
                 include: User,
             })
-
-            while (consult.length > 5) {
-                consult.splice(Math.random(0, consult.length), 1)
-            }
 
             res.json(consult)
         } catch (error) {

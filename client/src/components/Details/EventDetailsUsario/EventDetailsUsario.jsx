@@ -144,8 +144,8 @@ export default function EventDetailsUsario() {
                                 </div>                                
                             </div>
                         </div>
-                        <div className={styles.buttonContainer}>
                         {userInfo?.type=== 'promoter'||
+
                              <div className={styles.contRend}>
                                     <h2 className='formTitle'>Promotor</h2>
                                     <div className={styles.promoterRow}>
@@ -160,9 +160,11 @@ export default function EventDetailsUsario() {
                                         {`${detailsEvent.consult.promoter.business_name}`}
                                     </span>
                                 </Link>
+                                
                                 <div className={styles.whats}>
-                                 <a href={whats.whats} target="_blank" rel="noopener noreferrer">
+                                <a href={whats.whats} target="_blank" rel="noopener noreferrer">
                                     <img src='https://1.bp.blogspot.com/-c156R1-yBRg/YIJJXWpUS9I/AAAAAAAAFP4/Q7eQOnTtqesWS2Q7s8CxireQvnB1OwNUwCLcBGAsYHQ/w680/logo-whatsApp-'className={styles.whats}/>
+
                                  </a>
                                  </div>
                                  </div>
@@ -170,60 +172,40 @@ export default function EventDetailsUsario() {
                              </div>
                         }
 
-                            {userInfo?.type === "promoter"?
-                                <button className={styles.button} onClick={editEvent}>Editar</button>:
-                                <button className={styles.button}>Reservar</button>
-                            }   
+                         
+
                             {/* Si usuario no logeado, arrojar alerta de "no puedes comentar". Si usuario logeado de
                             tipo 'user', permitir linkear a ruta de creacion de comentarios. Si usuario logeado de
                             tipo 'promoter', no permitir dejar reseña pero si permitir eliminar el evento. */}
                                 {
-                                userInfo?.type === "user" ? (
-
-                                    <Link to={{
-                                            pathname:'/nuevoComentario',
-                                            state: {
-                                                id: id,
-                                                eventName: detailsEvent.consult.name
-                                            }
-                                        }}>
-
-                                        <button className={styles.button}>Reseña</button>
-                                        </Link>
-                                ) :
-                                userInfo?.type === "promoter" ?
-                                (
-                                    <button className={styles.button} onClick={deleteEvent}>Eliminar</button>
-                                ):
-                                (
-                                   
-                                    <button 
-                                        onClick={e => alert('Solo usuarios logeados pueden dejar comentarios')}
-                                        className={styles.button}>    
-                                        Reseña
-                                    </button>
-                                )} {/* {
 
                                     !userInfo.type ? (
                                         <button 
-                                            onClick={e => alert('Solo usuarios logeados pueden dejar comentarios')}
-                                            className={styles.button}>    
+                                        onClick={e => alert('Solo usuarios logeados pueden dejar comentarios')}
+                                        className={styles.button}>    
                                                 Reseña
                                         </button>
                                     ) : (
-                                            userInfo.type === 'user' ? (
-                                                <Link to={{
-                                                    pathname:'/nuevoComentario',
-                                                    state: {
-                                                        id: id,
-                                                        eventName: detailsEvent.consult.name
-                                                    }
-                                                }}>
+                                        userInfo.type === 'user' ? (
+                                            <>
+                                            <Link to={{
+                                                pathname:'/nuevoComentario',
+                                                state: {
+                                                    id: id,
+                                                    eventName: detailsEvent.consult.name
+                                                }
+                                            }}>
                                                 <button className={styles.button}>Reseña</button>
-                                                </Link>
-                                            ) : (
+                                            </Link>
+                                            {/* El siguiente boton se activara y se hara la logica ya que exista pasarela de pagos
+                                            <button className={styles.button}>Reservar</button> */}
+                                            </>
+                                        ) : (
+                                            <>
+                                                <button className={styles.button} onClick={editEvent}>Editar</button>
                                                 <button className={styles.button} onClick={deleteEvent}>Eliminar</button>
-                                            )
+                                            </>
+                                        )
                                     )
                                 } */}
                         </div>
