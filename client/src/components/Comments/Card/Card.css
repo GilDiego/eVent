@@ -8,6 +8,7 @@
   background-color: var(--Primary);
   box-shadow: 5px 10px #00000081;
   margin-bottom: 3px;
+  margin-top: 4px;
 }
 .stars {
   color: var(--Button);
