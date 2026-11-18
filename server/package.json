@@ -1,16 +1,22 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "eVent Project",
-  "main": "app.js",
+  "description": "eVent API",
+  "main": "index.js",
   "scripts": {
-    "start": "node .",
-    "build": "nodemon ."
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "jest",
+    "lint": "eslint ."
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "jest": "^27.5.1",
+    "supertest": "^6.3.4",
+    "eslint": "^8.57.0",
+    "prettier": "^2.8.8"
   },
   "dependencies": {
     "cloudinary": "^1.27.0",
@@ -20,5 +26,12 @@
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.6.5"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "helpers.js"
+    ]
   }
 }

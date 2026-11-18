@@ -1,41 +1,25 @@
 const User = require('../../database/models/User');
 const Comment = require('../../database/models/Comment');
 
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.findAll({ include: Comment });
+    res.json(users);
+  } catch (error) {
+    res.json('error');
+  }
+};
 
-exports.getAllUsers = async (req,res) => {
+exports.getUserByID = async (req, res) => {
+  const { id } = req.params;
 
-    try {
-        User.findAll({include:Comment})
-            .then(user => {res.json(user)})
-            .catch(error => {
-                console.log(error)
-                res.json('error')
-            })
+  try {
+    const user = await User.findOne({ where: { id }, include: Comment });
 
-    } catch (error) {
-        console.log(error)
-        return res.json({msg:`There has been an error during the consult or There isn't any user saved yet`})
-    }  
-}
+    if (!user) return res.json({ msg: "Can't find an user whit ID: " + id });
 
-exports.getUserByID = async (req,res) => {
-
-    try {
-        const { id } = req.params;
-
-        const consult = await User.findOne({
-            where: {
-                id
-            },
-            include:Comment
-        })
-
-        if(!consult) return res.json({msg:`Can't find an user whit ID: ${id}`})
-
-        res.json(consult)
-        
-    } catch (error) {
-        console.log(error);
-        res.json({msg:'Error!!'})
-    }
-}
+    res.json(user);
+  } catch (error) {
+    res.json({ msg: 'Error!!' });
+  }
+};

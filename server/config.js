@@ -1,14 +1,14 @@
 require('dotenv').config();
 
-const { DB_USER,
-        DB_PASSWORD,
-        DB_HOST } = process.env;
+const { PORT, DATABASE_URL, CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } =
+  process.env;
 
 module.exports = {
-    database:{
-        username: `${DB_USER}`,
-        password:  `${DB_PASSWORD}`,
-        database: 'event',//nombre de la base de datos
-        host: `${DB_HOST}`
-    }
-} 
+  port: PORT || 3001,
+  databaseUrl: DATABASE_URL,
+  cloudinary: {
+    cloud_name: CLOUDINARY_CLOUD_NAME,
+    api_key: CLOUDINARY_API_KEY,
+    api_secret: CLOUDINARY_API_SECRET,
+  },
+};
