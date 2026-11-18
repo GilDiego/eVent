@@ -4,7 +4,7 @@
 .carouselImages {
 }
 .otherDetailsUser {
-  height: 600px; /* DESPUÉS MODIFICAR. */
+  height: 600px;
   max-width: 50vw;
   min-width: 40vw;
   margin: 20px;
@@ -20,10 +20,8 @@ body {
   align-items: center;
   justify-content: space-around;
   margin: auto;
-  /*  margin: 20px; */
 }
 
-/* @media {} MEDIA QUERY PARA HACER EL FLEX*/
 .carousel,
 .otherDetailsUser {
   margin: auto;
@@ -41,7 +39,6 @@ body {
   flex-wrap: wrap;
 }
 .buttonContainer {
-  /*   padding: 50px; */
   width: 500px;
   display: flex;
   justify-content: space-between;
@@ -49,14 +46,7 @@ body {
 }
 .button {
   cursor: pointer;
-  /* Antigua configuracion de boton, incluye margin-top: 25px;
-  font-size: large;
-  width: 150px;
-  height: 30px;
-  color: var(--White);
-  background-color: var(--Button);
-  border: none;
-  border-radius: var(--RadiusOne);*/
+
   margin-top: 25px;
   background-color: var(--Secondary);
   color: var(--Black);
@@ -75,7 +65,6 @@ body {
   margin: auto;
   text-align: justify;
   max-width: 600px;
-  /* justify-content: center; */
 }
 
 .rightColumn {
@@ -115,8 +104,7 @@ body {
   padding-left: 20px;
   padding-right: 20px;
   margin-bottom: 20px;
-  box-shadow: 0px 15px 10px -15px var(--Black),
-    0px -15px 10px -15px var(--Black);
+  box-shadow: 0px 15px 10px -15px var(--Black), 0px -15px 10px -15px var(--Black);
 }
 .promoterName {
   display: flex;

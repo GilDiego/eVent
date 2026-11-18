@@ -1,9 +1,4 @@
-
-.container{
-    display: flex;
-    z-index: 300;
+.container {
+  display: flex;
+  z-index: 300;
 }
-
-
-
-

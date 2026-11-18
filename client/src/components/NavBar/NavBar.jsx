@@ -1,26 +1,20 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import styles from "./NavBar.module.css";
-import { setUser } from "../../actions/actions";
-import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
-import Logout from '../Logout/Logout'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import styles from './NavBar.module.css';
+import { setUser } from '../../actions/actions';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import Logout from '../Logout/Logout';
 import img2 from '../../Utilities/eVent-08.svg';
-
-
 const NavBar = ({ user, setUser }) => {
   const history = useHistory();
-
   const [Out, setOut] = useState(false);
-
-  //*Funciones
   const redirec = () => {
-    history.push("/");
+    history.push('/');
   };
   const setLogout = () => {
     setOut(true);
   };
-
   return (
     <>
       <nav className={styles.Navbar}>
@@ -32,13 +26,9 @@ const NavBar = ({ user, setUser }) => {
             <>
               <Link to="/perfil">
                 <div className="contFlex margRgth20" container>
-                  <img
-                    src={user.picture}
-                    alt=""
-                    className="imgSize10 margRgth10"
-                  />
+                  <img src={user.picture} alt="" className="imgSize10 margRgth10" />
                   <p className="txColorWht txSize15">
-                    {user.type === "user" ? user.username : user.business_name}
+                    {user.type === 'user' ? user.username : user.business_name}
                   </p>
                 </div>
               </Link>
@@ -59,21 +49,16 @@ const NavBar = ({ user, setUser }) => {
           )}
         </div>
       </nav>
-      {Out ? (
-        <Logout setOut={setOut} setUser={setUser} redirec={redirec} />
-      ) : (
-        <div></div>
-      )}
+      {Out ? <Logout setOut={setOut} setUser={setUser} redirec={redirec} /> : <div></div>}
     </>
   );
 };
-
-//*_____________________________________________________________________
 function mapStateToProps(state) {
   return {
     switchSide: state.sideBarSwitch,
     user: state.userState,
   };
 }
-
-export default connect(mapStateToProps, { setUser })(NavBar);
+export default connect(mapStateToProps, {
+  setUser,
+})(NavBar);

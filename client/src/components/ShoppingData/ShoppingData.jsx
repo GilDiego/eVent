@@ -1,11 +1,10 @@
-import React from "react";
-import styles from './ShoppingData.module.css'
-
+import React from 'react';
+import styles from './ShoppingData.module.css';
 const ShopingData = ({ result, events }) => {
   return (
-    <div >
+    <div>
       <h3 className={styles.title}>Resumen de compra</h3>
-      <ul className={ styles.ul}>
+      <ul className={styles.ul}>
         {events.map((event) => (
           <li key={event.id}>
             <div className={styles.liSubContainer}>
@@ -20,5 +19,4 @@ const ShopingData = ({ result, events }) => {
     </div>
   );
 };
-
 export default ShopingData;

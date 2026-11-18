@@ -1,40 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const { 
-    getController,              
-    getEventByIdController,
-    getElementByCountryAndCity,
+const {
+  getController,
+  getEventByIdController,
+  getElementByCountryAndCity,
 } = require('../controllers/Event/getController');
-
-const {
-    saveInfoEvent,
-    saveInfoPromotor,
-} = require('../controllers/Event/postController');
-
-const {
-    putController
-} = require('../controllers/Event/putController');
-
-const {
-    deleteController
-} = require('../controllers/Event/deleteController');
-
-
-
-//GET
-router.get('/main',getController);
-router.get('/event/:id',getEventByIdController);
-router.get('/event',getElementByCountryAndCity);
-
-//POST
-router.post('/event',saveInfoEvent);
-
-
-//PUT(sequelize usa el metodo patch)
-router.patch('/event/edit/:id',putController)
-
-//DELETE
-router.delete('/event/delete/:id',deleteController)
-
-
+const { saveInfoEvent } = require('../controllers/Event/postController');
+const { putController } = require('../controllers/Event/putController');
+const { deleteController } = require('../controllers/Event/deleteController');
+router.get('/main', getController);
+router.get('/event/:id', getEventByIdController);
+router.get('/event', getElementByCountryAndCity);
+router.post('/event', saveInfoEvent);
+router.patch('/event/edit/:id', putController);
+router.delete('/event/delete/:id', deleteController);
 module.exports = router;
