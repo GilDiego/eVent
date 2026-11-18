@@ -1,5 +1,4 @@
-import React from "react";
-
+import React from 'react';
 const LogInputs = ({
   styles,
   FormState,
@@ -12,35 +11,21 @@ const LogInputs = ({
   responseGoogle,
   GoogleLogin,
   Link,
-  nameComponent
+  nameComponent,
 }) => {
   return (
     <>
-      <h4 className={styles.title}>{ nameComponent }</h4>
+      <h4 className={styles.title}>{nameComponent}</h4>
 
       <div className={styles.subContainer}>
         <label className={styles.label}>Email</label>
-        <input
-          type="email"
-          onChange={upgradeEmail}
-          value={FormState.email}
-          name="email"
-        />
-        <span className={SwitchMail ? styles.true : styles.false}>
-          {MessageMail}
-        </span>
+        <input type="email" onChange={upgradeEmail} value={FormState.email} name="email" />
+        <span className={SwitchMail ? styles.true : styles.false}>{MessageMail}</span>
       </div>
       <div className={styles.subContainer}>
         <label className={styles.label}>Password</label>
-        <input
-          type="password"
-          onChange={upgradePass}
-          value={FormState.password}
-          name="password"
-        />
-        <span className={SwitchPass ? styles.true : styles.false}>
-          {MessagePass}
-        </span>
+        <input type="password" onChange={upgradePass} value={FormState.password} name="password" />
+        <span className={SwitchPass ? styles.true : styles.false}>{MessagePass}</span>
       </div>
       {true ? (
         <button className="btnForm margTop20" type="Submit">
@@ -55,28 +40,13 @@ const LogInputs = ({
           buttonText="Ingresa con Google"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
-          cookiePolicy={"single_host_origin"}
-          // render={renderProps => (
-          //   <button onClick={renderProps.onClick} disabled={renderProps.disabled}>Google</button>
-          // )}
+          cookiePolicy={'single_host_origin'}
         />
         <Link to="/registration">
           <h4 className="txColorWht txAligneCntr margTop40">Crea tu cuenta</h4>
         </Link>
       </div>
-
-      {/* 
-<div className={styles.subContainerTwo}>
-<FacebookLogin
-appId="226871852734478"
-autoLoad={true}
-fields="name,email,picture"
-onClick={responseFacebook}
-callback={responseFacebook}
-/>
-</div> */}
     </>
   );
 };
-
 export default LogInputs;

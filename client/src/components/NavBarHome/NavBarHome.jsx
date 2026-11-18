@@ -1,10 +1,9 @@
-import React from "react";
-import { connect } from "react-redux";
-import { setSideBar } from "../../actions/actions";
-import Search from "../Search/Search";
-import styles from './NavBarHome.module.css'
-
-const NavBarHome = ({ setSideBar, switchSide}) => {
+import React from 'react';
+import { connect } from 'react-redux';
+import { setSideBar } from '../../actions/actions';
+import Search from '../Search/Search';
+import styles from './NavBarHome.module.css';
+const NavBarHome = ({ setSideBar, switchSide }) => {
   function setSide() {
     if (switchSide) {
       setSideBar(false);
@@ -18,16 +17,16 @@ const NavBarHome = ({ setSideBar, switchSide}) => {
             <i className="fas fa-bars"></i>
           </span>
         </button>
-        <Search/>
+        <Search />
       </div>
     </div>
   );
 };
-
 function mapStateToProps(state) {
   return {
     switchSide: state.sideBarSwitch,
   };
 }
-
-export default connect(mapStateToProps, { setSideBar })(NavBarHome);
+export default connect(mapStateToProps, {
+  setSideBar,
+})(NavBarHome);

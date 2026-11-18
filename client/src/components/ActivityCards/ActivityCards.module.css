@@ -1,11 +1,11 @@
 .Events {
-    display: flex;
-    width: 100%;
-    height: auto;
+  display: flex;
+  width: 100%;
+  height: auto;
 }
 
-.ul{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+.ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
